@@ -40,6 +40,7 @@
     <p>{{#str}} privacy_desc, message {{/str}}</p>
     <div data-preference="blocknoncontacts" class="mb-3">
         <fieldset>
+<<<<<<< HEAD
             <legend class="visually-hidden">{{#str}} contactableprivacy, message {{/str}}</legend>
             {{#privacy}}
                 <div class="form-check mb-2">
@@ -51,6 +52,19 @@
                         value="{{value}}"
                     >
                     <label class="form-check-label ms-2" for="block-noncontacts-{{uniqid}}-{{value}}">
+=======
+            <legend class="sr-only">{{#str}} contactableprivacy, message {{/str}}</legend>
+            {{#privacy}}
+                <div class="custom-control custom-radio mb-2">
+                    <input
+                        type="radio"
+                        name="message_blocknoncontacts"
+                        class="custom-control-input"
+                        id="block-noncontacts-{{uniqid}}-{{value}}"
+                        value="{{value}}"
+                    >
+                    <label class="custom-control-label ml-2" for="block-noncontacts-{{uniqid}}-{{value}}">
+>>>>>>> upstream/MOODLE_38_STABLE
                         {{text}}
                     </label>
                 </div>

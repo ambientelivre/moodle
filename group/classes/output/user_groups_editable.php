@@ -79,7 +79,10 @@ class user_groups_editable extends \core\output\inplace_editable {
         }
 
         $fullname = fullname($user, has_capability('moodle/site:viewfullnames', $this->context));
+<<<<<<< HEAD
         $fullname = htmlspecialchars($fullname, ENT_QUOTES, 'utf-8');
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->edithint = get_string('editusersgroupsa', 'group', $fullname);
         $this->editlabel = get_string('editusersgroupsa', 'group', $fullname);
 

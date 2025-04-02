@@ -59,6 +59,26 @@ class behat_data_generators extends behat_base {
 
     /**
      * Convert legacy entity names to the new component-specific form.
+<<<<<<< HEAD
+     *
+     * In the past, there was no support for plugins, and everything that
+     * could be created was handled by the core generator. Now, we can
+     * support plugins, and so some thing should probably be moved.
+     *
+     * For example, in the future we should probably add
+     * 'message contacts' => 'core_message > contact'] to
+     * this array, and move generation of message contact
+     * from core to core_message.
+     *
+     * @var array old entity type => new entity type.
+     */
+    protected $movedentitytypes = [
+    ];
+
+    /**
+     * Creates the specified elements.
+     *
+=======
      *
      * In the past, there was no support for plugins, and everything that
      * could be created was handled by the core generator. Now, we can
@@ -84,15 +104,39 @@ class behat_data_generators extends behat_base {
      * @param string    $entitytype The name of the type entity to add
      * @param TableNode $data
      */
-    #[\core\attribute\example('And the following "activities" exist:
-        | activity | name              | intro           | course   | idnumber | section | visible |
-        | assign   | Activity sample 1 | Test assignment | C1       | sample1  | 1       | 1       |
-        | assign   | Activity sample 2 | Test assignment | C1       | sample2  | 1       | 0       |')]
     public function the_following_entities_exist($entitytype, TableNode $data) {
         if (isset($this->movedentitytypes[$entitytype])) {
             $entitytype = $this->movedentitytypes[$entitytype];
         }
         list($component, $entity) = $this->parse_entity_type($entitytype);
+        $this->get_instance_for_component($component)->generate_items($entity, $data);
+    }
+
+    /**
+     * Creates the specified element.
+     *
+>>>>>>> upstream/MOODLE_38_STABLE
+     * See the class comment for an overview.
+     *
+     * @Given the following :entitytype exists:
+     *
+     * @param string    $entitytype The name of the type entity to add
+     * @param TableNode $data
+     */
+<<<<<<< HEAD
+    #[\core\attribute\example('And the following "activities" exist:
+        | activity | name              | intro           | course   | idnumber | section | visible |
+        | assign   | Activity sample 1 | Test assignment | C1       | sample1  | 1       | 1       |
+        | assign   | Activity sample 2 | Test assignment | C1       | sample2  | 1       | 0       |')]
+    public function the_following_entities_exist($entitytype, TableNode $data) {
+=======
+    public function the_following_entity_exists($entitytype, TableNode $data) {
+>>>>>>> upstream/MOODLE_38_STABLE
+        if (isset($this->movedentitytypes[$entitytype])) {
+            $entitytype = $this->movedentitytypes[$entitytype];
+        }
+        list($component, $entity) = $this->parse_entity_type($entitytype);
+<<<<<<< HEAD
         $this->get_instance_for_component($component)->generate_items($entity, $data);
     }
 
@@ -161,6 +205,20 @@ class behat_data_generators extends behat_base {
      * @param string $entitytype the entity type
      * @return string[] with two elements, component and entity type.
      */
+=======
+        $this->get_instance_for_component($component)->generate_items($entity, $data, true);
+    }
+
+    /**
+     * Parse a full entity type like 'users' or 'mod_forum > subscription'.
+     *
+     * E.g. parsing 'course' gives ['core', 'course'] and
+     * parsing 'core_message > message' gives ['core_message', 'message'].
+     *
+     * @param string $entitytype the entity type
+     * @return string[] with two elements, component and entity type.
+     */
+>>>>>>> upstream/MOODLE_38_STABLE
     protected function parse_entity_type(string $entitytype): array {
         $dividercount = substr_count($entitytype, ' > ');
         if ($dividercount === 0) {
@@ -211,6 +269,7 @@ class behat_data_generators extends behat_base {
         }
         $instance = new $componentclass($component);
         return $instance;
+<<<<<<< HEAD
     }
 
     /**
@@ -258,5 +317,7 @@ class behat_data_generators extends behat_base {
             throw new coding_exception('No generator for ' . $entity . ' in component ' . $component);
         }
         return $entities[$entity];
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

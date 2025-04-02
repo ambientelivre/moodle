@@ -14,9 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 namespace qtype_match;
 
 use question_bank;
+=======
+/**
+ * Tests for the matching question type backup and restore logic.
+ *
+ * @package   qtype_match
+ * @copyright 2020 The Open University
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
+ */
+>>>>>>> upstream/MOODLE_38_STABLE
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -25,6 +35,7 @@ require_once($CFG->dirroot . '/backup/util/includes/backup_includes.php');
 require_once($CFG->dirroot . '/backup/util/includes/restore_includes.php');
 require_once($CFG->dirroot . '/course/externallib.php');
 
+<<<<<<< HEAD
 /**
  * Tests for the matching question type backup and restore logic.
  *
@@ -33,11 +44,22 @@ require_once($CFG->dirroot . '/course/externallib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
  */
 final class backup_test extends \advanced_testcase {
+=======
+
+/**
+ * Tests for the matching question type backup and restore logic.
+ */
+class qtype_match_backup_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Duplicate quiz with a matching question, and check it worked.
      */
+<<<<<<< HEAD
     public function test_duplicate_match_question(): void {
+=======
+    public function test_duplicate_match_question() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
         $this->resetAfterTest();
         $this->setAdminUser();
@@ -48,7 +70,11 @@ final class backup_test extends \advanced_testcase {
         // Create a course with a page that embeds a question.
         $course = $coregenerator->create_course();
         $quiz = $coregenerator->create_module('quiz', ['course' => $course->id]);
+<<<<<<< HEAD
         $quizcontext = \context_module::instance($quiz->cmid);
+=======
+        $quizcontext = context_module::instance($quiz->cmid);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $cat = $questiongenerator->create_question_category(['contextid' => $quizcontext->id]);
         $question = $questiongenerator->create_question('match', 'trickynums', ['category' => $cat->id]);

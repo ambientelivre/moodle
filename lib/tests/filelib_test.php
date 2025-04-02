@@ -1898,7 +1898,11 @@ EOF;
     /**
      * Test file_is_draft_areas_limit_reached
      */
+<<<<<<< HEAD
     public function test_file_is_draft_areas_limit_reached(): void {
+=======
+    public function test_file_is_draft_areas_limit_reached() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         $this->resetAfterTest(true);
 
@@ -1923,7 +1927,10 @@ EOF;
         }
 
         // Burst up to the capacity and make sure that the bucket allows it.
+<<<<<<< HEAD
         $burststart = microtime();
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         for ($i = 0; $i < $capacity; $i++) {
             if ($i) {
                 sleep(1); // A little delay so we have different timemodified value for files.
@@ -1938,6 +1945,7 @@ EOF;
         // The bucket should be full after bursting.
         $this->assertTrue(file_is_draft_areas_limit_reached($user->id));
 
+<<<<<<< HEAD
         // Calculate the time taken to burst up the bucket capacity.
         $timetaken = microtime_diff($burststart, microtime());
 
@@ -1948,6 +1956,11 @@ EOF;
         $milliseconds = ceil(1000000 * ((1 / $leak) - ($capacity - 1)) - ($timetaken  * 1000));
         usleep($milliseconds);
 
+=======
+        // The bucket leaks so it shouldn't be full after a certain time.
+        // Reiterating that this test could have been faster if MDL-37327 was implemented.
+        sleep(ceil(1 / $leak) - ($capacity - 1));
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertFalse(file_is_draft_areas_limit_reached($user->id));
 
         // Only one item was leaked from the bucket. So the bucket should become full again if we add a single item to it.
@@ -1961,6 +1974,7 @@ EOF;
         sleep(ceil(1 / $leak));
         $this->assertFalse(file_is_draft_areas_limit_reached($user->id));
     }
+<<<<<<< HEAD
 
     /**
      * Test text cleaning when preparing text editor data.
@@ -2076,6 +2090,8 @@ EOF;
             ],
         ];
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 /**

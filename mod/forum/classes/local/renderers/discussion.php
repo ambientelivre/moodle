@@ -216,8 +216,12 @@ class discussion {
                 'pindiscussion' => null,
                 'neighbourlinks' => $this->get_neighbour_links_html(),
                 'exportdiscussion' => !empty($CFG->enableportfolios) ? $this->get_export_discussion_html($user) : null
+<<<<<<< HEAD
             ],
             'settingsselector' => true,
+=======
+            ]
+>>>>>>> upstream/MOODLE_38_STABLE
         ]);
 
         $capabilities = (array) $exporteddiscussion['capabilities'];
@@ -353,7 +357,11 @@ class discussion {
                         ['/mod/forum/discuss.php?d=' . $discussion->get_id() => get_string("movethisdiscussionto", "forum")],
                         'forummenu', $movebutton);
                 $select->set_label(get_string('movethisdiscussionlabel', 'mod_forum'), [
+<<<<<<< HEAD
                     'class' => 'visually-hidden',
+=======
+                    'class' => 'sr-only',
+>>>>>>> upstream/MOODLE_38_STABLE
                 ]);
                 $html .= $this->renderer->render($select);
                 $html .= "</div>";
@@ -370,7 +378,11 @@ class discussion {
      * @param   stdClass $user The user viewing the discussion
      * @return  string|null
      */
+<<<<<<< HEAD
     private function get_export_discussion_html(stdClass $user): ?string {
+=======
+    private function get_export_discussion_html(stdClass $user) : ?string {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
 
         if (!$this->capabilitymanager->can_export_discussions($user)) {

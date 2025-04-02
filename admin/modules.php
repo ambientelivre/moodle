@@ -52,6 +52,7 @@ if (!empty($action) && !empty($plugin) && confirm_sesskey()) {
             \core\notification::SUCCESS
         );
 
+<<<<<<< HEAD
         // Settings not required - only pages.
         admin_get_root(true, false);
     }
@@ -59,6 +60,145 @@ if (!empty($action) && !empty($plugin) && confirm_sesskey()) {
     // Redirect back to the modules page with out any params.
     redirect(new moodle_url('/admin/modules.php'));
 }
+=======
+/// If data submitted, then process and store.
+
+    if (!empty($hide) and confirm_sesskey()) {
+        if (!$module = $DB->get_record("modules", array("name"=>$hide))) {
+            print_error('moduledoesnotexist', 'error');
+        }
+        $DB->set_field("modules", "visible", "0", array("id"=>$module->id)); // Hide main module
+        // Remember the visibility status in visibleold
+        // and hide...
+        $sql = "UPDATE {course_modules}
+                   SET visibleold=visible, visible=0
+                 WHERE module=?";
+        $DB->execute($sql, array($module->id));
+        // Increment course.cacherev for courses where we just made something invisible.
+        // This will force cache rebuilding on the next request.
+        increment_revision_number('course', 'cacherev',
+                "id IN (SELECT DISTINCT course
+                                FROM {course_modules}
+                               WHERE visibleold=1 AND module=?)",
+                array($module->id));
+        core_plugin_manager::reset_caches();
+        admin_get_root(true, false);  // settings not required - only pages
+        redirect(new moodle_url('/admin/modules.php'));
+    }
+
+    if (!empty($show) and confirm_sesskey()) {
+        if (!$module = $DB->get_record("modules", array("name"=>$show))) {
+            print_error('moduledoesnotexist', 'error');
+        }
+        $DB->set_field("modules", "visible", "1", array("id"=>$module->id)); // Show main module
+        $DB->set_field('course_modules', 'visible', '1', array('visibleold'=>1, 'module'=>$module->id)); // Get the previous saved visible state for the course module.
+        // Increment course.cacherev for courses where we just made something visible.
+        // This will force cache rebuilding on the next request.
+        increment_revision_number('course', 'cacherev',
+                "id IN (SELECT DISTINCT course
+                                FROM {course_modules}
+                               WHERE visible=1 AND module=?)",
+                array($module->id));
+        core_plugin_manager::reset_caches();
+        admin_get_root(true, false);  // settings not required - only pages
+        redirect(new moodle_url('/admin/modules.php'));
+    }
+
+    echo $OUTPUT->header();
+    echo $OUTPUT->heading($stractivities);
+
+/// Get and sort the existing modules
+
+    if (!$modules = $DB->get_records('modules', array(), 'name ASC')) {
+        print_error('moduledoesnotexist', 'error');
+    }
+
+/// Print the table of all modules
+    // construct the flexible table ready to display
+    $table = new flexible_table(MODULE_TABLE);
+    $table->define_columns(array('name', 'instances', 'version', 'hideshow', 'uninstall', 'settings'));
+    $table->define_headers(array($stractivitymodule, $stractivities, $strversion, "$strhide/$strshow", $strsettings, $struninstall));
+    $table->define_baseurl($CFG->wwwroot.'/'.$CFG->admin.'/modules.php');
+    $table->set_attribute('id', 'modules');
+    $table->set_attribute('class', 'admintable generaltable');
+    $table->setup();
+
+    $pluginmanager = core_plugin_manager::instance();
+
+    foreach ($modules as $module) {
+        $plugininfo = $pluginmanager->get_plugin_info('mod_'.$module->name);
+        $status = $plugininfo->get_status();
+
+        if ($status === core_plugin_manager::PLUGIN_STATUS_MISSING) {
+            $strmodulename = '<span class="notifyproblem">'.$module->name.' ('.get_string('missingfromdisk').')</span>';
+            $missing = true;
+        } else {
+            // took out hspace="\10\", because it does not validate. don't know what to replace with.
+            $icon = "<img src=\"" . $OUTPUT->image_url('icon', $module->name) . "\" class=\"icon\" alt=\"\" />";
+            $strmodulename = $icon.' '.get_string('modulename', $module->name);
+            $missing = false;
+        }
+
+        $uninstall = '';
+        if ($uninstallurl = core_plugin_manager::instance()->get_uninstall_url('mod_'.$module->name, 'manage')) {
+            $uninstall = html_writer::link($uninstallurl, $struninstall);
+        }
+
+        if (file_exists("$CFG->dirroot/mod/$module->name/settings.php") ||
+                file_exists("$CFG->dirroot/mod/$module->name/settingstree.php")) {
+            $settings = "<a href=\"settings.php?section=modsetting$module->name\">$strsettings</a>";
+        } else {
+            $settings = "";
+        }
+
+        try {
+            $count = $DB->count_records_select($module->name, "course<>0");
+        } catch (dml_exception $e) {
+            $count = -1;
+        }
+        if ($count>0) {
+            $countlink = $OUTPUT->action_link(new moodle_url('/course/search.php', ['modulelist' => $module->name]),
+                $count, null, ['title' => $strshowmodulecourse]);
+        } else if ($count < 0) {
+            $countlink = get_string('error');
+        } else {
+            $countlink = "$count";
+        }
+
+        if ($missing) {
+            $visible = '';
+            $class   = '';
+        } else if ($module->visible) {
+            $visible = "<a href=\"modules.php?hide=$module->name&amp;sesskey=".sesskey()."\" title=\"$strhide\">".
+                       $OUTPUT->pix_icon('t/hide', $strhide) . '</a>';
+            $class   = '';
+        } else {
+            $visible = "<a href=\"modules.php?show=$module->name&amp;sesskey=".sesskey()."\" title=\"$strshow\">".
+                       $OUTPUT->pix_icon('t/show', $strshow) . '</a>';
+            $class =   'dimmed_text';
+        }
+        if ($module->name == "forum") {
+            $uninstall = "";
+            $visible = "";
+            $class = "";
+        }
+        $version = get_config('mod_'.$module->name, 'version');
+
+        $table->add_data(array(
+            $strmodulename,
+            $countlink,
+            $version,
+            $visible,
+            $settings,
+            $uninstall,
+        ), $class);
+    }
+
+    $table->print_html();
+
+    echo $OUTPUT->footer();
+
+>>>>>>> upstream/MOODLE_38_STABLE
 
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string("activities"));

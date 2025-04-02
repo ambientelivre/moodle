@@ -937,7 +937,11 @@ class TCPDFBarcode {
 				} else {
 					$t = false; // space
 				}
+<<<<<<< HEAD
 				$w = (float)$seq[$j];
+=======
+				$w = $seq[$j];
+>>>>>>> upstream/MOODLE_38_STABLE
 				$bararray['bcode'][$k] = array('t' => $t, 'w' => $w, 'h' => 1, 'p' => 0);
 				$bararray['maxw'] += $w;
 				++$k;
@@ -1270,7 +1274,11 @@ class TCPDFBarcode {
 				} else {
 					$t = false; // space
 				}
+<<<<<<< HEAD
 				$w = (float)$seq[$j];
+=======
+				$w = $seq[$j];
+>>>>>>> upstream/MOODLE_38_STABLE
 				$bararray['bcode'][] = array('t' => $t, 'w' => $w, 'h' => 1, 'p' => 0);
 				$bararray['maxw'] += $w;
 			}
@@ -1855,7 +1863,11 @@ class TCPDFBarcode {
 				} else {
 					$t = false; // space
 				}
+<<<<<<< HEAD
 				$w = (float)$seq[$j];
+=======
+				$w = $seq[$j];
+>>>>>>> upstream/MOODLE_38_STABLE
 				$bararray['bcode'][$k] = array('t' => $t, 'w' => $w, 'h' => 1, 'p' => 0);
 				$bararray['maxw'] += $w;
 				++$k;
@@ -1946,7 +1958,11 @@ class TCPDFBarcode {
 				} else {
 					$t = false; // space
 				}
+<<<<<<< HEAD
 				$w = (float)$seq[$j];
+=======
+				$w = $seq[$j];
+>>>>>>> upstream/MOODLE_38_STABLE
 				$bararray['bcode'][$k] = array('t' => $t, 'w' => $w, 'h' => 1, 'p' => 0);
 				$bararray['maxw'] += $w;
 				++$k;

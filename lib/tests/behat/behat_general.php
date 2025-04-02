@@ -27,6 +27,7 @@
 
 require_once(__DIR__ . '/../../behat/behat_base.php');
 
+<<<<<<< HEAD
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\DriverException;
@@ -37,6 +38,14 @@ use Facebook\WebDriver\Exception\NoSuchElementException;
 use Facebook\WebDriver\Exception\StaleElementReferenceException;
 use Facebook\WebDriver\WebDriverAlert;
 use Facebook\WebDriver\WebDriverExpectedCondition;
+=======
+use Behat\Gherkin\Node\TableNode as TableNode;
+use Behat\Mink\Exception\DriverException as DriverException;
+use Behat\Mink\Exception\ElementNotFoundException as ElementNotFoundException;
+use Behat\Mink\Exception\ExpectationException as ExpectationException;
+use WebDriver\Exception\NoSuchElement as NoSuchElement;
+use WebDriver\Exception\StaleElementReference as StaleElementReference;
+>>>>>>> upstream/MOODLE_38_STABLE
 
 /**
  * Cross component steps definitions.
@@ -97,6 +106,7 @@ class behat_general extends behat_base {
      */
     public function i_am_on_course_index() {
         $this->execute('behat_general::i_visit', ['/course/index.php']);
+<<<<<<< HEAD
     }
 
     /**
@@ -117,6 +127,8 @@ class behat_general extends behat_base {
         }
 
         throw new ExpectationException(sprintf('The url "%s" should match with %s', $url, $pattern), $this->getSession());
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -227,11 +239,21 @@ class behat_general extends behat_base {
      * @param string $windowname
      */
     public function switch_to_window($windowname) {
+<<<<<<< HEAD
         if ($windowname === self::MAIN_WINDOW_NAME) {
             // When switching to the main window normalise the window name to null.
             // This is normalised further in the Mink driver to the root window ID.
             $windowname = null;
         }
+=======
+        // In Behat, some browsers (e.g. Chrome) are unable to switch to a
+        // window without a name, and by default the main browser window does
+        // not have a name. To work-around this, when we switch away from an
+        // unnamed window (presumably the main window) to some other named
+        // window, then we first set the main window name to a conventional
+        // value that we can later use this name to switch back.
+        $this->execute_script('if (window.name == "") window.name = "' . self::MAIN_WINDOW_NAME . '"');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->getSession()->switchToWindow($windowname);
     }
@@ -1398,6 +1420,39 @@ EOF;
     }
 
     /**
+     * Checks whether there the specified attribute is set or not.
+     *
+     * @Then the :attribute attribute of :element :selectortype should be set
+     * @Then the :attribute attribute of :element :selectortype should :not be set
+     *
+     * @throws ExpectationException
+     * @param string $attribute Name of attribute
+     * @param string $element The locator of the specified selector
+     * @param string $selectortype The selector type
+     * @param string $not
+     */
+    public function the_attribute_of_should_be_set($attribute, $element, $selectortype, $not = null) {
+        // Get the container node (exception if it doesn't exist).
+        $containernode = $this->get_selected_node($selectortype, $element);
+        $hasattribute = $containernode->hasAttribute($attribute);
+
+        if ($not && $hasattribute) {
+            $value = $containernode->getAttribute($attribute);
+            // Should not be set but is.
+            throw new ExpectationException(
+                "The attribute \"{$attribute}\" should not be set but has a value of '{$value}'",
+                $this->getSession()
+            );
+        } else if (!$not && !$hasattribute) {
+            // Should be set but is not.
+            throw new ExpectationException(
+                "The attribute \"{$attribute}\" should be set but is not",
+                $this->getSession()
+            );
+        }
+    }
+
+    /**
      * Checks whether there is an attribute on the given element that contains the specified text.
      *
      * @Then /^the "(?P<attribute_string>[^"]*)" attribute of "(?P<element_string>(?:[^"]|\\")*)" "(?P<selector_string>[^"]*)" should contain "(?P<text_string>(?:[^"]|\\")*)"$/
@@ -1956,6 +2011,7 @@ EOF;
      * @param   string $keys The key, or list of keys, to type
      */
     public function i_type(string $keys): void {
+<<<<<<< HEAD
         // Certain keys, such as the newline character, must be converted to the appropriate character code.
         // Without this, keys will behave differently depending on the browser.
         $keylist = array_map(function($key): string {
@@ -1971,6 +2027,13 @@ EOF;
 
     /**
      * Press a named or character key with an optional set of modifiers.
+=======
+        behat_base::type_keys($this->getSession(), str_split($keys));
+    }
+
+    /**
+     * Press a named key with an optional set of modifiers.
+>>>>>>> upstream/MOODLE_38_STABLE
      *
      * Supported named keys are:
      * - up
@@ -1988,8 +2051,11 @@ EOF;
      * - enter
      * - tab
      *
+<<<<<<< HEAD
      * You can also use a single character for the key name e.g. 'Ctrl C'.
      *
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Supported moderators are:
      * - shift
      * - ctrl
@@ -2038,6 +2104,7 @@ EOF;
         $modifier = trim($key);
         switch (strtoupper($key)) {
             case 'UP':
+<<<<<<< HEAD
                 $keys[] = behat_keys::ARROW_UP;
                 break;
             case 'DOWN':
@@ -2048,6 +2115,18 @@ EOF;
                 break;
             case 'RIGHT':
                 $keys[] = behat_keys::ARROW_RIGHT;
+=======
+                $keys[] = behat_keys::UP_ARROW;
+                break;
+            case 'DOWN':
+                $keys[] = behat_keys::DOWN_ARROW;
+                break;
+            case 'LEFT':
+                $keys[] = behat_keys::LEFT_ARROW;
+                break;
+            case 'RIGHT':
+                $keys[] = behat_keys::RIGHT_ARROW;
+>>>>>>> upstream/MOODLE_38_STABLE
                 break;
             case 'HOME':
                 $keys[] = behat_keys::HOME;
@@ -2084,6 +2163,7 @@ EOF;
             case 'SPACE':
                 $keys[] = behat_keys::SPACE;
                 break;
+<<<<<<< HEAD
             case 'MULTIPLY':
                 $keys[] = behat_keys::MULTIPLY;
                 break;
@@ -2096,6 +2176,15 @@ EOF;
                 }
         }
 
+=======
+            default:
+                throw new \coding_exception("Unknown key '$key'}");
+        }
+
+        // Always send the NULL key as the last key.
+        $keys[] = behat_keys::NULL_KEY;
+
+>>>>>>> upstream/MOODLE_38_STABLE
         behat_base::type_keys($this->getSession(), $keys);
     }
 
@@ -2324,6 +2413,7 @@ EOF;
     }
 
     /**
+<<<<<<< HEAD
      * Checks, that the specified element contains the specified node type a certain amount of times.
      * When running Javascript tests it also considers that texts may be hidden.
      *
@@ -2357,6 +2447,8 @@ EOF;
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Manually press enter key.
      *
      * @When /^I press enter/
@@ -2377,6 +2469,7 @@ EOF;
         $localurl = new moodle_url($localurl);
         $this->getSession()->visit($this->locate_path($localurl->out_as_local_url(false)));
     }
+<<<<<<< HEAD
 
     /**
      * Increase the webdriver timeouts.
@@ -2757,4 +2850,6 @@ EOF;
         unset_config('behat_frozen_clock');
         \core\di::set(\core\clock::class, new \core\system_clock());
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

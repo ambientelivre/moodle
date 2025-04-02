@@ -54,7 +54,11 @@ final class exporters_post_test extends \advanced_testcase {
      * @param bool $istimed True if this is a timed post
      * @param int $addtime Seconds to be added to the current time
      */
+<<<<<<< HEAD
     public function test_export_post($istimed = false, $addtime = 0): void {
+=======
+    public function test_export_post($istimed = false, $addtime = 0) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG, $PAGE;
         $this->resetAfterTest();
 
@@ -67,7 +71,11 @@ final class exporters_post_test extends \advanced_testcase {
         $course = $datagenerator->create_course();
         $forum = $datagenerator->create_module('forum', ['course' => $course->id]);
         $coursemodule = get_coursemodule_from_instance('forum', $forum->id);
+<<<<<<< HEAD
         $context = \context_module::instance($coursemodule->id);
+=======
+        $context = context_module::instance($coursemodule->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $now = time();
 
         $forumgenparams = [
@@ -201,7 +209,11 @@ final class exporters_post_test extends \advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function export_post_provider(): array {
+=======
+    public function export_post_provider(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             'Simple export' => [
             ],

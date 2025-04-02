@@ -1,12 +1,17 @@
 {{< core_form/element-template }}
     {{$label}}
         {{^element.hiddenlabel}}
+<<<<<<< HEAD
             <p id="{{element.id}}_label" class="mb-0 word-break" aria-hidden="true">
+=======
+            <p id="{{element.id}}_label" class="col-form-label d-inline" aria-hidden="true">
+>>>>>>> upstream/MOODLE_38_STABLE
                 {{{label}}}
             </p>
         {{/element.hiddenlabel}}
     {{/label}}
     {{$element}}
+<<<<<<< HEAD
         {{#label}}
             <fieldset class="w-100 m-0 p-0 border-0">
                 <legend class="visually-hidden">{{label}}</legend>
@@ -28,6 +33,17 @@
                 </div>
             </div>
         {{/label}}
+=======
+        <fieldset class="w-100 m-0 p-0 border-0">
+            <legend class="sr-only">{{label}}</legend>
+            <div class="d-flex flex-wrap align-items-center">
+            {{#element.elements}}
+                {{{separator}}}
+                {{{html}}}
+            {{/element.elements}}
+            </div>
+        </fieldset>
+>>>>>>> upstream/MOODLE_38_STABLE
     {{/element}}
 {{/ core_form/element-template }}
 {{#js}}

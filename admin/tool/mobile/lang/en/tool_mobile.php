@@ -76,7 +76,11 @@ $string['filetypeexclusionlistplaceholder'] = 'Mobile file type exclusion list';
 $string['forcedurlscheme'] = 'If you want to allow only your custom branded app to be opened via a browser window, then specify its URL scheme here. If you want to allow only the official app, then set the default value. Leave the field empty if you want to allow any app.';
 $string['forcedurlscheme_key'] = 'URL scheme';
 $string['forcelogout'] = 'Force log out';
+<<<<<<< HEAD
 $string['forcelogout_desc'] = 'If enabled, users will be always completely logged out even when switching accounts. They must then re-enter their password the next time they wish to access the site.';
+=======
+$string['forcelogout_desc'] = 'If enabled, the app option \'Change site\' is replaced by \'Log out\'. This results in the user being completely logged out. They must then re-enter their password the next time they wish to access the site.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['h5poffline'] = 'View H5P content offline';
 $string['httpsrequired'] = 'HTTPS required';
 $string['insecurealgorithmwarning'] = 'It seems that the HTTPS certificate uses an insecure algorithm for signing (SHA-1). Please try updating the certificate.';
@@ -106,6 +110,7 @@ $string['mobilefeatures'] = 'Mobile features';
 $string['mobilenotificationsdisabledwarning'] = 'Mobile notifications are not enabled. They should be enabled in Notification settings.';
 $string['mobilesettings'] = 'Mobile settings';
 $string['moodleappsportalfeatureswarning'] = 'Please note that some features may be restricted depending on your Moodle app subscription. For details, visit the <a href="{$a}" target="_blank">Moodle Apps Portal</a>.';
+<<<<<<< HEAD
 $string['notifications'] = 'Notifications';
 $string['notificationsactivedevices'] = 'Active devices';
 $string['notificationsignorednotifications'] = 'Notifications not sent';
@@ -115,6 +120,8 @@ $string['notificationsnewdevices'] = 'New devices';
 $string['notificationsseemore'] = 'Note: Moodle app usage statistics are not calculated in real time. To access more detailed statistics, including data from previous months, please log in to the <a href="{$a}" target="_blank">Moodle Apps Portal</a>.';
 $string['notificationssentnotifications'] = 'Notifications sent';
 $string['notificationscurrentactivedevices'] = 'Devices receiving notifications this month';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['oauth2identityproviders'] = 'OAuth 2 identity providers';
 $string['offlineuse'] = 'Offline use';
 $string['pluginname'] = 'Moodle app tools';

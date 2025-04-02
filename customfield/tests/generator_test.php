@@ -24,13 +24,21 @@ namespace core_customfield;
  * @copyright  2018 Ruslan Kabalin
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
 final class generator_test extends \advanced_testcase {
+=======
+class core_customfield_generator_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Get generator
      * @return core_customfield_generator
      */
+<<<<<<< HEAD
     protected function get_generator(): \core_customfield_generator {
+=======
+    protected function get_generator(): core_customfield_generator {
+>>>>>>> upstream/MOODLE_38_STABLE
         return $this->getDataGenerator()->get_plugin_generator('core_customfield');
     }
 

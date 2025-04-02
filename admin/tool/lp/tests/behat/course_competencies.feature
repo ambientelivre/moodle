@@ -24,8 +24,15 @@ Feature: See the competencies for an activity on the course competencies page.
       | activity | name       | intro      | course | idnumber | completion | completionview |
       | page     | PageName1  | PageDesc1  | C1     | PAGE1    | 1          | 1              |
       | page     | PageName2  | PageDesc2  | C1     | PAGE2    | 1          | 1              |
+<<<<<<< HEAD
     And I am on the "Course 1" course page logged in as admin
     And I navigate to "Competencies" in current page administration
+=======
+    And I log in as "admin"
+    And I am on site homepage
+    And I follow "Course 1"
+    And I follow "Competencies"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Add competencies to course"
     And "Competency picker" "dialogue" should be visible
     And I select "Test-Comp1" of the competency tree
@@ -58,5 +65,16 @@ Feature: See the competencies for an activity on the course competencies page.
 
   @javascript
   Scenario: None course competencies page.
+<<<<<<< HEAD
     When I am on the PageName1 "page activity" page logged in as student1
+=======
+    When I log in as "student1"
+    And I am on site homepage
+    And I follow "Course 1"
+    And I follow "PageName1"
+    Then I should see "Test page content"
+    And I am on site homepage
+    And I follow "Course 1"
+    And I follow "PageName1"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "Test page content"

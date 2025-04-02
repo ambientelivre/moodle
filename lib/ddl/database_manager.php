@@ -962,8 +962,12 @@ class database_manager {
             'extracolumns' => true,
             'missingcolumns' => true,
             'changedcolumns' => true,
+<<<<<<< HEAD
             'missingindexes' => true,
             'extraindexes' => true
+=======
+            'missingindexes' => true
+>>>>>>> upstream/MOODLE_38_STABLE
         );
 
         $typesmap = array(
@@ -1133,8 +1137,11 @@ class database_manager {
                         }
                         if (!$this->index_exists($table, $index)) {
                             $errors[$tablename][] = $this->get_missing_index_error($table, $index, $keyname);
+<<<<<<< HEAD
                         } else {
                             $this->remove_index_from_dbindex($dbindexes, $index);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
                         }
                     }
                 }
@@ -1144,13 +1151,17 @@ class database_manager {
                     foreach ($indexes as $index) {
                         if (!$this->index_exists($table, $index)) {
                             $errors[$tablename][] = $this->get_missing_index_error($table, $index, $index->getName());
+<<<<<<< HEAD
                         } else {
                             $this->remove_index_from_dbindex($dbindexes, $index);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
                         }
                     }
                 }
             }
 
+<<<<<<< HEAD
             // Check if we should show the extra indexes.
             if ($options['extraindexes']) {
                 // Hack - skip for table 'search_simpledb_index' as this plugin adds indexes dynamically on install
@@ -1162,6 +1173,8 @@ class database_manager {
                 }
             }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             // Check for extra columns (indicates unsupported hacks) - modify install.xml if you want to pass validation.
             foreach ($dbfields as $fieldname => $dbfield) {
                 if ($options['extracolumns']) {
@@ -1209,6 +1222,7 @@ class database_manager {
 
         return "Missing index '" . $indexname . "' " . "(" . $index->readableInfo() . "). \n" . $sqltoadd;
     }
+<<<<<<< HEAD
 
     /**
      * Removes an index from the array $dbindexes if it is found.
@@ -1223,4 +1237,6 @@ class database_manager {
             }
         }
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

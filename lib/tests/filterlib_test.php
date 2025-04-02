@@ -34,7 +34,11 @@ require_once($CFG->libdir . '/filterlib.php');
  * @copyright 2009 Tim Hunt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
 final class filterlib_test extends \advanced_testcase {
+=======
+class core_filterlib_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     private function assert_only_one_filter_globally($filter, $state) {
         global $DB;
@@ -63,7 +67,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals($testarray, $sortedfilters);
     }
 
+<<<<<<< HEAD
     public function test_set_filter_globally_on(): void {
+=======
+    public function test_set_filter_globally_on() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -73,7 +81,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_filter_globally('name', TEXTFILTER_ON);
     }
 
+<<<<<<< HEAD
     public function test_set_filter_globally_off(): void {
+=======
+    public function test_set_filter_globally_off() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -83,7 +95,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_filter_globally('name', TEXTFILTER_OFF);
     }
 
+<<<<<<< HEAD
     public function test_set_filter_globally_disabled(): void {
+=======
+    public function test_set_filter_globally_disabled() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -93,6 +109,7 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_filter_globally('name', TEXTFILTER_DISABLED);
     }
 
+<<<<<<< HEAD
     public function test_global_config_exception_on_invalid_state(): void {
         $this->resetAfterTest();
         $this->expectException(\coding_exception::class);
@@ -100,6 +117,17 @@ final class filterlib_test extends \advanced_testcase {
     }
 
     public function test_auto_sort_order(): void {
+=======
+    /**
+     * @expectedException coding_exception
+     */
+    public function test_global_config_exception_on_invalid_state() {
+        $this->resetAfterTest();
+        filter_set_global_state('name', 0);
+    }
+
+    public function test_auto_sort_order() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -110,7 +138,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_global_sort_order(array('one', 'two'));
     }
 
+<<<<<<< HEAD
     public function test_auto_sort_order_enabled(): void {
+=======
+    public function test_auto_sort_order_enabled() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -121,7 +153,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_global_sort_order(array('one', 'two'));
     }
 
+<<<<<<< HEAD
     public function test_update_existing_dont_duplicate(): void {
+=======
+    public function test_update_existing_dont_duplicate() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -132,9 +168,13 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_filter_globally('name', TEXTFILTER_OFF);
     }
 
+<<<<<<< HEAD
     public function test_update_reorder_down(): void {
         global $DB;
 
+=======
+    public function test_update_reorder_down() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -155,9 +195,13 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals('one, two, three', $log->oldvalue);
     }
 
+<<<<<<< HEAD
     public function test_update_reorder_up(): void {
         global $DB;
 
+=======
+    public function test_update_reorder_up() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -179,7 +223,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals('one, two, three, four', $log->oldvalue);
     }
 
+<<<<<<< HEAD
     public function test_auto_sort_order_change_to_enabled(): void {
+=======
+    public function test_auto_sort_order_change_to_enabled() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -192,7 +240,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_global_sort_order(array('one', 'three', 'two'));
     }
 
+<<<<<<< HEAD
     public function test_auto_sort_order_change_to_disabled(): void {
+=======
+    public function test_auto_sort_order_change_to_disabled() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -205,7 +257,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_global_sort_order(array('two', 'one', 'three'));
     }
 
+<<<<<<< HEAD
     public function test_filter_get_global_states(): void {
+=======
+    public function test_filter_get_global_states() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -241,7 +297,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals(0, $DB->count_records('filter_active'));
     }
 
+<<<<<<< HEAD
     public function test_local_on(): void {
+=======
+    public function test_local_on() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Exercise SUT.
@@ -250,7 +310,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_local_setting('name', 123, TEXTFILTER_ON);
     }
 
+<<<<<<< HEAD
     public function test_local_off(): void {
+=======
+    public function test_local_off() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Exercise SUT.
@@ -259,7 +323,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_local_setting('name', 123, TEXTFILTER_OFF);
     }
 
+<<<<<<< HEAD
     public function test_local_inherit(): void {
+=======
+    public function test_local_inherit() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Exercise SUT.
@@ -268,21 +336,39 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_no_local_setting();
     }
 
+<<<<<<< HEAD
     public function test_local_invalid_state_throws_exception(): void {
+=======
+    /**
+     * @expectedException coding_exception
+     */
+    public function test_local_invalid_state_throws_exception() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         // Exercise SUT.
         $this->expectException(\coding_exception::class);
         filter_set_local_state('name', 123, -9999);
     }
 
+<<<<<<< HEAD
     public function test_throws_exception_when_setting_global(): void {
+=======
+    /**
+     * @expectedException coding_exception
+     */
+    public function test_throws_exception_when_setting_global() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         // Exercise SUT.
         $this->expectException(\coding_exception::class);
         filter_set_local_state('name', \context_system::instance()->id, TEXTFILTER_INHERIT);
     }
 
+<<<<<<< HEAD
     public function test_local_inherit_deletes_existing(): void {
+=======
+    public function test_local_inherit_deletes_existing() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -307,7 +393,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals($expectedrec, $rec);
     }
 
+<<<<<<< HEAD
     public function test_set_new_config(): void {
+=======
+    public function test_set_new_config() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Exercise SUT.
@@ -316,7 +406,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_config('name', 123, 'settingname', 'An arbitrary value');
     }
 
+<<<<<<< HEAD
     public function test_update_existing_config(): void {
+=======
+    public function test_update_existing_config() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         // Setup fixture.
@@ -327,7 +421,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_only_one_config('name', 123, 'settingname', 'A changed value');
     }
 
+<<<<<<< HEAD
     public function test_filter_get_local_config(): void {
+=======
+    public function test_filter_get_local_config() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         // Setup fixture.
         filter_set_local_config('name', 123, 'setting1', 'An arbitrary value');
@@ -343,9 +441,15 @@ final class filterlib_test extends \advanced_testcase {
     protected function setup_available_in_context_tests() {
         $course = $this->getDataGenerator()->create_course(array('category' => 1));
 
+<<<<<<< HEAD
         $childcontext = \context_coursecat::instance(1);
         $childcontext2 = \context_course::instance($course->id);
         $syscontext = \context_system::instance();
+=======
+        $childcontext = context_coursecat::instance(1);
+        $childcontext2 = context_course::instance($course->id);
+        $syscontext = context_system::instance();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         return [
             'syscontext' => $syscontext,
@@ -361,10 +465,17 @@ final class filterlib_test extends \advanced_testcase {
     }
 
     private function assert_filter_list($expectedfilters, $filters) {
+<<<<<<< HEAD
         $this->assertEqualsCanonicalizing($expectedfilters, array_keys($filters));
     }
 
     public function test_globally_on_is_returned(): void {
+=======
+        $this->assertEquals($expectedfilters, array_keys($filters), '', 0, 10, true);
+    }
+
+    public function test_globally_on_is_returned() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -380,7 +491,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals(array(), $filters['name']);
     }
 
+<<<<<<< HEAD
     public function test_globally_off_not_returned(): void {
+=======
+    public function test_globally_off_not_returned() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -394,7 +509,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_filter_list(array(), $filters);
     }
 
+<<<<<<< HEAD
     public function test_globally_off_overridden(): void {
+=======
+    public function test_globally_off_overridden() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -410,7 +529,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_filter_list(array('name'), $filters);
     }
 
+<<<<<<< HEAD
     public function test_globally_on_overridden(): void {
+=======
+    public function test_globally_on_overridden() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -426,7 +549,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_filter_list(array(), $filters);
     }
 
+<<<<<<< HEAD
     public function test_globally_disabled_not_overridden(): void {
+=======
+    public function test_globally_disabled_not_overridden() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -442,7 +569,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_filter_list(array(), $filters);
     }
 
+<<<<<<< HEAD
     public function test_single_config_returned(): void {
+=======
+    public function test_single_config_returned() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         [
             'childcontext' => $childcontext
@@ -456,7 +587,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals(array('settingname' => 'A value'), $filters['name']);
     }
 
+<<<<<<< HEAD
     public function test_multi_config_returned(): void {
+=======
+    public function test_multi_config_returned() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         [
             'childcontext' => $childcontext
@@ -471,7 +606,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals(array('settingname' => 'A value', 'anothersettingname' => 'Another value'), $filters['name']);
     }
 
+<<<<<<< HEAD
     public function test_config_from_other_context_not_returned(): void {
+=======
+    public function test_config_from_other_context_not_returned() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         [
             'childcontext' => $childcontext,
@@ -487,7 +626,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals(array('anothersettingname' => 'Another value'), $filters['name']);
     }
 
+<<<<<<< HEAD
     public function test_config_from_other_filter_not_returned(): void {
+=======
+    public function test_config_from_other_filter_not_returned() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         [
             'childcontext' => $childcontext
@@ -513,7 +656,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals($expectedrec, $rec);
     }
 
+<<<<<<< HEAD
     public function test_available_in_context_localoverride(): void {
+=======
+    public function test_available_in_context_localoverride() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -528,7 +675,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_one_available_filter('name', TEXTFILTER_OFF, TEXTFILTER_ON, $filters);
     }
 
+<<<<<<< HEAD
     public function test_available_in_context_nolocaloverride(): void {
+=======
+    public function test_available_in_context_nolocaloverride() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -544,7 +695,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assert_one_available_filter('name', TEXTFILTER_INHERIT, TEXTFILTER_OFF, $filters);
     }
 
+<<<<<<< HEAD
     public function test_available_in_context_disabled_not_returned(): void {
+=======
+    public function test_available_in_context_disabled_not_returned() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [
@@ -559,17 +714,28 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals(array(), $filters);
     }
 
+<<<<<<< HEAD
     public function test_available_in_context_exception_with_syscontext(): void {
+=======
+    /**
+     * @expectedException coding_exception
+     */
+    public function test_available_in_context_exception_with_syscontext() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         [
             'syscontext' => $syscontext
         ] = $this->setup_available_in_context_tests();
         // Exercise SUT.
+<<<<<<< HEAD
         $this->expectException(\coding_exception::class);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         filter_get_available_in_context($syscontext);
     }
 
     protected function setup_preload_activities_test() {
+<<<<<<< HEAD
         $syscontext = \context_system::instance();
         $catcontext = \context_coursecat::instance(1);
         $course = $this->getDataGenerator()->create_course(array('category' => 1));
@@ -578,6 +744,16 @@ final class filterlib_test extends \advanced_testcase {
         $activity1context = \context_module::instance($page1->cmid);
         $page2 = $this->getDataGenerator()->create_module('page', array('course' => $course->id));
         $activity2context = \context_module::instance($page2->cmid);
+=======
+        $syscontext = context_system::instance();
+        $catcontext = context_coursecat::instance(1);
+        $course = $this->getDataGenerator()->create_course(array('category' => 1));
+        $coursecontext = context_course::instance($course->id);
+        $page1 = $this->getDataGenerator()->create_module('page', array('course' => $course->id));
+        $activity1context = context_module::instance($page1->cmid);
+        $page2 = $this->getDataGenerator()->create_module('page', array('course' => $course->id));
+        $activity2context = context_module::instance($page2->cmid);
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             'syscontext' => $syscontext,
             'catcontext' => $catcontext,
@@ -615,7 +791,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals($plfilters2, $filters2);
     }
 
+<<<<<<< HEAD
     public function test_preload(): void {
+=======
+    public function test_preload() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         [
             'catcontext' => $catcontext,
@@ -625,7 +805,11 @@ final class filterlib_test extends \advanced_testcase {
             'activity2context' => $activity2context
          ] = $this->setup_preload_activities_test();
         // Get course and modinfo.
+<<<<<<< HEAD
         $modinfo = new \course_modinfo($course, 2);
+=======
+        $modinfo = new course_modinfo($course, 2);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Note: All the tests in this function check that the result from the
         // preloaded cache is the same as the result from calling the standard
@@ -780,7 +964,11 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertEquals(1, $CFG->filterall);
     }
 
+<<<<<<< HEAD
     public function test_filter_manager_instance(): void {
+=======
+    public function test_filter_manager_instance() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         set_config('perfdebug', 7);
@@ -796,6 +984,7 @@ final class filterlib_test extends \advanced_testcase {
         $this->assertInstanceOf('performance_measuring_filter_manager', $filterman);
     }
 
+<<<<<<< HEAD
     public function test_filter_get_active_state_contextid_parameter(): void {
         $this->resetAfterTest();
 
@@ -852,19 +1041,30 @@ final class filterlib_test extends \advanced_testcase {
     }
 
     public function test_filter_get_globally_enabled_default(): void {
+=======
+    public function test_filter_get_globally_enabled_default() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $enabledfilters = filter_get_globally_enabled();
         $this->assertArrayNotHasKey('glossary', $enabledfilters);
     }
 
+<<<<<<< HEAD
     public function test_filter_get_globally_enabled_after_change(): void {
+=======
+    public function test_filter_get_globally_enabled_after_change() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         filter_set_global_state('glossary', TEXTFILTER_ON);
         $enabledfilters = filter_get_globally_enabled();
         $this->assertArrayHasKey('glossary', $enabledfilters);
     }
 
+<<<<<<< HEAD
     public function test_filter_get_globally_enabled_filters_with_config(): void {
+=======
+    public function test_filter_get_globally_enabled_filters_with_config() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $this->remove_all_filters_from_config(); // Remove all filters.
         [

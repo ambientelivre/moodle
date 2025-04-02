@@ -25,7 +25,6 @@ Feature: A teacher can edit questions in the question bank
       | Test questions   | essay | Test question to be edited | Write about whatever you want |
     And I am on the "Qbank 1" "core_question > question bank" page logged in as "teacher1"
 
-  @javascript
   Scenario: Edit a previously created question
     When I am on the "Test question to be edited" "core_question > edit" page logged in as "teacher1"
     And I set the following fields to these values:
@@ -69,13 +68,22 @@ Feature: A teacher can edit questions in the question bank
     And I set the field "Question name" to "Edited question name"
     And I press "Cancel"
     Then I should see "Test question to be edited"
+<<<<<<< HEAD
     And I should see "Admin User"
+=======
+    And "Test question to be edited" row "Created by" column of "categoryquestions" table should contain "Admin User"
+    And "Test question to be edited" row "Last modified by" column of "categoryquestions" table should contain "Admin User"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: A question can have its idnumber removed
     Given the following "questions" exist:
       | questioncategory | qtype | name                   | idnumber |
       | Test questions   | essay | Question with idnumber | frog     |
+<<<<<<< HEAD
     When I am on the "Qbank 1" "core_question > question bank" page logged in as "teacher1"
+=======
+    And I reload the page
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "frog" in the "Question with idnumber" "table_row"
     When I choose "Edit question" action for "Question with idnumber" in the question bank
     And I set the field "ID number" to ""
@@ -86,6 +94,7 @@ Feature: A teacher can edit questions in the question bank
     Given the following "questions" exist:
       | questioncategory | qtype       | name            | questiontext    |
       | Test questions   | missingtype | Broken question | Write something |
+<<<<<<< HEAD
     When I am on the "Qbank 1" "core_question > question bank" page logged in as "teacher1"
     Then the "Edit question" item should not exist in the "Edit" action menu of the "Broken question" "table_row"
     And the "Duplicate" item should not exist in the "Edit" action menu of the "Broken question" "table_row"
@@ -93,3 +102,12 @@ Feature: A teacher can edit questions in the question bank
     And the "Export as XML" item should not exist in the "Edit" action menu of the "Broken question" "table_row"
     And the "Manage tags" item should exist in the "Edit" action menu of the "Broken question" "table_row"
     And the "Delete" item should exist in the "Edit" action menu of the "Broken question" "table_row"
+=======
+    When I reload the page
+    Then "Edit question" "link" should not exist in the "Broken question" "table_row"
+    And "Duplicate" "link" should not exist in the "Broken question" "table_row"
+    And "Manage tags" "link" should exist in the "Broken question" "table_row"
+    And "Preview" "link" should not exist in the "Broken question" "table_row"
+    And "Delete" "link" should exist in the "Broken question" "table_row"
+    And "Export as Moodle XML" "link" should not exist in the "Broken question" "table_row"
+>>>>>>> upstream/MOODLE_38_STABLE

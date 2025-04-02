@@ -301,7 +301,11 @@ $string['questionname'] = 'Question name';
 $string['questionnameandquestionversion'] = '{$a->name} v{$a->version}';
 $string['questionno'] = 'Question {$a}';
 $string['questionsaveerror'] = 'Errors occur during saving question - ({$a})';
+<<<<<<< HEAD
 $string['questionsinuse'] = '* Denotes questions which can\'t be deleted because they are in use. Instead, they will be hidden in the question bank unless you set \'Show hidden questions\' to \'Yes\'.';
+=======
+$string['questionsinuse'] = '(* Questions marked with an asterisk are used somewhere, for example in a quiz. Therefore, if you proceed, these questions will not really be deleted, they will just be hidden.)';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['questionsmovedto'] = 'Questions still in use moved to "{$a}" in the parent course category.';
 $string['questionsrescuedfrom'] = 'Questions saved from context {$a}.';
 $string['questionsrescuedfrominfo'] = 'These questions (some of which may be hidden) were saved when context {$a} was deleted because they are still used by some quizzes or other activities.';

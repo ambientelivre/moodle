@@ -53,9 +53,12 @@ final class report_test extends \advanced_testcase {
         self::getDataGenerator()->enrol_user($u3->id, $c1->id, 'student');
         self::getDataGenerator()->enrol_user($u4->id, $c1->id, 'student');
         self::getDataGenerator()->enrol_user($u5->id, $c1->id, 'student');
+<<<<<<< HEAD
 
         self::getDataGenerator()->enrol_user($grader1->id, $c2->id, 'teacher');
         self::getDataGenerator()->enrol_user($u5->id, $c2->id, 'student');
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Modules.
         $c1m1 = $this->getDataGenerator()->create_module('assign', array('course' => $c1));
@@ -70,7 +73,11 @@ final class report_test extends \advanced_testcase {
 
         $this->setUser($grader1);
 
+<<<<<<< HEAD
         $gi = \grade_item::fetch($giparams + array('iteminstance' => $c1m1->id));
+=======
+        $gi = grade_item::fetch($giparams + array('iteminstance' => $c1m1->id));
+>>>>>>> upstream/MOODLE_38_STABLE
         $grades['c1m1u1'] = $this->create_grade_history(array('itemid' => $gi->id, 'userid' => $u1->id,
                 'timemodified' => time() - 3600));
         $grades['c1m1u2'] = $this->create_grade_history(array('itemid' => $gi->id, 'userid' => $u2->id,
@@ -246,6 +253,7 @@ final class report_test extends \advanced_testcase {
     }
 
     /**
+<<<<<<< HEAD
      * Data provider for \gradereport_history_report_testcase::test_get_users_with_profile_fields()
      * Testing get_users() and get_users_count() test cases.
      *
@@ -384,6 +392,11 @@ final class report_test extends \advanced_testcase {
      * Data provider method for \gradereport_history_report_testcase::test_get_users_with_groups()
      */
     public static function get_users_provider(): array {
+=======
+     * Data provider method for \gradereport_history_report_testcase::test_get_users_with_groups()
+     */
+    public function get_users_provider() {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             'Visible groups, non-editing teacher, not in any group' => [
                 VISIBLEGROUPS, 'teacher', ['g1', 'g2'], ['s1', 's2', 's3', 's4', 's5']
@@ -418,7 +431,11 @@ final class report_test extends \advanced_testcase {
      * @param $teachergroups
      * @param $expectedusers
      */
+<<<<<<< HEAD
     public function test_get_users_with_groups($groupmode, $teacherrole, $teachergroups, $expectedusers): void {
+=======
+    public function test_get_users_with_groups($groupmode, $teacherrole, $teachergroups, $expectedusers) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
         $this->resetAfterTest();
 
@@ -472,7 +489,11 @@ final class report_test extends \advanced_testcase {
         $generator->create_group_member(['groupid' => $groups['g5']->id, 'userid' => $s5->id]);
 
         // Creating grade history for the students.
+<<<<<<< HEAD
         $gi = \grade_item::fetch(['iteminstance' => $assign->id, 'itemtype' => 'mod', 'itemmodule' => 'assign']);
+=======
+        $gi = grade_item::fetch(['iteminstance' => $assign->id, 'itemtype' => 'mod', 'itemmodule' => 'assign']);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->create_grade_history(['itemid' => $gi->id, 'userid' => $s1->id]);
         $this->create_grade_history(['itemid' => $gi->id, 'userid' => $s2->id]);
         $this->create_grade_history(['itemid' => $gi->id, 'userid' => $s3->id]);
@@ -483,7 +504,11 @@ final class report_test extends \advanced_testcase {
         $this->setUser($t1);
 
         // Fetch the users.
+<<<<<<< HEAD
         $users = \gradereport_history\helper::get_users(\context_course::instance($course->id));
+=======
+        $users = \gradereport_history\helper::get_users(context_course::instance($course->id));
+>>>>>>> upstream/MOODLE_38_STABLE
         // Confirm that the number of users fetched is the same as the count of expected users.
         $this->assertCount(count($expectedusers), $users);
         foreach ($users as $user) {
@@ -528,7 +553,11 @@ final class report_test extends \advanced_testcase {
         $gi = \grade_item::fetch(array('iteminstance' => $c2m1->id, 'itemtype' => 'mod', 'itemmodule' => 'assign'));
         $this->create_grade_history(array('itemid' => $gi->id, 'userid' => $u1->id, 'usermodified' => $u4->id));
 
+<<<<<<< HEAD
         $gi = \grade_item::fetch(array('iteminstance' => $c3m1->id, 'itemtype' => 'mod', 'itemmodule' => 'assign'));
+=======
+        $gi = grade_item::fetch(array('iteminstance' => $c3m1->id, 'itemtype' => 'mod', 'itemmodule' => 'assign'));
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->create_grade_history(array('itemid' => $gi->id, 'userid' => $u1->id, 'usermodified' => $u1->id));
         $this->create_grade_history(array('itemid' => $gi->id, 'userid' => $u2->id, 'usermodified' => $u2->id));
 
@@ -552,6 +581,7 @@ final class report_test extends \advanced_testcase {
         $this->setUser($u3);
         $graders = \gradereport_history\helper::get_graders($c3->id);
         $this->assertCount(1, $graders); // Including "all graders" .
+<<<<<<< HEAD
     }
 
     /**
@@ -610,6 +640,8 @@ final class report_test extends \advanced_testcase {
         $this->assertEquals(50, $assigngrade->finalgrade);
         $this->assertEquals(null, $assigngrade->prevgrade);
         $this->assertEquals('mod/assign', $assigngrade->source);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

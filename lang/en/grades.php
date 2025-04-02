@@ -256,6 +256,10 @@ $string['forstudents'] = 'For students';
 $string['full'] = 'Full';
 $string['fullmode'] = 'Show grades and totals';
 $string['generalsettings'] = 'General settings';
+<<<<<<< HEAD
+=======
+$string['grade'] = 'Grade';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['grade_help'] = 'The grade to award the student for their work.';
 $string['gradeadministration'] = 'Grade administration';
 $string['gradealreadyupdated'] = '{$a} grades have not been imported because the grades in the import file are older than in the grader report. To proceed with the grade import anyway, use the force import option.';

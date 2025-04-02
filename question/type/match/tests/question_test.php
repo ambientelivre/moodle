@@ -37,16 +37,26 @@ require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
  */
 final class question_test extends \advanced_testcase {
 
+<<<<<<< HEAD
     public function test_get_expected_data(): void {
         $question = \test_question_maker::make_question('match');
+=======
+    public function test_get_expected_data() {
+        $question = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $question->start_attempt(new question_attempt_step(), 1);
 
         $this->assertEquals(array('sub0' => PARAM_INT, 'sub1' => PARAM_INT,
                 'sub2' => PARAM_INT, 'sub3' => PARAM_INT), $question->get_expected_data());
     }
 
+<<<<<<< HEAD
     public function test_is_complete_response(): void {
         $question = \test_question_maker::make_question('match');
+=======
+    public function test_is_complete_response() {
+        $question = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $question->start_attempt(new question_attempt_step(), 1);
 
         $this->assertFalse($question->is_complete_response(array()));
@@ -57,8 +67,13 @@ final class question_test extends \advanced_testcase {
                 array('sub0' => '1', 'sub1' => '1', 'sub2' => '1', 'sub3' => '1')));
     }
 
+<<<<<<< HEAD
     public function test_is_gradable_response(): void {
         $question = \test_question_maker::make_question('match');
+=======
+    public function test_is_gradable_response() {
+        $question = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $question->start_attempt(new question_attempt_step(), 1);
 
         $this->assertFalse($question->is_gradable_response(array()));
@@ -71,8 +86,13 @@ final class question_test extends \advanced_testcase {
                 array('sub0' => '1', 'sub1' => '1', 'sub2' => '3', 'sub3' => '1')));
     }
 
+<<<<<<< HEAD
     public function test_is_same_response(): void {
         $question = \test_question_maker::make_question('match');
+=======
+    public function test_is_same_response() {
+        $question = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $question->start_attempt(new question_attempt_step(), 1);
 
         $this->assertTrue($question->is_same_response(
@@ -96,8 +116,13 @@ final class question_test extends \advanced_testcase {
                 array('sub0' => '1', 'sub1' => '2', 'sub2' => '3', 'sub3' => '1')));
     }
 
+<<<<<<< HEAD
     public function test_grading(): void {
         $question = \test_question_maker::make_question('match');
+=======
+    public function test_grading() {
+        $question = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $question->start_attempt(new question_attempt_step(), 1);
 
         $correctresponse = $question->prepare_simulated_post_data(
@@ -125,8 +150,13 @@ final class question_test extends \advanced_testcase {
         $this->assertEquals(array(0, question_state::$gradedwrong), $question->grade_response($wrongresponse));
     }
 
+<<<<<<< HEAD
     public function test_get_correct_response(): void {
         $question = \test_question_maker::make_question('match');
+=======
+    public function test_get_correct_response() {
+        $question = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $question->start_attempt(new question_attempt_step(), 1);
 
         $correct = $question->prepare_simulated_post_data(array('Dog' => 'Mammal',
@@ -136,8 +166,13 @@ final class question_test extends \advanced_testcase {
         $this->assertEquals($correct, $question->get_correct_response());
     }
 
+<<<<<<< HEAD
     public function test_get_question_summary(): void {
         $match = \test_question_maker::make_question('match');
+=======
+    public function test_get_question_summary() {
+        $match = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $match->start_attempt(new question_attempt_step(), 1);
         $qsummary = $match->get_question_summary();
         $this->assertMatchesRegularExpression('/' . preg_quote($match->questiontext, '/') . '/', $qsummary);
@@ -149,8 +184,13 @@ final class question_test extends \advanced_testcase {
         }
     }
 
+<<<<<<< HEAD
     public function test_summarise_response(): void {
         $match = \test_question_maker::make_question('match');
+=======
+    public function test_summarise_response() {
+        $match = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $match->start_attempt(new question_attempt_step(), 1);
 
         $summary = $match->summarise_response($match->prepare_simulated_post_data(array('Dog' => 'Amphibian', 'Frog' => 'Mammal')));
@@ -159,8 +199,13 @@ final class question_test extends \advanced_testcase {
         $this->assertMatchesRegularExpression('/Frog -> Mammal/', $summary);
     }
 
+<<<<<<< HEAD
     public function test_classify_response(): void {
         $match = \test_question_maker::make_question('match');
+=======
+    public function test_classify_response() {
+        $match = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $match->start_attempt(new question_attempt_step(), 1);
 
         $response = $match->prepare_simulated_post_data(array('Dog' => 'Amphibian', 'Frog' => 'Insect', 'Toad' => '', 'Cat' => ''));
@@ -181,15 +226,24 @@ final class question_test extends \advanced_testcase {
                 ), $match->classify_response($response));
     }
 
+<<<<<<< HEAD
     public function test_classify_response_choice_deleted_after_attempt(): void {
         $match = \test_question_maker::make_question('match');
+=======
+    public function test_classify_response_choice_deleted_after_attempt() {
+        $match = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $firststep = new question_attempt_step();
 
         $match->start_attempt($firststep, 1);
         $response = $match->prepare_simulated_post_data(array(
                 'Dog' => 'Amphibian', 'Frog' => 'Insect', 'Toad' => '', 'Cat' => 'Mammal'));
 
+<<<<<<< HEAD
         $match = \test_question_maker::make_question('match');
+=======
+        $match = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         unset($match->stems[4]);
         unset($match->stemformat[4]);
         unset($match->right[4]);
@@ -202,15 +256,24 @@ final class question_test extends \advanced_testcase {
         ), $match->classify_response($response));
     }
 
+<<<<<<< HEAD
     public function test_classify_response_choice_added_after_attempt(): void {
         $match = \test_question_maker::make_question('match');
+=======
+    public function test_classify_response_choice_added_after_attempt() {
+        $match = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $firststep = new question_attempt_step();
 
         $match->start_attempt($firststep, 1);
         $response = $match->prepare_simulated_post_data(array(
                 'Dog' => 'Amphibian', 'Frog' => 'Insect', 'Toad' => '', 'Cat' => 'Mammal'));
 
+<<<<<<< HEAD
         $match = \test_question_maker::make_question('match');
+=======
+        $match = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $match->stems[5] = "Snake";
         $match->stemformat[5] = FORMAT_HTML;
         $match->choices[5] = "Reptile";
@@ -225,8 +288,13 @@ final class question_test extends \advanced_testcase {
         ), $match->classify_response($response));
     }
 
+<<<<<<< HEAD
     public function test_prepare_simulated_post_data(): void {
         $m = \test_question_maker::make_question('match');
+=======
+    public function test_prepare_simulated_post_data() {
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->start_attempt(new question_attempt_step(), 1);
         $postdata = $m->prepare_simulated_post_data(array('Dog' => 'Mammal', 'Frog' => 'Amphibian',
                                                           'Toad' => 'Amphibian', 'Cat' => 'Mammal'));

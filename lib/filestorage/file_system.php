@@ -454,6 +454,19 @@ abstract class file_system {
             ];
         }
 
+<<<<<<< HEAD
+=======
+        if (!is_array($imageinfo)) {
+            return false; // Nothing to process, the file was not recognised as image by GD.
+        }
+
+        $image = array(
+                'width'     => $imageinfo[0],
+                'height'    => $imageinfo[1],
+                'mimetype'  => image_type_to_mime_type($imageinfo[2]),
+            );
+
+>>>>>>> upstream/MOODLE_38_STABLE
         if (empty($image['width']) or empty($image['height']) or empty($image['mimetype'])) {
             // GD can not parse it, sorry.
             return false;

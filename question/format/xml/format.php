@@ -1241,10 +1241,14 @@ class qformat_xml extends qformat_default {
         // Check question type.
         $questiontype = $this->get_qtype($question->qtype);
 
+<<<<<<< HEAD
         $idnumber = '';
         if (isset($question->idnumber)) {
             $idnumber = htmlspecialchars($question->idnumber, ENT_COMPAT);
         }
+=======
+        $idnumber = htmlspecialchars($question->idnumber);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Categories are a special case.
         if ($question->qtype == 'category') {
@@ -1281,7 +1285,11 @@ class qformat_xml extends qformat_default {
             $expout .= "    <defaultgrade>{$question->defaultmark}</defaultgrade>\n";
         }
         $expout .= "    <penalty>{$question->penalty}</penalty>\n";
+<<<<<<< HEAD
         $expout .= "    <hidden>{$question->status}</hidden>\n";
+=======
+        $expout .= "    <hidden>{$question->hidden}</hidden>\n";
+>>>>>>> upstream/MOODLE_38_STABLE
         $expout .= "    <idnumber>{$idnumber}</idnumber>\n";
 
         // The rest of the output depends on question type.

@@ -583,8 +583,11 @@ class config {
         throw new cache_exception('ex_nodefaultlock');
     }
 }
+<<<<<<< HEAD
 
 // Alias this class to the old name.
 // This file will be autoloaded by the legacyclasses autoload system.
 // In future all uses of this class will be corrected and the legacy references will be removed.
 class_alias(config::class, \cache_config::class);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -70,6 +70,10 @@ if ($mform->is_cancelled()) {
 
 } else if ($data = $mform->get_data()) {
     echo $OUTPUT->header();
+<<<<<<< HEAD
+=======
+    echo $OUTPUT->heading(format_string($book->name));
+>>>>>>> upstream/MOODLE_38_STABLE
     echo $OUTPUT->heading(get_string('importingchapters', 'booktool_importhtml'), 3);
 
     // this is a bloody hack - children do not try this at home!
@@ -87,6 +91,10 @@ if ($mform->is_cancelled()) {
 }
 
 echo $OUTPUT->header();
+<<<<<<< HEAD
+=======
+echo $OUTPUT->heading(format_string($book->name));
+>>>>>>> upstream/MOODLE_38_STABLE
 
 $mform->display();
 

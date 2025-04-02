@@ -27,12 +27,20 @@
     }
 }}
 {{^disabled}}
+<<<<<<< HEAD
     <a href="{{url}}" class="{{$actionmenulinkclasses}}aabtn {{classes}}{{/actionmenulinkclasses}}" {{#attributes}}{{name}}="{{value}}" {{/attributes}}>
+=======
+    <a href="{{url}}" class="{{$actionmenulinkclasses}}{{classes}}{{/actionmenulinkclasses}}" {{#attributes}}{{name}}={{#quote}}{{value}}{{/quote}} {{/attributes}}{{#showtext}}aria-labelledby="actionmenuaction-{{instance}}"{{/showtext}}>
+>>>>>>> upstream/MOODLE_38_STABLE
         {{#icon}}
             {{#pix}}{{key}}, {{component}}, {{title}}{{/pix}}
         {{/icon}}
         {{#showtext}}
+<<<<<<< HEAD
             <span class="menu-action-text">{{{text}}}</span>
+=======
+            <span class="menu-action-text" id="actionmenuaction-{{instance}}">{{{text}}}</span>
+>>>>>>> upstream/MOODLE_38_STABLE
         {{/showtext}}
     </a>
 {{/disabled}}

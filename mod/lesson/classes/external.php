@@ -153,7 +153,11 @@ class mod_lesson_external extends external_api {
 
                 $exporter = new lesson_summary_exporter($lessonrecord, array('context' => $context));
                 $lesson = $exporter->export($PAGE->get_renderer('core'));
+<<<<<<< HEAD
                 $lesson->name = \core_external\util::format_string($lesson->name, $context);
+=======
+                $lesson->name = external_format_string($lesson->name, $context);
+>>>>>>> upstream/MOODLE_38_STABLE
                 $returnedlessons[] = $lesson;
             }
         }

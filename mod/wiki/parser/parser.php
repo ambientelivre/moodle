@@ -75,6 +75,7 @@ class wiki_parser_proxy {
         }
     }
 
+<<<<<<< HEAD
     public static function get_section(&$string, $type, $section, $allcontent = false) {
         if (self::create_parser_instance($type)) {
             $content = self::$parsers[$type]->get_section($section, $string, true);
@@ -85,6 +86,20 @@ class wiki_parser_proxy {
                 return is_array($content) ? $content[1] : null;
             }
         } else {
+=======
+    public static function get_section(&$string, $type, $section, $all_content = false) {
+        if(self::create_parser_instance($type)) {
+            $content = self::$parsers[$type]->get_section($section, $string, true);
+
+            if($all_content) {
+                return $content;
+            }
+            else {
+                return is_array($content) ? $content[1] : null;
+            }
+        }
+        else {
+>>>>>>> upstream/MOODLE_38_STABLE
             return false;
         }
     }
@@ -121,7 +136,11 @@ abstract class generic_parser {
 
     private $rulestack = array();
 
+<<<<<<< HEAD
     protected $parserstatus = 'Before';
+=======
+    protected $parser_status = 'Before';
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Dynamic return values
@@ -133,8 +152,12 @@ abstract class generic_parser {
 
     protected $nowikitoken = "%!";
 
+<<<<<<< HEAD
     public function __construct() {
     }
+=======
+    public function __construct() {}
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Parse function
@@ -153,6 +176,11 @@ abstract class generic_parser {
         if (method_exists($this, 'before_parsing')) {
             $this->before_parsing();
         }
+<<<<<<< HEAD
+=======
+
+        $this->parser_status = 'Parsing';
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->parserstatus = 'Parsing';
 
@@ -308,6 +336,11 @@ abstract class generic_parser {
             }
         }
 
+<<<<<<< HEAD
         return false;
     }
+=======
+         return false;
+     }
+>>>>>>> upstream/MOODLE_38_STABLE
 }

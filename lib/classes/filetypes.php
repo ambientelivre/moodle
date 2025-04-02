@@ -138,11 +138,19 @@ abstract class core_filetypes {
             'jmt' => array('type' => 'text/xml', 'icon' => 'markup'),
             'jmx' => array('type' => 'text/xml', 'icon' => 'markup'),
             'jnlp' => array('type' => 'application/x-java-jnlp-file', 'icon' => 'markup'),
+<<<<<<< HEAD
             'jpe' => array('type' => 'image/jpeg', 'icon' => 'image', 'groups' => array('image', 'web_image', 'optimised_image'),
                 'string' => 'image'),
             'jpeg' => array('type' => 'image/jpeg', 'icon' => 'image', 'groups' => array('image', 'web_image', 'optimised_image'),
                 'string' => 'image'),
             'jpg' => array('type' => 'image/jpeg', 'icon' => 'image', 'groups' => array('image', 'web_image', 'optimised_image'),
+=======
+            'jpe' => array('type' => 'image/jpeg', 'icon' => 'jpeg', 'groups' => array('image', 'web_image', 'optimised_image'),
+                'string' => 'image'),
+            'jpeg' => array('type' => 'image/jpeg', 'icon' => 'jpeg', 'groups' => array('image', 'web_image', 'optimised_image'),
+                'string' => 'image'),
+            'jpg' => array('type' => 'image/jpeg', 'icon' => 'jpeg', 'groups' => array('image', 'web_image', 'optimised_image'),
+>>>>>>> upstream/MOODLE_38_STABLE
                 'string' => 'image'),
             'jqz' => array('type' => 'text/xml', 'icon' => 'markup'),
             'js' => array('type' => 'application/x-javascript', 'icon' => 'text', 'groups' => array('web_file')),
@@ -211,7 +219,11 @@ abstract class core_filetypes {
             'php' => array('type' => 'text/plain', 'icon' => 'sourcecode'),
             'pic' => array('type' => 'image/pict', 'icon' => 'image', 'groups' => array('image'), 'string' => 'image'),
             'pict' => array('type' => 'image/pict', 'icon' => 'image', 'groups' => array('image'), 'string' => 'image'),
+<<<<<<< HEAD
             'png' => array('type' => 'image/png', 'icon' => 'image', 'groups' => array('image', 'web_image', 'optimised_image'),
+=======
+            'png' => array('type' => 'image/png', 'icon' => 'png', 'groups' => array('image', 'web_image', 'optimised_image'),
+>>>>>>> upstream/MOODLE_38_STABLE
                 'string' => 'image'),
             'pps' => array('type' => 'application/vnd.ms-powerpoint', 'icon' => 'powerpoint', 'groups' => array('presentation')),
             'ppt' => array('type' => 'application/vnd.ms-powerpoint', 'icon' => 'powerpoint', 'groups' => array('presentation')),

@@ -36,8 +36,23 @@ Feature: A teacher can set available from and deadline dates to access a lesson
       | available[hour] | 08 |
       | available[minute] | 00 |
     And I press "Save and display"
+<<<<<<< HEAD
     When I am on the "Test lesson" "lesson activity" page logged in as student1
     Then the activity date in "Test lesson" should contain "Opens: Tuesday, 1 January 2030, 8:00"
+=======
+    And I follow "Test lesson"
+    And I follow "Add a content page"
+    And I set the following fields to these values:
+      | Page title | First page name |
+      | Page contents | First page contents |
+      | Description | The first one |
+    And I press "Save page"
+    And I log out
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    When I follow "Test lesson"
+    Then I should see "This lesson will be open on Tuesday, 1 January 2030, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should not see "First page contents"
 
   Scenario: Forbidding lesson accesses after a specified date

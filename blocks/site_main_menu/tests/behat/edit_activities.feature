@@ -11,6 +11,7 @@ Feature: Edit activities in main menu block
       | course   | Acceptance test site |
       | name     | My forum name        |
       | idnumber | forum                |
+<<<<<<< HEAD
     And the following "blocks" exist:
       | blockname      | contextlevel | reference | pagetypepattern | defaultregion |
       | site_main_menu | System       | 1         | site-index      | side-pre      |
@@ -18,6 +19,13 @@ Feature: Edit activities in main menu block
     And I am on site homepage
     And I turn editing mode on
     When I set the field "Edit title" in the "My forum name" "activity" to "New forum name"
+=======
+    And I log in as "admin"
+    And I am on site homepage
+    And I navigate to "Turn editing on" in current page administration
+    And I add the "Main menu" block
+    When I set the field "Edit title" in the "My forum name" "block_site_main_menu > Activity" to "New forum name"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should not see "My forum name"
     And I should see "New forum name"
     And I follow "New forum name"

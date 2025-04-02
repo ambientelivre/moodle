@@ -106,9 +106,12 @@ class phpunit_util extends testing_util {
      */
     public static function reset_all_data($detectchanges = false) {
         global $DB, $CFG, $USER, $SITE, $COURSE, $PAGE, $OUTPUT, $SESSION, $FULLME, $FILTERLIB_PRIVATE;
+<<<<<<< HEAD
 
         // Stop all hook redirections.
         di::get(hook\manager::class)->phpunit_stop_redirections();
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Stop any message redirection.
         self::stop_message_redirection();
@@ -209,9 +212,12 @@ class phpunit_util extends testing_util {
         $ME = null;
         $SCRIPT = null;
         $FILTERLIB_PRIVATE = null;
+<<<<<<< HEAD
         if (!empty($SESSION->notifications)) {
             $SESSION->notifications = [];
         }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Empty sessison and set fresh new not-logged-in user.
         \core\session\manager::init_empty_session();
@@ -261,6 +267,7 @@ class phpunit_util extends testing_util {
         if (class_exists('\core_course\customfield\course_handler')) {
             \core_course\customfield\course_handler::reset_caches();
         }
+<<<<<<< HEAD
         if (class_exists('\core_reportbuilder\manager')) {
             \core_reportbuilder\manager::reset_caches();
         }
@@ -276,6 +283,8 @@ class phpunit_util extends testing_util {
         if (class_exists('\core_reportbuilder\customfield\report_handler')) {
             \core_reportbuilder\customfield\report_handler::reset_caches();
         }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Clear static cache within restore.
         if (class_exists('restore_section_structure_step')) {

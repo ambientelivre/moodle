@@ -383,7 +383,11 @@ final class login_lib_test extends \advanced_testcase {
      *
      * Email addresses should be handled as case-insensitive but accent sensitive.
      */
+<<<<<<< HEAD:login/tests/login_lib_test.php
     public function test_core_login_process_password_reset_email_sensitivity(): void {
+=======
+    public function test_core_login_process_password_reset_email_sensitivity() {
+>>>>>>> upstream/MOODLE_38_STABLE:login/tests/lib_test.php
         global $CFG;
         require_once($CFG->libdir.'/phpmailer/moodle_phpmailer.php');
 
@@ -396,8 +400,13 @@ final class login_lib_test extends \advanced_testcase {
         // So we inject our own validation method here and revert it back once we are done. This custom validator method
         // is identical to the default 'php' validator with the only difference: it has the FILTER_FLAG_EMAIL_UNICODE
         // set so that it allows to use non-ASCII characters in email addresses.
+<<<<<<< HEAD:login/tests/login_lib_test.php
         $defaultvalidator = \moodle_phpmailer::$validator;
         \moodle_phpmailer::$validator = function($address) {
+=======
+        $defaultvalidator = moodle_phpmailer::$validator;
+        moodle_phpmailer::$validator = function($address) {
+>>>>>>> upstream/MOODLE_38_STABLE:login/tests/lib_test.php
             return (bool) filter_var($address, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE);
         };
 
@@ -422,7 +431,11 @@ final class login_lib_test extends \advanced_testcase {
         $emails = $sink->get_messages();
         $this->assertCount(1, $emails);
         $email = reset($emails);
+<<<<<<< HEAD:login/tests/login_lib_test.php
         $this->assertSame(\core_text::strtolower($u2->email), \core_text::strtolower($email->to));
+=======
+        $this->assertSame(core_text::strtolower($u2->email), core_text::strtolower($email->to));
+>>>>>>> upstream/MOODLE_38_STABLE:login/tests/lib_test.php
         $sink->clear();
 
         // However, emails are accent sensitive - note this is the u1's email with a single character a -> á changed.
@@ -445,7 +458,11 @@ final class login_lib_test extends \advanced_testcase {
         $sink->clear();
 
         // Restore the original email address validator.
+<<<<<<< HEAD:login/tests/login_lib_test.php
         \moodle_phpmailer::$validator = $defaultvalidator;
+=======
+        moodle_phpmailer::$validator = $defaultvalidator;
+>>>>>>> upstream/MOODLE_38_STABLE:login/tests/lib_test.php
     }
 
 }

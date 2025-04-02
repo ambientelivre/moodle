@@ -36,7 +36,12 @@ Feature: The questions in the question bank can be filtered by tags
 
   @javascript
   Scenario: The questions can be filtered by tag
+<<<<<<< HEAD
     When I apply question bank filter "Tag" with value "foo"
+=======
+    When I set the field "Filter by tags..." to "foo"
+    And I press the enter key
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "question 1 name" in the "categoryquestions" "table"
     And I should not see "question 2 name" in the "categoryquestions" "table"
 

@@ -20,14 +20,25 @@ Feature: Render H5P content using filters
 
   @javascript @external
   Scenario: Render an external H5P content URL.
+<<<<<<< HEAD
     Given the following "activities" exist:
       | activity | name      | intro     | introformat | course | content                                                                      | contentformat | idnumber |
       | page     | PageName1 | PageDesc1 | 1           | C1     | <div>Go for it</div>https://moodle.h5p.com/content/1290772960722742119/embed | 1             | 1        |
     When I am on the PageName1 "page activity" page logged in as teacher1
+=======
+    Given I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "PageName1"
+    And I navigate to "Edit settings" in current page administration
+    And I set the field "Page content" to "<div>Go for it</div>https://moodle.h5p.com/content/1290772960722742119/embed"
+    When I click on "Save and display" "button"
+    And I wait until the page is ready
+>>>>>>> upstream/MOODLE_38_STABLE
     And I switch to "h5p-iframe" class iframe
     Then I should see "Lorum ipsum"
 
   @javascript
+<<<<<<< HEAD
   Scenario: Add an external H5P content URL in a link with the URL. Should be rendered.
     Given the following "activities" exist:
       | activity | name      | intro     | introformat | course | content                                                                                                                         | contentformat | idnumber |
@@ -42,6 +53,17 @@ Feature: Render H5P content using filters
       | activity | name      | intro     | introformat | course | content                                                                                         | contentformat | idnumber |
       | page     | PageName1 | PageDesc1 | 1           | C1     | <a href='https://moodle.h5p.com/content/1290772960722742119/embed'>Here you are the content</a> | 1             | 1        |
     When I am on the PageName1 "page activity" page logged in as teacher1
+=======
+  Scenario: Add an external H5P content URL in a link. Shouldn't be rendered.
+    Given I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "PageName1"
+    And I navigate to "Edit settings" in current page administration
+#   This content won't be displayed, so this scenario shouldn't be labeled as external.
+    And I set the field "Page content" to "<a href='https://moodle.h5p.com/content/1290772960722742119/embed'>Go to https://moodle.h5p.com/content/1290772960722742119/embed</a>"
+    When I click on "Save and display" "button"
+    And I wait until the page is ready
+>>>>>>> upstream/MOODLE_38_STABLE
     Then ".h5p-iframe" "css_element" should not exist
 
   @javascript

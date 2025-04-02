@@ -115,8 +115,13 @@ final class question_type_test extends \advanced_testcase {
         $this->assertTrue($this->qtype->can_analyse_responses());
     }
 
+<<<<<<< HEAD:question/type/match/tests/question_type_test.php
     public function test_make_question_instance(): void {
         $questiondata = \test_question_maker::get_question_data('match', 'trickynums');
+=======
+    public function test_make_question_instance() {
+        $questiondata = test_question_maker::get_question_data('match', 'trickynums');
+>>>>>>> upstream/MOODLE_38_STABLE:question/type/match/tests/questiontype_test.php
         $question = question_bank::make_question($questiondata);
         $this->assertEquals($questiondata->name, $question->name);
         $this->assertEquals($questiondata->questiontext, $question->questiontext);
@@ -133,6 +138,14 @@ final class question_type_test extends \advanced_testcase {
         $this->assertEquals([14 => '0', 15 => '0.0', 16 => 'NULL'], $question->choices);
 
         $this->assertEquals([14 => 14, 15 => 15], $question->right);
+<<<<<<< HEAD:question/type/match/tests/question_type_test.php
+=======
+    }
+
+    public function test_get_random_guess_score() {
+        $q = $this->get_test_question_data();
+        $this->assertEquals(0.3333333, $this->qtype->get_random_guess_score($q), '', 0.0000001);
+>>>>>>> upstream/MOODLE_38_STABLE:question/type/match/tests/questiontype_test.php
     }
 
     public function test_get_random_guess_score(): void {

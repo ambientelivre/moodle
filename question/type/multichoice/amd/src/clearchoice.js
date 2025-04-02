@@ -55,9 +55,15 @@ define(['jquery', 'core/custom_interaction_events'], function($, CustomEvents) {
      * @param {Object} clearChoiceContainer The clear choice option container.
      */
     var hideClearChoiceOption = function(clearChoiceContainer) {
+<<<<<<< HEAD
         // We are using .visually-hidden and aria-hidden together so while the element is hidden
         // from both the monitor and the screen-reader, it is still tabbable.
         clearChoiceContainer.addClass('visually-hidden');
+=======
+        // We are using .sr-only and aria-hidden together so while the element is hidden
+        // from both the monitor and the screen-reader, it is still tabbable.
+        clearChoiceContainer.addClass('sr-only');
+>>>>>>> upstream/MOODLE_38_STABLE
         clearChoiceContainer.attr('aria-hidden', true);
         clearChoiceContainer.find(SELECTORS.LINK).attr('tabindex', -1);
     };
@@ -68,7 +74,11 @@ define(['jquery', 'core/custom_interaction_events'], function($, CustomEvents) {
      * @param {Object} clearChoiceContainer The clear choice option container.
      */
     var showClearChoiceOption = function(clearChoiceContainer) {
+<<<<<<< HEAD
         clearChoiceContainer.removeClass('visually-hidden');
+=======
+        clearChoiceContainer.removeClass('sr-only');
+>>>>>>> upstream/MOODLE_38_STABLE
         clearChoiceContainer.removeAttr('aria-hidden');
         clearChoiceContainer.find(SELECTORS.LINK).attr('tabindex', 0);
         clearChoiceContainer.find(SELECTORS.RADIO).prop('disabled', true);

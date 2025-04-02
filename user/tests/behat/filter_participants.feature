@@ -413,6 +413,7 @@ Feature: Course participants can be filtered
     Given I log in as "patricia"
     And I am on "Course 1" course homepage
     And I navigate to course participants
+<<<<<<< HEAD
 
     # Match Any:
     #   Roles All ["Teacher"] and
@@ -433,6 +434,11 @@ Feature: Course participants can be filtered
     And I set the field "Match" to "Any"
     And I click on "Apply filters" "button"
 
+=======
+    # Note: This is the literal string "student", not the Role student.
+    When I set the field "Filters" to "student"
+    And I press the enter key
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "Student 1" in the "participants" "table"
     And I should see "Patricia Pea" in the "participants" "table"
     And I should see "Student 3" in the "participants" "table"
@@ -684,6 +690,43 @@ Feature: Course participants can be filtered
         | showuseridentity | idnumber,email,city,country |
     And I am on the "C1" "Course" page logged in as "patricia"
     And I navigate to course participants
+<<<<<<< HEAD
+=======
+    # Search by email (only).
+    When I set the field "Filters" to "student1@example.com"
+    And I press the enter key
+    Then I should see "Student 1" in the "participants" "table"
+    And I should not see "Student 2" in the "participants" "table"
+    And I should not see "Teacher 1" in the "participants" "table"
+    # Search by idnumber (only).
+    And I click on "student1@example.com" "text" in the ".form-autocomplete-selection" "css_element"
+    And I set the field "Filters" to "SID"
+    And I press the enter key
+    And I should see "Student 1" in the "participants" "table"
+    And I should see "Student 2" in the "participants" "table"
+    And I should see "Student 3" in the "participants" "table"
+    And I should see "Student 4" in the "participants" "table"
+    And I should not see "Teacher 1" in the "participants" "table"
+    # Search by city (only).
+    And I click on "SID" "text" in the ".form-autocomplete-selection" "css_element"
+    And I set the field "Filters" to "SCITY"
+    And I press the enter key
+    And I should see "Student 1" in the "participants" "table"
+    And I should see "Student 2" in the "participants" "table"
+    And I should see "Student 3" in the "participants" "table"
+    And I should see "Student 4" in the "participants" "table"
+    And I should not see "Teacher 1" in the "participants" "table"
+    # Search by country text (only) - should not match.
+    And I click on "SCITY" "text" in the ".form-autocomplete-selection" "css_element"
+    And I set the field "Filters" to "GB"
+    And I press the enter key
+    And I should see "Nothing to display"
+    # Check no match.
+    And I click on "GB" "text" in the ".form-autocomplete-selection" "css_element"
+    And I set the field "Filters" to "NOTHING"
+    And I press the enter key
+    And I should see "Nothing to display"
+>>>>>>> upstream/MOODLE_38_STABLE
 
     # Search by email (only) - should only see visible email + own.
     # Match:
@@ -767,6 +810,7 @@ Feature: Course participants can be filtered
     #   Keyword Any ["@example.com"].
 
     # Search by email (only) - should only see visible email + own.
+<<<<<<< HEAD
     # Set the Keyword to "Any" ["@example.com"]
     When I set the field "type" in the "Filter 1" "fieldset" to "Keyword"
     And I set the field "Type..." in the "Filter 1" "fieldset" to "@example."
@@ -775,10 +819,17 @@ Feature: Course participants can be filtered
     Then I should see "Student 2" in the "participants" "table"
     And I should see "Patricia Pea" in the "participants" "table"
     But I should not see "Student 1" in the "participants" "table"
+=======
+    When I set the field "Filters" to "@example.com"
+    And I press the enter key
+    Then I should not see "Student 1" in the "participants" "table"
+    And I should see "Student 2" in the "participants" "table"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should not see "Student 3" in the "participants" "table"
     And I should not see "Student 4" in the "participants" "table"
 
     # Search for other fields - should only see own results.
+<<<<<<< HEAD
 
     # Match:
     #   Keyword Any ["SID"].
@@ -1051,3 +1102,21 @@ Feature: Course participants can be filtered
     And I click on "Apply filters" "button"
     Then I should see "Student 1" in the "participants" "table"
     And I should not see "Student 2" in the "participants" "table"
+=======
+    And I click on "@example.com" "text" in the ".form-autocomplete-selection" "css_element"
+    And I set the field "Filters" to "SID"
+    And I press the enter key
+    And I should see "Nothing to display"
+    And I click on "SID" "text" in the ".form-autocomplete-selection" "css_element"
+    And I set the field "Filters" to "TID"
+    And I press the enter key
+    And I should see "Teacher 1" in the "participants" "table"
+    And I set the field "Filters" to "CITY"
+    And I press the enter key
+    And I should see "Teacher 1" in the "participants" "table"
+    And I should not see "Student 1" in the "participants" "table"
+    # Check no match.
+    And I set the field "Filters" to "NOTHING"
+    And I press the enter key
+    And I should see "Nothing to display"
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -49,6 +49,25 @@ $string['environmentsub2'] = 'Cada versión de Moodle tiene algún requisito mí
 $string['errorsinenvironment'] = '¡La comprobación del entorno fallo!';
 $string['installation'] = 'Instalación';
 $string['langdownloaderror'] = 'El idioma "{$a}" no pudo ser descargado. El proceso de instalación continuará en Inglés.';
+<<<<<<< HEAD
+=======
+$string['memorylimithelp'] = '<p>El límite de memoria PHP en su servidor es actualmente {$a}.</p>
+
+<p>Esto puede ocasionar que Moodle tenga problemas de memoria más adelante, especialmente si usted tiene activados muchos módulos y/o muchos usuarios.</p>
+
+<p>Recomendamos que configure PHP si es posible con un límite más alto, como 40M.
+Puede probar varias formas de hacer esto:</p>
+<ol>
+<li>Si puede hacerlo, recopile PHP con <i>--enable-memory-limit</i>.
+Esto hace que Moodle fije por sí mismo el límite de memoria.</li>
+<li>Si tiene acceso al archivo "php.ini", puede cambiar el ajuste <b>memory_limit</b>
+a, digamos, 40M. Si no tiene acceso, puede pedir a su administrador que lo haga por usted.</li>
+<li>En algunos servidores PHP puede crear en el directorio Moodle un archivo .htaccess que contenga esta línea:
+<p><blockquote>php_value memory_limit 40M</blockquote></p>
+<p>Sin embargo, en algunos servidores esto hace que <b>todas</b> las páginas PHP dejen de funcionar
+(podrá ver los errores cuando mire las páginas) de modo que tendrá que eliminar el archivo ".htaccess".</p></li>
+</ol>';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['paths'] = 'Rutas';
 $string['pathserrcreatedataroot'] = 'El directorio de los datos ({$a->dataroot}) no puede ser creado por el instalador.';
 $string['pathshead'] = 'Confirme las rutas';
@@ -71,9 +90,20 @@ $string['phpextension'] = 'Extensión PHP {$a}';
 $string['phpversion'] = 'Versión PHP';
 $string['welcomep10'] = '{$a->installername} ({$a->installerversion})';
 $string['welcomep20'] = 'Si está viendo esta página es porque ha podido ejecutar el paquete <strong>{$a->packname} {$a->packversion}</strong> satisfactoriamente en su ordenador. ¡Enhorabuena!';
+<<<<<<< HEAD
 $string['welcomep30'] = 'Esta versión de <strong>{$a->installername}</strong> incluye las aplicaciones necesarias para que <strong>Moodle</strong> funcione en su computadora,  principalmente:';
 $string['welcomep40'] = 'El paquete también incluye <strong>Moodle {$a->moodlerelease} ({$a->moodleversion})</strong>.';
 $string['welcomep50'] = 'El uso de todas las aplicaciones del paquete está supeditado a sus respectivas licencias. El programa <strong>{$a->installername}</strong> es <a href="http://www.opensource.org/docs/definition_plain.html">de código abierto</a> y se distribuye bajo licencia <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.';
+=======
+$string['welcomep30'] = 'Esta versión de <strong>{$a->installername}</strong> incluye las
+    aplicaciones necesarias para que <strong>Moodle</strong> funcione en su ordenador,
+    principalmente:';
+$string['welcomep40'] = 'El paquete también incluye <strong>Moodle {$a->moodlerelease} ({$a->moodleversion})</strong>.';
+$string['welcomep50'] = 'El uso de todas las aplicaciones del paquete está gobernado por sus respectivas
+    licencias. El programa <strong>{$a->installername}</strong> es
+    <a href="http://www.opensource.org/docs/definition_plain.html">código abierto</a> y se distribuye
+    bajo licencia <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['welcomep60'] = 'Las siguientes páginas le guiarán a través de algunos sencillos pasos para configurar y ajustar <strong>Moodle</strong> en su ordenador. Puede utilizar los valores por defecto sugeridos o, de forma opcional, modificarlos para que se ajusten a sus necesidades.';
 $string['welcomep70'] = 'Pulse en el botón "Siguiente" para continuar con la configuración de <strong>Moodle</strong>.';
 $string['wwwroot'] = 'Dirección Web';

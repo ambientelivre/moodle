@@ -15,12 +15,21 @@ Feature: Edit quiz marks with no attempts
       | user     | course | role           |
       | teacher1 | C1     | editingteacher |
     And the following "activities" exist:
+<<<<<<< HEAD
       | activity   | name    | course | idnumber | grade | decimalpoints | questiondecimalpoints |
       | quiz       | Quiz 1  | C1     | quiz1    | 20    | 2             | -1                    |
 
     And the following "question categories" exist:
       | contextlevel    | reference | name           |
       | Activity module | quiz1     | Test questions |
+=======
+      | activity   | name   | course | idnumber | grade | decimalpoints | questiondecimalpoints |
+      | quiz       | Quiz 1 | C1     | quiz1    | 20    | 2             | -1                    |
+
+    And the following "question categories" exist:
+      | contextlevel | reference | name           |
+      | Course       | C1        | Test questions |
+>>>>>>> upstream/MOODLE_38_STABLE
     And the following "questions" exist:
       | questioncategory | qtype     | name            | questiontext |
       | Test questions   | truefalse | First question  | Answer me    |
@@ -30,7 +39,10 @@ Feature: Edit quiz marks with no attempts
       | First question  | 1    | 2.0     |
       | Second question | 1    | 3.0     |
     And I am on the "Quiz 1" "mod_quiz > Edit" page logged in as "teacher1"
+<<<<<<< HEAD
     And I change window size to "large"
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
   @javascript
   Scenario: Set the max mark for a question.

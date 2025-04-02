@@ -447,7 +447,11 @@ final class accesslib_has_capability_test extends \advanced_testcase {
      *
      * @return  array
      */
+<<<<<<< HEAD
     public static function login_as_provider(): array {
+=======
+    public function login_as_provider(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             [
                 'system',
@@ -514,7 +518,11 @@ final class accesslib_has_capability_test extends \advanced_testcase {
      *
      * @dataProvider    login_as_provider
      * @param   string $loginascontext
+<<<<<<< HEAD
      * @param   array  $testcontexts
+=======
+     * @param   string $testcontexts
+>>>>>>> upstream/MOODLE_38_STABLE
      */
     public function test_login_as_admin(string $loginascontext, array $testcontexts): void {
         $this->resetAfterTest();
@@ -538,7 +546,11 @@ final class accesslib_has_capability_test extends \advanced_testcase {
      *
      * @dataProvider    login_as_provider
      * @param   string $loginascontext
+<<<<<<< HEAD
      * @param   array  $testcontexts
+=======
+     * @param   string $testcontexts
+>>>>>>> upstream/MOODLE_38_STABLE
      */
     public function test_login_as_user(string $loginascontext, array $testcontexts): void {
         $this->resetAfterTest();

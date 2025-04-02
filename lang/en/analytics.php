@@ -95,7 +95,12 @@ $string['modeinstructionfacetoface'] = 'Face to face';
 $string['modeinstructionblendedhybrid'] = 'Blended or hybrid';
 $string['modeinstructionfullyonline'] = 'Fully online';
 $string['modeloutputdir'] = 'Models output directory';
+<<<<<<< HEAD
 $string['modeloutputdirwithdefaultinfo'] = 'Directory where prediction processors store all evaluation info. Useful for debugging and research. If empty, then {$a} will be used as default.';
+=======
+$string['modeloutputdirinfo'] = 'Directory where prediction processors store all evaluation info. Useful for debugging and research.';
+$string['modeloutputdirwithdefaultinfo'] = 'Directory where prediction processors store all evaluation info. Useful for debugging and research. If empty, then \'<strong>{$a}</strong>\' will be used as default.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['modeltimelimit'] = 'Analysis time limit per model';
 $string['modeltimelimitinfo'] = 'This setting limits the time each model spends analysing the site contents.';
 $string['neutral'] = 'Neutral';

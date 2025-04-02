@@ -591,7 +591,11 @@ final class grade_grade_test extends \grade_base_testcase {
         $c1 = $dg->create_course();
         $a1 = $dg->create_module('assign', ['course' => $c1->id]);
 
+<<<<<<< HEAD
         $gi = new \grade_item($dg->create_grade_item(
+=======
+        $gi = new grade_item($dg->create_grade_item(
+>>>>>>> upstream/MOODLE_38_STABLE
             [
                 'courseid' => $c1->id,
                 'itemtype' => 'mod',
@@ -605,7 +609,11 @@ final class grade_grade_test extends \grade_base_testcase {
         grade_update('mod/assign', $gi->courseid, $gi->itemtype, $gi->itemmodule, $gi->iteminstance,
             $gi->itemnumber, ['userid' => $u2->id]);
 
+<<<<<<< HEAD
         $gg = \grade_grade::fetch(array('userid' => $u1->id, 'itemid' => $gi->id));
+=======
+        $gg = grade_grade::fetch(array('userid' => $u1->id, 'itemid' => $gi->id));
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertEquals($u1->id, $gg->userid);
         $gg->load_grade_item();
         $this->assertEquals($gi->id, $gg->grade_item->id);
@@ -618,14 +626,22 @@ final class grade_grade_test extends \grade_base_testcase {
         $sink->close();
         $this->assertInstanceOf('core\event\grade_deleted', $event);
 
+<<<<<<< HEAD
         $gg = \grade_grade::fetch(array('userid' => $u2->id, 'itemid' => $gi->id));
+=======
+        $gg = grade_grade::fetch(array('userid' => $u2->id, 'itemid' => $gi->id));
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertEquals($u2->id, $gg->userid);
         $gg->load_grade_item();
         $this->assertEquals($gi->id, $gg->grade_item->id);
 
         // Delete grade item, mock up orphaned grade_grades.
         $DB->delete_records('grade_items', ['id' => $gi->id]);
+<<<<<<< HEAD
         $gg = \grade_grade::fetch(array('userid' => $u2->id, 'itemid' => $gi->id));
+=======
+        $gg = grade_grade::fetch(array('userid' => $u2->id, 'itemid' => $gi->id));
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertEquals($u2->id, $gg->userid);
 
         // No event is triggered and there is a debugging message.
@@ -637,6 +653,7 @@ final class grade_grade_test extends \grade_base_testcase {
         $this->assertEmpty($events);
 
         // The grade should be deleted.
+<<<<<<< HEAD
         $gg = \grade_grade::fetch(array('userid' => $u2->id, 'itemid' => $gi->id));
         $this->assertEmpty($gg);
     }
@@ -738,4 +755,9 @@ final class grade_grade_test extends \grade_base_testcase {
 
         return \grade_grade::get_hiding_affected($grades, $items);
     }
+=======
+        $gg = grade_grade::fetch(array('userid' => $u2->id, 'itemid' => $gi->id));
+        $this->assertEmpty($gg);
+    }
+>>>>>>> upstream/MOODLE_38_STABLE
 }

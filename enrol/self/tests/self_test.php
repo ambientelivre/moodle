@@ -66,7 +66,11 @@ final class self_test extends \advanced_testcase {
 
         $now = time();
 
+<<<<<<< HEAD
         $trace = new \progress_trace_buffer(new \text_progress_trace(), false);
+=======
+        $trace = new progress_trace_buffer(new text_progress_trace(), false);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Prepare some data.
 

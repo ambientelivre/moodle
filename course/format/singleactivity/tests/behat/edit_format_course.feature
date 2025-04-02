@@ -16,6 +16,7 @@ Feature: Edit format course to Single Activity format
       | teacher1 | C1 | editingteacher |
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
+<<<<<<< HEAD
     When I navigate to "Settings" in current page administration
     And I set the following fields to these values:
       | Course full name  | My first course |
@@ -28,3 +29,14 @@ Feature: Edit format course to Single Activity format
     And I should not see "Subsection" in the "Type of activity" "field"
     And I press "Save and display"
     And I should see "New Forum"
+=======
+    When I navigate to "Edit settings" in current page administration
+    And I set the following fields to these values:
+      | Course full name  | My first course |
+      | Course short name | myfirstcourse |
+      | Format | Single activity format |
+    And I press "Update format"
+    Then I should see "Forum" in the "Type of activity" "field"
+    And I press "Save and display"
+    And I should see "Adding a new Forum"
+>>>>>>> upstream/MOODLE_38_STABLE

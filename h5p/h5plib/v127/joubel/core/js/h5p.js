@@ -1045,8 +1045,12 @@ H5P.t = function (key, vars, ns) {
 H5P.Dialog = function (name, title, content, $element, $returnElement) {
   /** @alias H5P.Dialog# */
   var self = this;
+<<<<<<< HEAD:h5p/h5plib/v127/joubel/core/js/h5p.js
   this.activeElement = document.activeElement;
   var $dialog = H5P.jQuery('<div class="h5p-popup-dialog h5p-' + name + '-dialog" aria-labelledby="' + name + '-dialog-header" aria-modal="true" role="dialog" tabindex="-1">\
+=======
+  var $dialog = H5P.jQuery('<div class="h5p-popup-dialog h5p-' + name + '-dialog" role="dialog" tabindex="-1">\
+>>>>>>> upstream/MOODLE_38_STABLE:lib/h5p/js/h5p.js
                               <div class="h5p-inner">\
                                 <h2 id="' + name + '-dialog-header">' + title + '</h2>\
                                 <div class="h5p-scroll-content">' + content + '</div>\
@@ -1107,6 +1111,7 @@ H5P.Dialog = function (name, title, content, $element, $returnElement) {
       $dialog.remove();
       H5P.jQuery(self).trigger('dialog-closed', [$dialog]);
       $element.attr('tabindex', '-1');
+<<<<<<< HEAD:h5p/h5plib/v127/joubel/core/js/h5p.js
       if ($returnElement) {
         $returnElement.focus();
       }
@@ -1116,6 +1121,9 @@ H5P.Dialog = function (name, title, content, $element, $returnElement) {
       else {
         $element.focus();
       }
+=======
+      $element.focus();
+>>>>>>> upstream/MOODLE_38_STABLE:lib/h5p/js/h5p.js
     }, 200);
   };
 };

@@ -1222,9 +1222,21 @@ function xmldb_main_upgrade($oldversion) {
 
     if ($oldversion < 2024111500.04) {
 
+<<<<<<< HEAD
         // Define index shortname (not unique) to be added to course_request.
         $table = new xmldb_table('course_request');
         $index = new xmldb_index('shortname', XMLDB_INDEX_NOTUNIQUE, ['shortname']);
+=======
+    if ($oldversion < 2019083000.04) {
+        // Delete "orphaned" subscriptions.
+        $sql = "SELECT DISTINCT es.userid
+                  FROM {event_subscriptions} es
+             LEFT JOIN {user} u ON u.id = es.userid
+                 WHERE u.deleted = 1 OR u.id IS NULL";
+        $deletedusers = $DB->get_fieldset_sql($sql);
+        if ($deletedusers) {
+            list($sql, $params) = $DB->get_in_or_equal($deletedusers);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Conditionally launch add index shortname.
         if (!$dbman->index_exists($table, $index)) {
@@ -1638,6 +1650,215 @@ function xmldb_main_upgrade($oldversion) {
 
         // Main savepoint reached.
         upgrade_main_savepoint(true, 2025032800.01);
+    }
+
+    // Automatically generated Moodle v3.8.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    if ($oldversion < 2019111800.04) {
+        // Delete any role assignments for roles which no longer exist.
+        $DB->delete_records_select('role_assignments', "roleid NOT IN (SELECT id FROM {role})");
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2019111800.04);
+    }
+
+
+    if ($oldversion < 2019111801.02) {
+        // Delete all orphaned subscription events.
+        $select = "subscriptionid IS NOT NULL
+                   AND subscriptionid NOT IN (SELECT id from {event_subscriptions})";
+        $DB->delete_records_select('event', $select);
+
+        upgrade_main_savepoint(true, 2019111801.02);
+    }
+
+    if ($oldversion < 2019111801.05) {
+        global $DB;
+        // Delete any associated files.
+        $fs = get_file_storage();
+        $sql = "SELECT cuc.id, cuc.userid
+                  FROM {competency_usercomp} cuc
+             LEFT JOIN {user} u ON cuc.userid = u.id
+                 WHERE u.deleted = 1";
+        $usercompetencies = $DB->get_records_sql($sql);
+        foreach ($usercompetencies as $usercomp) {
+            $DB->delete_records('competency_evidence', ['usercompetencyid' => $usercomp->id]);
+            $DB->delete_records('competency_usercompcourse', ['userid' => $usercomp->userid]);
+            $DB->delete_records('competency_usercompplan', ['userid' => $usercomp->userid]);
+            $DB->delete_records('competency_usercomp', ['userid' => $usercomp->userid]);
+        }
+
+        $sql = "SELECT cue.id, cue.userid
+                  FROM {competency_userevidence} cue
+             LEFT JOIN {user} u ON cue.userid = u.id
+                 WHERE u.deleted = 1";
+        $userevidences = $DB->get_records_sql($sql);
+        foreach ($userevidences as $userevidence) {
+            $DB->delete_records('competency_userevidencecomp', ['userevidenceid' => $userevidence->id]);
+            $DB->delete_records('competency_userevidence', ['id' => $userevidence->id]);
+
+            if ($record = $DB->get_record('context', ['contextlevel' => CONTEXT_USER, 'instanceid' => $userevidence->userid],
+                    '*', IGNORE_MISSING)) {
+                // Delete all orphaned user evidences files.
+                $fs->delete_area_files($record->id, 'core_competency', 'userevidence', $userevidence->userid);
+            }
+        }
+
+        $sql = "SELECT cp.id
+                  FROM {competency_plan} cp
+             LEFT JOIN {user} u ON cp.userid = u.id
+                 WHERE u.deleted = 1";
+        $userplans = $DB->get_records_sql($sql);
+        foreach ($userplans as $userplan) {
+            $DB->delete_records('competency_plancomp', ['planid' => $userplan->id]);
+            $DB->delete_records('competency_plan', ['id' => $userplan->id]);
+        }
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2019111801.05);
+    }
+
+    if ($oldversion < 2019111802.05) {
+        // Clean up completion criteria records referring to courses that no longer exist.
+        $select = 'criteriatype = :type AND courseinstance NOT IN (SELECT id FROM {course})';
+        $params = ['type' => 8]; // COMPLETION_CRITERIA_TYPE_COURSE.
+
+        $DB->delete_records_select('course_completion_criteria', $select, $params);
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2019111802.05);
+    }
+
+    if ($oldversion < 2019111802.08) {
+        // Upgrade h5p MIME type for existing h5p files.
+        $select = $DB->sql_like('filename', '?', false);
+        $DB->set_field_select(
+            'files',
+            'mimetype',
+            'application/zip.h5p',
+            $select,
+            array('%.h5p')
+        );
+
+        upgrade_main_savepoint(true, 2019111802.08);
+    }
+
+    if ($oldversion < 2019111803.14) {
+        // Update default digital age consent map according to the current legislation on each country.
+
+        // The default age of digital consent map for 38 and below.
+        $oldageofdigitalconsentmap = implode(PHP_EOL, [
+            '*, 16',
+            'AT, 14',
+            'ES, 14',
+            'US, 13'
+        ]);
+
+        // Check if the current age of digital consent map matches the old one.
+        if (get_config('moodle', 'agedigitalconsentmap') === $oldageofdigitalconsentmap) {
+            // If the site is still using the old defaults, upgrade to the new default.
+            $ageofdigitalconsentmap = implode(PHP_EOL, [
+                '*, 16',
+                'AT, 14',
+                'BE, 13',
+                'BG, 14',
+                'CY, 14',
+                'CZ, 15',
+                'DK, 13',
+                'EE, 13',
+                'ES, 14',
+                'FI, 13',
+                'FR, 15',
+                'GB, 13',
+                'GR, 15',
+                'IT, 14',
+                'LT, 14',
+                'LV, 13',
+                'MT, 13',
+                'NO, 13',
+                'PT, 13',
+                'SE, 13',
+                'US, 13'
+            ]);
+            set_config('agedigitalconsentmap', $ageofdigitalconsentmap);
+        }
+
+        upgrade_main_savepoint(true, 2019111803.14);
+    }
+
+    if ($oldversion < 2019111804.01) {
+        // Clean up completion criteria records referring to NULL course prerequisites.
+        $select = 'criteriatype = :type AND courseinstance IS NULL';
+        $params = ['type' => 8]; // COMPLETION_CRITERIA_TYPE_COURSE.
+
+        $DB->delete_records_select('course_completion_criteria', $select, $params);
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2019111804.01);
+    }
+
+    if ($oldversion < 2019111804.08) {
+        // Delete all user evidence files from users that have been deleted.
+        $sql = "SELECT DISTINCT f.*
+                  FROM {files} f
+             LEFT JOIN {context} c ON f.contextid = c.id
+                 WHERE f.component = :component
+                   AND f.filearea = :filearea
+                   AND c.id IS NULL";
+        $stalefiles = $DB->get_records_sql($sql, ['component' => 'core_competency', 'filearea' => 'userevidence']);
+
+        $fs = get_file_storage();
+        foreach ($stalefiles as $stalefile) {
+            $fs->get_file_instance($stalefile)->delete();
+        }
+
+        upgrade_main_savepoint(true, 2019111804.08);
+    }
+
+    if ($oldversion < 2019111805.09) {
+        // Delete orphaned course_modules_completion rows; these were not deleted properly
+        // by remove_course_contents function.
+        $DB->delete_records_select('course_modules_completion', "
+                NOT EXISTS (
+                        SELECT 1
+                          FROM {course_modules} cm
+                         WHERE cm.id = {course_modules_completion}.coursemoduleid
+                )");
+        upgrade_main_savepoint(true, 2019111805.09);
+    }
+
+    if ($oldversion < 2019111805.10) {
+        // Script to fix incorrect records of "hidden" field in existing grade items.
+        $sql = "SELECT cm.instance, cm.course
+                  FROM {course_modules} cm
+                  JOIN {modules} m ON m.id = cm.module
+                 WHERE m.name = :module AND cm.visible = :visible";
+        $hidequizlist = $DB->get_recordset_sql($sql, ['module' => 'quiz', 'visible' => 0]);
+
+        foreach ($hidequizlist as $hidequiz) {
+            $params = [
+                'itemmodule'    => 'quiz',
+                'courseid'      => $hidequiz->course,
+                'iteminstance'  => $hidequiz->instance,
+            ];
+
+            $DB->set_field('grade_items', 'hidden', 1, $params);
+        }
+        $hidequizlist->close();
+
+        upgrade_main_savepoint(true, 2019111805.10);
+    }
+
+    if ($oldversion < 2019111805.12) {
+        // Reset analytics model output dir if it's the default value.
+        $modeloutputdir = get_config('analytics', 'modeloutputdir');
+        if (strcasecmp($modeloutputdir, $CFG->dataroot . DIRECTORY_SEPARATOR . 'models') == 0) {
+            set_config('modeloutputdir', '', 'analytics');
+        }
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2019111805.12);
     }
 
     return true;

@@ -57,9 +57,13 @@ class Expanded extends Formatter
 
         foreach ($block->lines as $index => $line) {
             if (substr($line, 0, 2) === '/*') {
+<<<<<<< HEAD:lib/scssphp/src/Formatter/Expanded.php
                 $replacedLine = preg_replace('/\r\n?|\n|\f/', $this->break, $line);
                 assert($replacedLine !== null);
                 $block->lines[$index] = $replacedLine;
+=======
+                $block->lines[$index] = preg_replace('/[\r\n]+/', $glue, $line);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Formatter/Expanded.php
             }
         }
 

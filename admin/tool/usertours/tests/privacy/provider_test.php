@@ -30,6 +30,7 @@ use tool_usertours\privacy\provider;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers \tool_usertours\privacy\provider
  */
+<<<<<<< HEAD:admin/tool/usertours/tests/privacy/provider_test.php
 final class provider_test extends \core_privacy\tests\provider_testcase {
     /**
      * Helper method for creating a tour
@@ -44,6 +45,23 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
             ->set_pathmatch('/')
             ->persist();
     }
+=======
+
+defined('MOODLE_INTERNAL') || die();
+
+use \core_privacy\local\metadata\collection;
+use \core_privacy\local\request\writer;
+use \tool_usertours\tour;
+use \tool_usertours\privacy\provider;
+
+/**
+ * Unit tests for the tool_usertours implementation of the privacy API.
+ *
+ * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class tool_usertours_privacy_provider_testcase extends \core_privacy\tests\provider_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE:admin/tool/usertours/tests/privacy_provider_test.php
 
     /**
      * Ensure that get_metadata exports valid content.
@@ -118,9 +136,18 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
      * Make sure we are exporting preferences for the correct user
      */
     public function test_export_user_preferences_correct_user(): void {
+<<<<<<< HEAD:admin/tool/usertours/tests/privacy/provider_test.php
         $this->resetAfterTest();
 
         $tour = $this->create_test_tour();
+=======
+        global $DB;
+
+        $this->resetAfterTest();
+
+        $alltours = $DB->get_records('tool_usertours_tours');
+        $tour = tour::instance(reset($alltours)->id);
+>>>>>>> upstream/MOODLE_38_STABLE:admin/tool/usertours/tests/privacy_provider_test.php
 
         // Create test user, mark them as having completed the tour.
         $user = $this->getDataGenerator()->create_user();
@@ -137,6 +164,7 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
         $writer = writer::with_context(\context_system::instance());
         $this->assertTrue($writer->has_any_data());
 
+<<<<<<< HEAD:admin/tool/usertours/tests/privacy/provider_test.php
         $prefs = (array)$writer->get_user_preferences('tool_usertours');
         $this->assertCount(1, $prefs);
 
@@ -145,6 +173,14 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
             'You last marked the "' . $tour->get_name() . '" user tour as completed on',
             reset($prefs)->description
         );
+=======
+        $prefs = $writer->get_user_preferences('tool_usertours');
+        $this->assertCount(1, (array) $prefs);
+
+        // We should have received back the "completed tour" preference of the test user.
+        $this->assertStringStartsWith('You last marked the "' . $tour->get_name() . '" user tour as completed on',
+            reset($prefs)->description);
+>>>>>>> upstream/MOODLE_38_STABLE:admin/tool/usertours/tests/privacy_provider_test.php
     }
 
     /**

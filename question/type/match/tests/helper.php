@@ -194,10 +194,14 @@ class qtype_match_test_helper extends question_test_helper {
         $q->defaultmark = 1;
         $q->penalty = 0.3333333;
         $q->length = 1;
+<<<<<<< HEAD
         $q->status = \core_question\local\bank\question_version_status::QUESTION_STATUS_READY;
         $q->versionid = 0;
         $q->version = 1;
         $q->questionbankentryid = 0;
+=======
+        $q->hidden = 0;
+>>>>>>> upstream/MOODLE_38_STABLE
         $q->createdby = $USER->id;
         $q->modifiedby = $USER->id;
 
@@ -238,10 +242,13 @@ class qtype_match_test_helper extends question_test_helper {
         $q->generalfeedback = ['text' => 'Java has some advantages over PHP I guess!', 'format' => FORMAT_HTML];
         $q->defaultmark = 1;
         $q->penalty = 0.3333333;
+<<<<<<< HEAD
         $q->status = \core_question\local\bank\question_version_status::QUESTION_STATUS_READY;
         $q->versionid = 0;
         $q->version = 1;
         $q->questionbankentryid = 0;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $q->shuffleanswers = 1;
         test_question_maker::set_standard_combined_feedback_form_data($q);

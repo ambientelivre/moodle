@@ -14,11 +14,24 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 namespace core_comment;
 
 use comment;
 use comment_exception;
 use core_comment_external;
+=======
+/**
+ * Tests for comments when the context is frozen.
+ *
+ * @package    core_comment
+ * @copyright  2019 University of Nottingham
+ * @author     Neill Magill <neill.magill@nottingham.ac.uk>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+defined('MOODLE_INTERNAL') || die();
+>>>>>>> upstream/MOODLE_38_STABLE
 
 /**
  * Tests for comments when the context is frozen.
@@ -28,7 +41,11 @@ use core_comment_external;
  * @author     Neill Magill <neill.magill@nottingham.ac.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
 final class context_freeze_test extends \advanced_testcase {
+=======
+class comment_context_freeze_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
     /**
      * Creates a comment by a student.
      *
@@ -37,16 +54,27 @@ final class context_freeze_test extends \advanced_testcase {
      * - The sudent that wrote the comment
      * - The arguments used to create the comment
      *
+<<<<<<< HEAD
      * @param \stdClass $course Moodle course from the datagenerator
+=======
+     * @param stdClass $course Moodle course from the datagenerator
+>>>>>>> upstream/MOODLE_38_STABLE
      * @return array
      */
     protected function create_student_comment_and_freeze_course($course): array {
         set_config('contextlocking', 1);
 
+<<<<<<< HEAD
         $context = \context_course::instance($course->id);
         $student = $this->getDataGenerator()->create_and_enrol($course, 'student');
 
         $args = new \stdClass;
+=======
+        $context = context_course::instance($course->id);
+        $student = $this->getDataGenerator()->create_and_enrol($course, 'student');
+
+        $args = new stdClass;
+>>>>>>> upstream/MOODLE_38_STABLE
         $args->context = $context;
         $args->course = $course;
         $args->area = 'page_comments';
@@ -72,7 +100,11 @@ final class context_freeze_test extends \advanced_testcase {
     /**
      * Test that a student cannot delete their own comments in frozen contexts via the external service.
      */
+<<<<<<< HEAD
     public function test_delete_student_external(): void {
+=======
+    public function test_delete_student_external() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         require_once($CFG->dirroot . '/comment/lib.php');
 
@@ -95,7 +127,11 @@ final class context_freeze_test extends \advanced_testcase {
     /**
      * Test that a student cannot delete their own comments in frozen contexts.
      */
+<<<<<<< HEAD
     public function test_delete_student(): void {
+=======
+    public function test_delete_student() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         require_once($CFG->dirroot . '/comment/lib.php');
 
@@ -118,7 +154,11 @@ final class context_freeze_test extends \advanced_testcase {
     /**
      * Test that an admin cannot delete comments in frozen contexts via the external service.
      */
+<<<<<<< HEAD
     public function test_delete_admin_external(): void {
+=======
+    public function test_delete_admin_external() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         require_once($CFG->dirroot . '/comment/lib.php');
 
@@ -140,7 +180,11 @@ final class context_freeze_test extends \advanced_testcase {
     /**
      * Test that an admin cannot delete comments in frozen contexts.
      */
+<<<<<<< HEAD
     public function test_delete_admin(): void {
+=======
+    public function test_delete_admin() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         require_once($CFG->dirroot . '/comment/lib.php');
 

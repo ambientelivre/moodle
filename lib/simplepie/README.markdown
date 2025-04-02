@@ -11,13 +11,20 @@ compatibility and standards compliance][what_is].
 
 Requirements
 ------------
+<<<<<<< HEAD
 * PHP 7.2+ (Required since SimplePie 1.8.0)
+=======
+* PHP 5.3.0+ (5.3.6+ recommended since SimplePie 1.4.2)
+	* Support for PHP 5.2 stopped in branch `one-dot-three`
+	* Support for PHP 4 stopped in branch `one-dot-two`
+>>>>>>> upstream/MOODLE_38_STABLE
 * libxml2 (certain 2.7.x releases are too buggy for words, and will crash)
 * One of iconv, mbstring or intl extensions
 * cURL or fsockopen()
 * PCRE support
 
 
+<<<<<<< HEAD
 PSR-16: Caching support
 --------------
 
@@ -37,6 +44,11 @@ $simplepie->set_cache(
 What comes in the package?
 --------------------------
 1. `src/` - SimplePie classes for use with the autoloader
+=======
+What comes in the package?
+--------------------------
+1. `library/` - SimplePie classes for use with the autoloader
+>>>>>>> upstream/MOODLE_38_STABLE
 2. `autoloader.php` - The SimplePie Autoloader if you want to use the separate
    file version.
 3. `README.markdown` - This document.
@@ -54,9 +66,14 @@ What comes in the package?
 Since SimplePie 1.3, we've split the classes into separate files to make it easier
 to maintain and use.
 
+<<<<<<< HEAD
 If you'd like a single monolithic file, see the assets in the
 [releases](https://github.com/simplepie/simplepie/releases), or you can
 run `php build/compile.php` to generate `SimplePie.compiled.php` yourself.
+=======
+If you'd like a single monolithic file, you can run `php build/compile.php` to
+generate `SimplePie.compiled.php`.
+>>>>>>> upstream/MOODLE_38_STABLE
 
 To start the demo
 -----------------
@@ -91,6 +108,7 @@ to be prioritized.
 
 If you'd like to contribute to SimplePie, the best way to get started is to fork
 the project on GitHub and send pull requests for patches. When doing so, please
+<<<<<<< HEAD
 be aware of our [coding standards](http://simplepie.org/wiki/misc/coding_standards).
 
 The main development for the next minor release happens in `master` branch.
@@ -105,6 +123,11 @@ Please open your PR against the appropriate branch.
 | [master](https://github.com/simplepie/simplepie/tree/master)               | PHP 7.2.0+  |
 | [one-dot-seven](https://github.com/simplepie/simplepie/tree/one-dot-seven) | PHP 5.6.0+  |
 | [one-dot-three](https://github.com/simplepie/simplepie/tree/one-dot-three) | PHP 5.2.0+  |
+=======
+be aware of our [coding standards][].
+
+[coding standards]: http://simplepie.org/wiki/misc/coding_standards
+>>>>>>> upstream/MOODLE_38_STABLE
 
 
 Authors and contributors
@@ -115,6 +138,7 @@ Authors and contributors
 ### Alumni
 * [Ryan McCue][] (developer, support)
 * [Ryan Parman][] (Creator, developer, evangelism, support)
+<<<<<<< HEAD
 * [Sam Sneddon][] (Lead developer)
 * [Michael Shipley][] (Submitter of patches, support)
 * [Steve Minutillo][] (Submitter of patches)
@@ -123,6 +147,16 @@ Authors and contributors
 [Ryan McCue]: http://ryanmccue.info
 [Ryan Parman]: http://ryanparman.com
 [Sam Sneddon]: https://gsnedders.com
+=======
+* [Geoffrey Sneddon][] (Lead developer)
+* [Michael Shipley][] (Submitter of patches, support)
+* [Steve Minutillo][] (Submitter of patches)
+
+[Malcolm Blaney]: https://unicyclic.com/mal
+[Ryan McCue]: http://ryanmccue.info
+[Ryan Parman]: http://ryanparman.com
+[Geoffrey Sneddon]: http://gsnedders.com
+>>>>>>> upstream/MOODLE_38_STABLE
 [Michael Shipley]: http://michaelpshipley.com
 [Steve Minutillo]: http://minutillo.com/steve/
 

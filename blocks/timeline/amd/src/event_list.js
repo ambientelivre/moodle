@@ -216,8 +216,196 @@ function(
      * @param {object} root The event list container element.
      * @param {object} additionalConfig Additional config options to pass to pagedContentFactory.
      */
+<<<<<<< HEAD
     var init = function(root, additionalConfig = {}) {
         const pendingPromise = new Pending('block/timeline:event-init');
+=======
+    var loadEventsFromPageData = function(
+        pageData,
+        actions,
+        midnight,
+        lastIds,
+        preloadedPages,
+        courseId,
+        daysOffset,
+        daysLimit
+    ) {
+        var pageNumber = pageData.pageNumber;
+        var limit = pageData.limit;
+        var lastPageNumber = pageNumber;
+
+        // This is here to protect us if, for some reason, the pages
+        // are loaded out of order somehow and we don't have a reference
+        // to the previous page. In that case, scan back to find the most
+        // recent page we've seen.
+        while (!lastIds.hasOwnProperty(lastPageNumber)) {
+            lastPageNumber--;
+        }
+        // Use the last id of the most recent page.
+        var lastId = lastIds[lastPageNumber];
+        var eventsPromise = null;
+
+        if (preloadedPages && preloadedPages.hasOwnProperty(pageNumber)) {
+            // This page has been preloaded so use that rather than load the values
+            // again.
+            eventsPromise = preloadedPages[pageNumber];
+        } else {
+            // Load one more than the given limit so that we can tell if there
+            // is more content to load after this.
+            eventsPromise = load(midnight, limit + 1, daysOffset, daysLimit, lastId, courseId);
+        }
+
+        return eventsPromise.then(function(result) {
+            if (!result.events.length) {
+                // If we didn't get any events back then tell the paged content
+                // that we're done loading.
+                actions.allItemsLoaded(pageNumber);
+                return [];
+            }
+
+            var calendarEvents = result.events.filter(function(event) {
+                if (event.eventtype == "open" || event.eventtype == "opensubmission") {
+                    var dayTimestamp = UserDate.getUserMidnightForTimestamp(event.timesort, midnight);
+                    return dayTimestamp > midnight;
+                }
+                return true;
+            });
+            // We expect to receive limit + 1 events back from the server.
+            // Any less means there are no more events to load.
+            var loadedAll = calendarEvents.length <= limit;
+
+            if (loadedAll) {
+                // Tell the pagination that everything is loaded.
+                actions.allItemsLoaded(pageNumber);
+            } else {
+                // Remove the last element from the array because it isn't
+                // needed in this result set.
+                calendarEvents.pop();
+            }
+
+            return calendarEvents;
+        });
+    };
+
+    /**
+     * Use the paged content factory to create a paged content element for showing
+     * the event list. We only provide a page limit to the factory because we don't
+     * know exactly how many pages we'll need. This creates a paging bar with just
+     * next/previous buttons.
+     *
+     * This function specifies the callback for loading the event data that the user
+     * is requesting.
+     *
+     * @param {int|array} pageLimit A single limit or list of limits as options for the paged content
+     * @param {object} preloadedPages An object of preloaded page data. Page number as key, data promise as value.
+     * @param {Number} midnight The user's midnight time in unix timestamp.
+     * @param {object} firstLoad A jQuery promise to be resolved after the first set of data is loaded.
+     * @param {int|undefined} courseId Course ID to restrict events to
+     * @param {Number} daysOffset How many days (from midnight) to offset the results from
+     * @param {int|undefined} daysLimit How many dates (from midnight) to limit the result to
+     * @param {string} paginationAriaLabel String to set as the aria label for the pagination bar.
+     * @param {object} additionalConfig Additional config options to pass to pagedContentFactory
+     * @return {object} jQuery promise.
+     */
+    var createPagedContent = function(
+        pageLimit,
+        preloadedPages,
+        midnight,
+        firstLoad,
+        courseId,
+        daysOffset,
+        daysLimit,
+        paginationAriaLabel,
+        additionalConfig
+    ) {
+        // Remember the last event id we loaded on each page because we can't
+        // use the offset value since the backend can skip events if the user doesn't
+        // have the capability to see them. Instead we load the next page of events
+        // based on the last seen event id.
+        var lastIds = {'1': 0};
+        var hasContent = false;
+        var config = $.extend({}, DEFAULT_PAGED_CONTENT_CONFIG, additionalConfig);
+
+        return Str.get_string(
+                'ariaeventlistpagelimit',
+                'block_timeline',
+                $.isArray(pageLimit) ? pageLimit[0].value : pageLimit
+            )
+            .then(function(string) {
+                config.ariaLabels.itemsperpage = string;
+                config.ariaLabels.paginationnav = paginationAriaLabel;
+                return string;
+            })
+            .then(function() {
+                return PagedContentFactory.createWithLimit(
+                    pageLimit,
+                    function(pagesData, actions) {
+                        var promises = [];
+
+                        pagesData.forEach(function(pageData) {
+                            var pageNumber = pageData.pageNumber;
+                            // Load the page data.
+                            var pagePromise = loadEventsFromPageData(
+                                pageData,
+                                actions,
+                                midnight,
+                                lastIds,
+                                preloadedPages,
+                                courseId,
+                                daysOffset,
+                                daysLimit
+                            ).then(function(calendarEvents) {
+                                if (calendarEvents.length) {
+                                    // Remember that we've loaded content.
+                                    hasContent = true;
+                                    // Remember the last id we've seen.
+                                    var lastEventId = calendarEvents[calendarEvents.length - 1].id;
+                                    // Record the id that the next page will need to start from.
+                                    lastIds[pageNumber + 1] = lastEventId;
+                                    // Get the HTML and JS for these calendar events.
+                                    return render(calendarEvents, midnight);
+                                } else {
+                                    return calendarEvents;
+                                }
+                            })
+                            .catch(Notification.exception);
+
+                            promises.push(pagePromise);
+                        });
+
+                        $.when.apply($, promises).then(function() {
+                            // Tell the calling code that the first page has been loaded
+                            // and whether it contains any content.
+                            firstLoad.resolve(hasContent);
+                            return;
+                        })
+                        .catch(function() {
+                            firstLoad.resolve(hasContent);
+                        });
+
+                        return promises;
+                    },
+                    config
+                );
+            });
+    };
+
+    /**
+     * Create a paged content region for the calendar events in the given root element.
+     * The content of the root element are replaced with a new paged content section
+     * each time this function is called.
+     *
+     * This function will be called each time the offset or limit values are changed to
+     * reload the event list region.
+     *
+     * @param {object} root The event list container element
+     * @param {int|array} pageLimit A single limit or list of limits as options for the paged content
+     * @param {object} preloadedPages An object of preloaded page data. Page number as key, data promise as value.
+     * @param {string} paginationAriaLabel String to set as the aria label for the pagination bar.
+     * @param {object} additionalConfig Additional config options to pass to pagedContentFactory
+     */
+    var init = function(root, pageLimit, preloadedPages, paginationAriaLabel, additionalConfig) {
+>>>>>>> upstream/MOODLE_38_STABLE
         root = $(root);
 
         courseview = !!additionalConfig.courseview;

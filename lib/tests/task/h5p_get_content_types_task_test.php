@@ -16,8 +16,15 @@
 
 namespace core\task;
 
+<<<<<<< HEAD:lib/tests/task/h5p_get_content_types_task_test.php
 use core_h5p\local\library\autoloader;
 use core_h5p\h5p_test_factory;
+=======
+use core_h5p\autoloader;
+use core_h5p\h5p_test_factory;
+
+defined('MOODLE_INTERNAL') || die();
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/h5p_get_content_types_task_test.php
 
 /**
  * Class containing unit tests for the task that fetch the latest version of H5P content types.
@@ -31,6 +38,15 @@ use core_h5p\h5p_test_factory;
 final class h5p_get_content_types_task_test extends \advanced_testcase {
 
     protected function setup(): void {
+        global $CFG;
+        parent::setUp();
+
+        autoloader::register();
+
+        require_once($CFG->libdir . '/tests/fixtures/testable_core_h5p.php');
+    }
+
+    protected function setup() {
         global $CFG;
         parent::setUp();
 
@@ -65,7 +81,11 @@ final class h5p_get_content_types_task_test extends \advanced_testcase {
 
         // Mock implementation of \core\task\h5p_get_content_types_task::get_core to avoid external systems.
         $mocktask = $this->getMockBuilder(\core\task\h5p_get_content_types_task::class)
+<<<<<<< HEAD:lib/tests/task/h5p_get_content_types_task_test.php
             ->onlyMethods(['get_core'])
+=======
+            ->setMethods(['get_core'])
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/h5p_get_content_types_task_test.php
             ->getMock();
 
         $mocktask->expects($this->any())

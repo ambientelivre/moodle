@@ -572,8 +572,12 @@ function forum_print_recent_activity($course, $viewfullnames, $timestart) {
 
     // do not use log table if possible, it may be huge and is expensive to join with other tables
 
+<<<<<<< HEAD
     $userfieldsapi = \core_user\fields::for_userpic();
     $allnamefields = $userfieldsapi->get_sql('u', false, '', 'duserid', false)->selects;
+=======
+    $allnamefields = user_picture::fields('u', null, 'duserid');
+>>>>>>> upstream/MOODLE_38_STABLE
     if (!$posts = $DB->get_records_sql("SELECT p.*,
                                               f.course, f.type AS forumtype, f.name AS forumname, f.intro, f.introformat, f.duedate,
                                               f.cutoffdate, f.assessed AS forumassessed, f.assesstimestart, f.assesstimefinish,

@@ -31,4 +31,8 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['parentlanguage'] = 'el';
 $string['thisdirection'] = 'ltr';
+<<<<<<< HEAD
 $string['thislanguage'] = 'Ελληνικά';
+=======
+$string['thislanguage'] = 'Ελληνικά για χώρους εργασίας';
+>>>>>>> upstream/MOODLE_38_STABLE

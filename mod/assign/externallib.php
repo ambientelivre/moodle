@@ -414,7 +414,11 @@ class mod_assign_external extends \mod_assign\external\external_api {
                         'id' => $module->assignmentid,
                         'cmid' => $module->id,
                         'course' => $module->course,
+<<<<<<< HEAD
                         'name' => \core_external\util::format_string($module->name, $context),
+=======
+                        'name' => external_format_string($module->name, $context),
+>>>>>>> upstream/MOODLE_38_STABLE
                         'nosubmissions' => $module->nosubmissions,
                         'submissiondrafts' => $module->submissiondrafts,
                         'sendnotifications' => $module->sendnotifications,

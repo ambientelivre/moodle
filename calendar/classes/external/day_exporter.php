@@ -274,4 +274,22 @@ class day_exporter extends exporter {
 
         return $title;
     }
+
+    /**
+     * Get the title for view link.
+     *
+     * @return string
+     */
+    protected function get_view_link_title() {
+        $title = null;
+
+        $userdate = userdate($this->data[0], get_string('strftimedayshort'));
+        if ($this->data['istoday']) {
+            $title = get_string('todayplustitle', 'calendar', $userdate);
+        } else if (count($this->related['events'])) {
+            $title = get_string('eventsfor', 'calendar', $userdate);
+        }
+
+        return $title;
+    }
 }

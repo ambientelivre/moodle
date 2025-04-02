@@ -218,6 +218,20 @@ function core_myprofile_navigation(core_user\output\myprofile\tree $tree, $user,
     if (isset($identityfields['idnumber']) && $user->idnumber) {
         $node = new core_user\output\myprofile\node('contact', 'idnumber', get_string('idnumber'), null, null,
             s($user->idnumber));
+<<<<<<< HEAD
+=======
+        $tree->add_node($node);
+    }
+
+    if ($user->url && !isset($hiddenfields['webpage'])) {
+        $url = $user->url;
+        if (strpos($user->url, '://') === false) {
+            $url = 'http://'. $url;
+        }
+        $webpageurl = new moodle_url($url);
+        $node = new core_user\output\myprofile\node('contact', 'webpage', get_string('webpage'), null, null,
+            html_writer::link($url, $webpageurl));
+>>>>>>> upstream/MOODLE_38_STABLE
         $tree->add_node($node);
     }
 

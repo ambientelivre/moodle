@@ -58,8 +58,12 @@ class qbehaviour_interactive_renderer extends qbehaviour_renderer {
             'name' => $qa->get_behaviour_field_name('tryagain'),
             'value' => get_string('tryagain', 'qbehaviour_interactive'),
             'class' => 'submit btn btn-secondary',
+<<<<<<< HEAD
             'data-savescrollposition' => 'true',
         ];
+=======
+        );
+>>>>>>> upstream/MOODLE_38_STABLE
         if ($options->readonly === qbehaviour_interactive::TRY_AGAIN_VISIBLE_READONLY) {
             // This means the question really was rendered with read-only option.
             $attributes['disabled'] = 'disabled';

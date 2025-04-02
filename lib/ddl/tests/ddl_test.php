@@ -1839,7 +1839,11 @@ final class ddl_test extends \database_driver_testcase {
     /**
      * get_columns should return an empty array for ex-temptables.
      */
+<<<<<<< HEAD
     public function test_leftover_temp_tables_columns(): void {
+=======
+    public function test_leftover_temp_tables_columns() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $DB = $this->tdb; // Do not use global $DB!
         $dbman = $this->tdb->get_manager();
 
@@ -1857,7 +1861,11 @@ final class ddl_test extends \database_driver_testcase {
     /**
      * Deleting a temp table should not purge the whole cache
      */
+<<<<<<< HEAD
     public function test_leftover_temp_tables_cache(): void {
+=======
+    public function test_leftover_temp_tables_cache() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $DB = $this->tdb; // Do not use global $DB!
         $dbman = $this->tdb->get_manager();
 
@@ -1883,8 +1891,14 @@ final class ddl_test extends \database_driver_testcase {
 
         $dbman->drop_table($table0);
 
+<<<<<<< HEAD
         $rc = new \ReflectionClass('moodle_database');
         $rcm = $rc->getMethod('get_temp_tables_cache');
+=======
+        $rc = new ReflectionClass('moodle_database');
+        $rcm = $rc->getMethod('get_temp_tables_cache');
+        $rcm->setAccessible(true);
+>>>>>>> upstream/MOODLE_38_STABLE
         $metacachetemp = $rcm->invokeArgs($DB, []);
 
         // Data of test_table0 should be removed from the cache.
@@ -1893,8 +1907,14 @@ final class ddl_test extends \database_driver_testcase {
         // Data of test_table1 should be intact.
         $this->assertEquals(true, $metacachetemp->has('test_table1'));
 
+<<<<<<< HEAD
         $rc = new \ReflectionClass('moodle_database');
         $rcm = $rc->getMethod('get_metacache');
+=======
+        $rc = new ReflectionClass('moodle_database');
+        $rcm = $rc->getMethod('get_metacache');
+        $rcm->setAccessible(true);
+>>>>>>> upstream/MOODLE_38_STABLE
         $metacache = $rcm->invokeArgs($DB, []);
 
         // Data of test_table2 should be intact.
@@ -1904,7 +1924,11 @@ final class ddl_test extends \database_driver_testcase {
         $dbman->drop_table($table1);
     }
 
+<<<<<<< HEAD
     public function test_reset_sequence(): void {
+=======
+    public function test_reset_sequence() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $DB = $this->tdb;
         $dbman = $DB->get_manager();
 
@@ -2433,7 +2457,11 @@ final class ddl_test extends \database_driver_testcase {
     /**
      * Tests check_database_schema().
      */
+<<<<<<< HEAD
     public function test_check_database_schema(): void {
+=======
+    public function test_check_database_schema() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG, $DB;
 
         $dbmanager = $DB->get_manager();
@@ -2443,9 +2471,13 @@ final class ddl_test extends \database_driver_testcase {
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
         $table->add_field('extracolumn', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
         $table->add_field('courseid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+<<<<<<< HEAD
         $table->add_field('binaryfield', XMLDB_TYPE_BINARY, null, null, XMLDB_NOTNULL, null, null);
         $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
         $table->add_key('extraindex', XMLDB_KEY_UNIQUE, array('extracolumn'));
+=======
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+>>>>>>> upstream/MOODLE_38_STABLE
         $table->setComment("This is a test table, you can drop it safely.");
         $dbmanager->create_table($table);
 
@@ -2462,9 +2494,12 @@ final class ddl_test extends \database_driver_testcase {
         // Add another key to the schema that won't be present in the database and gets reported as missing.
         $table->add_key('missingkey', XMLDB_KEY_FOREIGN, array('courseid'), 'course', array('id'));
 
+<<<<<<< HEAD
         // Remove the key from the schema which will still be present in the database and reported as extra.
         $table->deleteKey('extraindex');
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         $schema = new xmldb_structure('testschema');
         $schema->addTable($table);
 
@@ -2472,18 +2507,29 @@ final class ddl_test extends \database_driver_testcase {
         // 1. Changed columns.
         // 2. Missing columns.
         // 3. Missing indexes.
+<<<<<<< HEAD
         // 4. Unexpected index.
         // 5. Extra columns.
+=======
+        // 4. Extra columns.
+>>>>>>> upstream/MOODLE_38_STABLE
         $errors = $dbmanager->check_database_schema($schema)['test_check_db_schema'];
         // Preprocess $errors to get rid of the non compatible (SQL-dialect dependent) parts.
         array_walk($errors, function(&$error) {
             $error = trim(strtok($error, PHP_EOL));
         });
+<<<<<<< HEAD
         $this->assertCount(5, $errors);
         $this->assertContains("column 'courseid' has incorrect type 'I', expected 'N'", $errors);
         $this->assertContains("column 'missingcolumn' is missing", $errors);
         $this->assertContains("Missing index 'missingkey' (not unique (courseid)).", $errors);
         $this->assertContains("Unexpected index '{$CFG->prefix}testchecdbsche_ext_uix'.", $errors);
+=======
+        $this->assertCount(4, $errors);
+        $this->assertContains("column 'courseid' has incorrect type 'I', expected 'N'", $errors);
+        $this->assertContains("column 'missingcolumn' is missing", $errors);
+        $this->assertContains("Missing index 'missingkey' (not unique (courseid)).", $errors);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertContains("column 'extracolumn' is not expected (I)", $errors);
     }
 }

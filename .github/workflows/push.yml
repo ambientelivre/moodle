@@ -1,5 +1,6 @@
 name: Core
 
+<<<<<<< HEAD
 on:
   push:
     branches-ignore:
@@ -29,6 +30,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+=======
+on: [push]
+
+env:
+  php: 7.4
+
+jobs:
+  Grunt:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v2
+
+      - name: Configuring node & npm
+        shell: bash -l {0}
+        run: nvm install
+>>>>>>> upstream/MOODLE_38_STABLE
 
       - name: Installing node stuff
         run: npm install
@@ -60,6 +79,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
+<<<<<<< HEAD
           # MySQL builds always run with the lowest PHP supported version.
           - os: ubuntu-22.04
             php: 8.2
@@ -68,44 +88,76 @@ jobs:
           # PostgreSQL builds always run with the highest PHP supported version.
           - os: ubuntu-22.04
             php: 8.4
+=======
+          - os: ubuntu-18.04
+            php: 7.1
+            db: mysqli
+          - os: ubuntu-18.04
+            php: 7.4
+>>>>>>> upstream/MOODLE_38_STABLE
             db: pgsql
 
     steps:
       - name: Setting up DB mysql
         if: ${{ matrix.db == 'mysqli' }}
+<<<<<<< HEAD
         uses: moodlehq/mysql-action@v1
         with:
           collation server: utf8mb4_bin
           mysql version: 8.4
+=======
+        uses: johanmeiring/mysql-action@tmpfs-patch
+        with:
+          collation server: utf8mb4_bin
+          mysql version: 5.7
+>>>>>>> upstream/MOODLE_38_STABLE
           mysql database: test
           mysql user: test
           mysql password: test
           use tmpfs: true
+<<<<<<< HEAD
           tmpfs size: '1024M'
           extra conf: --skip-log-bin
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
       - name: Setting up DB pgsql
         if: ${{ matrix.db == 'pgsql' }}
         uses: m4nu56/postgresql-action@v1
         with:
+<<<<<<< HEAD
           postgresql version: 14
+=======
+          postgresql version: 9.6
+>>>>>>> upstream/MOODLE_38_STABLE
           postgresql db: test
           postgresql user: test
           postgresql password: test
 
       - name: Configuring git vars
+<<<<<<< HEAD
         uses: rlespinasse/github-slug-action@v4
+=======
+        uses: rlespinasse/github-slug-action@v3.x
+>>>>>>> upstream/MOODLE_38_STABLE
 
       - name: Setting up PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+<<<<<<< HEAD
           extensions: ${{ matrix.extensions }}
           ini-values: max_input_vars=5000
           coverage: none
 
       - name: Checking out code from ${{ env.GITHUB_REF_SLUG }}
         uses: actions/checkout@v4
+=======
+          coverage: none
+
+      - name: Checking out code from ${{ env.GITHUB_REF_SLUG }}
+        uses: actions/checkout@v2
+>>>>>>> upstream/MOODLE_38_STABLE
 
       - name: Setting up PHPUnit
         env:
@@ -120,8 +172,12 @@ jobs:
       - name: Running PHPUnit tests
         env:
           dbtype: ${{ matrix.db }}
+<<<<<<< HEAD
           phpunit_options: ${{ secrets.phpunit_options }}
         run: vendor/bin/phpunit $phpunit_options ${{ inputs.phpunit_extra_options }}
 
       - name: Git status
         run: git status
+=======
+        run: vendor/bin/phpunit -v
+>>>>>>> upstream/MOODLE_38_STABLE

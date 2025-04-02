@@ -70,8 +70,12 @@ Feature: Initials bar
       | activity | course | idnumber | name           | intro                       | assignsubmission_onlinetext_enabled | assignsubmission_file_enabled |
       | assign   | C1     | assign1  | TestAssignment | Test assignment description | 0                                   | 0                             |
     And I am on the "assign1" "Activity" page logged in as "teacher"
+<<<<<<< HEAD
     When I navigate to "Submissions" in current page administration
     And I click on "Filter by name" "combobox"
+=======
+    When I navigate to "View all submissions" in current page administration
+>>>>>>> upstream/MOODLE_38_STABLE
     And ".initialbarall.page-item.active" "css_element" should exist in the ".initialbar.firstinitial" "css_element"
     And ".initialbarall.page-item.active" "css_element" should exist in the ".initialbar.lastinitial" "css_element"
     And ".page-item.active.B" "css_element" should not exist in the ".initialbar.firstinitial" "css_element"
@@ -100,7 +104,11 @@ Feature: Initials bar
     And I should see "Bstudent Astudent"
     And I should not see "Cstudent Cstudent"
     And I am on the "assign1" "Activity" page
+<<<<<<< HEAD
     When I navigate to "Submissions" in current page administration
+=======
+    When I navigate to "View all submissions" in current page administration
+>>>>>>> upstream/MOODLE_38_STABLE
     And ".initialbarall.page-item.active" "css_element" should not exist in the ".initialbar.firstinitial" "css_element"
     And ".initialbarall.page-item.active" "css_element" should not exist in the ".initialbar.lastinitial" "css_element"
     And ".page-item.active.B" "css_element" should exist in the ".initialbar.firstinitial" "css_element"
@@ -137,9 +145,14 @@ Feature: Initials bar
       | activity | course | idnumber | name           | intro                       | assignsubmission_onlinetext_enabled | assignsubmission_file_enabled |
       | assign   | C1     | assign1  | TestAssignment | Test assignment description | 0                                   | 0                             |
     And I am on the "assign1" "Activity" page logged in as "teacher"
+<<<<<<< HEAD
     When I navigate to "Submissions" in current page administration
     And I choose the "View gradebook" item in the "Actions" action menu
     And I click on "Filter by name" "combobox"
+=======
+    When I navigate to "View all submissions" in current page administration
+    And I select "View gradebook" from the "jump" singleselect
+>>>>>>> upstream/MOODLE_38_STABLE
     And ".initialbarall.page-item.active" "css_element" should exist in the ".initialbar.firstinitial" "css_element"
     And ".initialbarall.page-item.active" "css_element" should exist in the ".initialbar.lastinitial" "css_element"
     And ".page-item.active.B" "css_element" should not exist in the ".initialbar.firstinitial" "css_element"
@@ -168,8 +181,13 @@ Feature: Initials bar
     And I should see "Bstudent Astudent"
     And I should not see "Cstudent Cstudent"
     And I am on the "assign1" "Activity" page
+<<<<<<< HEAD
     When I navigate to "Submissions" in current page administration
     And I choose the "View gradebook" item in the "Actions" action menu
+=======
+    When I navigate to "View all submissions" in current page administration
+    And I select "View gradebook" from the "jump" singleselect
+>>>>>>> upstream/MOODLE_38_STABLE
     And ".initialbarall.page-item.active" "css_element" should not exist in the ".initialbar.firstinitial" "css_element"
     And ".initialbarall.page-item.active" "css_element" should not exist in the ".initialbar.lastinitial" "css_element"
     And ".page-item.active.B" "css_element" should exist in the ".initialbar.firstinitial" "css_element"
@@ -264,7 +282,12 @@ Feature: Initials bar
     Given the following "activities" exist:
       | activity | course | idnumber | name           | intro                       | assignsubmission_onlinetext_enabled | assignsubmission_file_enabled |
       | assign   | C1     | assign1  | TestAssignment | Test assignment description | 0                                   | 0                             |
+<<<<<<< HEAD
     And I am on the "assign1" "assign Activity editing" page logged in as "admin"
+=======
+    And I am on the "assign1" "Activity" page logged in as "admin"
+    And I navigate to "Edit settings" in current page administration
+>>>>>>> upstream/MOODLE_38_STABLE
     And I expand all fieldsets
     And I set the field "Students must manually mark the activity as done" to "1"
     And I click on "Save and return to course" "button"
@@ -274,8 +297,12 @@ Feature: Initials bar
     And I click on "Save changes" "button"
     And I log out
     And I am on the "C1" "Course" page logged in as "teacher"
+<<<<<<< HEAD
     And I navigate to "Reports" in current page administration
     And I click on "Activity completion" "link"
+=======
+    And I navigate to "Reports > Activity completion" in current page administration
+>>>>>>> upstream/MOODLE_38_STABLE
     And ".initialbarall.page-item.active" "css_element" should exist in the ".initialbar.firstinitial" "css_element"
     And ".initialbarall.page-item.active" "css_element" should exist in the ".initialbar.lastinitial" "css_element"
     And ".page-item.active.B" "css_element" should not exist in the ".initialbar.firstinitial" "css_element"

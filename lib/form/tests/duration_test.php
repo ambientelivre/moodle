@@ -165,8 +165,45 @@ final class duration_test extends \basic_testcase {
      * @param bool $optional Whether the element has the optional option on.
      * @param string|null $label The element's label.
      */
+<<<<<<< HEAD
     public function test_export_value(int $expected, string $number, int $unit, int $enabled = 0,
             bool $optional = false, ?string $label = null): void {
+=======
+    public function test_exportValue() {
+        /** @var MoodleQuickForm_duration $el */
+        $el = $this->mform->addElement('duration', 'testel');
+        $values = array('testel' => array('number' => 10, 'timeunit' => 1));
+        $this->assertEquals(array('testel' => 10), $el->exportValue($values, true));
+        $this->assertEquals(10, $el->exportValue($values));
+
+        $values = array('testel' => array('number' => 9.3, 'timeunit' => 1));
+        $this->assertEquals(array('testel' => 9), $el->exportValue($values, true));
+        $this->assertEquals(9, $el->exportValue($values));
+
+        $values = array('testel' => array('number' => 9.5, 'timeunit' => 1));
+        $this->assertEquals(array('testel' => 10), $el->exportValue($values, true));
+        $this->assertEquals(10, $el->exportValue($values));
+
+        $values = array('testel' => array('number' => 3, 'timeunit' => 60));
+        $this->assertEquals(array('testel' => 180), $el->exportValue($values, true));
+        $this->assertEquals(180, $el->exportValue($values));
+
+        $values = array('testel' => array('number' => 1.5, 'timeunit' => 60));
+        $this->assertEquals(array('testel' => 90), $el->exportValue($values, true));
+        $this->assertEquals(90, $el->exportValue($values));
+
+        $values = array('testel' => array('number' => 2, 'timeunit' => 3600));
+        $this->assertEquals(array('testel' => 7200), $el->exportValue($values, true));
+        $this->assertEquals(7200, $el->exportValue($values));
+
+        $values = array('testel' => array('number' => 1, 'timeunit' => 86400));
+        $this->assertEquals(array('testel' => 86400), $el->exportValue($values, true));
+        $this->assertEquals(86400, $el->exportValue($values));
+
+        $values = array('testel' => array('number' => 0, 'timeunit' => 3600));
+        $this->assertEquals(array('testel' => 0), $el->exportValue($values, true));
+        $this->assertEquals(0, $el->exportValue($values));
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Create the test element.
         $mform = $this->get_test_form();

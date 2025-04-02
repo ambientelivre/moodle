@@ -1,9 +1,23 @@
+<<<<<<< HEAD
 <div class="mb-3 {{#error}}has-danger{{/error}} fitem {{#advanced}}advanced{{/advanced}} {{{element.extraclasses}}}" {{#element.groupname}}data-groupname="{{.}}"{{/element.groupname}}>
     {{#label}}
         <label class="col-form-label {{#element.hiddenlabel}}visually-hidden{{/element.hiddenlabel}}" for="{{element.id}}">
             {{{label}}}
         </label>
     {{/label}}
+=======
+<div class="form-group {{#error}}has-danger{{/error}} fitem {{#advanced}}advanced{{/advanced}} {{{element.extraclasses}}}" {{#element.groupname}}data-groupname="{{.}}"{{/element.groupname}}>
+    {{#label}}
+        <label class="col-form-label {{#element.hiddenlabel}}sr-only{{/element.hiddenlabel}}" for="{{element.id}}">
+            {{{label}}}
+        </label>
+    {{/label}}
+    <span>
+        {{{helpbutton}}}
+        {{#required}}<abbr class="initialism text-danger" title="{{#str}}required{{/str}}">{{#pix}}req, core, {{#str}}required{{/str}}{{/pix}}</abbr>{{/required}}
+        {{#advanced}}<abbr class="initialism text-info" title="{{#str}}advanced{{/str}}">!</abbr>{{/advanced}}
+    </span>
+>>>>>>> upstream/MOODLE_38_STABLE
     <span data-fieldtype="{{element.type}}">
         {{$ element }}
             <!-- Element goes here -->

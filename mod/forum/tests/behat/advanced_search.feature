@@ -102,7 +102,11 @@ Feature: The forum search allows users to perform advanced searches for forum po
     And I press "Search"
     And I should see "Please enter search terms into one or more of the following fields"
     And I set the field "Is tagged with" to "SearchedTag"
+<<<<<<< HEAD
     When I press "Search"
+=======
+    When I press "Search forums"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "My subject"
     And I should not see "Your subjective"
 

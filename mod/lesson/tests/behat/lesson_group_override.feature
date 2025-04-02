@@ -211,8 +211,16 @@ Feature: Lesson group override
       | available[minute]    | 00 |
     And I press "Save"
     And I should see "Lesson opens"
+<<<<<<< HEAD
     And I am on the "Test lesson name" "lesson activity" page logged in as student2
     Then the activity date in "Test lesson name" should contain "Opens: Tuesday, 1 January 2030, 8:00"
+=======
+    And I log out
+    And I log in as "student2"
+    And I am on "Course 1" course homepage
+    And I follow "Test lesson"
+    Then  I should see "This lesson will be open on Tuesday, 1 January 2030, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should not see "Cat is an amphibian"
     And I am on the "Test lesson name" "lesson activity" page logged in as student1
     And I should see "Cat is an amphibian"
@@ -270,14 +278,34 @@ Feature: Lesson group override
       | id_available_enabled | 1 |
       | available[day]       | 1 |
       | available[month]     | January |
-      | available[year]      | 2030 |
+      | available[year]      | 2040 |
       | available[hour]      | 08 |
       | available[minute]    | 00 |
+<<<<<<< HEAD
     And I press "Save"
     And I should see "Tuesday, 1 January 2030, 8:00"
     And I am on the "Test lesson name" "lesson activity" page
     And I navigate to "Overrides" in current page administration
     And I follow "Add user override"
+=======
+    And I press "Save and display"
+    And I follow "Test lesson name"
+    And I navigate to "Group overrides" in current page administration
+    And I press "Add group override"
+    And I set the following fields to these values:
+      | Override group       | Group 1 |
+      | id_available_enabled | 1 |
+      | available[day]       | 1 |
+      | available[month]     | January |
+      | available[year]      | 2030 |
+      | available[hour]      | 08 |
+      | available[minute]    | 00 |
+    And I press "Save"
+    And I should see "Tuesday, 1 January 2030, 8:00"
+    And I follow "Test lesson name"
+    And I navigate to "User overrides" in current page administration
+    And I press "Add user override"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I set the following fields to these values:
       | Override user        | Student1 |
       | id_available_enabled | 1 |
@@ -288,12 +316,30 @@ Feature: Lesson group override
       | available[minute]    | 00 |
     And I press "Save"
     And I should see "Wednesday, 1 January 2031, 8:00"
+<<<<<<< HEAD
     And I am on the "Test lesson name" "lesson activity" page logged in as student1
     And the activity date in "Test lesson name" should contain "Opens: Wednesday, 1 January 2031, 8:00"
     And I am on the "Test lesson name" "lesson activity" page logged in as student2
     And the activity date in "Test lesson name" should contain "Opens: Sunday, 1 January 2040, 8:00"
     And I am on the "Test lesson name" "lesson activity" page logged in as student3
     And the activity date in "Test lesson name" should contain "Opens: Tuesday, 1 January 2030, 8:00"
+=======
+    And I log out
+    Then I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test lesson"
+    And I should see "This lesson will be open on Wednesday, 1 January 2031, 8:00"
+    And I log out
+    And I log in as "student2"
+    And I am on "Course 1" course homepage
+    And I follow "Test lesson"
+    And I should see "This lesson will be open on Sunday, 1 January 2040, 8:00"
+    And I log out
+    And I log in as "student3"
+    And I am on "Course 1" course homepage
+    And I follow "Test lesson"
+    And I should see "This lesson will be open on Tuesday, 1 January 2030, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: Override a group when teacher is in no group, and does not have accessallgroups permission, and the activity's group mode is 'separate groups'
     Given the following "permission overrides" exist:

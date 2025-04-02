@@ -195,6 +195,7 @@ function(
     };
 
     /**
+<<<<<<< HEAD
      * Store an unsent message.
      *
      * Don't store this if the user has already seen the unsent message.
@@ -354,6 +355,8 @@ function(
     };
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Listen to and handle events for routing, showing and hiding the message drawer.
      *
      * @param {string} namespace The route namespace.
@@ -431,7 +434,11 @@ function(
         });
 
         $(SELECTORS.JUMPTO).focus(function() {
+<<<<<<< HEAD
             var firstInput = root.find(SELECTORS.CLOSE_BUTTON);
+=======
+            var firstInput = $(SELECTORS.HEADER_CONTAINER).find('input:visible');
+>>>>>>> upstream/MOODLE_38_STABLE
             if (firstInput.length) {
                 firstInput.focus();
             } else {
@@ -473,6 +480,7 @@ function(
             Router.go(namespace, Routes.VIEW_CONVERSATION, args.conversationid);
         });
 
+<<<<<<< HEAD
         var closebutton = root.find(SELECTORS.CLOSE_BUTTON);
         closebutton.on(CustomEvents.events.activate, function(e, data) {
             data.originalEvent.preventDefault();
@@ -484,6 +492,8 @@ function(
             PubSub.publish(Events.TOGGLE_VISIBILITY);
         });
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         PubSub.subscribe(Events.CREATE_CONVERSATION_WITH_USER, function(args) {
             setJumpFrom(args.buttonid);
             show(namespace, root);

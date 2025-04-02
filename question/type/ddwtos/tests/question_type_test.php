@@ -115,18 +115,32 @@ final class question_type_test extends \question_testcase {
         $this->assertTrue($this->qtype->can_analyse_responses());
     }
 
+<<<<<<< HEAD:question/type/ddwtos/tests/question_type_test.php
     public function test_save_question(): void {
         $this->resetAfterTest();
 
         $syscontext = \context_system::instance();
+=======
+    public function test_save_question() {
+        $this->resetAfterTest();
+
+        $syscontext = context_system::instance();
+>>>>>>> upstream/MOODLE_38_STABLE:question/type/ddwtos/tests/questiontype_test.php
         /** @var core_question_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $category = $generator->create_question_category(['contextid' => $syscontext->id]);
 
+<<<<<<< HEAD:question/type/ddwtos/tests/question_type_test.php
         $fromform = \test_question_maker::get_question_form_data('ddwtos', 'missingchoiceno');
         $fromform->category = $category->id . ',' . $syscontext->id;
 
         $question = new \stdClass();
+=======
+        $fromform = test_question_maker::get_question_form_data('ddwtos', 'missingchoiceno');
+        $fromform->category = $category->id . ',' . $syscontext->id;
+
+        $question = new stdClass();
+>>>>>>> upstream/MOODLE_38_STABLE:question/type/ddwtos/tests/questiontype_test.php
         $question->category = $category->id;
         $question->qtype = 'ddwtos';
         $question->createdby = 0;
@@ -140,7 +154,11 @@ final class question_type_test extends \question_testcase {
         $this->assertEquals([1 => 1, 2 => 2], $q->rightchoices);
     }
 
+<<<<<<< HEAD:question/type/ddwtos/tests/question_type_test.php
     public function test_initialise_question_instance(): void {
+=======
+    public function test_initialise_question_instance() {
+>>>>>>> upstream/MOODLE_38_STABLE:question/type/ddwtos/tests/questiontype_test.php
         $qdata = $this->get_test_question_data();
 
         $expected = \test_question_maker::make_question('ddwtos');

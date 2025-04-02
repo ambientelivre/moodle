@@ -28,7 +28,10 @@ $string['airnotifierfielderror'] = 'Please remove any empty spaces or unnecessar
 $string['airnotifiermobileappname'] = 'Mobile app name';
 $string['airnotifierport'] = 'Airnotifier port';
 $string['airnotifierurl'] = 'Airnotifier URL';
+<<<<<<< HEAD
 $string['checkconfiguration'] = 'Check and test push notification configuration';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['configairnotifierurl'] = 'The server URL to connect to for sending push notifications.';
 $string['configairnotifierport'] = 'The port to use when connecting to the airnotifier server.';
 $string['configairnotifieraccesskey'] = 'The access key for connecting to the Airnotifier server. You can obtain an access key by clicking the "Request access key" link below (registered sites only) or by creating an account on the <a href="https://apps.moodle.com">Moodle Apps Portal</a>.';
@@ -38,6 +41,7 @@ $string['configured'] = 'Configured';
 $string['deletecheckdevicename'] = 'Delete your device: {$a->name}';
 $string['deletedevice'] = 'Delete the device. Note that an app can register the device again. If the device keeps reappearing, disable it.';
 $string['devicetoken'] = 'Device token';
+<<<<<<< HEAD
 $string['donotsendnotification'] = 'Do not send notifications at all';
 $string['enableprocessor'] = 'Enable mobile notifications';
 $string['encryptnotifications'] = 'Encrypt notifications';
@@ -48,13 +52,20 @@ $string['errorretrievingkey'] = 'An error occurred while retrieving the access k
 $string['keyretrievedsuccessfully'] = 'The access key was retrieved successfully. To access Moodle app usage statistics, please create an account on the <a href="https://apps.moodle.com">Moodle Apps Portal</a>.';
 $string['messageprovidersempty'] = 'There are no mobile notifications enabled in default notification preferences.';
 $string['messageproviderslow'] = 'Only a few mobile notifications are enabled in default notification preferences.';
+=======
+$string['errorretrievingkey'] = 'An error occurred while retrieving the access key. Your site must be registered to use this service. If your site is already registered, please try updating your registration. Alternatively, you can obtain an access key by creating an account on the <a href="https://apps.moodle.com">Moodle Apps Portal</a>.';
+$string['keyretrievedsuccessfully'] = 'The access key was retrieved successfully. To access Moodle app usage statistics, please create an account on the <a href="https://apps.moodle.com">Moodle Apps Portal</a>.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['moodleappsportallimitswarning'] = 'Please note that the number of user devices allowed to receive notifications depends on your Moodle app subscription. For details, visit the <a href="{$a}" target="_blank">Moodle Apps Portal</a>.';
 $string['nodevices'] = 'No registered devices. Devices will automatically appear after you install the Moodle app and add this site.';
 $string['noemailevernotset'] = '$CFG->noemailever disabled';
 $string['noemaileverset'] = '$CFG->noemailever is enabled in config.php. You need to set this setting to false or remove it.';
 $string['nopermissiontomanagedevices'] = 'You don\'t have permission to manage devices.';
 $string['notconfigured'] = 'The Airnotifier server has not been configured so push notifications cannot be sent.';
+<<<<<<< HEAD
 $string['notificationsserverconfiguration'] = 'Notifications server (Airnotifier) configuration';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['pluginname'] = 'Mobile';
 $string['privacy:appiddescription'] = 'This is an identifier to the application being used.';
 $string['privacy:enableddescription'] = 'If this device is enabled for airnotifier.';

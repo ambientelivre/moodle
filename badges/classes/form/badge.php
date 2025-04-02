@@ -43,6 +43,7 @@ class badge extends moodleform {
         $mform = $this->_form;
         $badge = (isset($this->_customdata['badge'])) ? $this->_customdata['badge'] : false;
         $action = $this->_customdata['action'];
+<<<<<<< HEAD
         if (array_key_exists('courseid', $this->_customdata)) {
             $courseid = $this->_customdata['courseid'];
         } else if (array_key_exists('badge', $this->_customdata)) {
@@ -52,6 +53,8 @@ class badge extends moodleform {
             $mform->addElement('hidden', 'courseid', $courseid);
             $mform->setType('courseid', PARAM_INT);
         }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $mform->addElement('header', 'badgedetails', get_string('badgedetails', 'badges'));
         $mform->addElement('text', 'name', get_string('name'), ['size' => '70']);
@@ -62,6 +65,14 @@ class badge extends moodleform {
 
         $mform->addElement('text', 'version', get_string('version', 'badges'), ['size' => '70']);
         $mform->setType('version', PARAM_TEXT);
+<<<<<<< HEAD
+=======
+        $mform->addHelpButton('version', 'version', 'badges');
+
+        $languages = get_string_manager()->get_list_of_languages();
+        $mform->addElement('select', 'language', get_string('language'), $languages);
+        $mform->addHelpButton('language', 'language', 'badges');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $languages = get_string_manager()->get_list_of_languages();
         $mform->addElement('select', 'language', get_string('language'), $languages);
@@ -76,7 +87,11 @@ class badge extends moodleform {
         $mform->addRule('description', null, 'required');
 
         $str = $action == 'new' ? get_string('badgeimage', 'badges') : get_string('newimage', 'badges');
+<<<<<<< HEAD
         $imageoptions = ['maxbytes' => 262144, 'accepted_types' => ['optimised_image']];
+=======
+        $imageoptions = array('maxbytes' => 262144, 'accepted_types' => array('optimised_image'));
+>>>>>>> upstream/MOODLE_38_STABLE
         $mform->addElement('filepicker', 'image', $str, null, $imageoptions);
 
         if ($action == 'new') {

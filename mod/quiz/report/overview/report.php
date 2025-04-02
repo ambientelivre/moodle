@@ -381,6 +381,7 @@ class quiz_overview_report extends attempts_report {
         if (!$dryrun) {
             question_engine::save_questions_usage_by_activity($quba);
 
+<<<<<<< HEAD
             $params = [
               'objectid' => $attempt->id,
               'relateduserid' => $attempt->userid,
@@ -389,6 +390,16 @@ class quiz_overview_report extends attempts_report {
                 'quizid' => $attempt->quiz
               ]
             ];
+=======
+            $params = array(
+              'objectid' => $attempt->id,
+              'relateduserid' => $attempt->userid,
+              'context' => $this->context,
+              'other' => array(
+                'quizid' => $attempt->quiz
+              )
+            );
+>>>>>>> upstream/MOODLE_38_STABLE
             $event = \mod_quiz\event\attempt_regraded::create($params);
             $event->trigger();
         }

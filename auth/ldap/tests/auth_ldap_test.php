@@ -48,6 +48,7 @@ use auth_ldap\task\{
  */
 final class auth_ldap_test extends \advanced_testcase {
 
+<<<<<<< HEAD:auth/ldap/tests/auth_ldap_test.php
     public static function setUpBeforeClass(): void {
         global $CFG;
         parent::setUpBeforeClass();
@@ -56,6 +57,8 @@ final class auth_ldap_test extends \advanced_testcase {
         require_once($CFG->libdir . '/ldaplib.php');
     }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE:auth/ldap/tests/plugin_test.php
     /**
      * Data provider for auth_ldap tests
      *
@@ -66,7 +69,11 @@ final class auth_ldap_test extends \advanced_testcase {
      *
      * @return array[]
      */
+<<<<<<< HEAD:auth/ldap/tests/auth_ldap_test.php
     public static function auth_ldap_provider(): array {
+=======
+    public function auth_ldap_provider() {
+>>>>>>> upstream/MOODLE_38_STABLE:auth/ldap/tests/plugin_test.php
         $pagesizes = [1, 3, 5, 1000];
         $subcontexts = [0, 1];
         $combinations = [];
@@ -85,8 +92,13 @@ final class auth_ldap_test extends \advanced_testcase {
      * @param int $pagesize Value to be configured in settings controlling page size.
      * @param int $subcontext Value to be configured in settings controlling searching in subcontexts.
      */
+<<<<<<< HEAD:auth/ldap/tests/auth_ldap_test.php
     public function test_auth_ldap(int $pagesize, int $subcontext): void {
         global $DB;
+=======
+    public function test_auth_ldap(int $pagesize, int $subcontext) {
+        global $CFG, $DB;
+>>>>>>> upstream/MOODLE_38_STABLE:auth/ldap/tests/plugin_test.php
 
         if (!extension_loaded('ldap')) {
             $this->markTestSkipped('LDAP extension is not loaded.');

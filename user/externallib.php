@@ -558,6 +558,11 @@ class core_user_external extends \core_external\external_api {
                 'subdirs'        => 0,
                 'maxfiles'       => 1,
                 'accepted_types' => 'optimised_image');
+<<<<<<< HEAD
+=======
+
+        $transaction = $DB->start_delegated_transaction();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $warnings = array();
         foreach ($params['users'] as $user) {

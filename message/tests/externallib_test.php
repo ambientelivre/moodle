@@ -163,7 +163,11 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test send_instant_messages with a message text longer than permitted.
      */
+<<<<<<< HEAD
     public function test_send_instant_messages_long_text(): void {
+=======
+    public function test_send_instant_messages_long_text() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
 
         $this->resetAfterTest(true);
@@ -4286,7 +4290,11 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test that group conversations containing MathJax don't break the WebService.
      */
+<<<<<<< HEAD
     public function test_get_conversations_group_with_mathjax(): void {
+=======
+    public function test_get_conversations_group_with_mathjax() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest(true);
         $this->setAdminUser();
 
@@ -4322,8 +4330,13 @@ final class externallib_test extends externallib_advanced_testcase {
 
         // Format original data.
         $coursecontext = \context_course::instance($course1->id);
+<<<<<<< HEAD
         $coursename = \core_external\util::format_string($coursename, $coursecontext->id);
         $groupname = \core_external\util::format_string($groupname, $coursecontext->id);
+=======
+        $coursename = external_format_string($coursename, $coursecontext->id);
+        $groupname = external_format_string($groupname, $coursecontext->id);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->assertStringContainsString('<span class="filter_mathjaxloader_equation">', $conversations[0]['name']);
         $this->assertStringContainsString('<span class="filter_mathjaxloader_equation">', $conversations[0]['subname']);
@@ -4842,7 +4855,11 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test verifying a to long message can not be sent to a conversation.
      */
+<<<<<<< HEAD
     public function test_send_messages_to_conversation_long_text(): void {
+=======
+    public function test_send_messages_to_conversation_long_text() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest(true);
 
         // Get a bunch of conversations, some group, some individual and in different states.
@@ -4867,7 +4884,11 @@ final class externallib_test extends externallib_advanced_testcase {
             ],
         ];
 
+<<<<<<< HEAD
         $this->expectException(\moodle_exception::class);
+=======
+        $this->expectException(moodle_exception::class);
+>>>>>>> upstream/MOODLE_38_STABLE
         $writtenmessages = core_message_external::send_messages_to_conversation($gc2->id, $messages);
     }
 

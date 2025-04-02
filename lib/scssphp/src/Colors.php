@@ -185,11 +185,19 @@ class Colors
      *
      * @param string $colorName
      *
+<<<<<<< HEAD:lib/scssphp/src/Colors.php
      * @return int[]|null
      */
     public static function colorNameToRGBa($colorName)
     {
         if (\is_string($colorName) && isset(static::$cssColors[$colorName])) {
+=======
+     * @return array|null
+     */
+    public static function colorNameToRGBa($colorName)
+    {
+        if (is_string($colorName) && isset(static::$cssColors[$colorName])) {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Colors.php
             $rgba = explode(',', static::$cssColors[$colorName]);
 
             // only case with opacity is transparent, with opacity=0, so we can intval on opacity also
@@ -204,10 +212,17 @@ class Colors
     /**
      * Reverse conversion : from RGBA to a color name if possible
      *
+<<<<<<< HEAD:lib/scssphp/src/Colors.php
      * @param int       $r
      * @param int       $g
      * @param int       $b
      * @param int|float $a
+=======
+     * @param integer $r
+     * @param integer $g
+     * @param integer $b
+     * @param integer $a
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Colors.php
      *
      * @return string|null
      */
@@ -220,26 +235,48 @@ class Colors
         }
 
         if ($a < 1) {
+<<<<<<< HEAD:lib/scssphp/src/Colors.php
             return null;
         }
 
         if (\is_null($reverseColorTable)) {
+=======
+            # specific case we dont' revert according to spec
+            #if (! $a && ! $r && ! $g && ! $b) {
+            #    return 'transparent';
+            #}
+
+            return null;
+        }
+
+        if (is_null($reverseColorTable)) {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Colors.php
             $reverseColorTable = [];
 
             foreach (static::$cssColors as $name => $rgb_str) {
                 $rgb_str = explode(',', $rgb_str);
 
+<<<<<<< HEAD:lib/scssphp/src/Colors.php
                 if (
                     \count($rgb_str) == 3 &&
                     ! isset($reverseColorTable[\intval($rgb_str[0])][\intval($rgb_str[1])][\intval($rgb_str[2])])
                 ) {
                     $reverseColorTable[\intval($rgb_str[0])][\intval($rgb_str[1])][\intval($rgb_str[2])] = $name;
+=======
+                if (count($rgb_str) == 3) {
+                    $reverseColorTable[intval($rgb_str[0])][intval($rgb_str[1])][intval($rgb_str[2])] = $name;
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Colors.php
                 }
             }
         }
 
+<<<<<<< HEAD:lib/scssphp/src/Colors.php
         if (isset($reverseColorTable[\intval($r)][\intval($g)][\intval($b)])) {
             return $reverseColorTable[\intval($r)][\intval($g)][\intval($b)];
+=======
+        if (isset($reverseColorTable[intval($r)][intval($g)][intval($b)])) {
+            return $reverseColorTable[intval($r)][intval($g)][intval($b)];
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Colors.php
         }
 
         return null;

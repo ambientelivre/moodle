@@ -30,6 +30,7 @@
     height: 100%;
 }
 
+<<<<<<< HEAD
 .path-grade-report-grader .overriddengrade {
     color: #495057;
     border: none;
@@ -65,6 +66,8 @@
     margin-right: 0;
 }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * All the floating divs.
  */
@@ -101,10 +104,13 @@
     text-align: left;
 }
 
+<<<<<<< HEAD
 .path-grade-report-grader .heading .gradeitemheader .itemicon {
     text-align: right;
 }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * The user cells.
  */

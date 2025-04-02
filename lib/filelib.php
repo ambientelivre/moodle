@@ -405,7 +405,11 @@ function file_get_unused_draft_itemid() {
  * @param string $text some html content that needs to have embedded links rewritten to point to the draft area.
  * @return string|null returns string if $text was passed in, the rewritten $text is returned. Otherwise NULL.
  */
+<<<<<<< HEAD
 function file_prepare_draft_area(&$draftitemid, $contextid, $component, $filearea, $itemid, ?array $options=null, $text=null) {
+=======
+function file_prepare_draft_area(&$draftitemid, $contextid, $component, $filearea, $itemid, array $options=null, $text=null) {
+>>>>>>> upstream/MOODLE_38_STABLE
     global $CFG, $USER;
 
     $options = (array)$options;

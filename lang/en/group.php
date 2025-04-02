@@ -43,7 +43,11 @@ $string['creategrouping'] = 'Create grouping';
 $string['creategroupinselectedgrouping'] = 'Create group in grouping';
 $string['createingrouping'] = 'Grouping of auto-created groups';
 $string['createorphangroup'] = 'Create orphan group';
+<<<<<<< HEAD
 $string['csvdelimiter'] = 'CSV separator';
+=======
+$string['csvdelimiter'] = 'CSV delimiter';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['databaseupgradegroups'] = 'Groups version is now {$a}';
 $string['defaultgrouping'] = 'Default grouping';
 $string['defaultgroupingname'] = 'Grouping';

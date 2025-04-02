@@ -179,9 +179,15 @@ Feature: Teacher can search and enrol users one by one into the course
     When I am on "Course 001" course homepage
     Then I navigate to course participants
     And I press "Enrol users"
+<<<<<<< HEAD
     And I click on "Select users" "field"
     And I type "student100@example.com"
     Then I should see "student100@example.com, CITY1, GB, 1234567892, 1234567893, ABC1, ABC2"
+=======
+    When I click on "Select users" "field"
+    And I type "student100@example.com"
+    Then I should see "student100@example.com, CITY1, UK, 1234567892, 1234567893, ABC1, ABC2"
+>>>>>>> upstream/MOODLE_38_STABLE
     # Remove identity field in setting User policies
     And the following config values are set as admin:
       | showuseridentity | idnumber,email,phone1,phone2,department,institution |
@@ -191,6 +197,7 @@ Feature: Teacher can search and enrol users one by one into the course
     And I click on "Select users" "field"
     And I type "student100@example.com"
     And I should see "student100@example.com, 1234567892, 1234567893, ABC1, ABC2"
+<<<<<<< HEAD
 
   @javascript
   Scenario: Custom user profile fields work for search and display, if user has permission
@@ -211,6 +218,8 @@ Feature: Teacher can search and enrol users one by one into the course
     And I press tab
     And I type "Q994"
     And I should see "No suggestions"
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
 # The following tests are commented out as a result of MDL-66339.
 #  @javascript

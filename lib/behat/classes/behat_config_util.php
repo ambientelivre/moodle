@@ -687,6 +687,20 @@ class behat_config_util {
                 );
                 unset($values['capabilities']['extra_capabilities']['chromeOptions']);
             }
+<<<<<<< HEAD
+=======
+            if (!isset($values['capabilities']['extra_capabilities'])) {
+                $values['capabilities']['extra_capabilities'] = [];
+            }
+            if (!isset($values['capabilities']['extra_capabilities']['chromeOptions'])) {
+                $values['capabilities']['extra_capabilities']['chromeOptions'] = [];
+            }
+            if (!isset($values['capabilities']['extra_capabilities']['chromeOptions']['args'])) {
+                $values['capabilities']['extra_capabilities']['chromeOptions']['args'] = [];
+            }
+            $values['capabilities']['extra_capabilities']['chromeOptions']['args'][] = '--unlimited-storage';
+            $values['capabilities']['extra_capabilities']['chromeOptions']['args'][] = '--disable-web-security';
+>>>>>>> upstream/MOODLE_38_STABLE
 
             // If the mobile app is enabled, check its version and add appropriate tags.
             if ($mobiletags = $this->get_mobile_version_tags()) {

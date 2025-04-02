@@ -47,7 +47,14 @@ final class profile_field_test extends \advanced_testcase {
      */
     public function test_user_info_category_created_event(): void {
         // Create a new profile category.
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
+=======
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Trigger the event.
         $sink = $this->redirectEvents();
@@ -72,8 +79,20 @@ final class profile_field_test extends \advanced_testcase {
         global $DB;
 
         // Create new profile categories.
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
         $cat2 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category 2']);
+=======
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+
+        $cat2 = new stdClass();
+        $cat2->name = 'Example category 2';
+        $cat2->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat2->id = $DB->insert_record('user_info_category', $cat2);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Trigger the events.
         $sink = $this->redirectEvents();
@@ -101,8 +120,20 @@ final class profile_field_test extends \advanced_testcase {
      */
     public function test_user_info_category_deleted_event(): void {
         // Create new profile categories.
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
         $cat2 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category 2']);
+=======
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+
+        $cat2 = new stdClass();
+        $cat2->name = 'Example category 2';
+        $cat2->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat2->id = $DB->insert_record('user_info_category', $cat2);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Trigger the event.
         $sink = $this->redirectEvents();
@@ -127,7 +158,14 @@ final class profile_field_test extends \advanced_testcase {
         global $DB;
 
         // Create a new profile category.
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
+=======
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Create a new profile field.
         $data = new \stdClass();
@@ -169,7 +207,14 @@ final class profile_field_test extends \advanced_testcase {
      */
     public function test_user_info_field_updated_event(): void {
         // Create a new profile category.
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
+=======
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Create a new profile field.
         $data = $this->getDataGenerator()->create_custom_profile_field([
@@ -204,6 +249,7 @@ final class profile_field_test extends \advanced_testcase {
      */
     public function test_user_info_field_updated_event_move_field(): void {
         // Create a new profile category.
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
 
         // Create a new profile field.
@@ -222,6 +268,35 @@ final class profile_field_test extends \advanced_testcase {
             'name' => 'Example field 2',
             'categoryid' => $cat1->id,
         ]);
+=======
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+
+        // Create a new profile field.
+        $field1 = new stdClass();
+        $field1->datatype = 'text';
+        $field1->shortname = 'example';
+        $field1->name = 'Example field';
+        $field1->description = 'Hello this is an example.';
+        $field1->required = false;
+        $field1->locked = false;
+        $field1->forceunique = false;
+        $field1->signup = false;
+        $field1->visible = '0';
+        $field1->categoryid = $cat1->id;
+        $field1->sortorder = $DB->count_records('user_info_field') + 1;
+        $field1->id = $DB->insert_record('user_info_field', $field1);
+
+        // Create another that we will be moving.
+        $field2 = clone $field1;
+        $field2->datatype = 'text';
+        $field2->shortname = 'example2';
+        $field2->name = 'Example field 2';
+        $field2->sortorder = $DB->count_records('user_info_field') + 1;
+        $field2->id = $DB->insert_record('user_info_field', $field2);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Trigger the events.
         $sink = $this->redirectEvents();
@@ -252,10 +327,26 @@ final class profile_field_test extends \advanced_testcase {
      * Test that when we delete a category that contains a field, that the field being moved to
      * another category triggers an update event.
      */
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
     public function test_user_info_field_updated_event_delete_category(): void {
         // Create profile categories.
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
         $cat2 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
+=======
+    public function test_user_info_field_updated_event_delete_category() {
+        global $DB;
+
+        // Create a new profile category.
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+
+        $cat2 = new stdClass();
+        $cat2->name = 'Example category';
+        $cat2->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat2->id = $DB->insert_record('user_info_category', $cat2);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Create a new profile field.
         $field = $this->getDataGenerator()->create_custom_profile_field([
@@ -289,7 +380,14 @@ final class profile_field_test extends \advanced_testcase {
      */
     public function test_user_info_field_deleted_event(): void {
         // Create a new profile category.
+<<<<<<< HEAD:lib/tests/event/profile_field_test.php
         $cat1 = $this->getDataGenerator()->create_custom_profile_field_category(['name' => 'Example category']);
+=======
+        $cat1 = new stdClass();
+        $cat1->name = 'Example category';
+        $cat1->sortorder = $DB->count_records('user_info_category') + 1;
+        $cat1->id = $DB->insert_record('user_info_category', $cat1);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/event_profile_field_test.php
 
         // Create a new profile field.
         $data = $this->getDataGenerator()->create_custom_profile_field([

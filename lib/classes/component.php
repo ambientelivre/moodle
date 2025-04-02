@@ -53,7 +53,11 @@ define('ANY_VERSION', 'any');
 /**
  * Collection of components related methods.
  */
+<<<<<<< HEAD
 class component {
+=======
+class core_component {
+>>>>>>> upstream/MOODLE_38_STABLE
     /** @var array list of ignored directories in plugin type roots - watch out for auth/db exception */
     protected static $ignoreddirs = [
         'CVS' => true,

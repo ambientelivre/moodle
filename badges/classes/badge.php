@@ -936,6 +936,7 @@ class badge {
      * @param int $obversion OB version to use.
      * @return array Issuer informations of the badge.
      */
+<<<<<<< HEAD
     public function get_badge_issuer(?int $obversion = null) {
         return [
             'name' => $this->issuername,
@@ -1080,5 +1081,17 @@ class badge {
         unset($this->messageformat);
         unset($this->message_editor);
         return $this->save();
+=======
+    public function get_badge_issuer() {
+        $issuer = array();
+        $issuer['name'] = $this->issuername;
+        $issuer['url'] = $this->issuerurl;
+        $issuer['email'] = $this->issuercontact;
+        $issuer['@context'] = OPEN_BADGES_V2_CONTEXT;
+        $issueridurl = new moodle_url('/badges/issuer_json.php', array('id' => $this->id));
+        $issuer['id'] = $issueridurl->out(false);
+        $issuer['type'] = OPEN_BADGES_V2_TYPE_ISSUER;
+        return $issuer;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

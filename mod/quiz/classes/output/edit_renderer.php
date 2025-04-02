@@ -72,7 +72,11 @@ class edit_renderer extends \plugin_renderer_base {
         $output .= html_writer::start_div('mod_quiz-edit-top-controls');
 
         $output .= html_writer::start_div('d-flex justify-content-between flex-wrap mb-1');
+<<<<<<< HEAD
         $output .= html_writer::start_div('d-flex align-items-center justify-content-around');
+=======
+        $output .= html_writer::start_div('d-flex flex-column justify-content-around');
+>>>>>>> upstream/MOODLE_38_STABLE
         $output .= $this->quiz_information($structure);
         $output .= html_writer::end_tag('div');
         $output .= $this->maximum_grade_input($structure, $pageurl);
@@ -223,7 +227,11 @@ class edit_renderer extends \plugin_renderer_base {
             'name'  => 'repaginate',
             'id'    => 'repaginatecommand',
             'value' => get_string('repaginatecommand', 'quiz'),
+<<<<<<< HEAD
             'class' => 'btn btn-secondary me-1',
+=======
+            'class' => 'btn btn-secondary',
+>>>>>>> upstream/MOODLE_38_STABLE
             'data-header' => $header,
             'data-form'   => $form,
         ];
@@ -249,7 +257,11 @@ class edit_renderer extends \plugin_renderer_base {
             'id'    => 'selectmultiplecommand',
             'value' => get_string('selectmultipleitems', 'quiz'),
             'class' => 'btn btn-secondary'
+<<<<<<< HEAD
         ];
+=======
+        );
+>>>>>>> upstream/MOODLE_38_STABLE
         if (!$structure->can_be_edited()) {
             $buttonoptions['disabled'] = 'disabled';
         }

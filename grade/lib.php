@@ -1576,6 +1576,7 @@ class grade_structure {
         $title = get_string('gradeanalysis', 'core_grades');
         return $OUTPUT->action_icon($url, new pix_icon('t/preview', ''), null,
                 ['title' => $title, 'aria-label' => $title]);
+<<<<<<< HEAD
     }
 
     /**
@@ -1623,6 +1624,8 @@ class grade_structure {
         } else {
             return '';
         }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

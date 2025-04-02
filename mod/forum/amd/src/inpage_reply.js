@@ -172,7 +172,13 @@ define([
                         allButtons.prop('disabled', false);
 
                         // Tell formchangechecker we submitted the form.
+<<<<<<< HEAD
                         FormChangeChecker.resetFormDirtyState(submitButton[0]);
+=======
+                        if (typeof M.core_formchangechecker !== 'undefined') {
+                            M.core_formchangechecker.reset_form_dirty_state();
+                        }
+>>>>>>> upstream/MOODLE_38_STABLE
 
                         return currentRoot.find(Selectors.post.inpageReplyContent).hide();
                     })

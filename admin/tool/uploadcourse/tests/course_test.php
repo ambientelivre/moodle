@@ -111,7 +111,11 @@ final class course_test extends \advanced_testcase {
         $this->assertArrayHasKey('invalidshortname', $co->get_errors());
     }
 
+<<<<<<< HEAD
     public function test_invalid_shortname_too_long(): void {
+=======
+    public function test_invalid_shortname_too_long() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         $mode = tool_uploadcourse_processor::MODE_CREATE_NEW;
@@ -127,8 +131,13 @@ final class course_test extends \advanced_testcase {
         $this->assertArrayHasKey('invalidshortnametoolong', $upload->get_errors());
     }
 
+<<<<<<< HEAD
     public function test_invalid_fullname_too_long(): void {
         $this->initialise_test();
+=======
+    public function test_invalid_fullname_too_long() {
+        $this->resetAfterTest();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $mode = tool_uploadcourse_processor::MODE_CREATE_NEW;
         $updatemode = tool_uploadcourse_processor::UPDATE_NOTHING;
@@ -142,8 +151,13 @@ final class course_test extends \advanced_testcase {
         $this->assertArrayHasKey('invalidfullnametoolong', $upload->get_errors());
     }
 
+<<<<<<< HEAD
     public function test_invalid_visibility(): void {
         $this->initialise_test();
+=======
+    public function test_invalid_visibility() {
+        $this->resetAfterTest(true);
+>>>>>>> upstream/MOODLE_38_STABLE
         $mode = tool_uploadcourse_processor::MODE_CREATE_NEW;
         $updatemode = tool_uploadcourse_processor::UPDATE_NOTHING;
         $data = array('shortname' => 'test', 'fullname' => 'New course', 'summary' => 'New', 'category' => 1, 'visible' => 2);
@@ -152,6 +166,7 @@ final class course_test extends \advanced_testcase {
         $this->assertArrayHasKey('invalidvisibilitymode', $co->get_errors());
     }
 
+<<<<<<< HEAD
     /**
      * Test setting 'downloadcontent' field when the feature is globally disabled
      */
@@ -179,6 +194,9 @@ final class course_test extends \advanced_testcase {
      * Test setting 'downloadcontent' field when user doesn't have required capability
      */
     public function test_downloadcontent_capability(): void {
+=======
+    public function test_create() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();

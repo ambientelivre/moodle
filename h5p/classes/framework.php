@@ -1282,8 +1282,22 @@ class framework implements H5PFrameworkInterface {
      * @param \stdClass $library Library object with id, name, major version and minor version
      */
     public function deleteLibrary($library) {
+<<<<<<< HEAD
         $factory = new \core_h5p\factory();
         \core_h5p\api::delete_library($factory, $library);
+=======
+        global $DB;
+
+        $fs = new \core_h5p\file_storage();
+        // Delete the library from the file system.
+        $fs->delete_library(array('libraryId' => $library->id));
+        // Delete also the cache assets to rebuild them next time.
+        $this->deleteCachedAssets($library->id);
+
+        // Remove library data from database.
+        $DB->delete_records('h5p_library_dependencies', array('libraryid' => $library->id));
+        $DB->delete_records('h5p_libraries', array('id' => $library->id));
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -1429,12 +1443,16 @@ class framework implements H5PFrameworkInterface {
             // For now, the download and the embed displayoptions are disabled by default, so only will be rendered when
             // defined in the displayoptions DB field.
             // This check should be removed if they are added as new H5P settings, to let admins to define the default value.
+<<<<<<< HEAD
             return \Moodle\H5PDisplayOptionBehaviour::CONTROLLED_BY_AUTHOR_DEFAULT_OFF;
         }
 
         // To avoid update the libraries cache using the Hub selector.
         if ($name == 'content_type_cache_updated_at') {
             return time();
+=======
+            return \H5PDisplayOptionBehaviour::CONTROLLED_BY_AUTHOR_DEFAULT_OFF;
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         $value = get_config('core_h5p', $name);

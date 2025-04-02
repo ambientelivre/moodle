@@ -131,8 +131,19 @@ if ($mform->is_cancelled()) {
         }
     }
 
+<<<<<<< HEAD
     $setreference->filtercondition = json_encode($filtercondition);
     $DB->update_record('question_set_references', $setreference);
+=======
+    // Now, delete the remaining records.
+    if (!empty($recordstokeep)) {
+        list($select, $params) = $DB->get_in_or_equal($recordstokeep, SQL_PARAMS_QM, 'param', false);
+        array_unshift($params, $slot->id);
+        $DB->delete_records_select('quiz_slot_tags', "slotid = ? AND id $select", $params);
+    } else {
+        $DB->delete_records('quiz_slot_tags', array('slotid' => $slot->id));
+    }
+>>>>>>> upstream/MOODLE_38_STABLE
 
     redirect($returnurl);
 }

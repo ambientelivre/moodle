@@ -694,6 +694,10 @@ class behat_forms extends behat_base {
      * @param string $value
      */
     public function set_field_node_value(NodeElement $fieldnode, string $value): void {
+<<<<<<< HEAD
+=======
+        $this->ensure_node_is_visible($fieldnode);
+>>>>>>> upstream/MOODLE_38_STABLE
         $field = behat_field_manager::get_form_field($fieldnode, $this->getSession());
         $field->set_value($value);
     }
@@ -762,7 +766,11 @@ class behat_forms extends behat_base {
     public function i_open_the_autocomplete_suggestions_list($container = null, $containertype = null) {
         $csstarget = ".form-autocomplete-downarrow";
         if ($container && $containertype) {
+<<<<<<< HEAD
             $this->execute('behat_general::i_click_on_in_the', [$csstarget, 'css_element', $container, $containertype]);
+=======
+            $this->execute('behat_general::i_click_on', [$csstarget, 'css_element', $container, $containertype]);
+>>>>>>> upstream/MOODLE_38_STABLE
         } else {
             $this->execute('behat_general::i_click_on', [$csstarget, 'css_element']);
         }

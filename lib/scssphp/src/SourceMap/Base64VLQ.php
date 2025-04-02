@@ -133,10 +133,15 @@ class Base64VLQ
     private static function fromVLQSigned($value)
     {
         $negate = ($value & 1) === 1;
+<<<<<<< HEAD:lib/scssphp/src/SourceMap/Base64VLQ.php
 
         //$value >>>= 1; // unsigned right shift
         $value = ($value >> 1) & PHP_INT_MAX;
 
+=======
+        $value = ($value >> 1) & ~(1<<(8 * PHP_INT_SIZE - 1)); // unsigned right shift
+
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/SourceMap/Base64VLQ.php
         if (! $negate) {
             return $value;
         }

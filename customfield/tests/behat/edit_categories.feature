@@ -18,7 +18,11 @@ Feature: Managers can manage categories for course custom fields
       | name              | component   | area   | itemid |
       | Category for test | core_course | course | 0      |
     And I log in as "admin"
+<<<<<<< HEAD
     And I navigate to "Courses > Default settings > Course custom fields" in site administration
+=======
+    And I navigate to "Courses > Course custom fields" in site administration
+>>>>>>> upstream/MOODLE_38_STABLE
     And I set the field "Edit category name" in the "//div[contains(@class,'categoryinstance') and contains(.,'Category for test')]" "xpath_element" to "Good fields"
     Then I should not see "Category for test" in the "#customfield_catlist" "css_element"
     And "New value for Category for test" "field" should not exist

@@ -62,6 +62,16 @@ class behat_auth extends behat_base {
 
         // Visit login page.
         $this->execute('behat_general::i_visit', [$loginurl]);
+<<<<<<< HEAD
+=======
+
+        // Enter username and password.
+        $this->execute('behat_forms::i_set_the_field_to', array('Username', $this->escape($username)));
+        $this->execute('behat_forms::i_set_the_field_to', array('Password', $this->escape($username)));
+
+        // Press log in button, no need to check for exceptions as it will checked after this step execution.
+        $this->execute('behat_forms::press_button', get_string('login'));
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

@@ -82,12 +82,67 @@ class mod_folder_renderer extends plugin_renderer_base {
             // Display module name as the name of the root directory.
             $foldertree->dir['dirname'] = $cm->get_formatted_name(array('escape' => false));
         }
+<<<<<<< HEAD
+=======
+        $output .= $this->output->container_start("box generalbox pt-0 pb-3 foldertree");
+        $output .= $this->render($foldertree);
+        $output .= $this->output->container_end();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $data['id'] = 'folder_tree'. ($treecounter++);
         $data['showexpanded'] = !empty($foldertree->folder->showexpanded);
         $data['dir'] = $this->renderable_tree_elements($foldertree, ['files' => [], 'subdirs' => [$foldertree->dir]]);
 
+<<<<<<< HEAD
         return $this->render_from_template('mod_folder/folder', $data);
+=======
+        $buttons = '';
+        if ($downloadable) {
+            $downloadbutton = $this->output->single_button(
+                new moodle_url('/mod/folder/download_folder.php', array('id' => $cm->id)),
+                get_string('downloadfolder', 'folder')
+            );
+
+            $buttons .= $downloadbutton;
+        }
+
+        // Display the "Edit" button if current user can edit folder contents.
+        // Do not display it on the course page for the teachers because there
+        // is an "Edit settings" button right next to it with the same functionality.
+        if (has_capability('mod/folder:managefiles', $context) &&
+            ($folder->display != FOLDER_DISPLAY_INLINE || !has_capability('moodle/course:manageactivities', $context))) {
+            $editbutton = $this->output->single_button(
+                new moodle_url('/mod/folder/edit.php', array('id' => $cm->id)),
+                get_string('edit')
+            );
+
+            $buttons .= $editbutton;
+        }
+
+        if ($buttons) {
+            $output .= $this->output->container_start("box generalbox pt-0 pb-3 folderbuttons");
+            $output .= $buttons;
+            $output .= $this->output->container_end();
+        }
+
+        return $output;
+    }
+
+    public function render_folder_tree(folder_tree $tree) {
+        static $treecounter = 0;
+
+        $content = '';
+        $id = 'folder_tree'. ($treecounter++);
+        $content .= '<div id="'.$id.'" class="filemanager">';
+        $content .= $this->htmllize_tree($tree, array('files' => array(), 'subdirs' => array($tree->dir)));
+        $content .= '</div>';
+        $showexpanded = true;
+        if (empty($tree->folder->showexpanded)) {
+            $showexpanded = false;
+        }
+        $this->page->requires->js_init_call('M.mod_folder.init_tree', array($id, $showexpanded));
+        return $content;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

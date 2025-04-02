@@ -3,7 +3,11 @@
 <!-- question: 0  -->
   <question type="category">
     <category>
+<<<<<<< HEAD
       <text>$module$/Alpha</text>
+=======
+      <text>$course$/Alpha</text>
+>>>>>>> upstream/MOODLE_38_STABLE
     </category>
     <info format="moodle_auto_format">
       <text>This is Alpha category for test</text>

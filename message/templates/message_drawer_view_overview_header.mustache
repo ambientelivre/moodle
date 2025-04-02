@@ -35,7 +35,16 @@
 }}
 <div class="border-bottom p-1 px-sm-2" aria-hidden="false" {{^isdrawer}}data-in-panel="true"{{/isdrawer}} data-region="view-overview">
     <div class="d-flex align-items-center">
+<<<<<<< HEAD
         <div class="input-group simplesearchform">
+=======
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text pr-2 bg-white">
+                    {{#pix}} a/search, core {{/pix}}
+                </span>
+            </div>
+>>>>>>> upstream/MOODLE_38_STABLE
             <input
                 type="text"
                 class="form-control"
@@ -65,12 +74,19 @@
         <a href="#" data-route="view-contacts" role="button">
             {{#pix}} i/user, core {{/pix}}
             {{#str}} contacts, core_message {{/str}}
+<<<<<<< HEAD
             <span
                 class="badge bg-primary text-white ms-2 {{^contactrequestcount}}hidden{{/contactrequestcount}}"
                 data-region="contact-request-count"
             >
                 <span aria-hidden="true">{{contactrequestcount}}</span>
                 <span class="visually-hidden">{{#str}} pendingcontactrequests, core_message, {{contactrequestcount}} {{/str}}</span>
+=======
+            <span class="badge badge-primary bg-primary ml-2 {{^contactrequestcount}}hidden{{/contactrequestcount}}"
+            data-region="contact-request-count"
+            aria-label="{{#str}} pendingcontactrequests, core_message, {{contactrequestcount}} {{/str}}">
+                {{contactrequestcount}}
+>>>>>>> upstream/MOODLE_38_STABLE
             </span>
         </a>
     </div>

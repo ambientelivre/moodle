@@ -100,6 +100,7 @@ M.core_question_engine = M.core_question_engine || {};
  * @see core_question/question_engine
  * @param button the id of the button in the HTML.
  */
+<<<<<<< HEAD
 M.core_question_engine.init_submit_button = function(Y, button) {
     Y.log("The core_question_engine.init_submit_button function has been deprecated. " +
         "Please use initSubmitButton in core_question/question_engine instead.", 'moodle-core-notification', 'warn');
@@ -107,6 +108,9 @@ M.core_question_engine.init_submit_button = function(Y, button) {
     require(['core_form/submit'], function(submit) {
         submit.init(button);
     });
+=======
+M.core_question_engine.init_submit_button = function(Y, button, slot) {
+>>>>>>> upstream/MOODLE_38_STABLE
     var totalQuestionsInPage = document.querySelectorAll('div.que').length;
     var buttonel = document.getElementById(button);
     var outeruniqueid = buttonel.closest('.que').id;

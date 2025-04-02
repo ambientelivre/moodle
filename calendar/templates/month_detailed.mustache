@@ -47,7 +47,11 @@
             <tr>
                 {{# daynames }}
                 <th class="header text-xs-center">
+<<<<<<< HEAD
                     <span class="visually-hidden">{{fullname}}</span>
+=======
+                    <span class="sr-only">{{fullname}}</span>
+>>>>>>> upstream/MOODLE_38_STABLE
                     <span aria-hidden="true">{{shortname}}</span>
                 </th>
                 {{/ daynames }}
@@ -75,15 +79,25 @@
                         data-new-event-timestamp="{{neweventtimestamp}}"{{#istoday}} title="{{#str}} today, core_calendar {{/str}}"{{/istoday}}
                         {{#hasevents}} data-title="{{viewdaylinktitle}}"{{/hasevents}}>
                         <div class="d-none d-md-block hidden-phone text-xs-center">
+<<<<<<< HEAD
                             <span class="visually-hidden">{{daytitle}}</span>
                             {{#hasevents}}
                                 <a data-action="view-day-link" href="#" class="aalink day" aria-label="{{viewdaylinktitle}}"
+=======
+                            <span class="sr-only">{{daytitle}}</span>
+                            {{#hasevents}}
+                                <a data-action="view-day-link" href="#" class="day" aria-label="{{viewdaylinktitle}}"
+>>>>>>> upstream/MOODLE_38_STABLE
                                     data-year="{{date.year}}" data-month="{{date.mon}}" data-day="{{mday}}"
                                     data-courseid="{{courseid}}" data-categoryid="{{categoryid}}"
                                     data-timestamp="{{timestamp}}"><span class="day-number-circle"><span class="day-number">{{mday}}</span></span></a>
                             {{/hasevents}}
                             {{^hasevents}}
+<<<<<<< HEAD
                                 <span aria-hidden="true"><span class="day-number-circle"><span class="day-number">{{mday}}</span></span></span>
+=======
+                                <span aria-hidden="true">{{mday}}</span>
+>>>>>>> upstream/MOODLE_38_STABLE
                             {{/hasevents}}
                             {{#hasevents}}
                                 <div data-region="day-content">
@@ -147,15 +161,25 @@
                             {{/hasevents}}
                         </div>
                         <div class="d-md-none hidden-desktop hidden-tablet">
+<<<<<<< HEAD
                             <span class="visually-hidden">{{daytitle}}</span>
                             {{#hasevents}}
                                 <a data-action="view-day-link" href="#" class="day aalink" aria-label="{{viewdaylinktitle}}"
+=======
+                            <span class="sr-only">{{daytitle}}</span>
+                            {{#hasevents}}
+                                <a data-action="view-day-link" href="#" class="day" aria-label="{{viewdaylinktitle}}"
+>>>>>>> upstream/MOODLE_38_STABLE
                                     data-year="{{date.year}}" data-month="{{date.mon}}" data-day="{{mday}}"
                                     data-courseid="{{courseid}}" data-categoryid="{{categoryid}}"
                                     data-timestamp="{{timestamp}}"><span class="day-number-circle"><span class="day-number">{{mday}}</span></span></a>
                             {{/hasevents}}
                             {{^hasevents}}
+<<<<<<< HEAD
                                 <span aria-hidden="true"><span class="day-number-circle"><span class="day-number">{{mday}}</span></span></span>
+=======
+                                <span aria-hidden="true">{{mday}}</span>
+>>>>>>> upstream/MOODLE_38_STABLE
                             {{/hasevents}}
                         </div>
                     </td>

@@ -25,6 +25,7 @@
     Example context (json):
     {
         "backpacks": [
+<<<<<<< HEAD
             {
                 "backpackweburl": "http://localhost/",
                 "sitebackpack": true,
@@ -32,6 +33,9 @@
                 "canmoveup": true,
                 "canmovedown": false
             }
+=======
+            {"backpackweburl": "http://localhost/", "sitebackpack": true, "canedit": false, "cantest": true}
+>>>>>>> upstream/MOODLE_38_STABLE
         ]
     }
 }}
@@ -55,6 +59,7 @@
         <tr data-backpackurl="{{{backpackweburl}}}">
             <td> {{{backpackweburl}}} </td>
             <td>
+<<<<<<< HEAD
                 {{#canmoveup}}
                     <a href="{{baseurl}}?id={{id}}&action=moveup">{{#pix}}t/up, core,{{#str}}moveup{{/str}}{{/pix}}</a>
                 {{/canmoveup}}
@@ -86,6 +91,15 @@
             {{/sitebackpack}}
             {{#cantest}}
                 <a href="{{baseurl}}?id={{id}}&action=test">{{#pix}}t/check, core,{{#str}}testsettings, core_badges{{/str}}{{/pix}}</a>
+=======
+            {{#canedit}}
+                <a href="{{baseurl}}?id={{id}}&action=edit">{{#pix}}t/edit, core,{{#str}}editsettings{{/str}}{{/pix}}</a>
+            {{/canedit}}
+            {{#cantest}}
+                <a href="{{baseurl}}?id={{id}}&action=test">
+                    {{#pix}}t/check, core,{{#str}}testsettings, core_badges{{/str}}{{/pix}}
+                </a>
+>>>>>>> upstream/MOODLE_38_STABLE
             {{/cantest}}
             </td>
         </tr>

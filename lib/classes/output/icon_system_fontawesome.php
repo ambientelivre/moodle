@@ -243,11 +243,22 @@ class icon_system_fontawesome extends icon_system_font {
             'core:i/filter' => 'fa-filter',
             'core:i/flagged' => 'fa-flag',
             'core:i/folder' => 'fa-folder',
+<<<<<<< HEAD
             'core:i/grade_correct' => 'fa-regular fa-circle-check text-success',
             'core:i/grade_incorrect' => 'fa-regular fa-circle-xmark text-danger',
             'core:i/grades' => 'fa-clipboard-check',
             'core:i/grading' => 'fa-wand-magic-sparkles',
             'core:i/gradingnotifications' => 'fa-regular fa-bell',
+=======
+            'core:i/grade_correct' => 'fa-check text-success',
+            'core:i/grade_incorrect' => 'fa-remove text-danger',
+            'core:i/grade_partiallycorrect' => 'fa-check-square',
+            'core:i/grades' => 'fa-table',
+            'core:i/grading' => 'fa-magic',
+            'core:i/gradingnotifications' => 'fa-bell-o',
+            'core:i/groupevent' => 'fa-group',
+            'core:i/groupn' => 'fa-user',
+>>>>>>> upstream/MOODLE_38_STABLE
             'core:i/group' => 'fa-users',
             'core:i/groupevent' => 'fa-users',
             'core:i/hide' => 'fa-regular fa-eye',
@@ -530,7 +541,11 @@ class icon_system_fontawesome extends icon_system_font {
 
             // Create different mapping keys for different icon system classes, there may be several different
             // themes on the same site.
+<<<<<<< HEAD
             $mapkey = 'mapping_' . preg_replace('/[^a-zA-Z0-9_]/', '_', get_class($this));
+=======
+            $mapkey = 'mapping_'.preg_replace('/[^a-zA-Z0-9_]/', '_', get_class($this));
+>>>>>>> upstream/MOODLE_38_STABLE
             $this->map = $cache->get($mapkey);
 
             if (empty($this->map)) {
@@ -545,6 +560,11 @@ class icon_system_fontawesome extends icon_system_font {
                         }
                     }
                 }
+<<<<<<< HEAD
+=======
+                $cache->set($mapkey, $this->map);
+            }
+>>>>>>> upstream/MOODLE_38_STABLE
 
                 $deprecated = $this->get_deprecated_icons();
                 foreach ($this->map as $from => $to) {

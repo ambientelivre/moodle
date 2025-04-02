@@ -5,6 +5,7 @@ This file has been replaced by UPGRADING.md. See MDL-81125 for further informati
 ===
 This files describes API changes in the tool_usertours code.
 
+<<<<<<< HEAD
 === 4.4 ===
 * New hooks have been provided to allow plugins to define their own server-side, and client-side user tour filters.
   The new hooks are named:
@@ -18,6 +19,9 @@ This files describes API changes in the tool_usertours code.
   for the end tour button.
 
 === 3.9 ===
+=======
+=== 3.8.4 ===
+>>>>>>> upstream/MOODLE_38_STABLE
 * The `tourconfig` property returned by the `tool_usertours_fetch_and_start_tour`
   external method is now optional, and will be omitted if the tour shouldn't be
   shown to the current user

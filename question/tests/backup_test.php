@@ -252,7 +252,11 @@ final class backup_test extends \advanced_testcase {
     /**
      * Test that the question author is retained when they are enrolled in to the course.
      */
+<<<<<<< HEAD
     public function test_backup_question_author_retained_when_enrolled(): void {
+=======
+    public function test_backup_question_author_retained_when_enrolled() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $USER, $CFG;
         $this->resetAfterTest();
         $this->setAdminUser();
@@ -265,8 +269,12 @@ final class backup_test extends \advanced_testcase {
         // Create a question.
         $questiongenerator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $questioncategory = $questiongenerator->create_question_category();
+<<<<<<< HEAD
         $overrides = ['name' => 'Test question', 'category' => $questioncategory->id,
                 'createdby' => $user->id, 'modifiedby' => $user->id];
+=======
+        $overrides = ['category' => $questioncategory->id, 'createdby' => $user->id, 'modifiedby' => $user->id];
+>>>>>>> upstream/MOODLE_38_STABLE
         $question = $questiongenerator->create_question('truefalse', null, $overrides);
 
         // Create a quiz and a questions.
@@ -278,8 +286,13 @@ final class backup_test extends \advanced_testcase {
         $this->getDataGenerator()->enrol_user($user->id, $course->id, $teacherrole->id, 'manual');
 
         // Backup the course.
+<<<<<<< HEAD
         $bc = new \backup_controller(\backup::TYPE_1COURSE, $course->id, \backup::FORMAT_MOODLE,
             \backup::INTERACTIVE_NO, \backup::MODE_GENERAL, $USER->id);
+=======
+        $bc = new backup_controller(backup::TYPE_1COURSE, $course->id, backup::FORMAT_MOODLE,
+            backup::INTERACTIVE_NO, backup::MODE_GENERAL, $USER->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $backupid = $bc->get_backupid();
         $bc->execute_plan();
         $results = $bc->get_results();
@@ -294,15 +307,25 @@ final class backup_test extends \advanced_testcase {
         question_delete_question($question->id);
 
         // Restore the course.
+<<<<<<< HEAD
         $restoredcourseid = \restore_dbops::create_new_course($course->fullname, $course->shortname . '_1', $category->id);
         $rc = new \restore_controller($backupid, $restoredcourseid, \backup::INTERACTIVE_NO,
             \backup::MODE_GENERAL, $USER->id, \backup::TARGET_NEW_COURSE);
+=======
+        $restoredcourseid = restore_dbops::create_new_course($course->fullname, $course->shortname . '_1', $category->id);
+        $rc = new restore_controller($backupid, $restoredcourseid, backup::INTERACTIVE_NO,
+            backup::MODE_GENERAL, $USER->id, backup::TARGET_NEW_COURSE);
+>>>>>>> upstream/MOODLE_38_STABLE
         $rc->execute_precheck();
         $rc->execute_plan();
         $rc->destroy();
 
         // Test the question author.
+<<<<<<< HEAD
         $questions = $DB->get_records('question', ['name' => 'Test question']);
+=======
+        $questions = $DB->get_records('question');
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertCount(1, $questions);
         $question3 = array_shift($questions);
         $this->assertEquals($user->id, $question3->createdby);
@@ -313,7 +336,11 @@ final class backup_test extends \advanced_testcase {
      * Test that the question author is retained when they are not enrolled in to the course,
      * but we are restoring the backup at the same site.
      */
+<<<<<<< HEAD
     public function test_backup_question_author_retained_when_not_enrolled(): void {
+=======
+    public function test_backup_question_author_retained_when_not_enrolled() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $USER, $CFG;
         $this->resetAfterTest();
         $this->setAdminUser();
@@ -326,8 +353,12 @@ final class backup_test extends \advanced_testcase {
         // Create a question.
         $questiongenerator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $questioncategory = $questiongenerator->create_question_category();
+<<<<<<< HEAD
         $overrides = ['name' => 'Test question', 'category' => $questioncategory->id,
                 'createdby' => $user->id, 'modifiedby' => $user->id];
+=======
+        $overrides = ['category' => $questioncategory->id, 'createdby' => $user->id, 'modifiedby' => $user->id];
+>>>>>>> upstream/MOODLE_38_STABLE
         $question = $questiongenerator->create_question('truefalse', null, $overrides);
 
         // Create a quiz and a questions.
@@ -335,8 +366,13 @@ final class backup_test extends \advanced_testcase {
         quiz_add_quiz_question($question->id, $quiz);
 
         // Backup the course.
+<<<<<<< HEAD
         $bc = new \backup_controller(\backup::TYPE_1COURSE, $course->id, \backup::FORMAT_MOODLE,
             \backup::INTERACTIVE_NO, \backup::MODE_GENERAL, $USER->id);
+=======
+        $bc = new backup_controller(backup::TYPE_1COURSE, $course->id, backup::FORMAT_MOODLE,
+            backup::INTERACTIVE_NO, backup::MODE_GENERAL, $USER->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $backupid = $bc->get_backupid();
         $bc->execute_plan();
         $results = $bc->get_results();
@@ -351,15 +387,25 @@ final class backup_test extends \advanced_testcase {
         question_delete_question($question->id);
 
         // Restore the course.
+<<<<<<< HEAD
         $restoredcourseid = \restore_dbops::create_new_course($course->fullname, $course->shortname . '_1', $category->id);
         $rc = new \restore_controller($backupid, $restoredcourseid, \backup::INTERACTIVE_NO,
             \backup::MODE_GENERAL, $USER->id, \backup::TARGET_NEW_COURSE);
+=======
+        $restoredcourseid = restore_dbops::create_new_course($course->fullname, $course->shortname . '_1', $category->id);
+        $rc = new restore_controller($backupid, $restoredcourseid, backup::INTERACTIVE_NO,
+            backup::MODE_GENERAL, $USER->id, backup::TARGET_NEW_COURSE);
+>>>>>>> upstream/MOODLE_38_STABLE
         $rc->execute_precheck();
         $rc->execute_plan();
         $rc->destroy();
 
         // Test the question author.
+<<<<<<< HEAD
         $questions = $DB->get_records('question', ['name' => 'Test question']);
+=======
+        $questions = $DB->get_records('question');
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertCount(1, $questions);
         $question = array_shift($questions);
         $this->assertEquals($user->id, $question->createdby);
@@ -370,7 +416,11 @@ final class backup_test extends \advanced_testcase {
      * Test that the current user is set as a question author when we are restoring the backup
      * at the another site and the question author is not enrolled in to the course.
      */
+<<<<<<< HEAD
     public function test_backup_question_author_reset(): void {
+=======
+    public function test_backup_question_author_reset() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $USER, $CFG;
         $this->resetAfterTest();
         $this->setAdminUser();
@@ -383,8 +433,12 @@ final class backup_test extends \advanced_testcase {
         // Create a question.
         $questiongenerator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $questioncategory = $questiongenerator->create_question_category();
+<<<<<<< HEAD
         $overrides = ['name' => 'Test question', 'category' => $questioncategory->id,
                 'createdby' => $user->id, 'modifiedby' => $user->id];
+=======
+        $overrides = ['category' => $questioncategory->id, 'createdby' => $user->id, 'modifiedby' => $user->id];
+>>>>>>> upstream/MOODLE_38_STABLE
         $question = $questiongenerator->create_question('truefalse', null, $overrides);
 
         // Create a quiz and a questions.
@@ -392,8 +446,13 @@ final class backup_test extends \advanced_testcase {
         quiz_add_quiz_question($question->id, $quiz);
 
         // Backup the course.
+<<<<<<< HEAD
         $bc = new \backup_controller(\backup::TYPE_1COURSE, $course->id, \backup::FORMAT_MOODLE,
             \backup::INTERACTIVE_NO, \backup::MODE_SAMESITE, $USER->id);
+=======
+        $bc = new backup_controller(backup::TYPE_1COURSE, $course->id, backup::FORMAT_MOODLE,
+            backup::INTERACTIVE_NO, backup::MODE_SAMESITE, $USER->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $backupid = $bc->get_backupid();
         $bc->execute_plan();
         $results = $bc->get_results();
@@ -411,20 +470,31 @@ final class backup_test extends \advanced_testcase {
         set_config('siteidentifier', random_string(32) . 'not the same site');
 
         // Restore the course.
+<<<<<<< HEAD
         $restoredcourseid = \restore_dbops::create_new_course($course->fullname, $course->shortname . '_1', $category->id);
         $rc = new \restore_controller($backupid, $restoredcourseid, \backup::INTERACTIVE_NO,
             \backup::MODE_SAMESITE, $USER->id, \backup::TARGET_NEW_COURSE);
+=======
+        $restoredcourseid = restore_dbops::create_new_course($course->fullname, $course->shortname . '_1', $category->id);
+        $rc = new restore_controller($backupid, $restoredcourseid, backup::INTERACTIVE_NO,
+            backup::MODE_SAMESITE, $USER->id, backup::TARGET_NEW_COURSE);
+>>>>>>> upstream/MOODLE_38_STABLE
         $rc->execute_precheck();
         $rc->execute_plan();
         $rc->destroy();
 
         // Test the question author.
+<<<<<<< HEAD
         $questions = $DB->get_records('question', ['name' => 'Test question']);
+=======
+        $questions = $DB->get_records('question');
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertCount(1, $questions);
         $question = array_shift($questions);
         $this->assertEquals($USER->id, $question->createdby);
         $this->assertEquals($USER->id, $question->modifiedby);
     }
+<<<<<<< HEAD
 
     public function test_backup_and_restore_recodes_links_in_questions(): void {
         global $DB, $USER, $CFG;
@@ -863,4 +933,6 @@ final class backup_test extends \advanced_testcase {
         $quizcatq = reset($quizcatqs);
         $this->assertEquals($expectedidentifiers[$i], $quizcatq->name);
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

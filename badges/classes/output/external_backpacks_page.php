@@ -74,10 +74,19 @@ class external_backpacks_page implements \renderable {
         foreach ($this->backpacks as $backpack) {
             $exporter = new backpack_exporter($backpack);
             $backpack = $exporter->export($output);
+<<<<<<< HEAD
             $backpack->cantest = ($backpack->apiversion == OPEN_BADGES_V2);
             $backpack->canmoveup = $rownumber > 0;
             $backpack->canmovedown = $rownumber < $rowcount - 1;
 
+=======
+            if ($backpack->apiversion == OPEN_BADGES_V2) {
+                $backpack->canedit = true;
+            } else {
+                $backpack->canedit = false;
+            }
+            $backpack->cantest = ($backpack->apiversion == OPEN_BADGES_V2);
+>>>>>>> upstream/MOODLE_38_STABLE
             $data->backpacks[] = $backpack;
             $rownumber++;
         }

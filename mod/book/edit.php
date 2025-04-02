@@ -144,6 +144,10 @@ $PAGE->activityheader->set_attrs([
 ]);
 
 echo $OUTPUT->header();
+<<<<<<< HEAD
+=======
+echo $OUTPUT->heading(format_string($book->name));
+>>>>>>> upstream/MOODLE_38_STABLE
 
 $mform->display();
 

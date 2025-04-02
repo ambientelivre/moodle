@@ -603,9 +603,14 @@ $message-day-color: color-contrast($message-app-bg) !default;
         height: 100%;
         margin-top: 0;
         .conversationcontainer {
+<<<<<<< HEAD
             .section {
                 max-height: calc(100vh - 50px);
             }
+=======
+            max-height: calc(100vh - 50px);
+            overflow: auto;
+>>>>>>> upstream/MOODLE_38_STABLE
         }
         div[role="main"] {
             height: 100%;

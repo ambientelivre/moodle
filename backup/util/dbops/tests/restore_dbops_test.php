@@ -124,7 +124,12 @@ final class restore_dbops_test extends \advanced_testcase {
     /**
      * Data provider for {@link test_precheck_user()}
      */
+<<<<<<< HEAD
     public static function precheck_user_provider(): array {
+=======
+    public function precheck_user_provider() {
+
+>>>>>>> upstream/MOODLE_38_STABLE
         $emailmultiplier = [
             'shortmail' => 'normalusername@example.com',
             'longmail' => str_repeat('a', 100)  // It's not validated, hence any string is ok.
@@ -134,7 +139,11 @@ final class restore_dbops_test extends \advanced_testcase {
 
         foreach ($emailmultiplier as $emailk => $email) {
             // Get the related cases.
+<<<<<<< HEAD
             $cases = self::precheck_user_cases($email);
+=======
+            $cases = $this->precheck_user_cases($email);
+>>>>>>> upstream/MOODLE_38_STABLE
             // Rename them (keys).
             foreach ($cases as $key => $case) {
                 $providercases[$key . ' - ' . $emailk] = $case;
@@ -149,7 +158,11 @@ final class restore_dbops_test extends \advanced_testcase {
      *
      * @param string $email
      */
+<<<<<<< HEAD
     private static function precheck_user_cases($email) {
+=======
+    private function precheck_user_cases($email) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
 
         $baseuserarr = [
@@ -301,14 +314,22 @@ final class restore_dbops_test extends \advanced_testcase {
      * Test restore precheck_user method
      *
      * @dataProvider precheck_user_provider
+<<<<<<< HEAD
      * @covers \restore_dbops::precheck_user()
+=======
+     * @covers restore_dbops::precheck_user()
+>>>>>>> upstream/MOODLE_38_STABLE
      *
      * @param array $dbuser
      * @param array $backupuser
      * @param bool $samesite
      * @param mixed $outcome
      **/
+<<<<<<< HEAD
     public function test_precheck_user($dbuser, $backupuser, $samesite, $outcome): void {
+=======
+    public function test_precheck_user($dbuser, $backupuser, $samesite, $outcome) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
@@ -349,7 +370,12 @@ final class restore_dbops_test extends \advanced_testcase {
         // Get the dbuser  record, because we may have changed it above.
         $dbuser = $DB->get_record('user', ['id' => $dbuser->id]);
 
+<<<<<<< HEAD
         $method = (new \ReflectionClass('restore_dbops'))->getMethod('precheck_user');
+=======
+        $method = (new ReflectionClass('restore_dbops'))->getMethod('precheck_user');
+        $method->setAccessible(true);
+>>>>>>> upstream/MOODLE_38_STABLE
         $result = $method->invoke(null, $backupuser, $samesite, $siteid);
 
         if (is_bool($result)) {

@@ -481,6 +481,46 @@ function get_category_or_system_context($categoryid) {
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * Returns the list of full course categories to be used in html_writer::select()
+ *
+ * Calls {@see core_course_category::make_categories_list()} to build the list.
+ *
+ * @return array array mapping course category id to the display name
+ */
+function make_categories_options() {
+    return core_course_category::make_categories_list('', 0, ' / ');
+}
+
+/**
+ * Print the buttons relating to course requests.
+ *
+ * @param context $context current page context.
+ */
+function print_course_request_buttons($context) {
+    global $CFG, $DB, $OUTPUT;
+    if (empty($CFG->enablecourserequests)) {
+        return;
+    }
+    if (course_request::can_request($context)) {
+        // Print a button to request a new course.
+        $params = [];
+        if ($context instanceof context_coursecat) {
+            $params['category'] = $context->instanceid;
+        }
+        echo $OUTPUT->single_button(new moodle_url('/course/request.php', $params),
+            get_string('requestcourse'), 'get');
+    }
+    /// Print a button to manage pending requests
+    if (has_capability('moodle/site:approvecourse', $context)) {
+        $disabled = !$DB->record_exists('course_request', array());
+        echo $OUTPUT->single_button(new moodle_url('/course/pending.php'), get_string('coursespending'), 'get', array('disabled' => $disabled));
+    }
+}
+
+/**
+>>>>>>> upstream/MOODLE_38_STABLE
  * Does the user have permission to edit things in this category?
  *
  * @param integer $categoryid The id of the category we are showing, or 0 for system context.
@@ -763,6 +803,14 @@ function course_delete_module($cmid, $async = false) {
         }
     }
 
+<<<<<<< HEAD
+=======
+    // Delete activity context questions and question categories.
+    $showinfo = !defined('AJAX_SCRIPT') || AJAX_SCRIPT == '0';
+
+    question_delete_activity($cm, $showinfo);
+
+>>>>>>> upstream/MOODLE_38_STABLE
     // Call the delete_instance function, if it returns false throw an exception.
     if (!$deleteinstancefunction($cm->instance)) {
         throw new moodle_exception('cannotdeletemoduleinstance', '', '', null,

@@ -216,7 +216,11 @@ final class fetch_test extends advanced_testcase {
     /**
      * Executes and performs all the assertions of the fetch method with the given parameters.
      */
+<<<<<<< HEAD:grade/grading/form/guide/tests/grades/grader/gradingpanel/external/fetch_test.php
     private function execute_and_assert_fetch($forum, $controller, $definition, $fetcheruser, $grader, $gradeduser) {
+=======
+    private function execute_and_assert_fetch ($forum, $controller, $definition, $fetcheruser, $grader, $gradeduser) {
+>>>>>>> upstream/MOODLE_38_STABLE:grade/grading/form/guide/tests/grades_grader_gradingpanel_guide_external_fetch_test.php
         $generator = \testing_util::get_data_generator();
         $guidegenerator = $generator->get_plugin_generator('gradingform_guide');
 

@@ -30,8 +30,13 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['cannotcreatedboninstall'] = '<p>Impossible de créer la base de données.</p>
+<<<<<<< HEAD
 <p>La base de données indiquées n’existe pas et l’utilisateur spécifié n’a pas les permissions requises pour créer une base de données.</p>.
 <p>L’administrateur du site doit revoir la configuration de la base de données.</p>';
+=======
+<p>La base de données indiquées n\'existe pas et l\'utilisateur spécifié n\'a pas les permissions requises pour créer une base de données.</p>.
+<p>L\'administrateur du site doit revoir la configuration de la base de données.</p>';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['cannotcreatelangdir'] = 'Création du dossier lang impossible';
 $string['cannotcreatetempdir'] = 'Création du dossier temp impossible';
 $string['cannotdownloadcomponents'] = 'Téléchargement des composants impossible';

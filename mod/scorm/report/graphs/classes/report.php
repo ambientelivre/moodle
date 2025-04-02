@@ -61,6 +61,7 @@ class report extends \mod_scorm\report {
         $params = array_merge($params, ['scoid' => $scoid]);
 
         // Construct the SQL.
+<<<<<<< HEAD
         $sql = "SELECT DISTINCT " . $DB->sql_concat('a.userid', '\'#\'', 'COALESCE(a.attempt, 0)') . " AS uniqueid,
                        a.userid AS userid,
                        a.scormid AS scormid,
@@ -69,6 +70,15 @@ class report extends \mod_scorm\report {
                   FROM {scorm_attempt} a
                   JOIN {scorm_scoes_value} v ON v.attemptid = a.id
                  WHERE a.userid IN ({$allowedlist}) AND v.scoid = :scoid";
+=======
+        $sql = "SELECT DISTINCT " . $DB->sql_concat('st.userid', '\'#\'', 'COALESCE(st.attempt, 0)') . " AS uniqueid,
+                       st.userid AS userid,
+                       st.scormid AS scormid,
+                       st.attempt AS attempt,
+                       st.scoid AS scoid
+                  FROM {scorm_scoes_track} st
+                 WHERE st.userid IN ({$allowedlist}) AND st.scoid = :scoid";
+>>>>>>> upstream/MOODLE_38_STABLE
         $attempts = $DB->get_records_sql($sql, $params);
 
         $usergrades = [];

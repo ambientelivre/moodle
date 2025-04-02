@@ -916,12 +916,50 @@ function user_get_user_navigation_info($user, $page, $options = array()) {
         }
     }
 
+<<<<<<< HEAD
     // Call to hook to add menu items.
     $hook = new extend_user_menu();
     di::get(core\hook\manager::class)->dispatch($hook);
     $hookitems = $hook->get_navitems();
     foreach ($hookitems as $menuitem) {
         $returnobject->navitems[] = $menuitem;
+=======
+
+    if ($returnobject->metadata['asotheruser'] = \core\session\manager::is_loggedinas()) {
+        $realuser = \core\session\manager::get_realuser();
+
+        // Save values for the real user, as $user will be full of data for the
+        // user the user is disguised as.
+        $returnobject->metadata['realuserid'] = $realuser->id;
+        $returnobject->metadata['realuserfullname'] = fullname($realuser);
+        $returnobject->metadata['realuserprofileurl'] = new moodle_url('/user/profile.php', array(
+            'id' => $realuser->id
+        ));
+        $returnobject->metadata['realuseravatar'] = $OUTPUT->user_picture($realuser, $avataroptions);
+
+        // Build a user-revert link.
+        $userrevert = new stdClass();
+        $userrevert->itemtype = 'link';
+        $userrevert->url = new moodle_url('/course/loginas.php', array(
+            'id' => $course->id,
+            'sesskey' => sesskey()
+        ));
+        $userrevert->pix = "a/logout";
+        $userrevert->title = get_string('logout');
+        $userrevert->titleidentifier = 'logout,moodle';
+        $returnobject->navitems[] = $userrevert;
+
+    } else {
+
+        // Build a logout link.
+        $logout = new stdClass();
+        $logout->itemtype = 'link';
+        $logout->url = new moodle_url('/login/logout.php', array('sesskey' => sesskey()));
+        $logout->pix = "a/logout";
+        $logout->title = get_string('logout');
+        $logout->titleidentifier = 'logout,moodle';
+        $returnobject->navitems[] = $logout;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     if ($custommenucount > 0) {

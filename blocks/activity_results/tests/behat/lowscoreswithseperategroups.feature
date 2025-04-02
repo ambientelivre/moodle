@@ -147,6 +147,7 @@ Feature: The activity results block displays students in separate groups scores
   Scenario: Try to configure the block on the course page to show multiple low scores using ID numbers
     Given the following config values are set as admin:
       | showuseridentity | idnumber,email |
+<<<<<<< HEAD
     And I add the "Activity results" block to the default region with:
       | config_showbest | 0 |
       | config_showworst | 2 |
@@ -158,6 +159,24 @@ Feature: The activity results block displays students in separate groups scores
     And I should see "75.00%" in the "Activity results" "block"
     # Students cannot see user identity fields.
     And I am on the "Course 1" course page logged in as student1
+=======
+    And I add the "Activity results" block
+    When I configure the "Activity results" block
+    And I set the following fields to these values:
+      | id_config_showbest | 0 |
+      | id_config_showworst | 2 |
+      | id_config_gradeformat | Percentages |
+      | id_config_nameformat | Display only ID numbers |
+      | id_config_usegroups | Yes |
+    And I press "Save changes"
+    Then I should see "Group" in the "Activity results" "block"
+    And I should see "85.00%" in the "Activity results" "block"
+    And I should see "75.00%" in the "Activity results" "block"
+    And I log out
+    # Students cannot see user identity fields.
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should see "User" in the "Activity results" "block"
     And I should not see "User S1" in the "Activity results" "block"
     And I should see "100.00%" in the "Activity results" "block"

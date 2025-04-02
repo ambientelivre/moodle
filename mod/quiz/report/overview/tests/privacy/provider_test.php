@@ -55,7 +55,11 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
     /**
      * Preference does exist.
      */
+<<<<<<< HEAD:mod/quiz/report/overview/tests/privacy/provider_test.php
     public function test_preference_yes(): void {
+=======
+    public function test_preference_yes() {
+>>>>>>> upstream/MOODLE_38_STABLE:mod/quiz/report/overview/tests/privacy_provider_test.php
         $this->resetAfterTest();
 
         // Create test user, add some preferences.
@@ -83,7 +87,11 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
     /**
      * Preference does exist and is no.
      */
+<<<<<<< HEAD:mod/quiz/report/overview/tests/privacy/provider_test.php
     public function test_preference_no(): void {
+=======
+    public function test_preference_no() {
+>>>>>>> upstream/MOODLE_38_STABLE:mod/quiz/report/overview/tests/privacy_provider_test.php
         $this->resetAfterTest();
 
         // Create test user, add some preferences.

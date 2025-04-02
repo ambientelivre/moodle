@@ -94,6 +94,7 @@ final class user_favourite_service_test extends \advanced_testcase {
                 foreach ($mockstore as $index => $mockrow) {
                     $mockrowarr = (array)$mockrow;
                     if (array_diff_assoc($criteria, $mockrowarr) == []) {
+<<<<<<< HEAD
                         $found = true;
                         foreach ($multipleconditions as $key => $value) {
                             if (!in_array($mockrowarr[$key], $value)) {
@@ -104,6 +105,9 @@ final class user_favourite_service_test extends \advanced_testcase {
                         if ($found) {
                             $returns[$index] = $mockrow;
                         }
+=======
+                        $returns[$index] = $mockrow;
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
                 }
                 // Return a subset of the records, according to the paging options, if set.

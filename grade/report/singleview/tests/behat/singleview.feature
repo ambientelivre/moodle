@@ -12,7 +12,10 @@ Feature: We can use Single view
       | username | firstname | lastname    | email                | idnumber | middlename | alternatename | firstnamephonetic | lastnamephonetic |
       | teacher1 | Teacher   | 1           | teacher1@example.com | t1       |            | fred          |                   |                  |
       | teacher2 | No edit   | 1           | teacher2@example.com | t2       |            | nick          |                   |                  |
+<<<<<<< HEAD
       | teacher3 | Teacher   | 3           | teacher3@example.com | t3       |            | jack          |                   |                  |
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
       | student1 | Grainne   | Beauchamp   | student1@example.com | s1       | Ann        | Jill          | Gronya            | Beecham          |
       | student2 | Niamh     | Cholmondely | student2@example.com | s2       | Jane       | Nina          | Nee               | Chumlee          |
       | student3 | Siobhan   | Desforges   | student3@example.com | s3       | Sarah      | Sev           | Shevon            | De-forjay        |
@@ -55,13 +58,23 @@ Feature: We can use Single view
     And the following config values are set as admin:
       | fullnamedisplay | firstnamephonetic,lastnamephonetic |
       | alternativefullnameformat | middlename, alternatename, firstname, lastname |
+<<<<<<< HEAD
     And I am on the "Course 1" "grades > Grader report > View" page logged in as "teacher1"
+=======
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    Given I navigate to "View > Grader report" in the course gradebook
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: I can update grades, add feedback and exclude grades.
     Given I navigate to "View > Single view" in the course gradebook
+<<<<<<< HEAD
     And I click on "Users" "link" in the ".page-toggler" "css_element"
     And I click on "Student" in the "Search users" search combo box
     And I turn editing mode on
+=======
+    And I select "Student" from the "Select user..." singleselect
+>>>>>>> upstream/MOODLE_38_STABLE
     And I set the field "Override for Test assignment one" to "1"
     When I set the following fields to these values:
         | Grade for Test assignment one | 10.00 |
@@ -77,8 +90,12 @@ Feature: We can use Single view
     Then I should see "Grades were set for 1 items"
     And the field "Grade for Test grade item" matches value "45.00"
     And the field "Grade for Course total" matches value "55.00"
+<<<<<<< HEAD
     And I open the action menu in "Test assignment three" "table_row"
     And I choose "Show all grades" in the open action menu
+=======
+    And I click on "Show grades for Test assignment three" "link"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I click on "Override for Ann, Jill, Grainne, Beauchamp" "checkbox"
     And I set the following fields to these values:
         | Grade for Ann, Jill, Grainne, Beauchamp | 12.05 |
@@ -86,23 +103,41 @@ Feature: We can use Single view
     And I set the field "Exclude for Jane, Nina, Niamh, Cholmondely" to "1"
     And I press "Save"
     Then I should see "Grades were set for 2 items"
+<<<<<<< HEAD
     And the field "Grade for Ann, Jill, Grainne, Beauchamp" matches value "12.05"
     And the field "Exclude for Jane, Nina, Niamh, Cholmondely" matches value "1"
     And I click on "new grade item 1" in the "Search items" search combo box
+=======
+    And I press "Continue"
+    And the field "Grade for Ann, Jill, Grainne, Beauchamp" matches value "12.05"
+    And the field "Exclude for Jane, Nina, Niamh, Cholmondely" matches value "1"
+    And I select "new grade item 1" from the "Select grade item..." singleselect
+>>>>>>> upstream/MOODLE_38_STABLE
     And I set the field "Grade for Ann, Jill, Grainne, Beauchamp" to "Very good"
     And I press "Save"
     Then I should see "Grades were set for 1 items"
     And the following should exist in the "generaltable" table:
+<<<<<<< HEAD
         | User full name                | Grade     |
         | Ann, Jill, Grainne, Beauchamp | Very good |
     And I am on the "Course 1" "grades > Single view > View" page logged in as "teacher2"
     And I click on "Users" "link" in the ".page-toggler" "css_element"
     And I click on "Student" in the "Search users" search combo box
     And I turn editing mode on
+=======
+        | First name (Alternate name) Surname | Grade |
+        | Ann, Jill, Grainne, Beauchamp | Very good |
+    And I log out
+    And I log in as "teacher2"
+    And I am on "Course 1" course homepage
+    Given I navigate to "View > Single view" in the course gradebook
+    And I select "Student" from the "Select user..." singleselect
+>>>>>>> upstream/MOODLE_38_STABLE
     And the "Exclude for Test assignment one" "checkbox" should be disabled
     And the "Override for Test assignment one" "checkbox" should be enabled
 
   Scenario: Single view links work on grade report.
+<<<<<<< HEAD
     Given I click on grade item menu "Test assignment one" of type "gradeitem" on "grader" page
     And I choose "Single view for this item" in the open action menu
     And I should see "Test assignment one"
@@ -122,6 +157,21 @@ Feature: We can use Single view
     And I click on "All grades" "radio"
     And I set the field "Insert new grade" to "1.0"
     And I click on "Save" "button" in the ".modal-dialog" "css_element"
+=======
+    Given I follow "Single view for Test assignment one"
+    Then I should see "Test assignment one"
+    Then I navigate to "View > Grader report" in the course gradebook
+    And I follow "Single view for Ann, Jill, Grainne, Beauchamp"
+    Then I should see "Gronya,Beecham"
+
+  Scenario: I can bulk update grades.
+    Given I follow "Single view for Ann, Jill, Grainne, Beauchamp"
+    Then I should see "Gronya,Beecham"
+    When I set the field "For" to "All grades"
+    And I set the field "Insert value" to "1.0"
+    And I set the field "Perform bulk insert" to "1"
+    And I press "Save"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "Grades were set for 6 items"
 
   Scenario: I can bulk update grades with custom decimal separator
@@ -147,6 +197,7 @@ Feature: We can use Single view
     And the field "Grade for Test grade item" matches value "1#00"
 
   Scenario: Navigation works in the Single view.
+<<<<<<< HEAD
     Given I click on user menu "Grainne Beauchamp"
     And I choose "Single view for this user" in the open action menu
     Then I should see "Gronya,Beecham"
@@ -156,15 +207,30 @@ Feature: We can use Single view
     Then I should see "Gronya,Beecham"
     And I open the action menu in "Test assignment four" "table_row"
     And I choose "Show all grades" in the open action menu
+=======
+    Given I follow "Single view for Ann, Jill, Grainne, Beauchamp"
+    Then I should see "Gronya,Beecham"
+    And I follow "Nee,Chumlee"
+    Then I should see "Nee,Chumlee"
+    And I follow "Gronya,Beecham"
+    Then I should see "Gronya,Beecham"
+    And I click on "Show grades for Test assignment four" "link"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "Test assignment four"
     And I click on "Test assignment three" in the "Search items" search combo box
     Then I should see "Test assignment three"
     And I click on "Test assignment four" in the "Search items" search combo box
     Then I should see "Test assignment four"
 
+<<<<<<< HEAD
   Scenario: Activities are clickable only when it has a valid activity page.
     Given I click on user menu "Grainne Beauchamp"
     And I choose "Single view for this user" in the open action menu
+=======
+  Scenario: Activities are clickable only when
+    it has a valid activity page.
+    Given I follow "Single view for Ann, Jill, Grainne, Beauchamp"
+>>>>>>> upstream/MOODLE_38_STABLE
     And "new grade item 1" "link" should not exist in the "//tbody//tr[position()=1]//td[position()=2]" "xpath_element"
     Then "Category total" "link" should not exist in the "//tbody//tr[position()=2]//td[position()=2]" "xpath_element"
     And "Course total" "link" should not exist in the "//tbody//tr[position()=last()]//td[position()=2]" "xpath_element"

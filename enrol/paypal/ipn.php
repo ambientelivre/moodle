@@ -32,8 +32,8 @@
 // comment out when debugging or better look into error log!
 define('NO_DEBUG_DISPLAY', true);
 
-// This script does not require login.
-require("../../config.php"); // phpcs:ignore
+// @codingStandardsIgnoreLine This script does not require login.
+require("../../config.php");
 require_once("lib.php");
 require_once($CFG->libdir.'/enrollib.php');
 require_once($CFG->libdir . '/filelib.php');
@@ -88,6 +88,7 @@ if (empty($custom) || count($custom) < 3) {
 $data->userid           = (int)$custom[0];
 $data->courseid         = (int)$custom[1];
 $data->instanceid       = (int)$custom[2];
+$data->promo_code       = $custom[3];
 $data->payment_gross    = $data->mc_gross;
 $data->payment_currency = $data->mc_currency;
 $data->timeupdated      = time();
@@ -217,6 +218,21 @@ if (strlen($result) > 0) {
             $cost = (float) $plugin->get_config('cost');
         } else {
             $cost = (float) $plugin_instance->cost;
+        }
+
+        $instance_promocode = $plugin_instance->customchar1;
+        $promo_code = $data->promo_code;
+        if ($promo_code){
+            $promo_codes_and_discounts = explode("\n", $instance_promocode);
+
+            foreach ($promo_codes_and_discounts as $promo_code_and_discount) {
+                list($promo_code_coupon, $promo_code_discount) = explode('|', trim($promo_code_and_discount));
+                $promo_code_discount = trim($promo_code_discount, "%");
+
+                if ($promo_code_coupon == $promo_code) {
+                    $cost = $cost - ($cost * ($promo_code_discount / 100));
+                }
+            }
         }
 
         // Use the same rounding of floats as on the enrol form.

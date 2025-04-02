@@ -23,7 +23,11 @@
 
 import Templates from 'core/templates';
 import Selectors from './user_picker/selectors';
+<<<<<<< HEAD
 import {getString} from 'core/str';
+=======
+import {get_string as getString} from 'core/str';
+>>>>>>> upstream/MOODLE_38_STABLE
 
 const templatePath = 'mod_forum/local/grades/local/grader';
 

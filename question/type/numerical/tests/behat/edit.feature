@@ -19,15 +19,28 @@ Feature: Test editing a Numerical question
       | Course       | C1        | Test questions |
     And the following "questions" exist:
       | questioncategory | qtype     | name                  | template |
+<<<<<<< HEAD
       | Test questions   | numerical | Numerical for editing | pi       |
+=======
+      | Test questions   | numerical | Numerical for editing | pi |
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: Edit a Numerical question when using a custom decimal separator
     Given the following "language customisations" exist:
       | component       | stringid | value |
       | core_langconfig | decsep   | #     |
+<<<<<<< HEAD
     When I am on the "Numerical for editing" "core_question > edit" page logged in as teacher
     And the field "id_answer_0" matches value "3#14"
     And I set the following fields to these values:
+=======
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I navigate to "Question bank" in current page administration
+    When I choose "Edit question" action for "Numerical for editing" in the question bank
+    Then the field "id_answer_0" matches value "3#14"
+    When I set the following fields to these values:
+>>>>>>> upstream/MOODLE_38_STABLE
       | Question name | |
     And I press "id_submitbutton"
     And I should see "You must supply a value here."
@@ -43,10 +56,20 @@ Feature: Test editing a Numerical question
       | id_tolerance_2 | 0.005    |
       | id_answer_3    | 3,01     |
     And I press "id_submitbutton"
+<<<<<<< HEAD
     And I should see "Edited Numerical name"
 
   Scenario: Edit a Numerical question with very small answer
     When I am on the "Numerical for editing" "core_question > edit" page logged in as teacher
+=======
+    Then I should see "Edited Numerical name"
+
+  Scenario: Edit a Numerical question with very small answer
+    Given I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I navigate to "Question bank" in current page administration
+    When I choose "Edit question" action for "Numerical for editing" in the question bank
+>>>>>>> upstream/MOODLE_38_STABLE
     And I set the following fields to these values:
       | id_answer_0    | 0.00000123456789 |
       | id_tolerance_1 | 0.0000123456789  |
@@ -55,6 +78,7 @@ Feature: Test editing a Numerical question
     Then the following fields match these values:
       | id_answer_0    | 0.00000123456789 |
       | id_tolerance_1 | 0.0000123456789  |
+<<<<<<< HEAD
 
   Scenario: Edit a Numerical question with optional units
     Given I am on the "Numerical for editing" "core_question > edit" page logged in as teacher
@@ -84,3 +108,5 @@ Feature: Test editing a Numerical question
       | id_unitrole      | Units are optional. If a unit is entered, it is used to convert the response to Unit 1 before grading. |
       | id_unitsleft     | on the right, for example 1.00cm or 1.00km                                                             |
       | id_unit_0        | m                                                                                                      |
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

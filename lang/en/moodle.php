@@ -1211,8 +1211,13 @@ $string['lastedited'] = 'Last edited';
 $string['lastip'] = 'Last IP address';
 $string['lastlogin'] = 'Last login';
 $string['lastmodified'] = 'Last modified';
+<<<<<<< HEAD
 $string['lastname'] = 'Last name';
 $string['lastnamephonetic'] = 'Last name - phonetic';
+=======
+$string['lastname'] = 'Surname';
+$string['lastnamephonetic'] = 'Surname - phonetic';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['lastpage'] = 'Last page';
 $string['lastsiteaccess'] = 'Last access to site';
 $string['lastyear'] = 'Last year';
@@ -1370,6 +1375,7 @@ $string['moddoesnotsupporttype'] = 'Module {$a->modname} does not support upload
 $string['modhide'] = 'Hide';
 $string['modshow'] = 'Show';
 $string['modvisible'] = 'Availability';
+<<<<<<< HEAD
 $string['modvisible_help'] = '* Show on course page: Available to students (subject to any access restrictions which may be set).
 * Hide on course page: Not available to students.';
 $string['modvisiblewithstealth'] = 'Availability';
@@ -1379,6 +1385,21 @@ $string['modvisiblewithstealth_help'] = '* Show on course page: Available to stu
 $string['modvisiblehiddensection'] = 'Availability';
 $string['modvisiblehiddensection_help'] = '* Hide on course page: Not available to students.
 * Make available but don\'t show on course page: Available to students if you provide a link. Activities will still appear in the gradebook and other reports.';
+=======
+$string['modvisible_help'] = 'If the availability is set to \'Show on course page\', the activity or resource is available to students (subject to any access restrictions which may be set).
+
+If the availability is set to \'Hide from students\', the activity or resource is only available to users with permission to view hidden activities (by default, users with the role of teacher or non-editing teacher).';
+$string['modvisiblewithstealth'] = 'Availability';
+$string['modvisiblewithstealth_help'] = 'If the availability is set to \'Show on course page\', the activity or resource is available to students (subject to any access restrictions which may be set).
+
+If the availability is set to \'Hide from students\', the activity or resource is only available to users with permission to view hidden activities (by default, users with the role of teacher or non-editing teacher).
+
+If the course contains many activities or resources, the course page may be simplified by setting the availability to \'Make available but not shown on course page\'. In this case, a link to the activity or resource must be provided from elsewhere, such as from a page resource. The activity would still be listed in the gradebook and other reports.';
+$string['modvisiblehiddensection'] = 'Availability';
+$string['modvisiblehiddensection_help'] = 'If the availability is set to \'Hide from students\', the activity or resource is only available to users with permission to view hidden activities (by default, users with the role of teacher or non-editing teacher).
+
+If the course contains many activities or resources, the course page may be simplified by setting the availability to \'Make available but not shown on course page\'. In this case, a link to the activity or resource must be provided from elsewhere, such as from a page resource. The activity would still be listed in the gradebook and other reports.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['moodlelogo'] = 'Moodle logo';
 $string['month'] = 'Month';
 $string['months'] = 'Months';
@@ -1740,6 +1761,7 @@ $string['privacy:metadata:log:module'] = 'module';
 $string['privacy:metadata:log:time'] = 'The time when the action took place';
 $string['privacy:metadata:log:url'] = 'The URL related to the event';
 $string['privacy:metadata:log:userid'] = 'The ID of the user who performed the action';
+<<<<<<< HEAD
 $string['privacy:metadata:moodlenet_share_progress'] = 'MoodleNet share progress details';
 $string['privacy:metadata:moodlenet_share_progress:type'] = 'The type of share that was performed';
 $string['privacy:metadata:moodlenet_share_progress:courseid'] = 'The associated course ID';
@@ -1755,6 +1777,8 @@ $string['privacy:metadata:oauth2_refresh_token:token'] = 'The refresh token for 
 $string['privacy:metadata:oauth2_refresh_token:timecreated'] = 'The time when the token was created';
 $string['privacy:metadata:oauth2_refresh_token:timemodified'] = 'The time when the token was last updated';
 $string['privacy:metadata:oauth2_refresh_token:userid'] = 'The ID of the user to whom the token corresponds';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['privacy:metadata:task_adhoc'] = 'The status of ad hoc tasks.';
 $string['privacy:metadata:task_adhoc:component'] = 'The component owning the task.';
 $string['privacy:metadata:task_adhoc:nextruntime'] = 'The earliest time to run this task.';
@@ -2032,8 +2056,11 @@ $string['shortnameuser'] = 'User short name';
 $string['shortsitename'] = 'Short name for site (eg single word)';
 $string['show'] = 'Show';
 $string['showactions'] = 'Show actions';
+<<<<<<< HEAD
 $string['showactivitydates'] = 'Show activity dates';
 $string['showactivitydates_help'] = 'Show activity dates on the course page.';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['showadvancededitor'] = 'Advanced';
 $string['showadvancedsettings'] = 'Show advanced settings';
 $string['showall'] = 'Show all {$a}';
@@ -2264,7 +2291,10 @@ $string['today'] = 'Today';
 $string['todaylogs'] = 'Today\'s logs';
 $string['toeveryone'] = 'to everyone';
 $string['toggleemojipicker'] = 'Toggle emoji picker';
+<<<<<<< HEAD
 $string['togglesearch'] = 'Toggle search input';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['toomanybounces'] = 'That email address has had too many bounces. You <b>must</b> change it to continue.';
 $string['toomanytags'] = 'This search included too many tags; some will have been ignored.';
 $string['toomanytoshow'] = 'There are too many users to show.';

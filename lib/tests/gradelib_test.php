@@ -78,13 +78,20 @@ final class gradelib_test extends \advanced_testcase {
         $DB->insert_record('grade_letters', $letter);
 
         // Pre-warm the cache, ensure that that the letter is cached.
+<<<<<<< HEAD
         $cache = \cache::make('core', 'grade_letters');
+=======
+        $cache = cache::make('core', 'grade_letters');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Check that the cache is empty beforehand.
         $letters = $cache->get($context->id);
         $this->assertFalse($letters);
 
+<<<<<<< HEAD
         // Call the function.
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         grade_get_letters($context);
 
         $letters = $cache->get($context->id);
@@ -251,6 +258,7 @@ final class gradelib_test extends \advanced_testcase {
     /**
      * Test the caching of grade letters.
      */
+<<<<<<< HEAD
     public function test_get_grade_letters(): void {
 
         $this->resetAfterTest();
@@ -260,6 +268,16 @@ final class gradelib_test extends \advanced_testcase {
         $context = \context_course::instance($course->id);
 
         $cache = \cache::make('core', 'grade_letters');
+=======
+    public function test_get_grade_letters() {
+
+        $this->resetAfterTest();
+
+        $course = $this->getDataGenerator()->create_course();
+        $context = context_course::instance($course->id);
+
+        $cache = cache::make('core', 'grade_letters');
+>>>>>>> upstream/MOODLE_38_STABLE
         $letters = $cache->get($context->id);
 
         // Make sure the cache is empty.
@@ -276,22 +294,36 @@ final class gradelib_test extends \advanced_testcase {
     /**
      * Test custom letters.
      */
+<<<<<<< HEAD
     public function test_get_grade_letters_custom(): void {
+=======
+    public function test_get_grade_letters_custom() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
 
         $course = $this->getDataGenerator()->create_course();
+<<<<<<< HEAD
         $context = \context_course::instance($course->id);
 
         $cache = \cache::make('core', 'grade_letters');
+=======
+        $context = context_course::instance($course->id);
+
+        $cache = cache::make('core', 'grade_letters');
+>>>>>>> upstream/MOODLE_38_STABLE
         $letters = $cache->get($context->id);
 
         // Make sure the cache is empty.
         $this->assertFalse($letters);
 
         // Add a grade letter to the course.
+<<<<<<< HEAD
         $letter = new \stdClass();
+=======
+        $letter = new stdClass();
+>>>>>>> upstream/MOODLE_38_STABLE
         $letter->letter = 'M';
         $letter->lowerboundary = '100';
         $letter->contextid = $context->id;
@@ -302,6 +334,7 @@ final class gradelib_test extends \advanced_testcase {
 
         $this->assertEquals($expected, $actual);
     }
+<<<<<<< HEAD
 
     /**
      * When getting a calculated grade containing an error, we mark grading finished and don't keep trying to regrade.
@@ -346,4 +379,6 @@ final class gradelib_test extends \advanced_testcase {
         $grades2 = grade_get_grades($course->id, 'mod', 'quiz', $quiz->id);
         $this->assertEmpty($grades2->errors);
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

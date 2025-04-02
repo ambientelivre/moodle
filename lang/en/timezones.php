@@ -112,9 +112,13 @@ $string['america/cayenne'] = 'America/Cayenne';
 $string['america/cayman'] = 'America/Cayman';
 $string['america/chicago'] = 'America/Chicago';
 $string['america/chihuahua'] = 'America/Chihuahua';
+<<<<<<< HEAD
 $string['america/ciudad_juarez'] = 'America/Ciudad_Juarez';
 $string['america/costa_rica'] = 'America/Costa_Rica';
 $string['america/coyhaique'] = 'America/Coyhaique';
+=======
+$string['america/costa_rica'] = 'America/Costa_Rica';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['america/creston'] = 'America/Creston';
 $string['america/cuiaba'] = 'America/Cuiaba';
 $string['america/curacao'] = 'America/Curacao';
@@ -365,7 +369,10 @@ $string['europe/jersey'] = 'Europe/Jersey';
 $string['europe/kaliningrad'] = 'Europe/Kaliningrad';
 $string['europe/kiev'] = 'Europe/Kiev';
 $string['europe/kirov'] = 'Europe/Kirov';
+<<<<<<< HEAD
 $string['europe/kyiv'] = 'Europe/Kyiv';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['europe/lisbon'] = 'Europe/Lisbon';
 $string['europe/ljubljana'] = 'Europe/Ljubljana';
 $string['europe/london'] = 'Europe/London';
@@ -430,7 +437,10 @@ $string['pacific/gambier'] = 'Pacific/Gambier';
 $string['pacific/guadalcanal'] = 'Pacific/Guadalcanal';
 $string['pacific/guam'] = 'Pacific/Guam';
 $string['pacific/honolulu'] = 'Pacific/Honolulu';
+<<<<<<< HEAD
 $string['pacific/kanton'] = 'Pacific/Kanton';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['pacific/kiritimati'] = 'Pacific/Kiritimati';
 $string['pacific/kosrae'] = 'Pacific/Kosrae';
 $string['pacific/kwajalein'] = 'Pacific/Kwajalein';
@@ -455,3 +465,25 @@ $string['pacific/wake'] = 'Pacific/Wake';
 $string['pacific/wallis'] = 'Pacific/Wallis';
 $string['utc'] = 'UTC';
 // The following identifiers have been previous removed from TimeDateZone::listIdentifiers and are no longer used.
+<<<<<<< HEAD
+=======
+// Deprecated since Moodle 3.9.
+$string['africa/asmera'] = 'Africa/Asmera';
+$string['africa/timbuktu'] = 'Africa/Timbuktu';
+$string['america/argentina/comodrivadavia'] = 'America/Argentina/ComodRivadavia';
+$string['america/indianapolis'] = 'America/Indianapolis';
+$string['america/louisville'] = 'America/Louisville';
+$string['america/montreal'] = 'America/Montreal';
+$string['asia/calcutta'] = 'Asia/Calcutta';
+$string['asia/chongqing'] = 'Asia/Chongqing';
+$string['asia/harbin'] = 'Asia/Harbin';
+$string['asia/kashgar'] = 'Asia/Kashgar';
+$string['asia/katmandu'] = 'Asia/Katmandu';
+$string['asia/rangoon'] = 'Asia/Rangoon';
+$string['asia/saigon'] = 'Asia/Saigon';
+$string['atlantic/faeroe'] = 'Atlantic/Faeroe';
+$string['europe/belfast'] = 'Europe/Belfast';
+$string['pacific/ponape'] = 'Pacific/Ponape';
+$string['pacific/truk'] = 'Pacific/Truk';
+$string['pacific/yap'] = 'Pacific/Yap';
+>>>>>>> upstream/MOODLE_38_STABLE

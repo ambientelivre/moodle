@@ -397,7 +397,11 @@ class url {
      * @param int $courseid The course id
      * @return moodle_url
      */
+<<<<<<< HEAD
     public function get_author_profile_url(author_entity $author, int $courseid): moodle_url {
+=======
+    public function get_author_profile_url(author_entity $author, int $courseid) : moodle_url {
+>>>>>>> upstream/MOODLE_38_STABLE
         return new moodle_url('/user/view.php', [
             'id' => $author->get_id(),
             'course' => $courseid

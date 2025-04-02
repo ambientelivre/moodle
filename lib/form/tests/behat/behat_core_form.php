@@ -48,7 +48,11 @@ class behat_core_form extends behat_question_base {
      * @throws Exception with a meaningful error message if the specified page cannot be found.
      */
     protected function resolve_page_url(string $page): moodle_url {
+<<<<<<< HEAD
         switch (strtolower($page)) {
+=======
+        switch ($page) {
+>>>>>>> upstream/MOODLE_38_STABLE
             default:
                 throw new Exception('Unrecognised core_form page type "' . $page . '."');
         }
@@ -70,8 +74,13 @@ class behat_core_form extends behat_question_base {
      * @throws Exception with a meaningful error message if the specified page cannot be found.
      */
     protected function resolve_page_instance_url(string $type, string $identifier): moodle_url {
+<<<<<<< HEAD
         switch (strtolower($type)) {
             case 'fixture':
+=======
+        switch ($type) {
+            case 'Fixture':
+>>>>>>> upstream/MOODLE_38_STABLE
                 return new moodle_url('/lib/form/tests/fixtures/' .
                         clean_param($identifier, PARAM_ALPHAEXT) . '.php');
 

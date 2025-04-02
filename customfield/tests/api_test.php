@@ -31,7 +31,11 @@ final class api_test extends \advanced_testcase {
      *
      * @return core_customfield_generator
      */
+<<<<<<< HEAD
     protected function get_generator(): \core_customfield_generator {
+=======
+    protected function get_generator(): core_customfield_generator {
+>>>>>>> upstream/MOODLE_38_STABLE
         return $this->getDataGenerator()->get_plugin_generator('core_customfield');
     }
 
@@ -54,7 +58,11 @@ final class api_test extends \advanced_testcase {
      * This replicates what is happening when categories are moved
      * in the interface using drag-drop.
      */
+<<<<<<< HEAD
     public function test_move_category(): void {
+=======
+    public function test_move_category() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         // Create the categories.
@@ -105,7 +113,11 @@ final class api_test extends \advanced_testcase {
     /**
      * Tests for \core_customfield\api::get_categories_with_fields() behaviour.
      */
+<<<<<<< HEAD
     public function test_get_categories_with_fields(): void {
+=======
+    public function test_get_categories_with_fields() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         // Create the categories.
@@ -141,7 +153,11 @@ final class api_test extends \advanced_testcase {
     /**
      * Test for functions api::save_category() and rename_category)
      */
+<<<<<<< HEAD
     public function test_save_category(): void {
+=======
+    public function test_save_category() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         $params = ['component' => 'core_course', 'area' => 'course', 'itemid' => 0, 'name' => 'Cat1',
@@ -176,7 +192,11 @@ final class api_test extends \advanced_testcase {
     /**
      * Test for function handler::create_category
      */
+<<<<<<< HEAD
     public function test_create_category(): void {
+=======
+    public function test_create_category() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         $handler = \core_course\customfield\course_handler::create();
@@ -200,7 +220,11 @@ final class api_test extends \advanced_testcase {
     /**
      * Tests for \core_customfield\api::delete_category() behaviour.
      */
+<<<<<<< HEAD
     public function test_delete_category_with_fields(): void {
+=======
+    public function test_delete_category_with_fields() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         global $DB;

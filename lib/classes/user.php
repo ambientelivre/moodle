@@ -717,6 +717,7 @@ class user {
 
         // Array of user fields properties and expected parameters.
         // Every new field on the user table should be added here otherwise it won't be validated.
+<<<<<<< HEAD
         $fields = [];
         $fields['id'] = ['type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED];
         $fields['auth'] = ['type' => PARAM_AUTH, 'null' => NULL_NOT_ALLOWED];
@@ -823,6 +824,73 @@ class user {
         $fields['firstnamephonetic'] = ['type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED];
         $fields['middlename'] = ['type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED];
         $fields['alternatename'] = ['type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED];
+=======
+        $fields = array();
+        $fields['id'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['auth'] = array('type' => PARAM_AUTH, 'null' => NULL_NOT_ALLOWED);
+        $fields['confirmed'] = array('type' => PARAM_BOOL, 'null' => NULL_NOT_ALLOWED);
+        $fields['policyagreed'] = array('type' => PARAM_BOOL, 'null' => NULL_NOT_ALLOWED);
+        $fields['deleted'] = array('type' => PARAM_BOOL, 'null' => NULL_NOT_ALLOWED);
+        $fields['suspended'] = array('type' => PARAM_BOOL, 'null' => NULL_NOT_ALLOWED);
+        $fields['mnethostid'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['username'] = array('type' => PARAM_USERNAME, 'null' => NULL_NOT_ALLOWED);
+        $fields['password'] = array('type' => PARAM_RAW, 'null' => NULL_NOT_ALLOWED);
+        $fields['idnumber'] = array('type' => PARAM_RAW, 'null' => NULL_NOT_ALLOWED);
+        $fields['firstname'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['lastname'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['surname'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['email'] = array('type' => PARAM_RAW_TRIMMED, 'null' => NULL_NOT_ALLOWED);
+        $fields['emailstop'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED, 'default' => 0);
+        $fields['icq'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['skype'] = array('type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED);
+        $fields['aim'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['yahoo'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['msn'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['phone1'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['phone2'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['institution'] = array('type' => PARAM_TEXT, 'null' => NULL_NOT_ALLOWED);
+        $fields['department'] = array('type' => PARAM_TEXT, 'null' => NULL_NOT_ALLOWED);
+        $fields['address'] = array('type' => PARAM_TEXT, 'null' => NULL_NOT_ALLOWED);
+        $fields['city'] = array('type' => PARAM_TEXT, 'null' => NULL_NOT_ALLOWED, 'default' => $CFG->defaultcity);
+        $fields['country'] = array('type' => PARAM_ALPHA, 'null' => NULL_NOT_ALLOWED, 'default' => $CFG->country,
+                'choices' => array_merge(array('' => ''), get_string_manager()->get_list_of_countries(true, true)));
+        $fields['lang'] = array('type' => PARAM_LANG, 'null' => NULL_NOT_ALLOWED, 'default' => $CFG->lang,
+                'choices' => array_merge(array('' => ''), get_string_manager()->get_list_of_translations(false)));
+        $fields['calendartype'] = array('type' => PARAM_PLUGIN, 'null' => NULL_NOT_ALLOWED, 'default' => $CFG->calendartype,
+                'choices' => array_merge(array('' => ''), \core_calendar\type_factory::get_list_of_calendar_types()));
+        $fields['theme'] = array('type' => PARAM_THEME, 'null' => NULL_NOT_ALLOWED,
+                'default' => theme_config::DEFAULT_THEME, 'choices' => array_merge(array('' => ''), get_list_of_themes()));
+        $fields['timezone'] = array('type' => PARAM_TIMEZONE, 'null' => NULL_NOT_ALLOWED,
+                'default' => core_date::get_server_timezone()); // Must not use choices here: timezones can come and go.
+        $fields['firstaccess'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['lastaccess'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['lastlogin'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['currentlogin'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['lastip'] = array('type' => PARAM_NOTAGS, 'null' => NULL_NOT_ALLOWED);
+        $fields['secret'] = array('type' => PARAM_ALPHANUM, 'null' => NULL_NOT_ALLOWED);
+        $fields['picture'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['url'] = array('type' => PARAM_URL, 'null' => NULL_NOT_ALLOWED);
+        $fields['description'] = array('type' => PARAM_RAW, 'null' => NULL_ALLOWED);
+        $fields['descriptionformat'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['mailformat'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED,
+                'default' => $CFG->defaultpreference_mailformat);
+        $fields['maildigest'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED,
+                'default' => $CFG->defaultpreference_maildigest);
+        $fields['maildisplay'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED,
+                'default' => $CFG->defaultpreference_maildisplay);
+        $fields['autosubscribe'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED,
+                'default' => $CFG->defaultpreference_autosubscribe);
+        $fields['trackforums'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED,
+                'default' => $CFG->defaultpreference_trackforums);
+        $fields['timecreated'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['timemodified'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['trustbitmask'] = array('type' => PARAM_INT, 'null' => NULL_NOT_ALLOWED);
+        $fields['imagealt'] = array('type' => PARAM_TEXT, 'null' => NULL_ALLOWED);
+        $fields['lastnamephonetic'] = array('type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED);
+        $fields['firstnamephonetic'] = array('type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED);
+        $fields['middlename'] = array('type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED);
+        $fields['alternatename'] = array('type' => PARAM_NOTAGS, 'null' => NULL_ALLOWED);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         self::$propertiescache = $fields;
     }

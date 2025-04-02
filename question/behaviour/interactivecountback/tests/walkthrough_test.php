@@ -37,7 +37,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_feedback_match_reset(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->shufflestems = false;
         $m->hints = array(
             new question_hint_with_parts(0, 'This is the first hint.', FORMAT_HTML, true, true),

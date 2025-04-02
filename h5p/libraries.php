@@ -39,6 +39,7 @@ $url = new \moodle_url("/h5p/libraries.php");
 $PAGE->set_context($context);
 $PAGE->set_url($url);
 $PAGE->set_pagelayout('admin');
+<<<<<<< HEAD
 $PAGE->set_title($pagetitle);
 $PAGE->set_heading($SITE->fullname);
 
@@ -75,6 +76,10 @@ if (!is_null($action)) {
         \core_h5p\api::set_library_enabled($libraryid, ($action == 'enable'));
     }
 }
+=======
+$PAGE->set_title("$SITE->shortname: " . $pagetitle);
+$PAGE->set_heading($SITE->fullname);
+>>>>>>> upstream/MOODLE_38_STABLE
 
 echo $OUTPUT->header();
 echo $OUTPUT->heading($pagetitle);

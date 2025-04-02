@@ -30,4 +30,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['parentlanguage'] = 'lt';
+<<<<<<< HEAD
 $string['thislanguage'] = 'Lietuvių (universitetas)';
+=======
+$string['thislanguage'] = 'Lietuvių';
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -64,8 +64,51 @@ M.mod_assign.init_grading_table = function(Y) {
                         node.set('checked', false);
                         rowelement.removeClass('selectedrow');
                         rowelement.addClass('unselectedrow');
+<<<<<<< HEAD
                     }
                 });
+=======
+                    });
+                }
+            });
+        }
+
+        var batchform = Y.one('form.gradingbatchoperationsform');
+        if (batchform) {
+            batchform.on('submit', function(e) {
+                M.util.js_pending('mod_assign/module.js:batch:submit');
+                checkboxes = Y.all('td.c0 input');
+                var selectedusers = [];
+                checkboxes.each(function(node) {
+                    if (node.get('checked')) {
+                        selectedusers[selectedusers.length] = node.get('value');
+                    }
+                });
+
+                operation = Y.one('#id_operation');
+                usersinput = Y.one('input.selectedusers');
+                usersinput.set('value', selectedusers.join(','));
+                if (selectedusers.length == 0) {
+                    alert(M.util.get_string('nousersselected', 'assign'));
+                    e.preventDefault();
+                } else {
+                    action = operation.get('value');
+                    prefix = 'plugingradingbatchoperation_';
+                    if (action.indexOf(prefix) == 0) {
+                        pluginaction = action.substr(prefix.length);
+                        plugin = pluginaction.split('_')[0];
+                        action = pluginaction.substr(plugin.length + 1);
+                        confirmmessage = M.util.get_string('batchoperationconfirm' + action, 'assignfeedback_' + plugin);
+                    } else {
+                        confirmmessage = M.util.get_string('batchoperationconfirm' + operation.get('value'), 'assign');
+                    }
+                    if (!confirm(confirmmessage)) {
+                        M.util.js_complete('mod_assign/module.js:batch:submit');
+                        e.preventDefault();
+                    }
+                    // Note: Do not js_complete. The page being reloaded will empty it.
+                }
+>>>>>>> upstream/MOODLE_38_STABLE
             });
         }
 

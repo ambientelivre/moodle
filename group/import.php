@@ -60,6 +60,7 @@ if ($importform->is_cancelled()) {
 
     $text = $importform->get_file_content('userfile');
     $text = preg_replace('!\r\n?!', "\n", $text);
+<<<<<<< HEAD
 
     require_once($CFG->libdir . '/csvlib.class.php');
     $importid = csv_import_reader::get_new_iid('groupimport');
@@ -78,6 +79,28 @@ if ($importform->is_cancelled()) {
 
     $csvimport->init();
 
+=======
+
+    $rawlines = explode("\n", $text);
+
+    require_once($CFG->libdir . '/csvlib.class.php');
+    $importid = csv_import_reader::get_new_iid('groupimport');
+    $csvimport = new csv_import_reader($importid, 'groupimport');
+    $delimiter = $formdata->delimiter_name;
+    $encoding = $formdata->encoding;
+    $readcount = $csvimport->load_csv_content($text, $encoding, $delimiter);
+
+    if ($readcount === false) {
+        print_error('csvfileerror', 'error', $PAGE->url, $csvimport->get_error());
+    } else if ($readcount == 0) {
+        print_error('csvemptyfile', 'error', $PAGE->url, $csvimport->get_error());
+    } else if ($readcount == 1) {
+        print_error('csvnodata', 'error', $PAGE->url);
+    }
+
+    $csvimport->init();
+
+>>>>>>> upstream/MOODLE_38_STABLE
     unset($text);
 
     // make arrays of valid fields for error checking
@@ -108,6 +131,7 @@ if ($importform->is_cancelled()) {
     }
 
     // --- get header (field names) ---
+<<<<<<< HEAD
     // Using get_columns() ensures the Byte Order Mark is removed.
     $header = $csvimport->get_columns();
 
@@ -119,6 +143,15 @@ if ($importform->is_cancelled()) {
         if (!isset($required[$h]) && !isset($optionaldefaults[$h]) && !isset($optional[$h]) && !isset($customfieldnames[$h])) {
             throw new \moodle_exception('invalidfieldname', 'error', $PAGE->url, $h);
         }
+=======
+    $header = explode($csvimport::get_delimiter($delimiter), array_shift($rawlines));
+    // check for valid field names
+    foreach ($header as $i => $h) {
+        $h = trim($h); $header[$i] = $h; // remove whitespace
+        if (!(isset($required[$h]) or isset($optionalDefaults[$h]) or isset($optional[$h]))) {
+                print_error('invalidfieldname', 'error', $PAGE->url, $h);
+            }
+>>>>>>> upstream/MOODLE_38_STABLE
         if (isset($required[$h])) {
             $required[$h] = 2;
         }
@@ -126,7 +159,11 @@ if ($importform->is_cancelled()) {
     // check for required fields
     foreach ($required as $key => $value) {
         if ($value < 2) {
+<<<<<<< HEAD
             throw new \moodle_exception('fieldrequired', 'error', $PAGE->url, $key);
+=======
+            print_error('fieldrequired', 'error', $PAGE->url, $key);
+>>>>>>> upstream/MOODLE_38_STABLE
         }
     }
     $linenum = 2; // since header is line 1
@@ -147,7 +184,11 @@ if ($importform->is_cancelled()) {
             foreach ($record as $name => $value) {
                 // check for required values
                 if (isset($required[$name]) and !$value) {
+<<<<<<< HEAD
                     throw new \moodle_exception('missingfield', 'error', $PAGE->url, $name);
+=======
+                    print_error('missingfield', 'error', $PAGE->url, $name);
+>>>>>>> upstream/MOODLE_38_STABLE
                 } else if ($name == "groupname") {
                     $newgroup->name = $value;
                 } else {

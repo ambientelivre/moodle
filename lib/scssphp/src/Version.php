@@ -19,5 +19,9 @@ namespace ScssPhp\ScssPhp;
  */
 class Version
 {
+<<<<<<< HEAD:lib/scssphp/src/Version.php
     const VERSION = '1.12.1';
+=======
+    const VERSION = 'v1.0.6';
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Version.php
 }

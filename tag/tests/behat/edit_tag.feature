@@ -161,10 +161,16 @@ Feature: Users can edit tags to add description or rename
     And I follow "Default collection"
     # Renaming tag to a valid name
     And I set the field "Edit tag name" in the "Cat" "table_row" to "Kitten"
+<<<<<<< HEAD
     Then the following should not exist in the "Tags" table:
       | First name | Tag name |
       | Admin User | Cat      |
     And I reload the page
+=======
+    Then I should not see "Cat"
+    And "New name for tag" "field" should not exist
+    And I follow "Default collection"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should see "Kitten"
     And I should not see "Cat"
     # Renaming tag to an invalid name
@@ -175,6 +181,23 @@ Feature: Users can edit tags to add description or rename
     And I should see "Turtle"
     And I should see "Dog"
     And I should not see "DOG"
+<<<<<<< HEAD
+=======
+    And I follow "Default collection"
+    And I should see "Turtle"
+    And I should see "Dog"
+    And I should not see "DOG"
+    # Cancel tag renaming
+    And I click on "Edit tag name" "link" in the "Dog" "table_row"
+    And I type "Penguin"
+    And I press the escape key
+    And "New name for tag" "field" should not exist
+    And I should see "Turtle"
+    And I should not see "Penguin"
+    And I follow "Default collection"
+    And I should see "Turtle"
+    And I should not see "Penguin"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   @javascript
   Scenario: Combining tags when renaming
@@ -249,6 +272,7 @@ Feature: Users can edit tags to add description or rename
     When I log in as "manager1"
     And I navigate to "Appearance > Manage tags" in site administration
     And I follow "Default collection"
+<<<<<<< HEAD
     And I click on "Filters" "button"
     And I set the following fields in the "Tag name" "core_reportbuilder > Filter" to these values:
       | Tag name operator | Is equal to |
@@ -262,3 +286,16 @@ Feature: Users can edit tags to add description or rename
       | Tag name     |
       | Turtle       |
       | Neverusedtag |
+=======
+    And I should not see "Reset filter"
+    And I set the field "Search" to "t"
+    And I press "Search"
+    Then the field "Search" matches value "t"
+    And I should not see "Dog"
+    And I should see "Cat"
+    And I should see "Turtle"
+    And I follow "Reset filter"
+    And I should see "Dog"
+    And I should see "Cat"
+    And I should see "Turtle"
+>>>>>>> upstream/MOODLE_38_STABLE

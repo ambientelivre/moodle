@@ -372,7 +372,10 @@ class webservice {
                     $newtoken->contextid = context_system::instance()->id;
                     $newtoken->creatorid = $userid;
                     $newtoken->timecreated = time();
+<<<<<<< HEAD
                     $newtoken->name = \core_external\util::generate_token_name();
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
                     // Generate the private token, it must be transmitted only via https.
                     $newtoken->privatetoken = random_string(64);
 

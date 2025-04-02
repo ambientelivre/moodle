@@ -38,10 +38,17 @@ final class generator_test extends \advanced_testcase {
         $this->assertInstanceOf('mod_quiz_generator', $generator);
         $this->assertEquals('quiz', $generator->get_modulename());
 
+<<<<<<< HEAD
         $generator->create_instance(['course' => $SITE->id]);
         $generator->create_instance(['course' => $SITE->id]);
         $createtime = time();
         $quiz = $generator->create_instance(['course' => $SITE->id, 'timecreated' => 0]);
+=======
+        $generator->create_instance(array('course'=>$SITE->id));
+        $generator->create_instance(array('course'=>$SITE->id));
+        $createtime = time();
+        $quiz = $generator->create_instance(array('course' => $SITE->id, 'timecreated' => 0));
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertEquals(3, $DB->count_records('quiz'));
 
         $cm = get_coursemodule_from_instance('quiz', $quiz->id);
@@ -54,6 +61,7 @@ final class generator_test extends \advanced_testcase {
 
         $this->assertEqualsWithDelta($createtime,
                 $DB->get_field('quiz', 'timecreated', ['id' => $cm->instance]), 2);
+<<<<<<< HEAD
     }
 
     public function test_generating_a_user_override(): void {
@@ -137,5 +145,7 @@ final class generator_test extends \advanced_testcase {
         $this->assertObjectHasProperty('id', $newgradeitem);
         $this->assertEquals($quiz->id, $newgradeitem->quizid);
         $this->assertEquals('Awesomeness!', $newgradeitem->name);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

@@ -73,10 +73,20 @@ Feature: The activity results block displays students high scores in group as sc
   Scenario: Try to configure the block on the course page to show multiple high scores using ID numbers
     Given the following config values are set as admin:
       | showuseridentity | idnumber,email |
+<<<<<<< HEAD
     And I add the "Activity results" block to the default region with:
       | config_showbest | 3 |
       | config_showworst | 0 |
       | config_nameformat | Display only ID numbers |
+=======
+    And I add the "Activity results" block
+    When I configure the "Activity results" block
+    And I set the following fields to these values:
+      | id_config_showbest | 3 |
+      | id_config_showworst | 0 |
+      | id_config_nameformat | Display only ID numbers |
+    And I press "Save changes"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "User S1" in the "Activity results" "block"
     And I should see "Excellent!" in the "Activity results" "block"
     And I should see "User S2" in the "Activity results" "block"

@@ -1115,7 +1115,11 @@ final class category_test extends \advanced_testcase {
     /**
      * This test ensures that is the list of courses in a category can be retrieved while a course is being deleted.
      */
+<<<<<<< HEAD
     public function test_get_courses_during_delete(): void {
+=======
+    public function test_get_courses_during_delete() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
         $category = self::getDataGenerator()->create_category();
         $course = self::getDataGenerator()->create_course(['category' => $category->id]);
@@ -1133,6 +1137,7 @@ final class category_test extends \advanced_testcase {
         $this->assertCount(1, $courses);
         $this->assertArrayHasKey($othercourse->id, $courses);
     }
+<<<<<<< HEAD
 
     /**
      * Test get_nearest_editable_subcategory() method.
@@ -1423,4 +1428,6 @@ final class category_test extends \advanced_testcase {
         $perf = $filtermanager->get_performance_summary();
         $this->assertEquals(1, $perf[0]['contextswithfilters']);
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

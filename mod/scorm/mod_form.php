@@ -577,12 +577,23 @@ class mod_scorm_mod_form extends moodleform_mod {
         parent::data_postprocessing($data);
         // Convert completionstatusrequired to a proper integer, if any.
         $total = 0;
+<<<<<<< HEAD
         $suffix = $this->get_suffix();
         if (isset($data->{'completionstatusrequired' . $suffix}) && is_array($data->{'completionstatusrequired' . $suffix})) {
             foreach ($data->{'completionstatusrequired' . $suffix} as $state => $value) {
                 if ($value) {
                     $total |= $state;
                 }
+=======
+        if (isset($data->completionstatusrequired) && is_array($data->completionstatusrequired)) {
+            foreach ($data->completionstatusrequired as $state => $value) {
+                if ($value) {
+                    $total |= $state;
+                }
+            }
+            if (!$total) {
+                $total  = null;
+>>>>>>> upstream/MOODLE_38_STABLE
             }
             if (!$total) {
                 $total  = null;

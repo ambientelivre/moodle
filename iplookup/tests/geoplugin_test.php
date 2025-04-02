@@ -53,6 +53,7 @@ final class geoplugin_test extends \advanced_testcase {
     public function test_ipv4(): void {
         $result = iplookup_find_location('50.0.184.0');
 
+<<<<<<< HEAD
         $this->assertIsArray($result);
         $this->assertIsFloat($result['latitude']);
         $this->assertIsFloat($result['longitude']);
@@ -61,6 +62,12 @@ final class geoplugin_test extends \advanced_testcase {
         $this->assertIsArray($result['title']);
         $this->assertIsString($result['title'][0]);
         $this->assertIsString($result['title'][1]);
+=======
+        $this->assertEquals('array', gettype($result));
+        $this->assertEquals('San Francisco', $result['city']);
+        $this->assertEquals(-122.3933, $result['longitude'], 'Coordinates are out of accepted tolerance', 0.1);
+        $this->assertEquals(37.7697, $result['latitude'], 'Coordinates are out of accepted tolerance', 0.1);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertNull($result['error']);
     }
 

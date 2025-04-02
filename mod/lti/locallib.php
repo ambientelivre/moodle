@@ -2371,12 +2371,19 @@ function lti_get_configured_types($courseid, $sectionreturn = 0) {
             $type->help     = clean_param($trimmeddescription, PARAM_NOTAGS);
             $type->helplink = get_string('modulename_shortcut_link', 'lti');
         }
+<<<<<<< HEAD
 
         $iconurl = get_tool_type_icon_url($ltitype);
         $iconclass = '';
         if ($iconurl !== $OUTPUT->image_url('monologo', 'lti')->out()) {
             // Do not filter the icon if it is not the default LTI activity icon.
             $iconclass = 'nofilter';
+=======
+        if (empty($ltitype->icon)) {
+            $type->icon = $OUTPUT->pix_icon('icon', '', 'lti', array('class' => 'icon'));
+        } else {
+            $type->icon = html_writer::empty_tag('img', array('src' => $ltitype->icon, 'alt' => '', 'class' => 'icon'));
+>>>>>>> upstream/MOODLE_38_STABLE
         }
         $type->icon = html_writer::empty_tag('img', ['src' => $iconurl, 'alt' => '', 'class' => "icon $iconclass"]);
 

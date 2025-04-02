@@ -393,6 +393,7 @@ class helper {
                 }
             }
         }
+<<<<<<< HEAD
 
         // Content bank.
         if ($category->has_contentbank()) {
@@ -403,6 +404,8 @@ class helper {
                 'string' => get_string('contentbank')
             ];
         }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         return $actions;
     }

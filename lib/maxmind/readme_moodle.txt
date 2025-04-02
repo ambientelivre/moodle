@@ -28,6 +28,7 @@ rm -rf lib/maxmind/GeoIp2/src lib/maxmind/MaxMind/src
 mv GeoIP2-php-X.Y.Z/src/ /path/to/moodle/lib/maxmind/GeoIp2/
 mv MaxMind-DB-Reader-php-X.Y.Z/src/ /path/to/moodle/lib/maxmind/MaxMind/
 
+<<<<<<< HEAD
 4) Update other MaxMind related files:
 mv GeoIP2-php-X.Y.Z/CHANGELOG.md /path/to/moodle/lib/maxmind/GeoIp2/
 mv GeoIP2-php-X.Y.Z/README.md /path/to/moodle/lib/maxmind/GeoIp2/
@@ -42,3 +43,6 @@ mv MaxMind-DB-Reader-php-X.Y.Z/composer.json /path/to/moodle/lib/maxmind/MaxMind
 5) Run unit tests on iplookup/tests/geoip_test.php.
 
 6) Update maxmind/GeoIp2 and maxmind/MaxMind versions in lib/thirdpartylibs.xml
+=======
+4) Run unit tests on iplookup/tests/geoip_test.php.
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -83,6 +83,7 @@ class h5p_test_core extends core {
     /**
      * Get the URL of the test endpoints instead of the H5P ones.
      *
+<<<<<<< HEAD
      * If $endpoint = 'content' and $library is null, moodle_url is the endpoint of the latest version of the H5P content
      * types; however, if $library is the machine name of a content type, moodle_url is the endpoint to download the content type.
      * The SITES endpoint ($endpoint = 'site') may be use to get a site UUID or send site data.
@@ -99,6 +100,20 @@ class h5p_test_core extends core {
             $h5purl = $this->endpoint . '/h5pcontenttypes.json';
         } else {
             $h5purl = $this->endpoint . '/h5puuid.json';
+=======
+     * If $library is null, moodle_url is the endpoint of the json test file with the H5P content types definition. If library is
+     * the machine name of a content type, moodle_url is the test URL for downloading the content type file.
+     *
+     * @param string|null $library The filename of the H5P content type file in external.
+     * @return \moodle_url The moodle_url of the file in external.
+     */
+    public function get_api_endpoint(?string $library): \moodle_url {
+
+        if ($library) {
+            $h5purl = $this->endpoint . '/' . $library . '.h5p';
+        } else {
+            $h5purl = $h5purl = $this->endpoint . '/h5pcontenttypes.json';
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         return new \moodle_url($h5purl);

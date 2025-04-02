@@ -175,6 +175,7 @@ class report extends \mod_scorm\report {
             switch ($attemptsmode) {
                 case SCORM_REPORT_ATTEMPTS_STUDENTS_WITH:
                     // Show only students with attempts.
+<<<<<<< HEAD
                     $where = " WHERE u.id IN ({$allowedlistsql}) AND sa.userid IS NOT NULL";
                     break;
                 case SCORM_REPORT_ATTEMPTS_STUDENTS_WITH_NO:
@@ -184,6 +185,17 @@ class report extends \mod_scorm\report {
                 case SCORM_REPORT_ATTEMPTS_ALL_STUDENTS:
                     // Show all students with or without attempts.
                     $where = " WHERE u.id IN ({$allowedlistsql}) AND (sa.userid IS NOT NULL OR sa.userid IS NULL)";
+=======
+                    $where = " WHERE u.id IN ({$allowedlistsql}) AND st.userid IS NOT NULL";
+                    break;
+                case SCORM_REPORT_ATTEMPTS_STUDENTS_WITH_NO:
+                    // Show only students without attempts.
+                    $where = " WHERE u.id IN ({$allowedlistsql}) AND st.userid IS NULL";
+                    break;
+                case SCORM_REPORT_ATTEMPTS_ALL_STUDENTS:
+                    // Show all students with or without attempts.
+                    $where = " WHERE u.id IN ({$allowedlistsql}) AND (st.userid IS NOT NULL OR st.userid IS NULL)";
+>>>>>>> upstream/MOODLE_38_STABLE
                     break;
             }
 

@@ -130,7 +130,11 @@ class moodle_content_writer implements content_writer {
      * @param   \stdClass       $data       The related data to export.
      * @return  content_writer
      */
+<<<<<<< HEAD
     public function export_related_data(array $subcontext, $name, $data): content_writer {
+=======
+    public function export_related_data(array $subcontext, $name, $data) : content_writer {
+>>>>>>> upstream/MOODLE_38_STABLE
         return $this->export_custom_file($subcontext, "{$name}.json",
             json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
     }
@@ -622,8 +626,13 @@ class moodle_content_writer implements content_writer {
         $targetpath = ['js', 'general.js'];
         $this->copy_data($jspath, $targetpath);
 
+<<<<<<< HEAD
         $jquery = ['lib', 'jquery', 'jquery-3.7.1.min.js'];
         $jquerydestination = ['js', 'jquery-3.7.1.min.js'];
+=======
+        $jquery = ['lib', 'jquery', 'jquery-3.5.1.min.js'];
+        $jquerydestination = ['js', 'jquery-3.5.1.min.js'];
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->copy_data($jquery, $jquerydestination);
 
         $requirecurrentpath = ['lib', 'requirejs', 'require.min.js'];

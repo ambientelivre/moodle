@@ -22,6 +22,10 @@ so we can better handle site security settings
 This local change has been made without the accompanying pull request as the upstream library is archived:
 * $FULLME is used as the URL for OAuth, to fix reverse proxy support (see MDL-64152)
 
+This local changes can be reverted once it's checked that they are present upstream (note the
+LTI-Tool-Provider-Library-PHP repo has been archived so it doesn't accept pull requests anymore):
+* MDL-67034 php74 compliance fixes
+
 It is recommended by upstream to install depdencies via composer - but the composer installation is bundled
 with an autoloader so it's better to do it manually.
 

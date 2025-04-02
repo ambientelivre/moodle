@@ -82,7 +82,10 @@ $string['emailupdatemessage'] = 'Hi {$a->firstname},
 You have requested a change of your email address for your account on {$a->site}. To confirm this change, please go to the following web address:
 
 {$a->url}
+<<<<<<< HEAD
 The confirmation link will expire in <b>10 minutes</b>.
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
 {$a->supportemail}';
 $string['emailupdatesuccess'] = 'Email address of user <em>{$a->fullname}</em> was successfully updated to <em>{$a->email}</em>.';

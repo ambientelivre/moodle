@@ -51,9 +51,12 @@ It is advisable to only turn this on if the following is true:
 
 * If you know the number of items in the cache is going to be small enough that it won\'t cause issues on the file system you are running with.
 * The data being cached is not expensive to generate. If it is then sticking with the default may still be the better option as it reduces the chance of issues.';
+<<<<<<< HEAD
 $string['task_asyncpurge'] = 'Asynchronously purge file store old cache revision directories';
 $string['useserializer'] = 'Use serializer';
 $string['useserializer_help'] = 'The serializer to use for serializing. The igbinary serializer, if available, can reduce the storage requirements for large caches. This is supported only when the igbinary extension is loaded.';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
 /**
  * This is is like the file store, but designed for siutations where:

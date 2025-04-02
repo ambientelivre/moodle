@@ -25,11 +25,18 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD
 require_once(__DIR__ . '/../../behat/behat_base.php');
 
 use Behat\Gherkin\Node\TableNode as TableNode;
 use Behat\Behat\Tester\Exception\PendingException as PendingException;
 
+=======
+use Behat\Gherkin\Node\TableNode as TableNode;
+use Behat\Behat\Tester\Exception\PendingException as PendingException;
+
+
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * Class to quickly create Behat test data using component data generators.
  *
@@ -163,6 +170,7 @@ abstract class behat_generator_base {
      *
      * @return array entity name => information about how to generate.
      */
+<<<<<<< HEAD
     abstract protected function get_creatable_entities(): array;
 
     /**
@@ -173,6 +181,9 @@ abstract class behat_generator_base {
     final public function get_available_generators(): array {
         return $this->get_creatable_entities();
     }
+=======
+    protected abstract function get_creatable_entities(): array;
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Do the work to generate an entity.
@@ -228,7 +239,11 @@ abstract class behat_generator_base {
             foreach ($entityinfo['required'] as $requiredfield) {
                 if (!isset($elementdata[$requiredfield])) {
                     throw new Exception($this->name_for_errors($generatortype) .
+<<<<<<< HEAD
                             ' requires the field "' . $requiredfield . '" to be specified');
+=======
+                            ' requires the field ' . $requiredfield . ' to be specified');
+>>>>>>> upstream/MOODLE_38_STABLE
                 }
             }
 
@@ -279,6 +294,7 @@ abstract class behat_generator_base {
                         ' data generator is not implemented');
             }
         }
+<<<<<<< HEAD
 
         // Notify that the all the elements have been generated.
         if (method_exists($this->componentdatagenerator, 'finish_generate_' . $generatortype)) {
@@ -290,6 +306,8 @@ abstract class behat_generator_base {
             $this->datagenerator->{'finish_generate_' . $generatortype}();
 
         }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -337,6 +355,7 @@ abstract class behat_generator_base {
     }
 
     /**
+<<<<<<< HEAD
      * Gets the user id from it's username.
      * @throws Exception
      * @param string $username
@@ -367,6 +386,8 @@ abstract class behat_generator_base {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Gets the role id from it's shortname.
      * @throws Exception
      * @param string $roleshortname
@@ -419,6 +440,7 @@ abstract class behat_generator_base {
     }
 
     /**
+<<<<<<< HEAD
      * Gets the course cmid for the specified activity based on the activity's idnumber.
      *
      * Note: this does not check the module type, only the idnumber.
@@ -438,6 +460,8 @@ abstract class behat_generator_base {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Gets the group id from it's idnumber.
      * @throws Exception
      * @param string $idnumber
@@ -550,7 +574,57 @@ abstract class behat_generator_base {
      * @return context
      */
     protected function get_context($levelname, $contextref) {
+<<<<<<< HEAD
         return behat_base::get_context($levelname, $contextref);
+=======
+        global $DB;
+
+        // Getting context levels and names (we will be using the English ones as it is the test site language).
+        $contextlevels = context_helper::get_all_levels();
+        $contextnames = array();
+        foreach ($contextlevels as $level => $classname) {
+            $contextnames[context_helper::get_level_name($level)] = $level;
+        }
+
+        if (empty($contextnames[$levelname])) {
+            throw new Exception('The specified "' . $levelname . '" context level does not exist');
+        }
+        $contextlevel = $contextnames[$levelname];
+
+        // Return it, we don't need to look for other internal ids.
+        if ($contextlevel == CONTEXT_SYSTEM) {
+            return context_system::instance();
+        }
+
+        switch ($contextlevel) {
+
+            case CONTEXT_USER:
+                $instanceid = $DB->get_field('user', 'id', array('username' => $contextref));
+                break;
+
+            case CONTEXT_COURSECAT:
+                $instanceid = $DB->get_field('course_categories', 'id', array('idnumber' => $contextref));
+                break;
+
+            case CONTEXT_COURSE:
+                $instanceid = $DB->get_field('course', 'id', array('shortname' => $contextref));
+                break;
+
+            case CONTEXT_MODULE:
+                $instanceid = $DB->get_field('course_modules', 'id', array('idnumber' => $contextref));
+                break;
+
+            default:
+                break;
+        }
+
+        $contextclass = $contextlevels[$contextlevel];
+        if (!$context = $contextclass::instance($instanceid, IGNORE_MISSING)) {
+            throw new Exception('The specified "' . $contextref . '" context reference does not exist');
+        }
+
+        return $context;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -567,6 +641,7 @@ abstract class behat_generator_base {
         }
         return $id;
     }
+<<<<<<< HEAD
 
     /**
      * Gets the external backpack id from it's backpackweburl.
@@ -623,4 +698,6 @@ EOF;
 
         return get_fast_modinfo($course)->get_cm($result->cmid);
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

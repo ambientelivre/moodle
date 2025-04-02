@@ -77,7 +77,11 @@
             <header id="post-header-{{id}}-{{uniqid}}">
                 {{^isdeleted}}
                     <div class="d-flex flex-wrap align-items-center mb-1">
+<<<<<<< HEAD
                         <div class="me-2" tabindex="-1">
+=======
+                        <div class="mr-2" tabindex="-1">
+>>>>>>> upstream/MOODLE_38_STABLE
                             {{#author}}
                                 <h4 class="h6 d-lg-inline-block mb-0 author-header ms-1">
                                     {{#parentauthorname}}
@@ -146,7 +150,11 @@
                                             class="btn btn-icon text-muted"
                                             type="button"
                                             id="post-actions-menu-{{id}}-{{uniqid}}"
+<<<<<<< HEAD
                                             data-bs-toggle="dropdown"
+=======
+                                            data-toggle="dropdown"
+>>>>>>> upstream/MOODLE_38_STABLE
                                             aria-haspopup="true"
                                             aria-expanded="false"
                                             aria-label="{{#str}} actionsforpost, mod_forum {{/str}}"
@@ -154,7 +162,11 @@
                                             {{#pix}} i/moremenu {{/pix}}
                                         </button>
                                         <!-- inline style to fix RTL placement bug -->
+<<<<<<< HEAD
                                         <div class="dropdown-menu dropdown-menu-end rounded-3 shadow border-0" aria-labelledby="post-actions-menu-{{id}}-{{uniqid}}" style="right: auto" role="menubar">
+=======
+                                        <div class="dropdown-menu dropdown-menu-right rounded-lg shadow border-0" aria-labelledby="post-actions-menu-{{id}}-{{uniqid}}" style="right: auto" role="menubar">
+>>>>>>> upstream/MOODLE_38_STABLE
                                             {{#capabilities}}
                                                 {{#view}}
                                                     <a

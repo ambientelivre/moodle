@@ -196,7 +196,11 @@ final class hooks_test extends \advanced_testcase {
         $this->assertEquals(0, \core_competency\template_cohort::count_records(array('templateid' => $t2->get('id'))));
     }
 
+<<<<<<< HEAD
     public function test_hook_user_deleted(): void {
+=======
+    public function test_hook_user_deleted() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
         $dg = $this->getDataGenerator();
         $ccg = $dg->get_plugin_generator('core_competency');

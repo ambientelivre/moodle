@@ -40,7 +40,11 @@ final class category_controller_test extends \advanced_testcase {
     /**
      * Test for the field_controller::__construct function.
      */
+<<<<<<< HEAD
     public function test_constructor(): void {
+=======
+    public function test_constructor() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         $c = category_controller::create(0, (object)['component' => 'core_course', 'area' => 'course', 'itemid' => 0]);
@@ -186,7 +190,11 @@ final class category_controller_test extends \advanced_testcase {
      * \core_customfield\category_controller::save()
      * \core_customfield\category_controller::get()
      */
+<<<<<<< HEAD
     public function test_create_category(): void {
+=======
+    public function test_create_category() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         // Create the category.
@@ -215,7 +223,11 @@ final class category_controller_test extends \advanced_testcase {
     /**
      * Tests for \core_customfield\category_controller::set() behaviour.
      */
+<<<<<<< HEAD
     public function test_rename_category(): void {
+=======
+    public function test_rename_category() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         // Create the category.
@@ -240,7 +252,11 @@ final class category_controller_test extends \advanced_testcase {
     /**
      * Tests for \core_customfield\category_controller::delete() behaviour.
      */
+<<<<<<< HEAD
     public function test_delete_category(): void {
+=======
+    public function test_delete_category() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         // Create the category.

@@ -84,11 +84,19 @@ if ($form = $importform->get_data()) {
     // File checks out ok.
     $fileisgood = false;
 
+<<<<<<< HEAD:question/bank/importquestions/import.php
     // Work out if this is an uploaded file.
     // Or one from the filesarea.
     $realfilename = $importform->get_new_filename('newfile');
     $importfile = make_request_directory() . "/{$realfilename}";
     if (!$result = $importform->save_file('newfile', $importfile, true)) {
+=======
+    // work out if this is an uploaded file
+    // or one from the filesarea.
+    $realfilename = $import_form->get_new_filename('newfile');
+    $importfile = make_request_directory() . "/{$realfilename}";
+    if (!$result = $import_form->save_file('newfile', $importfile, true)) {
+>>>>>>> upstream/MOODLE_38_STABLE:question/import.php
         throw new moodle_exception('uploadproblem');
     }
 

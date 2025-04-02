@@ -108,6 +108,7 @@ if ($hassiteconfig) {
         new lang_string('configsessioncookiedomain', 'admin'), '', PARAM_RAW, 50));
     $ADMIN->add('server', $temp);
 
+<<<<<<< HEAD
     // Statistics.
     $temp = new admin_settingpage('stats', new lang_string('stats'), 'moodle/site:config', empty($CFG->enablestats));
     $temp->add(new admin_setting_configselect('statsfirstrun', new lang_string('statsfirstrun', 'admin'),
@@ -147,6 +148,21 @@ if ($hassiteconfig) {
     $temp->add(new admin_setting_configtext('statsuserthreshold', new lang_string('statsuserthreshold', 'admin'),
         new lang_string('configstatsuserthreshold', 'admin'), 0, PARAM_INT));
     $ADMIN->add('server', $temp);
+=======
+// "http" settingpage
+$temp = new admin_settingpage('http', new lang_string('http', 'admin'));
+$temp->add(new admin_setting_configcheckbox('slasharguments', new lang_string('slasharguments', 'admin'), new lang_string('configslasharguments', 'admin'), 1));
+$temp->add(new admin_setting_heading('reverseproxy', new lang_string('reverseproxy', 'admin'), '', ''));
+$options = array(
+    0 => 'HTTP_CLIENT_IP, HTTP_X_FORWARDED_FOR, REMOTE_ADDR',
+    GETREMOTEADDR_SKIP_HTTP_CLIENT_IP => 'HTTP_X_FORWARDED_FOR, REMOTE_ADDR',
+    GETREMOTEADDR_SKIP_HTTP_X_FORWARDED_FOR => 'HTTP_CLIENT, REMOTE_ADDR',
+    GETREMOTEADDR_SKIP_HTTP_X_FORWARDED_FOR|GETREMOTEADDR_SKIP_HTTP_CLIENT_IP => 'REMOTE_ADDR');
+$temp->add(new admin_setting_configselect('getremoteaddrconf', new lang_string('getremoteaddrconf', 'admin'),
+    new lang_string('configgetremoteaddrconf', 'admin'),
+    GETREMOTEADDR_SKIP_DEFAULT, $options));
+$temp->add(new admin_setting_configtext('reverseproxyignore', new lang_string('reverseproxyignore', 'admin'), new lang_string('configreverseproxyignore', 'admin'), ''));
+>>>>>>> upstream/MOODLE_38_STABLE
 
     // HTTP.
     $temp = new admin_settingpage('http', new lang_string('http', 'admin'));

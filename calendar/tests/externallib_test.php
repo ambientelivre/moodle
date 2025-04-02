@@ -549,7 +549,11 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test get_calendar_events with mathjax in the name.
      */
+<<<<<<< HEAD
     public function test_get_calendar_events_with_mathjax(): void {
+=======
+    public function test_get_calendar_events_with_mathjax() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $USER;
 
         $this->resetAfterTest(true);
@@ -570,7 +574,11 @@ final class externallib_test extends externallib_advanced_testcase {
         $events = external_api::clean_returnvalue(core_calendar_external::get_calendar_events_returns(), $events);
 
         // Format the original data.
+<<<<<<< HEAD
         $sitecontext = \context_system::instance();
+=======
+        $sitecontext = context_system::instance();
+>>>>>>> upstream/MOODLE_38_STABLE
         $siteevent->name = $siteevent->format_external_name();
         list($siteevent->description, $siteevent->descriptionformat) = $siteevent->format_external_text();
 
@@ -2655,11 +2663,19 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test get_calendar_monthly_view when a day parameter is provided.
      */
+<<<<<<< HEAD
     public function test_get_calendar_monthly_view_with_day_provided(): void {
         $this->resetAfterTest();
         $this->setAdminUser();
 
         $timestart = new \DateTime();
+=======
+    public function test_get_calendar_monthly_view_with_day_provided() {
+        $this->resetAfterTest();
+        $this->setAdminUser();
+
+        $timestart = new DateTime();
+>>>>>>> upstream/MOODLE_38_STABLE
         $data = external_api::clean_returnvalue(
             core_calendar_external::get_calendar_monthly_view_returns(),
             core_calendar_external::get_calendar_monthly_view($timestart->format('Y'), $timestart->format('n'),

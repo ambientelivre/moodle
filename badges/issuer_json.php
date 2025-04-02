@@ -17,7 +17,12 @@
 /**
  * Serve Issuer JSON for related badge or default Issuer if no badge is defined.
  *
+<<<<<<< HEAD
  * @package    core_badges
+=======
+ * @package    core
+ * @subpackage badges
+>>>>>>> upstream/MOODLE_38_STABLE
  * @copyright  2020 Sara Arjona <sara@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,6 +32,10 @@ define('NO_MOODLE_COOKIES', true); // No need for a session here.
 require_once(__DIR__ . '/../config.php');
 require_once($CFG->libdir . '/badgeslib.php');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/MOODLE_38_STABLE
 $id = optional_param('id', null, PARAM_INT);
 
 if (empty($id)) {

@@ -111,11 +111,22 @@ Feature: The activity results block displays student low scores
   Scenario: Try to configure the block on the course page to show multiple low scores using ID numbers
     Given the following config values are set as admin:
       | showuseridentity | idnumber,email |
+<<<<<<< HEAD
     And I add the "Activity results" block to the default region with:
       | config_showbest | 0 |
       | config_showworst | 3 |
       | config_gradeformat | Percentages |
       | config_nameformat | Display only ID numbers |
+=======
+    And I add the "Activity results" block
+    When I configure the "Activity results" block
+    And I set the following fields to these values:
+      | id_config_showbest | 0 |
+      | id_config_showworst | 3 |
+      | id_config_gradeformat | Percentages |
+      | id_config_nameformat | Display only ID numbers |
+    And I press "Save changes"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "User S5" in the "Activity results" "block"
     And I should see "50.00%" in the "Activity results" "block"
     And I should see "User S4" in the "Activity results" "block"

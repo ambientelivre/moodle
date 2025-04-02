@@ -608,7 +608,11 @@ final class externallib_test extends externallib_advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function course_empty_field_provider(): array {
+=======
+    public function course_empty_field_provider(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             [[
                 'fullname' => '',
@@ -645,7 +649,11 @@ final class externallib_test extends externallib_advanced_testcase {
         $course['categoryid'] = $this->getDataGenerator()->create_category()->id;
 
         $this->expectException(moodle_exception::class);
+<<<<<<< HEAD
         $this->expectExceptionMessageMatches("/{$expectedemptyfield}/");
+=======
+        $this->expectExceptionMessageRegExp("/{$expectedemptyfield}/");
+>>>>>>> upstream/MOODLE_38_STABLE
         core_course_external::create_courses([$course]);
     }
 
@@ -671,7 +679,11 @@ final class externallib_test extends externallib_advanced_testcase {
 
         $warning = reset($result['warnings']);
         $this->assertEquals('errorinvalidparam', $warning['warningcode']);
+<<<<<<< HEAD
         $this->assertStringContainsString($expectedemptyfield, $warning['message']);
+=======
+        $this->assertContains($expectedemptyfield, $warning['message']);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -1308,7 +1320,11 @@ final class externallib_test extends externallib_advanced_testcase {
         }
         foreach ($sections[2]['modules'] as $module) {
             if ($module['id'] == $urlcm->id and $module['modname'] == 'url') {
+<<<<<<< HEAD
                 $this->assertStringContainsString('width=100,height=100', $module['onclick']);
+=======
+                $this->assertContains('width=100,height=100', $module['onclick']);
+>>>>>>> upstream/MOODLE_38_STABLE
                 $testexecuted = $testexecuted + 1;
             }
         }
@@ -1775,7 +1791,11 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test get_course_contents when hidden sections are displayed.
      */
+<<<<<<< HEAD
     public function test_get_course_contents_hiddensections(): void {
+=======
+    public function test_get_course_contents_hiddensections() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
         $this->resetAfterTest(true);
 
@@ -1794,7 +1814,11 @@ final class externallib_test extends externallib_advanced_testcase {
         $sections = external_api::clean_returnvalue(core_course_external::get_course_contents_returns(), $sections);
 
         $this->assertCount(5, $sections); // All the sections, including the "not visible" one.
+<<<<<<< HEAD
         $this->assertCount(6, $sections[0]['modules']);
+=======
+        $this->assertCount(5, $sections[0]['modules']);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertCount(1, $sections[1]['modules']);
         $this->assertCount(1, $sections[2]['modules']);
         $this->assertCount(0, $sections[3]['modules']); // No modules for the section with availability restrictions.
@@ -1816,7 +1840,11 @@ final class externallib_test extends externallib_advanced_testcase {
         $sections = external_api::clean_returnvalue(core_course_external::get_course_contents_returns(), $sections);
 
         $this->assertCount(6, $sections); // Include fake section with stealth activities.
+<<<<<<< HEAD
         $this->assertCount(6, $sections[0]['modules']);
+=======
+        $this->assertCount(5, $sections[0]['modules']);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertCount(1, $sections[1]['modules']);
         $this->assertCount(1, $sections[2]['modules']);
         $this->assertCount(0, $sections[3]['modules']); // No modules for the section with availability restrictions.
@@ -1826,6 +1854,7 @@ final class externallib_test extends externallib_advanced_testcase {
     }
 
     /**
+<<<<<<< HEAD
      * Test get course contents dates.
      */
     public function test_get_course_contents_dates(): void {
@@ -1942,6 +1971,8 @@ final class externallib_test extends externallib_advanced_testcase {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Test duplicate_course
      */
     public function test_duplicate_course(): void {

@@ -111,10 +111,14 @@ $string['clicktounfavourite'] = 'You have starred this discussion. Click to unst
 $string['clicktofavourite'] = 'You have not starred this discussion. Click to star.';
 $string['close'] = 'Close';
 $string['closegrader'] = 'Close grader';
+<<<<<<< HEAD
 $string['completiondetail:discussions'] = 'Start discussions: {$a}';
 $string['completiondetail:replies'] = 'Post replies: {$a}';
 $string['completiondetail:posts'] = 'Make forum posts: {$a}';
 $string['completiondiscussions'] = 'Start discussions';
+=======
+$string['completiondiscussions'] = 'Student must create discussions:';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['completiondiscussionsdesc'] = 'Student must create at least {$a} discussion(s)';
 $string['completionpostsinforums'] = 'Post in forums';
 $string['completionposts'] = 'Start discussions or post replies';
@@ -765,8 +769,11 @@ $string['grade_forum_title'] = 'Grade';
 $string['grade_rating_name'] = 'Rating';
 $string['gradeusers'] = 'Grade users';
 $string['graded'] = 'Graded';
+<<<<<<< HEAD
 $string['gradedby'] = 'Graded by';
 $string['notgraded'] = 'Not graded';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['nowgradinguser'] = 'Now grading {$a}';
 $string['gradeforrating'] = 'Grade for rating: {$a->str_long_grade}';
 $string['gradeforratinghidden'] = 'Grade for rating hidden';

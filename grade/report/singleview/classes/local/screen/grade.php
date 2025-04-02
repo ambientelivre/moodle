@@ -198,7 +198,11 @@ class grade extends tablelike implements selectable_items, filterable_items {
         return [
             get_string('fullnameuser', 'core'),
             '', // For filter icon.
+<<<<<<< HEAD
             get_string('gradenoun'),
+=======
+            get_string('fullnameuser', 'core'),
+>>>>>>> upstream/MOODLE_38_STABLE
             get_string('range', 'grades'),
             get_string('feedback', 'grades'),
             get_string('override', 'gradereport_singleview'),
@@ -234,7 +238,11 @@ class grade extends tablelike implements selectable_items, filterable_items {
         }
 
         if (has_capability('moodle/site:viewfullnames', \context_course::instance($this->courseid))) {
+<<<<<<< HEAD
             $fullname = fullname($item, true);
+=======
+            $fullname = $lockicon . fullname($item, true);
+>>>>>>> upstream/MOODLE_38_STABLE
         } else {
             $fullname = fullname($item);
         }
@@ -244,6 +252,7 @@ class grade extends tablelike implements selectable_items, filterable_items {
         $grade->label = $fullname;
         $userpic = $OUTPUT->user_picture($item, ['link' => false, 'visibletoscreenreaders' => false]);
 
+<<<<<<< HEAD
         $formatteddefinition = $this->format_definition($grade);
 
         $line = [
@@ -262,6 +271,20 @@ class grade extends tablelike implements selectable_items, filterable_items {
             'range',
         ];
         $outputline = [];
+=======
+        $line = array(
+            $OUTPUT->action_icon($this->format_link('user', $item->id), new pix_icon('t/editstring', ''), null,
+                    ['title' => $iconstring, 'aria-label' => $iconstring]),
+            html_writer::link($url, $userpic . $fullname),
+            $this->item_range()
+        );
+        $lineclasses = array(
+            "action",
+            "user",
+            "range"
+        );
+        $outputline = array();
+>>>>>>> upstream/MOODLE_38_STABLE
         $i = 0;
         foreach ($line as $key => $value) {
             $cell = new \html_table_cell($value);

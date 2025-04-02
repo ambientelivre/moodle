@@ -131,8 +131,12 @@ abstract class database_exporter {
 
         $options = [
             'changedcolumns' => false, // Column types may be fixed by transfer.
+<<<<<<< HEAD
             'missingindexes' => false, // No need to worry about indexes for transfering data.
             'extraindexes' => false
+=======
+            'missingindexes' => false // No need to worry about indexes for transfering data.
+>>>>>>> upstream/MOODLE_38_STABLE
         ];
         if ($this->check_schema and $errors = $this->manager->check_database_schema($this->schema, $options)) {
             $details = '';

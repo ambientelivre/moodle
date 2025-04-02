@@ -329,7 +329,10 @@ class repository_flickr_public extends repository {
                 'user_id' => $nsid,
                 'license' => $licenses,
                 'text' => $text,
+<<<<<<< HEAD
                 'extras' => 'original_format,license,date_upload,last_update',
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
                 'media' => 'photos'
             )
         );
@@ -368,7 +371,11 @@ class repository_flickr_public extends repository {
      * @param int $page
      * @return array
      */
+<<<<<<< HEAD
     private function build_list($photos, $page, &$ret) {
+=======
+    private function build_list($photos, $page = 1, &$ret) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $OUTPUT;
 
         if (!empty($this->nsid)) {
@@ -407,6 +414,7 @@ class repository_flickr_public extends repository {
                 if (!@getimagesize($thumbnailsource)) {
                     // Use the file extension icon as a thumbnail if the original thumbnail does not exist to avoid
                     // displaying broken thumbnails in the repository.
+<<<<<<< HEAD
                     $thumbnailsource = $OUTPUT->image_url(file_extension_icon($p['title']))->out(false);
                 }
 
@@ -417,11 +425,16 @@ class repository_flickr_public extends repository {
                 // The photo sizes are statically cached, so we can retrieve image dimensions without another API call.
                 $bestsize = $this->get_best_size($p['id']);
 
+=======
+                    $thumbnailsource = $OUTPUT->image_url(file_extension_icon($p['title'], 90))->out(false);
+                }
+>>>>>>> upstream/MOODLE_38_STABLE
                 $ret['list'][] = array(
                     'title' => $p['title'],
                     'source' => $p['id'],
                     'id' => $p['id'],
                     'thumbnail' => $thumbnailsource,
+<<<<<<< HEAD
                     'datecreated' => $p['dateupload'],
                     'datemodified' => $p['lastupdate'],
                     'size' => (int)($curl->get_info()['download_content_length']),
@@ -430,6 +443,13 @@ class repository_flickr_public extends repository {
                     'url' => 'http://www.flickr.com/photos/' . $p['owner'] . '/' . $p['id'],
                     'license' => $this->license4moodle($p['license']),
                     'author' => $p['owner'],
+=======
+                    'date' => '',
+                    'size' => 'unknown',
+                    'url' => 'http://www.flickr.com/photos/' . $p['owner'] . '/' . $p['id'],
+                    'haslicense' => true,
+                    'hasauthor' => true
+>>>>>>> upstream/MOODLE_38_STABLE
                 );
             }
         }

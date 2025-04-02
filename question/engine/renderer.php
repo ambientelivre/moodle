@@ -315,16 +315,30 @@ class core_question_renderer extends plugin_renderer_base {
     protected function get_flag_html($flagged, $id = '') {
         if ($flagged) {
             $icon = 'i/flagged';
+<<<<<<< HEAD
             $label = get_string('clickunflag', 'question');
         } else {
             $icon = 'i/unflagged';
+=======
+            $alt = get_string('flagged', 'question');
+            $label = get_string('clickunflag', 'question');
+        } else {
+            $icon = 'i/unflagged';
+            $alt = get_string('notflagged', 'question');
+>>>>>>> upstream/MOODLE_38_STABLE
             $label = get_string('clickflag', 'question');
         }
         $attributes = [
             'src' => $this->image_url($icon),
+<<<<<<< HEAD
             'alt' => '',
             'class' => 'questionflagimage',
         ];
+=======
+            'alt' => $alt,
+            'class' => 'questionflagimage',
+        );
+>>>>>>> upstream/MOODLE_38_STABLE
         if ($id) {
             $attributes['id'] = $id;
         }

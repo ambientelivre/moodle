@@ -32,8 +32,13 @@ defined('MOODLE_INTERNAL') || die();
 $string['admindirname'] = 'Yönetici dizini';
 $string['availablelangs'] = 'Kullanılabilir dil paketleri';
 $string['chooselanguagehead'] = 'Dil seçin';
+<<<<<<< HEAD
 $string['chooselanguagesub'] = 'Lütfen kurulum için bir dil seçin. Bu dil aynı zamanda site için varsayılan dil olarak kullanılacaktır, ancak daha sonra değiştirilebilir.';
 $string['clialreadyconfigured'] = 'config.php yapılandırma dosyası zaten mevcut. Bu siteye Moodle yüklemek için lütfen admin/cli/install_database.php dosyasını kullanın.';
+=======
+$string['chooselanguagesub'] = 'Lütfen, SADECE kurulum için bir dil seçin. Site ve kullanıcı dillerini sonraki ekranda seçebilirsiniz.';
+$string['clialreadyconfigured'] = 'config.php halihazırda mevcut, lütfen eğer bu siteyi yüklemek istiyorsanız şu dizini kullanın: admin/cli/install_database.php';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['clialreadyinstalled'] = 'Config.php zaten var. Sitenizi güncellemek istiyorsanız bu adresi kullanın: admin/cli/install_database.php';
 $string['cliinstallheader'] = 'Moodle {$a} komut satırı kurulum programı';
 $string['clitablesexist'] = 'Veritabanı tabloları zaten mevcut; CLI kurulumu devam edemiyor.';
@@ -49,6 +54,32 @@ $string['environmentsub2'] = 'Her Moodle dağıtımı, bazı PHP versiyon gereks
 $string['errorsinenvironment'] = 'Ortam kontrolu başarısız oldu!';
 $string['installation'] = 'Kurulum';
 $string['langdownloaderror'] = 'Maalesef "{$a}" dil paketi kurulamadı. Kuruluma İngilizce olarak devam edilecek.';
+<<<<<<< HEAD
+=======
+$string['memorylimithelp'] = '<p>Sunucunuz için PHP bellek limiti şu anda {$a} olarak ayarlanmış durumda.</p>
+
+<p>Özellikle bir çok modülü etkinleştirilmiş ve/veya çok fazla kullanıcınız
+varsa bu durum daha sonra bazı bellek sorunlarına sebep olabilir.</p>
+
+<p>Mümkünse size PHP\'e daha yüksek limitli bir bellek ayarı yapmanızı,
+örneğin, 40M, öneriyoruz. İşte bunu yapabilmeniz için size bir kaç yol:</p>
+
+<ol>
+<li>Bunu yapmaya yetkiliyseniz, PHP\'yi <i>--enable-memory-limit</i> ile yeniden derleyin.
+Bu, Moodle\'nın kendi kendine bellek limitini ayarlasına izin verecek.</li>
+
+<li>php.ini dosyasına erişim hakkınız varsa, <b>memory_limit</b> ayarını 40M gibi
+bir ayarla değiştirin. Erişim hakkınız yoksa, bunu sistem yöneticinizden sizin
+için yapmasını isteyin.</li>
+
+<li>Bazı PHP sunucularında Moodle klasörü içinde şu ayarı içeren bir
+.htaccess dosyası oluşturabilirsiniz:
+<p><blockquote>php_value memory_limit 40M</blockquote></p>
+<p>Ancak, bazı sunucularda bu durum çalışan <b>bütün</b> PHP sayfalarını engelleyecektir.
+(sayfanız altına baktığınızda bazı hatalar göreceksiniz)
+Böyle bir durumda .htaccess dosyasını silmeniz gerekiyor.</p></li>
+</ol>';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['paths'] = 'Dizin yolları';
 $string['pathserrcreatedataroot'] = 'Veri Klasörü ({$a->dataroot}) kurulum tarafından oluşturulamıyor.';
 $string['pathshead'] = 'Dizin yollarını onayla';

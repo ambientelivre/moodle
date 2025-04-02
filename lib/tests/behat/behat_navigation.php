@@ -752,6 +752,7 @@ class behat_navigation extends behat_base {
      * Convert page names to URLs for steps like 'When I am on the "[identifier]" "[page type]" page'.
      *
      * Recognised page names are:
+<<<<<<< HEAD
      * | Page type                       | Identifier meaning        | description                                                      |
      * | Category                        | category idnumber         | List of courses in that category.                                |
      * | Course                          | course shortname          | Main course home pag                                             |
@@ -779,6 +780,12 @@ class behat_navigation extends behat_base {
      * Examples:
      *
      * When I am on the "Welcome to ECON101" "forum activity" page logged in as student1
+=======
+     * | Page type     | Identifier meaning | description                          |
+     * | Category page | category idnumber  | List of courses in that category.    |
+     * | Course        | course shortname   | Main course home pag                 |
+     * | Activity      | activity idnumber  | Start page for that activity         |
+>>>>>>> upstream/MOODLE_38_STABLE
      *
      * @param string $type identifies which type of page this is, e.g. 'Category page'.
      * @param string $identifier identifies the particular page, e.g. 'test-cat'.
@@ -799,6 +806,7 @@ class behat_navigation extends behat_base {
                 }
                 return new moodle_url('/course/index.php', ['categoryid' => $categoryid]);
 
+<<<<<<< HEAD
             case 'course editing':
                 $courseid = $this->get_course_id($identifier);
                 if (!$courseid) {
@@ -935,6 +943,26 @@ class behat_navigation extends behat_base {
                     'course' => $courseid,
                     'returnto' => 'profile',
                 ]);
+=======
+            case 'Course':
+                $courseid = $DB->get_field_select('course', 'id', 'shortname = ?', [$identifier], IGNORE_MISSING);
+                if (!$courseid) {
+                    throw new Exception('The specified course with shortname, fullname, or idnumber "' .
+                            $identifier . '" does not exist');
+                }
+                return new moodle_url('/course/view.php', ['id' => $courseid]);
+
+            case 'Activity':
+                $cm = $DB->get_record('course_modules', ['idnumber' => $identifier], 'id, course', IGNORE_MISSING);
+                if (!$cm) {
+                    throw new Exception('The specified activity with idnumber "' . $identifier . '" does not exist');
+                }
+                $modinfo = get_fast_modinfo($cm->course);
+                return $modinfo->cms[$cm->id]->url;
+
+            default:
+                throw new Exception('Unrecognised core page type "' . $type . '."');
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         // This next section handles page types starting with an activity name. For example:
@@ -978,6 +1006,7 @@ class behat_navigation extends behat_base {
     }
 
     /**
+<<<<<<< HEAD
      * Opens a new tab with given name on the same URL as current page and switches to it.
      *
      * @param string $name Tab name that can be used for switching later (no whitespace)
@@ -1035,6 +1064,8 @@ class behat_navigation extends behat_base {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Opens the course homepage. (Consider using 'I am on the "shortname" "Course" page' step instead.)
      *
      * @Given /^I am on "(?P<coursefullname_string>(?:[^"]|\\")*)" course homepage$/
@@ -1043,8 +1074,14 @@ class behat_navigation extends behat_base {
      * @return void
      */
     public function i_am_on_course_homepage($coursefullname) {
+<<<<<<< HEAD
         $courseid = $this->get_course_id($coursefullname);
         $url = new moodle_url('/course/view.php', ['id' => $courseid]);
+=======
+        global $DB;
+        $course = $DB->get_record("course", array("fullname" => $coursefullname), 'id', MUST_EXIST);
+        $url = new moodle_url('/course/view.php', ['id' => $course->id]);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->execute('behat_general::i_visit', [$url]);
     }
 
@@ -1054,6 +1091,7 @@ class behat_navigation extends behat_base {
      * @param string $coursefullname The course full name of the course.
      */
     public function i_am_on_course_homepage_with_editing_mode_on($coursefullname) {
+<<<<<<< HEAD
         $this->i_am_on_course_homepage_with_editing_mode_set_to($coursefullname, 'on');
     }
 
@@ -1068,6 +1106,29 @@ class behat_navigation extends behat_base {
     public function i_am_on_course_homepage_with_editing_mode_set_to(string $coursefullname, string $onoroff): void {
         if ($onoroff !== 'on' && $onoroff !== 'off') {
             throw new coding_exception("Unknown editing mode '{$onoroff}'. Accepted values are 'on' and 'off'");
+=======
+        global $DB;
+
+        $course = $DB->get_record("course", array("fullname" => $coursefullname), 'id', MUST_EXIST);
+        $url = new moodle_url('/course/view.php', ['id' => $course->id]);
+
+        if ($this->running_javascript() && $sesskey = $this->get_sesskey()) {
+            // Javascript is running so it is possible to grab the session ket and jump straight to editing mode.
+            $url->param('edit', 1);
+            $url->param('sesskey', $sesskey);
+            $this->execute('behat_general::i_visit', [$url]);
+
+            return;
+        }
+
+        // Visit the course page.
+        $this->execute('behat_general::i_visit', [$url]);
+
+        try {
+            $this->execute("behat_forms::press_button", get_string('turneditingon'));
+        } catch (Exception $e) {
+            $this->execute("behat_navigation::i_navigate_to_in_current_page_administration", [get_string('turneditingon')]);
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         $courseid = $this->get_course_id($coursefullname);
@@ -1153,9 +1214,13 @@ class behat_navigation extends behat_base {
     protected function go_to_main_course_page() {
         $url = $this->getSession()->getCurrentUrl();
         if (!preg_match('|/course/view.php\?id=[\d]+$|', $url)) {
+<<<<<<< HEAD
             $node = $this->find('xpath',
                 '//header//div[@id=\'page-navbar\']//a[contains(@href,\'/course/view.php?id=\')]'
             );
+=======
+            $node = $this->find('xpath', '//header//div[@id=\'page-navbar\']//a[contains(@href,\'/course/view.php?id=\')]');
+>>>>>>> upstream/MOODLE_38_STABLE
             $this->execute('behat_general::i_click_on', [$node, 'NodeElement']);
         }
     }
@@ -1220,6 +1285,7 @@ class behat_navigation extends behat_base {
 
         // Find a link and click on it.
         $linkname = behat_context_helper::escape($lastnode);
+<<<<<<< HEAD
         $xpathlink = $xpathbutton = $xpath;
         $xpathlink .= '//a[contains(normalize-space(.), ' . $linkname . ')]';
         $xpathbutton .= '//button[contains(normalize-space(.), ' . $linkname . ')]';
@@ -1230,6 +1296,13 @@ class behat_navigation extends behat_base {
         } else {
             $this->execute('behat_general::i_click_on', [$node, 'NodeElement']);
         }
+=======
+        $xpath .= '//a[contains(normalize-space(.), ' . $linkname . ')]';
+        if (!$node = $this->getSession()->getPage()->find('xpath', $xpath)) {
+            throw new ElementNotFoundException($this->getSession(), 'Link "' . join(' > ', $nodelist) . '"');
+        }
+        $this->execute('behat_general::i_click_on', [$node, 'NodeElement']);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -1260,6 +1333,7 @@ class behat_navigation extends behat_base {
         $menuxpath = '//div[@id=\'region-main-settings-menu\']';
         if ($mustexist) {
             $exception = new ElementNotFoundException($this->getSession(), 'Page administration menu');
+<<<<<<< HEAD
             $this->find('xpath', $menuxpath, $exception);
         } else if (!$this->getSession()->getPage()->find('xpath', $menuxpath)) {
             return null;
@@ -1278,6 +1352,8 @@ class behat_navigation extends behat_base {
 
         if ($mustexist) {
             $exception = new ElementNotFoundException($this->getSession(), 'Page check');
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             $this->find('xpath', $menuxpath, $exception);
         } else if (!$this->getSession()->getPage()->find('xpath', $menuxpath)) {
             return null;
@@ -1295,10 +1371,15 @@ class behat_navigation extends behat_base {
             $menuxpath = $this->find_header_administration_menu() ?: $this->find_page_administration_menu();
         }
         if ($menuxpath && $this->running_javascript()) {
+<<<<<<< HEAD
             $node = $this->find('xpath', $menuxpath . '//a[@data-bs-toggle=\'dropdown\']');
             if ($node->isVisible()) {
                 $this->execute('behat_general::i_click_on', [$node, 'NodeElement']);
             }
+=======
+            $node = $this->find('xpath', $menuxpath . '//a[@data-toggle=\'dropdown\']');
+            $this->execute('behat_general::i_click_on', [$node, 'NodeElement']);
+>>>>>>> upstream/MOODLE_38_STABLE
         }
     }
 
@@ -1323,12 +1404,15 @@ class behat_navigation extends behat_base {
         }
 
         $this->execute('behat_navigation::toggle_page_administration_menu', [$menuxpath]);
+<<<<<<< HEAD
 
         $firstnode = $nodelist[0];
         $firstlinkname = behat_context_helper::escape($firstnode);
         $firstlink = $this->getSession()->getPage()->find('xpath',
             $menuxpath . '//a[contains(normalize-space(.), ' . $firstlinkname . ')]'
         );
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         if (!$isheader || count($nodelist) == 1) {
             $lastnode = end($nodelist);
@@ -1358,10 +1442,13 @@ class behat_navigation extends behat_base {
             );
             if ($link) {
                 $this->execute('behat_general::i_click_on', [$link, 'NodeElement']);
+<<<<<<< HEAD
                 $this->select_on_administration_page($nodelist);
                 return;
             } else if ($courselink) {
                 $this->execute('behat_general::i_click_on', [$courselink, 'NodeElement']);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
                 $this->select_on_administration_page($nodelist);
                 return;
             }
@@ -1369,6 +1456,7 @@ class behat_navigation extends behat_base {
 
         throw new ElementNotFoundException($this->getSession(),
                 'Link "' . join(' > ', $nodelist) . '" in the current page edit menu"');
+<<<<<<< HEAD
     }
 
     /**
@@ -1692,5 +1780,7 @@ class behat_navigation extends behat_base {
         JS;
 
         $this->getSession()->executeScript($script);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

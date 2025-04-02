@@ -288,7 +288,11 @@ EOF;
         if ($session->isStarted()) {
             $session->restart();
         } else {
+<<<<<<< HEAD
             $this->start_session();
+=======
+            $session->start();
+>>>>>>> upstream/MOODLE_38_STABLE
         }
         if ($this->running_javascript() && $this->getSession()->getDriver()->getWebDriverSessionId() === 'session') {
             throw new DriverException('Unable to create a valid session');
@@ -296,6 +300,7 @@ EOF;
     }
 
     /**
+<<<<<<< HEAD
      * Start the Session, applying any initial configuratino required.
      */
     protected function start_session(): void {
@@ -305,12 +310,18 @@ EOF;
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Restart the session before each non-javascript scenario.
      *
      * @BeforeScenario @~javascript
      * @param BeforeScenarioScope $scope scope passed by event fired before scenario.
      */
+<<<<<<< HEAD
     public function before_browserkit_scenarios(BeforeScenarioScope $scope) {
+=======
+    public function before_goutte_scenarios(BeforeScenarioScope $scope) {
+>>>>>>> upstream/MOODLE_38_STABLE
         if ($this->running_javascript()) {
             // A bug in the BeforeScenario filtering prevents the @~javascript filter on this hook from working
             // properly.
@@ -346,16 +357,28 @@ The following debugging information is available:
 
 EOF;
 
+<<<<<<< HEAD
         try {
             $this->restart_session();
         } catch (WebDriverCurlException | DriverException $e) {
             // Thrown by WebDriver.
+=======
+
+        try {
+            $this->restart_session();
+        } catch (CurlExec | DriverException $e) {
+            // The CurlExec Exception is thrown by WebDriver.
+>>>>>>> upstream/MOODLE_38_STABLE
             self::log_and_stop(
                 $driverexceptionmsg . '. ' .
                 $e->getMessage() . "\n\n" .
                 format_backtrace($e->getTrace(), true)
             );
+<<<<<<< HEAD
         } catch (UnknownErrorException $e) {
+=======
+        } catch (UnknownError $e) {
+>>>>>>> upstream/MOODLE_38_STABLE
             // Generic 'I have no idea' Selenium error. Custom exception to provide more feedback about possible solutions.
             self::log_and_stop(
                 $e->getMessage() . "\n\n" .
@@ -666,6 +689,7 @@ EOF;
      * @AfterScenario
      */
     public function reset_webdriver_between_scenarios(AfterScenarioScope $scope) {
+<<<<<<< HEAD
         try {
             $this->getSession()->stop();
         } catch (Exception $e) {
@@ -684,6 +708,9 @@ EOF;
                 format_backtrace($e->getTrace(), true)
             ));
         }
+=======
+        $this->getSession()->stop();
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

@@ -7,6 +7,7 @@ This file has been replaced by UPGRADING.md. See MDL-81125 for further informati
 This files describes API changes in core libraries and APIs,
 information provided here is intended especially for developers.
 
+<<<<<<< HEAD
 === 4.4 ===
 
 * New modinfo methods related to delegated sections (sections controlled by a component):
@@ -1082,10 +1083,27 @@ defined or can't be applied.
 * The following functions have been updated to support passing in an array of group IDs (but still support passing in a single ID):
   * groups_get_members_join()
   * groups_get_members_ids_sql()
+=======
+=== 3.8.9 ===
+* The third-party library h5p/h5plib/v124/core has been updated to version 1.24.2.
+
+=== 3.8.6 ===
+* New DML function $DB->delete_records_subquery() to delete records based on a subquery in a way
+  that will work across databases.
+
+=== 3.8.5 ===
+* The `$CFG->behat_retart_browser_after` configuration setting has been removed.
+  The browser session is now restarted between all tests.
+* A new web service `core_output_load_fontawesome_icon_system_map` has been created.
+  This replaces the existing `core_output_load_fontawesome_icon_map` web service, which will be deprecated in Moodle 3.10.
+
+=== 3.8.4 ===
+>>>>>>> upstream/MOODLE_38_STABLE
 * Additional parameters were added to core_get_user_dates:
     - type: specifies the calendar type. Optional, defaults to Gregorian.
     - fixday: Whether to remove leading zero for day. Optional, defaults to 1.
     - fixhour: Whether to remove leading zero for hour. Optional, defaults to 1.
+<<<<<<< HEAD
 * Legacy cron has been deprecated and will be removed in Moodle 4.1. This includes the functions:
   - cron_execute_plugin_type()
   - cron_bc_hack_plugin_functions()
@@ -1105,6 +1123,20 @@ defined or can't be applied.
   return string, which will be added to the list of category contents shown on the form. $category param is an instance
   of core_course_category class.
 * Data generator create_user in both unittests and behat now validates user fields and triggers user_created event
+=======
+
+=== 3.8.3 ===
+* database_manager::check_database_schema() now checks for missing indexes.
+* Added function cleanup_after_drop to the database_manager class to take care of all the cleanups that need to be done after a table is dropped.
+
+=== 3.8.2 ===
+* grade_item::update_final_grade() can now take an optional parameter to set the grade->timemodified. If not present the current time will carry on being used.
+
+=== 3.8.1 ===
+* behat_data_generators::the_following_exist() has been removed, please use
+  behat_data_generators::the_following_entities_exist() instead. See MDL-67691 for more info.
+* format_float() now accepts a special value (-1) as the $decimalpoints parameter which means auto-detecting number of decimal points.
+>>>>>>> upstream/MOODLE_38_STABLE
 
 === 3.8 ===
 * Add CLI option to notify all cron tasks to stop: admin/cli/cron.php --stop

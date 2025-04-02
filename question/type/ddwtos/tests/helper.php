@@ -34,7 +34,11 @@ defined('MOODLE_INTERNAL') || die();
  */
 class qtype_ddwtos_test_helper extends question_test_helper {
     public function get_test_questions() {
+<<<<<<< HEAD
         return ['fox', 'maths', 'oddgroups', 'missingchoiceno', 'infinite', 'mathjax'];
+=======
+        return array('fox', 'maths', 'oddgroups', 'missingchoiceno');
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -158,12 +162,16 @@ class qtype_ddwtos_test_helper extends question_test_helper {
         test_question_maker::set_standard_combined_feedback_form_data($fromform);
         $fromform->shownumcorrect = 0;
         $fromform->penalty = 0.3333333;
+<<<<<<< HEAD
         $fromform->status = \core_question\local\bank\question_version_status::QUESTION_STATUS_READY;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         return $fromform;
     }
 
     /**
+<<<<<<< HEAD
      * Get data required to save a drag-drop into text question where the the answer contain equation
      *
      *
@@ -188,6 +196,8 @@ class qtype_ddwtos_test_helper extends question_test_helper {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * @return qtype_ddwtos_question
      */
     public function make_ddwtos_question_maths() {

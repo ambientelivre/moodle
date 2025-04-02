@@ -205,7 +205,11 @@ switch ($action) {
         $return = new stdClass();
         $zipper = get_file_packer('application/zip');
         $fs = get_file_storage();
+<<<<<<< HEAD
         $file = $fs->get_file($usercontext->id, 'user', 'draft', $draftid, $filepath, $filename);
+=======
+        $file = $fs->get_file($user_context->id, 'user', 'draft', $draftid, $filepath, $filename);
+>>>>>>> upstream/MOODLE_38_STABLE
         // Get the total size of the content in the archive.
         $filecontentsize = $file->get_total_content_size($zipper);
 
@@ -229,7 +233,11 @@ switch ($action) {
         $doremovedirs = array($temppath);
 
         // Extract archive and move all files from $temppath to $filepath
+<<<<<<< HEAD
         if (($processed = $file->extract_to_storage($zipper, $usercontext->id, 'user', 'draft', $draftid, $temppath, $USER->id))
+=======
+        if (($processed = $file->extract_to_storage($zipper, $user_context->id, 'user', 'draft', $draftid, $temppath, $USER->id))
+>>>>>>> upstream/MOODLE_38_STABLE
                 !== false) {
 
             // Find all failures within the processed files, and return an error if any are found.
@@ -241,7 +249,11 @@ switch ($action) {
                 die(json_encode($return));
             }
 
+<<<<<<< HEAD
             $extractedfiles = $fs->get_directory_files($usercontext->id, 'user', 'draft', $draftid, $temppath, true);
+=======
+            $extractedfiles = $fs->get_directory_files($user_context->id, 'user', 'draft', $draftid, $temppath, true);
+>>>>>>> upstream/MOODLE_38_STABLE
             $xtemppath = preg_quote($temppath, '|');
             foreach ($extractedfiles as $file) {
                 $realpath = preg_replace('|^'.$xtemppath.'|', $filepath, $file->get_filepath());

@@ -156,6 +156,10 @@ class behat_field_manager {
         if ($tagname == 'input') {
             switch ($node->getAttribute('type')) {
                 case 'text':
+                    if ($fieldtype = $fieldnode->getAttribute('data-fieldtype')) {
+                        return self::normalise_fieldtype($fieldtype);
+                    }
+                    return 'text';
                 case 'password':
                 case 'email':
                 case 'file':
@@ -179,6 +183,10 @@ class behat_field_manager {
         if ($tagname == 'select') {
             // Select tag.
             return 'select';
+        } else if ($tagname == 'span') {
+            if ($fieldnode->hasAttribute('data-inplaceeditable') && $fieldnode->getAttribute('data-inplaceeditable')) {
+                return 'inplaceeditable';
+            }
         }
 
         if ($tagname == 'span') {
@@ -290,7 +298,11 @@ class behat_field_manager {
         }
 
         // If the type is explictly set on the element pointed to by the label - use it.
+<<<<<<< HEAD
         $fieldtype = $node->getAttribute('data-fieldtype');
+=======
+        $fieldtype = $fieldnode->getAttribute('data-fieldtype');
+>>>>>>> upstream/MOODLE_38_STABLE
         if ($fieldtype) {
             return self::normalise_fieldtype($fieldtype);
         }
@@ -301,10 +313,14 @@ class behat_field_manager {
         }
 
         // Fetch the parentnode only once.
+<<<<<<< HEAD
         $parentnode = $node->parentNode;
         if ($parentnode instanceof \DOMDocument) {
             return null;
         }
+=======
+        $parentnode = $fieldnode->getParent();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Check the parent fieldtype before we check classes.
         $fieldtype = $parentnode->getAttribute('data-fieldtype');
@@ -325,8 +341,26 @@ class behat_field_manager {
             }
         }
 
+<<<<<<< HEAD
         // Move up the tree.
         return self::get_field_type($document, $parentnode, $session);
+=======
+        return self::get_field_node_type($parentnode, $session);
+    }
+
+    /**
+     * Normalise the field type.
+     *
+     * @param string $fieldtype
+     * @return string
+     */
+    protected static function normalise_fieldtype(string $fieldtype): string {
+        if ($fieldtype === 'tags') {
+            return 'autocomplete';
+        }
+
+        return $fieldtype;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

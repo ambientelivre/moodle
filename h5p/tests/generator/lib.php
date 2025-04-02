@@ -14,11 +14,27 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 use core_h5p\local\library\autoloader;
 use core_h5p\core;
 use core_h5p\player;
 use core_h5p\factory;
 use core_xapi\local\statement\item_activity;
+=======
+/**
+ * Generator for the core_h5p subsystem.
+ *
+ * @package    core_h5p
+ * @category   test
+ * @copyright  2019 Victor Deniz <victor@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+use core_h5p\autoloader;
+use core_h5p\core;
+
+defined('MOODLE_INTERNAL') || die();
+>>>>>>> upstream/MOODLE_38_STABLE
 
 /**
  * Generator for the core_h5p subsystem.
@@ -417,7 +433,11 @@ class core_h5p_generator extends \component_generator_base {
         $installedtypes = 0;
 
         // Fake installation of all other H5P content types.
+<<<<<<< HEAD
         foreach ($response->contentTypes as $contenttype) {
+=======
+        foreach ($contenttypes as $contenttype) {
+>>>>>>> upstream/MOODLE_38_STABLE
             // Don't install pending content types.
             if (in_array($contenttype->id, $typestonotinstall)) {
                 continue;
@@ -436,6 +456,7 @@ class core_h5p_generator extends \component_generator_base {
         }
 
         return [$installedtypes, count($typestonotinstall)];
+<<<<<<< HEAD
     }
 
     /**
@@ -599,5 +620,7 @@ class core_h5p_generator extends \component_generator_base {
         $deployedfile['fileurl'] = $url->out(false);
 
         return $deployedfile;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

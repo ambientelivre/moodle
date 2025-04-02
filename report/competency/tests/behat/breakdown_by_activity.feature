@@ -51,6 +51,10 @@ Feature: See the competencies for an activity
     When I navigate to "Reports" in current page administration
     And I click on "Competency breakdown" "link"
     And I set the field "Filter competencies by resource or activity" to "PageName1"
+<<<<<<< HEAD
+=======
+    And I press the enter key
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should see "Test-Comp1"
     And I should not see "Test-Comp2"
     And I should see "Ann, Jill, Grainne, Beauchamp"
@@ -61,8 +65,14 @@ Feature: See the competencies for an activity
     And I click on "Rate" "button"
     And I set the field "Rating" to "A"
     And I click on "Rate" "button" in the ".competency-grader" "css_element"
+<<<<<<< HEAD
     And I click on "Close" "button" in the "User competency summary" "dialogue"
     And I click on "PageName1" "autocomplete_selection"
+=======
+    And I click on "Close" "button"
+    And I set the field "Filter competencies by resource or activity" to "No filters applied"
+    And I press the enter key
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should see "Test-Comp1"
     And I should see "Test-Comp2"
 

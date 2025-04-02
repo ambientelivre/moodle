@@ -579,6 +579,16 @@ abstract class restore_dbops {
         $plan = $rc->get_plan();
         $after35 = $plan->backup_release_compare('3.5', '>=') && $plan->backup_version_compare(20180205, '>');
         $rc->destroy(); // Always need to destroy.
+<<<<<<< HEAD
+=======
+        $backuprelease = $restoreinfo->backup_release; // The major version: 2.9, 3.0, 3.10...
+        preg_match('/(\d{8})/', $restoreinfo->moodle_release, $matches);
+        $backupbuild = (int)$matches[1];
+        $after35 = false;
+        if (version_compare($backuprelease, '3.5', '>=') && $backupbuild > 20180205) {
+            $after35 = true;
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
 
         /*
           For any contextlevel, follow this process logic:

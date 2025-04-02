@@ -1153,6 +1153,7 @@ class grade_grade extends grade_object {
      */
     public function delete($source = null) {
         global $DB;
+<<<<<<< HEAD
         try {
             $transaction = $DB->start_delegated_transaction();
             $success = parent::delete($source);
@@ -1165,6 +1166,18 @@ class grade_grade extends grade_object {
         } catch (Exception $e) {
             $transaction->rollback($e);
         }
+=======
+
+        $transaction = $DB->start_delegated_transaction();
+        $success = parent::delete($source);
+
+        // If the grade was deleted successfully trigger a grade_deleted event.
+        if ($success && !empty($this->grade_item)) {
+            \core\event\grade_deleted::create_from_grade($this)->trigger();
+        }
+
+        $transaction->allow_commit();
+>>>>>>> upstream/MOODLE_38_STABLE
         return $success;
     }
 

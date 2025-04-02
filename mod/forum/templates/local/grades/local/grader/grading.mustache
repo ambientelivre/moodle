@@ -41,7 +41,11 @@
                 <div class="header-container bg-light">
                     <div class="info-container d-flex align-items-center" data-region="grading-info-container">
                         <button
+<<<<<<< HEAD
                             class="btn btn-icon colour-inherit"
+=======
+                            class="btn btn-icon icon-size-3 icon-no-margin colour-inherit"
+>>>>>>> upstream/MOODLE_38_STABLE
                             data-action="collapse-grading-drawer"
                             aria-controls="grading-drawer-{{uniqid}}"
                             aria-expanded="true"
@@ -51,7 +55,11 @@
                             <span class="dir-ltr-hide">{{#pix}} t/left, core {{/pix}}</span>
                             <span class="dir-rtl-hide">{{#pix}} t/right, core {{/pix}}</span>
                         </button>
+<<<<<<< HEAD
                         <div class="mx-auto text-center" data-region="status-container">
+=======
+                        <div class="ml-auto mr-auto text-center" data-region="status-container">
+>>>>>>> upstream/MOODLE_38_STABLE
                             {{> mod_forum/local/grades/local/grader/status_placeholder }}
                         </div>
                     </div>
@@ -71,7 +79,11 @@
                                 placeholder="{{#str}} searchusers, mod_forum {{/str}}"
                                 aria-labelledby="user-search-input-{{uniqid}}-label"
                             >
+<<<<<<< HEAD
                             <span id="user-search-input-{{uniqid}}-label" class="visually-hidden">{{#str}}searchusers, mod_forum{{/str}}</span>
+=======
+                            <span id="user-search-input-{{uniqid}}-label" class="sr-only">{{#str}}searchusers, mod_forum{{/str}}</span>
+>>>>>>> upstream/MOODLE_38_STABLE
                             <button
                                 class="toggle-search-button btn btn-icon"
                                 aria-expanded="false"
@@ -94,13 +106,21 @@
             </div>
             <div class="body-container position-relative d-flex flex-column" data-region="body-container">
                 <div class="grader-grading-panel-display pt-3" data-region="grading-panel-container">
+<<<<<<< HEAD
                     <h4 class="mb-0 h5 px-3 fw-normal">
+=======
+                    <h4 class="mb-0 h5 px-3 font-weight-normal">
+>>>>>>> upstream/MOODLE_38_STABLE
                         {{#pix}} i/grading, core {{/pix}}{{#str}} gradingmodulename, core_grades, {{moduleName}} {{/str}}
                     </h4>
                     <div data-region="grade" class="pt-3 px-3">
                         {{> mod_forum/local/grades/local/grader/grade_placeholder }}
                     </div>
+<<<<<<< HEAD
                     <h4 id="send-student-notifications-setting" class="mb-0 h5 px-3 fw-normal">
+=======
+                    <h4 id="send-student-notifications-setting" class="mb-0 h5 px-3 font-weight-normal">
+>>>>>>> upstream/MOODLE_38_STABLE
                         {{#pix}} i/gradingnotifications, core {{/pix}}{{#str}}notifications, core{{/str}}
                     </h4>
                     <div data-region="notification" class="pt-3 px-3" role="radiogroup" aria-labelledby="send-student-notifications-setting">

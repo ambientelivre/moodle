@@ -19,8 +19,13 @@ Feature: Report relevant content availability
       | student1 | C1     | student        |
       | student2 | C1     | student        |
     And the following "activities" exist:
+<<<<<<< HEAD
       | activity | name   | course | idnumber |
       | forum    | forum1 | C1     | forum1   |
+=======
+      | activity | name   | description | course | idnumber |
+      | forum    | forum1 | C1 forum    | C1     | forum1   |
+>>>>>>> upstream/MOODLE_38_STABLE
     And the following forum discussions exist in course "Course 1":
       | user     | forum  | name        | message   | attachments | inlineattachments |
       | teacher1 | forum1 | discussion1 | message 1 |             |                   |
@@ -33,8 +38,15 @@ Feature: Report relevant content availability
 
   @javascript
   Scenario: Teachers can access report data about other users by default
+<<<<<<< HEAD
     Given I am on the "forum1" "forum activity" page logged in as teacher1
     And I navigate to "Reports" in current page administration
+=======
+    Given I log in as "teacher1"
+    When I am on "Course 1" course homepage
+    And I follow "forum1"
+    And I navigate to "Summary report" in current page administration
+>>>>>>> upstream/MOODLE_38_STABLE
     Then the following should exist in the "forumreport_summary_table" table:
       | -2-       | -3- | -4- | -5- | -6- | -7- | -8- |
       | Student 1 | 1   | 1   | 5   | 0   | 3   | 14  |
@@ -42,7 +54,11 @@ Feature: Report relevant content availability
       | Teacher 1 | 1   | 0   | 0   | 1   | 2   | 8   |
     And "select-all-users" "checkbox" should be visible
     And "First name" "link" should be visible
+<<<<<<< HEAD
     And "Last name" "link" should be visible
+=======
+    And "Surname" "link" should be visible
+>>>>>>> upstream/MOODLE_38_STABLE
     And "Number of discussions posted" "link" should be visible
     And "Number of replies posted" "link" should be visible
     And "Number of attachments" "link" should be visible
@@ -55,16 +71,30 @@ Feature: Report relevant content availability
     And "Export posts" "link" should not exist
 
   Scenario: Students cannot access the summary report by default
+<<<<<<< HEAD
     Given I am on the "forum1" "forum activity" page logged in as student1
     Then "Forum summary report" "link" should not exist in current page administration
+=======
+    Given I log in as "student1"
+    When I am on "Course 1" course homepage
+    And I follow "forum1"
+    Then "Summary report" "link" should not exist in current page administration
+>>>>>>> upstream/MOODLE_38_STABLE
 
   @javascript
   Scenario: Students given the view capability can only view their own report data
     Given the following "permission overrides" exist:
       | capability               | permission | role    | contextlevel | reference |
       | forumreport/summary:view | Allow      | student | Course       | C1        |
+<<<<<<< HEAD
     When I am on the "forum1" "forum activity" page logged in as student1
     And I navigate to "Reports" in current page administration
+=======
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "forum1"
+    And I navigate to "Summary report" in current page administration
+>>>>>>> upstream/MOODLE_38_STABLE
     Then the following should exist in the "forumreport_summary_table" table:
       | -1-       | -2- | -3- | -4- | -5- | -6- | -7- |
       | Student 1 | 1   | 1   | 5   | 1   | 3   | 14  |
@@ -74,7 +104,11 @@ Feature: Report relevant content availability
       | Teacher 1 |
     And "select-all-users" "checkbox" should not exist
     And "First name" "link" should be visible
+<<<<<<< HEAD
     And "Last name" "link" should be visible
+=======
+    And "Surname" "link" should be visible
+>>>>>>> upstream/MOODLE_38_STABLE
     And "Number of discussions posted" "link" should be visible
     And "Number of replies posted" "link" should be visible
     And "Number of attachments" "link" should be visible

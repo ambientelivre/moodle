@@ -31,8 +31,11 @@ define([
     'core_calendar/modal_delete',
     'core_calendar/selectors',
     'core/pending',
+<<<<<<< HEAD
     'core/modal_save_cancel',
     'core/config',
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 ],
 function(
     $,
@@ -42,11 +45,17 @@ function(
     ModalEventForm,
     CalendarRepository,
     CalendarEvents,
+<<<<<<< HEAD
     CalendarModalDelete,
     CalendarSelectors,
     Pending,
     ModalSaveCancel,
     Config,
+=======
+    ModalDelete,
+    CalendarSelectors,
+    Pending
+>>>>>>> upstream/MOODLE_38_STABLE
 ) {
 
     /**
@@ -128,11 +137,14 @@ function(
 
             return deleteModal;
         })
+<<<<<<< HEAD
         .then(function(modal) {
             pendingPromise.resolve();
 
             return modal;
         })
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         .catch(Notification.exception);
 
         return finalPromise;

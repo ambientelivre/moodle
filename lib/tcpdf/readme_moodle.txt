@@ -1,9 +1,21 @@
+<<<<<<< HEAD
 Description of TCPDF library import
 ===================================
 * download library from https://github.com/tecnickcom/TCPDF/tags
+=======
+Description of TCPDF library import 6.3.2
+==========================================
+* download library from https://github.com/tecnickcom/TCPDF/releases
+>>>>>>> upstream/MOODLE_38_STABLE
 * delete examples/, tools/ VERSION and tcpdf_import.php
 * remove tcpdf_import.php from composer.json
 * remove all fonts that were not already present
+* Re-apply the following commits if they are not included in the upstream version imported:
+  (and remove them from here once they are verified to be part of the upstream library)
+  * 18dabac - https://git.io/JeKfU
+  * 60c9db7 - https://git.io/JeKfT
+  * 1adcd76 - https://git.io/JeKft
+  * 5e4d999 - https://git.io/JvrxB
 * visit http://127.0.0.1/lib/tests/other/pdflibtestpage.php and view the pdf
 * modify getTCPDFProducer lib/tcpdf/include/tcpdf_static.php to remove the version number
 
@@ -12,6 +24,7 @@ Important
 A new version of the libray is being developed @ https://github.com/tecnickcom/tc-lib-pdf . Check periodically when it's ready
 and if it's a drop-in replacement for the legacy tcpdf one.
 
+<<<<<<< HEAD
 2025/02/04
 ----------
 Upgrade to tcpdf TCPDF 6.8.2 (MDL-84354)
@@ -52,6 +65,8 @@ by Brendan Heywood <brendan@catalyst-au.net>
 Upgrade to tcpdf TCPDF 6.3.5 (MDL-70294)
 by Paul Holden <paulh@moodle.com>
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 2019/10/20
 ----------
 Upgrade to tcpdf TCPDF 6.3.2 (MDL-66966)

@@ -52,6 +52,7 @@ if ($data) {
     $emailuser->email = $data->recipient;
     $emailuser->id = -99;
 
+<<<<<<< HEAD
     // Get the user who will send this email (From:).
     $emailuserfrom = $USER;
     if ($data->from) {
@@ -82,6 +83,11 @@ if ($data) {
 
     $subject = get_string('testoutgoingmailconf_subject', 'admin', $subjectparams);
     $messagetext = get_string('testoutgoingmailconf_message', 'admin', $timestamp);
+=======
+    $subject = get_string('testoutgoingmailconf_subject', 'admin',
+        format_string($SITE->fullname, true, ['context' => context_system::instance()]));
+    $messagetext = get_string('testoutgoingmailconf_message', 'admin');
+>>>>>>> upstream/MOODLE_38_STABLE
 
     // Manage Moodle debugging options.
     $debuglevel = $CFG->debug;

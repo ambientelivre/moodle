@@ -198,7 +198,23 @@ class user extends tablelike implements selectable_items {
         $itemname = \grade_helper::get_element_header($gradetreeitem, true, false, false, false, true);
         $grade->label = $item->get_name();
 
+<<<<<<< HEAD
         $formatteddefinition = $this->format_definition($grade);
+=======
+        $line = array(
+            $OUTPUT->action_icon($this->format_link('grade', $item->id), new pix_icon('t/editstring', ''), null,
+                    ['title' => $iconstring, 'aria-label' => $iconstring]),
+            $this->format_icon($item) . $lockicon . $itemlabel,
+            $this->category($item),
+            new range($item)
+        );
+        $lineclasses = array(
+            "action",
+            "gradeitem",
+            "category",
+            "range"
+        );
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $itemicon = html_writer::div($this->format_icon($item), 'me-1');
         $itemtype = \html_writer::span(\grade_helper::get_element_type_string($gradetreeitem),

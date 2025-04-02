@@ -1014,6 +1014,7 @@ class core_calendar_external extends external_api {
     /**
      * Get data for the monthly calendar view.
      *
+<<<<<<< HEAD
      * @param int $year The year to be shown
      * @param int $month The month to be shown
      * @param int $courseid The course to be included
@@ -1026,6 +1027,18 @@ class core_calendar_external extends external_api {
      */
     public static function get_calendar_monthly_view($year, $month, $courseid, $categoryid, $includenavigation, $mini, $day,
             ?string $view = null) {
+=======
+     * @param   int     $year The year to be shown
+     * @param   int     $month The month to be shown
+     * @param   int     $courseid The course to be included
+     * @param   int     $categoryid The category to be included
+     * @param   bool    $includenavigation Whether to include navigation
+     * @param   bool    $mini Whether to return the mini month view or not
+     * @param   int     $day The day we want to keep as the current day
+     * @return  array
+     */
+    public static function get_calendar_monthly_view($year, $month, $courseid, $categoryid, $includenavigation, $mini, $day) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $USER, $PAGE;
 
         // Parameter validation.
@@ -1037,7 +1050,10 @@ class core_calendar_external extends external_api {
             'includenavigation' => $includenavigation,
             'mini' => $mini,
             'day' => $day,
+<<<<<<< HEAD
             'view' => $view,
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         ]);
 
         $context = \context_user::instance($USER->id);
@@ -1083,7 +1099,10 @@ class core_calendar_external extends external_api {
                     NULL_ALLOWED
                 ),
                 'day' => new external_value(PARAM_INT, 'Day to be viewed', VALUE_DEFAULT, 1),
+<<<<<<< HEAD
                 'view' => new external_value(PARAM_ALPHA, 'The view mode of the calendar', VALUE_DEFAULT, 'month', NULL_ALLOWED),
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             ]
         );
     }

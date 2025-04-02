@@ -51,7 +51,12 @@ Feature: Users' names are displayed across the site according to the user policy
   Scenario: As an authenticated user, 'fullnamedisplay' should be used in the navigation and when viewing my profile
     Given I log in as "user1"
     When I follow "Profile" in the user menu
+<<<<<<< HEAD
     Then I should see "Gronya,Beecham" in the ".page-context-header" "css_element"
+=======
+    Then I should see "Gronya,Beecham" in the ".usermenu" "css_element"
+    And I should see "Gronya,Beecham" in the ".page-context-header" "css_element"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should see "You are logged in as Gronya,Beecham" in the "page-footer" "region"
     And I log out
 

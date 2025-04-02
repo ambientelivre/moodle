@@ -196,7 +196,12 @@
     <description>Simple Pie helps with blogs.</description>
     <version>1.8.1</version>
     <license>BSD</license>
+<<<<<<< HEAD
     <repository>https://github.com/simplepie/simplepie</repository>
+=======
+    <version>1.5.3</version>
+    <licenseversion></licenseversion>
+>>>>>>> upstream/MOODLE_38_STABLE
   </library>
   <library>
     <location>tcpdf</location>
@@ -204,6 +209,7 @@
     <description>Class to generate PDF files</description>
     <version>6.8.2</version>
     <license>LGPL</license>
+<<<<<<< HEAD
     <licenseversion>3.0-or-later</licenseversion>
     <repository>https://github.com/tecnickcom/TCPDF</repository>
     <copyrights>
@@ -211,6 +217,17 @@
       <copyright>Nicola Asuni</copyright>
     </copyrights>
     <customised/>
+=======
+    <version>6.3.2</version>
+    <licenseversion>3</licenseversion>
+  </library>
+  <library>
+    <location>typo3</location>
+    <name>Typo3</name>
+    <license>GPL</license>
+    <version>4.7.19</version>
+    <licenseversion>2.0+</licenseversion>
+>>>>>>> upstream/MOODLE_38_STABLE
   </library>
   <library>
     <location>yuilib</location>
@@ -242,10 +259,15 @@
     <description>jQuery is a fast, small, and feature-rich JavaScript library widely used on moodle.</description>
     <version>3.7.1</version>
     <license>MIT</license>
+<<<<<<< HEAD
     <repository>https://github.com/jquery/jquery</repository>
     <copyrights>
       <copyright>2016 The jQuery Foundation</copyright>
     </copyrights>
+=======
+    <version>3.5.1</version>
+    <licenseversion></licenseversion>
+>>>>>>> upstream/MOODLE_38_STABLE
   </library>
   <library>
     <location>jquery</location>
@@ -383,11 +405,15 @@ All rights reserved.</copyright>
     <description>scssphp is a compiler for SCSS written in PHP.</description>
     <version>1.12.1</version>
     <license>MIT</license>
+<<<<<<< HEAD
     <repository>https://github.com/scssphp/scssphp/</repository>
     <copyrights>
       <copyright>2015 Leaf Corcoran</copyright>
     </copyrights>
     <customised/>
+=======
+    <version>1.0.6</version>
+>>>>>>> upstream/MOODLE_38_STABLE
   </library>
   <library>
     <location>openspout</location>
@@ -588,6 +614,7 @@ All rights reserved.</copyright>
     <customised/>
   </library>
   <library>
+<<<<<<< HEAD
     <location>polyfills</location>
     <name>url-polyfill</name>
     <description>Polyfill URL and URLSearchParams to match last WHATWG specifications.</description>
@@ -838,5 +865,17 @@ All rights reserved.</copyright>
       <version>8.13.55</version>
       <license>Apache 2.0</license>
       <repository>https://github.com/giggsey/libphonenumber-for-php-lite</repository>
+=======
+    <location>h5p</location>
+    <name>h5p-php-library</name>
+    <license>GPL-3.0</license>
+    <version>1.24.2</version>
+  </library>
+  <library>
+    <location>mdn-polyfills</location>
+    <name>url-polyfill</name>
+    <license>MIT</license>
+    <version>1.1.8</version>
+>>>>>>> upstream/MOODLE_38_STABLE
   </library>
 </libraries>

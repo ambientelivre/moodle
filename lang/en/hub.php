@@ -128,7 +128,11 @@ $string['roleassignmentsnumber'] = 'Number of role assignments ({$a})';
 $string['search'] = 'Search';
 $string['sendingsize'] = 'Please wait the course file is uploading ({$a->total}Mb)...';
 $string['sendfollowinginfo'] = 'More information';
+<<<<<<< HEAD
 $string['sendfollowinginfo_help'] = 'The following information will be sent to Moodle each time your site registration is updated (by default weekly, when the \'Site registration\' scheduled task is run). The information contributes to overall statistics only and will not be made public on any site listing. In addition, your Moodle release version is recorded by the weekly automated site link check.';
+=======
+$string['sendfollowinginfo_help'] = 'The following information will be sent to Moodle each time your site registration is updated (by default weekly, when the \'Site registration\' scheduled task is run). The information contributes to overall statistics only and will not be made public on any site listing.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['sent'] = '...finished';
 $string['siteadmin'] = 'Administrator';
 $string['siteadmin_help'] = 'The full name of the site administrator.';

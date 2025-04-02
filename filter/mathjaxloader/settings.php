@@ -33,7 +33,11 @@ if ($ADMIN->fulltree) {
     $item = new admin_setting_configtext('filter_mathjaxloader/httpsurl',
                                          new lang_string('httpsurl', 'filter_mathjaxloader'),
                                          new lang_string('httpsurl_help', 'filter_mathjaxloader'),
+<<<<<<< HEAD
                                          'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js',
+=======
+                                         'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js',
+>>>>>>> upstream/MOODLE_38_STABLE
                                          PARAM_RAW);
     $settings->add($item);
 

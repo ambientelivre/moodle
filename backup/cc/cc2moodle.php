@@ -794,7 +794,11 @@ class cc2moodle {
         }
     }
 
+<<<<<<< HEAD
     protected static function critical_error($text) {
+=======
+    protected static function critical_error ($text) {
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $path_to_log = static::log_file();
 

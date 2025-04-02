@@ -183,6 +183,12 @@ $content-header-footer-height: $region-header-height + $region-footer-height;
 
 .navbar {
     .popover-region {
+<<<<<<< HEAD
+=======
+        float: left;
+        margin-right: 10px;
+
+>>>>>>> upstream/MOODLE_38_STABLE
         &.collapsed {
             .popover-region-container {
                 @include invisible();

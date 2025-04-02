@@ -99,7 +99,11 @@ class portfolio_plugin_googledocs extends portfolio_plugin_push_base {
             // Create each of the directories in Google Drive that we need.
             foreach ($directories as $directory) {
                 // Update the current path for this file.
+<<<<<<< HEAD
                 $path .= "{$directory}/";
+=======
+                $path .= "${directory}/";
+>>>>>>> upstream/MOODLE_38_STABLE
 
                 if (!isset($directoryids[$path])) {
                     // This directory hasn't been created yet so let's go ahead and create it.

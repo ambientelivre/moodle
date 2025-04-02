@@ -22,6 +22,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
+=======
+defined('MOODLE_INTERNAL') || die();
+
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * Function to upgrade grade history report.
  *
@@ -29,6 +34,7 @@
  * @return bool result
  */
 function xmldb_gradereport_history_upgrade($oldversion) {
+<<<<<<< HEAD
     // Automatically generated Moodle v4.2.0 release upgrade line.
     // Put any upgrade step following this.
 
@@ -40,6 +46,22 @@ function xmldb_gradereport_history_upgrade($oldversion) {
 
     // Automatically generated Moodle v4.5.0 release upgrade line.
     // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.8.0 release upgrade line.
+    // Put any upgrade step following this.
+=======
+
+    if ($oldversion < 2019111801) {
+        $perpageconfig = get_config('moodle', 'grade_report_historyperpage');
+
+        // For existing installations with a non-integer 'per page' config, update the value to the default.
+        if (!empty($perpageconfig) && filter_var($perpageconfig, FILTER_VALIDATE_INT) === false) {
+            set_config('grade_report_historyperpage', 50);
+        }
+
+        upgrade_plugin_savepoint(true, 2019111801, 'gradereport', 'history');
+    }
+>>>>>>> upstream/MOODLE_38_STABLE
 
     return true;
 }

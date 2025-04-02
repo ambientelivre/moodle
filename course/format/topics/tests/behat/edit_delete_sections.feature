@@ -57,12 +57,20 @@ Feature: Sections can be edited and deleted in custom sections format
     And I should not see "Section 2" in the "region-main" "region"
 
   @javascript
+<<<<<<< HEAD
   Scenario: Inline edit section name in custom sections format
     Given I am on "Course 1" course homepage with editing mode on
     When I set the field "Edit section name" in the "Section 1" "section" to "Midterm evaluation"
     Then I should not see "Section 1" in the "region-main" "region"
     And "New name for section" "field" should not exist
     And I should see "Midterm evaluation" in the "Midterm evaluation" "section"
+=======
+  Scenario: Inline edit section name in topics format
+    When I set the field "Edit topic name" in the "li#section-1" "css_element" to "Midterm evaluation"
+    Then I should not see "Topic 1" in the "region-main" "region"
+    And "New name for topic" "field" should not exist
+    And I should see "Midterm evaluation" in the "li#section-1" "css_element"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I am on "Course 1" course homepage
     And I should not see "Section 1" in the "region-main" "region"
     And I should see "Midterm evaluation" in the "Midterm evaluation" "section"

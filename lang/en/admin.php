@@ -220,9 +220,15 @@ Courses
 -All courses|/course/
 -Course search|/course/search.php
 -###
+<<<<<<< HEAD
 -FAQ|https://example.org/faq
 -Preguntas más frecuentes|https://example.org/pmf||es
 Mobile app|https://example.org/app|Download our app
+=======
+-FAQ|https://someurl.xyz/faq
+-Preguntas más frecuentes|https://someurl.xyz/pmf||es
+Mobile app|https://someurl.xyz/app|Download our app
+>>>>>>> upstream/MOODLE_38_STABLE
 </pre>';
 $string['configcustomusermenuitems'] = 'You can configure the contents of the user menu (with the exception of the log out link, which is automatically added). Each line is separated by pipe characters and consists of 1) a string in "langstringname, componentname" form or as plain text, and 2) a URL. Dividers can be used by adding a line of one or more # characters where desired.';
 $string['configdbsessions'] = 'If enabled, this setting will use the database to store information about current sessions. Note that changing this setting now will log out all current users (including you). If you are using MySQL please make sure that \'max_allowed_packet\' in my.cnf (or my.ini) is at least 4M. Other session drivers can be configured directly in config.php, see config-dist.php for more information. This option disappears if you specify session driver in config.php file.';
@@ -273,7 +279,10 @@ $string['configextramemorylimit'] = 'Some scripts like search, backup/restore or
 $string['configfilterall'] = 'Filter all strings, including headings, titles, navigation bar and so on.  This is mostly useful when using the multilang filter, otherwise it will just create extra load on your site for little gain.';
 $string['configfiltermatchoneperpage'] = 'Automatic linking filters will only generate a single link for the first matching text instance found on the complete page. All others are ignored.';
 $string['configfiltermatchonepertext'] = 'Automatic linking filters will only generate a single link for the first matching text instance found in each item of text on the page. All others are ignored. This setting has no effect if \'Filter match once per page\' is enabled.';
+<<<<<<< HEAD
 $string['configfilternavigationwithsystemcontext'] = 'Normal use of the filtering is tied to the context in which it is used (e.g. course context), but for the site navigation, explicitly making everything filter with site context can yield performance improvements when using "content and headings" filtering.';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['configfilteruploadedfiles'] = 'Process all uploaded HTML and text files with the filters before displaying them, only uploaded HTML files or none at all.';
 $string['configforcelogin'] = 'Normally, the site home and the course listings (but not courses) can be read by people without logging in to the site. If you want to force people to log in before they do ANYTHING on the site, then you should enable this setting.';
 $string['configforceloginforprofiles'] = 'This setting forces people to log in as a real (non-guest) account before viewing any user\'s profile. If you disabled this setting, you may find that some users post advertising (spam) or other inappropriate content in their profiles, which is then visible to the whole world.';
@@ -283,8 +292,13 @@ $string['configfrontpagecourselimithelp'] = 'Maximum number of courses to be dis
 $string['configfrontpageloggedin'] = 'The items selected above will be displayed on the site home when a user is logged in.';
 $string['configfullnamedisplay'] = 'This defines how names are shown when they are displayed in full. The default value, "language", leaves it to the string "fullnamedisplay" in the current language pack to decide. Some languages have different name display conventions.
 
+<<<<<<< HEAD
 For most mono-lingual sites the most efficient setting is "firstname lastname", but you may choose to hide last names altogether. Placeholders that can be used are: firstname, lastname, firstnamephonetic, lastnamephonetic, middlename, and alternatename.';
 $string['configgeoipfile'] = 'Location of GeoIP City binary data file. This file is not part of Moodle distribution and must be obtained separately from <a href="https://www.maxmind.com/">MaxMind</a>. You can either buy a commercial version or use the free version. You\'ll need to register to download the City database file, which you can do at <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/" >https://dev.maxmind.com/geoip/geoip2/geolite2/</a>. Once you\'ve registered and downloaded the file, extract it into "{$a}" directory on your server.';
+=======
+For most mono-lingual sites the most efficient setting is "firstname lastname", but you may choose to hide surnames altogether. Placeholders that can be used are: firstname, lastname, firstnamephonetic, lastnamephonetic, middlename, and alternatename.';
+$string['configgeoipfile'] = 'Location of GeoLite2 City binary data file. This file is not part of Moodle distribution and must be obtained separately from <a href="https://www.maxmind.com/">MaxMind</a>. You can either buy a commercial version or use the free version. You\'ll need to register to download the City database file, which you can do at <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/" >https://dev.maxmind.com/geoip/geoip2/geolite2/</a>. Once you\'ve registered and downloaded the file, extract it into "{$a}" directory on your server.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['configgetremoteaddrconf'] = 'If your server is behind a reverse proxy, you can use this setting to specify which HTTP headers can be trusted to contain the remote IP address. The headers are read in order, using the first one that is available.';
 $string['configgradebookroles'] = 'This setting allows you to control who appears on the gradebook.  Users need to have at least one of these roles in a course to be shown in the gradebook for that course.';
 $string['configgradeexport'] = 'Choose which gradebook export formats are your primary methods for exporting grades.  Chosen plugins will then set and use a "last exported" field for every grade.  For example, this might result in exported records being identified as being "new" or "updated".  If you are not sure about this then leave everything unchecked.';
@@ -965,6 +979,13 @@ $string['nosupportedlogstore'] = 'No supported logstore found';
 $string['noteunneededblocks'] = 'Note: Blocks set to show will not be listed in the \'Add a block\' menu in a course if they are specified in the theme setting \'Unneeded blocks\'.';
 $string['maxtimelimit'] = 'Maximum time limit';
 $string['maxtimelimit_desc'] = 'To restrict the maximum PHP execution time that Moodle will allow without any output being displayed, enter a value in seconds here. 0 means that Moodle default restrictions are used. If you have a front-end server with its own time limit, set this value lower to receive PHP errors in logs. Does not apply to CLI scripts.';
+<<<<<<< HEAD
+=======
+$string['moodleapp'] = 'Moodle app';
+$string['moodleapp_help'] = '<p>The free Moodle app enables users to access their courses on mobile devices. Additional app features are available with a Pro or Premium app plan.</p>
+<a href="https://moodle.com/mobile-app">Get the Moodle app</a><br />
+<a href="https://apps.moodle.com">Moodle Apps Portal</a>';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['moodlebrandedapp'] = 'Branded Moodle app';
 $string['moodlebrandedappreference'] = 'Alternatively, get a <a href="https://moodle.com/branded-app/">Branded Moodle app</a> with your own custom branding.';
 $string['noreplyaddress'] = 'No-reply address';
@@ -1364,11 +1385,16 @@ $string['task_scheduled_max_runtime'] = 'Scheduled task runner lifetime';
 $string['task_scheduled_max_runtime_desc'] = 'The age of a scheduled task runner before it is freed.';
 $string['task_adhoc_concurrency_limit'] = 'Ad hoc task concurrency limit';
 $string['task_adhoc_concurrency_limit_desc'] = 'The number of ad hoc task runners allowed to run concurrently. If the limit is high then scheduled tasks may not run regularly when there are lots of ad hoc tasks. A setting of 0 will disable processing of ad hoc tasks completely.';
+<<<<<<< HEAD
 $string['task_adhoc_failed_retention'] = 'Failed ad hoc task retention period';
 $string['task_adhoc_failed_retention_desc'] = 'The maximum period that failed ad hoc tasks should remain in the queue once they have reached their retry limit.';
 $string['task_adhoc_max_runtime'] = 'Ad hoc task runner lifetime';
 $string['task_adhoc_max_runtime_desc'] = 'The age of an ad hoc task runner before it is freed. A low duration is recommended as there is no limit to the number of ad hoc tasks queued. If this number is too high and you have a large ad hoc task queue then scheduled tasks may not be run regularly.';
 $string['task_endtime'] = 'End time';
+=======
+$string['task_adhoc_max_runtime'] = 'Ad hoc task runner lifetime';
+$string['task_adhoc_max_runtime_desc'] = 'The age of an ad hoc task runner before it is freed. A low duration is recommended as there is no limit to the number of ad hoc tasks queued. If this number is too high and you have a large ad hoc task queue then scheduled tasks may not be run regularly.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['task_logmode'] = 'When to log';
 $string['task_logmode_desc'] = 'You can choose when you wish task logging to take place. By default logs are always captured. You can disable logging entirely, or change to only log tasks which fail.';
 $string['task_logmode_none'] = 'Do not log anything';
@@ -1497,6 +1523,7 @@ $string['unsupporteddbfilepertable'] = 'For full support of UTF-8 both MySQL and
 $string['unsupporteddblargeprefix'] = 'For full support of UTF-8 both MySQL and MariaDB require you to change your MySQL setting \'innodb_large_prefix\' to \'ON\'. See the documentation for further details.';
 $string['unsupporteddbstorageengine'] = 'The database storage engine being used is no longer supported.';
 $string['unsupporteddbtablerowformat'] = 'Your database has tables using Antelope as the file format. You are recommended to convert the tables to the Barracuda file format. See the documentation <a href="https://docs.moodle.org/en/cli">Administration via command line</a> for details of a tool for converting InnoDB tables to Barracuda.';
+<<<<<<< HEAD
 $string['unsupportedphpversion7'] = 'PHP version 7 and higher are not supported.';
 $string['unsupportedphpversion71'] = 'PHP version 7.1 and higher are not supported.';
 $string['unsupportedphpversion72'] = 'PHP version 7.2 and higher are not supported.';
@@ -1506,6 +1533,14 @@ $string['unsupportedphpversion80'] = 'PHP version 8.0 and higher are not support
 $string['unsupportedphpversion81'] = 'PHP version 8.1 and higher are not supported.';
 $string['unsupportedphpversion82'] = 'PHP version 8.2 and higher are not supported.';
 $string['unsupportedphpversion83'] = 'PHP version 8.3 and higher are not supported.';
+=======
+$string['unsupportedphpversion7'] = 'PHP version 7 is not supported.';
+$string['unsupportedphpversion71'] = 'PHP version 7.1 is not supported.';
+$string['unsupportedphpversion72'] = 'PHP version 7.2 is not supported.';
+$string['unsupportedphpversion73'] = 'PHP version 7.3 is not supported.';
+$string['unsupportedphpversion74'] = 'PHP version 7.4 is not supported.';
+$string['unsupportedphpversion80'] = 'PHP version 8.0 is not supported.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['unsuspenduser'] = 'Activate user account';
 $string['updateaccounts'] = 'Update existing accounts';
 $string['updatecomponent'] = 'Update component';

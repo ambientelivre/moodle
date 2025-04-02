@@ -1,6 +1,7 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
+<<<<<<< HEAD
 // Version     : 6.8.2
 // Begin       : 2002-08-03
 // Last Update : 2024-12-23
@@ -8,6 +9,15 @@
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
 // Copyright (C) 2002-2025 Nicola Asuni - Tecnick.com LTD
+=======
+// Version     : 6.3.2
+// Begin       : 2002-08-03
+// Last Update : 2019-09-20
+// Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
+// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
+// -------------------------------------------------------------------
+// Copyright (C) 2002-2019 Nicola Asuni - Tecnick.com LTD
+>>>>>>> upstream/MOODLE_38_STABLE
 //
 // This file is part of TCPDF software library.
 //
@@ -104,7 +114,11 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
+<<<<<<< HEAD
  * @version 6.8.2
+=======
+ * @version 6.3.2
+>>>>>>> upstream/MOODLE_38_STABLE
  */
 
 // TCPDF configuration
@@ -128,7 +142,11 @@ require_once(dirname(__FILE__).'/include/tcpdf_static.php');
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
+<<<<<<< HEAD
  * @version 6.8.2
+=======
+ * @version 6.3.2
+>>>>>>> upstream/MOODLE_38_STABLE
  * @author Nicola Asuni - info@tecnick.com
  * @IgnoreAnnotation("protected")
  * @IgnoreAnnotation("public")
@@ -1873,6 +1891,7 @@ class TCPDF {
 	 * This is the class constructor.
 	 * It allows to set up the page format, the orientation and the measure unit used in all the methods (except for the font sizes).
 	 *
+<<<<<<< HEAD
 	 * @param string $orientation page orientation. Possible values are (case insensitive):<ul><li>P or Portrait (default)</li><li>L or Landscape</li><li>'' (empty string) for automatic orientation</li></ul>
 	 * @param string $unit User measure unit. Possible values are:<ul><li>pt: point</li><li>mm: millimeter (default)</li><li>cm: centimeter</li><li>in: inch</li></ul><br />A point equals 1/72 of inch, that is to say about 0.35 mm (an inch being 2.54 cm). This is a very common unit in typography; font sizes are expressed in that unit.
 	 * @param mixed $format The format used for pages. It can be either: one of the string values specified at getPageSizeFromFormat() or an array of parameters specified at setPageFormat().
@@ -1880,6 +1899,17 @@ class TCPDF {
 	 * @param string $encoding Charset encoding (used only when converting back html entities); default is UTF-8.
 	 * @param boolean $diskcache DEPRECATED FEATURE
 	 * @param false|integer $pdfa If not false, set the document to PDF/A mode and the good version (1 or 3).
+=======
+	 * IMPORTANT: Please note that this method sets the mb_internal_encoding to ASCII, so if you are using the mbstring module functions with TCPDF you need to correctly set/unset the mb_internal_encoding when needed.
+	 *
+	 * @param $orientation (string) page orientation. Possible values are (case insensitive):<ul><li>P or Portrait (default)</li><li>L or Landscape</li><li>'' (empty string) for automatic orientation</li></ul>
+	 * @param $unit (string) User measure unit. Possible values are:<ul><li>pt: point</li><li>mm: millimeter (default)</li><li>cm: centimeter</li><li>in: inch</li></ul><br />A point equals 1/72 of inch, that is to say about 0.35 mm (an inch being 2.54 cm). This is a very common unit in typography; font sizes are expressed in that unit.
+	 * @param $format (mixed) The format used for pages. It can be either: one of the string values specified at getPageSizeFromFormat() or an array of parameters specified at setPageFormat().
+	 * @param $unicode (boolean) TRUE means that the input text is unicode (default = true)
+	 * @param $encoding (string) Charset encoding (used only when converting back html entities); default is UTF-8.
+	 * @param $diskcache (boolean) DEPRECATED FEATURE
+	 * @param $pdfa (integer) If not false, set the document to PDF/A mode and the good version (1 or 3).
+>>>>>>> upstream/MOODLE_38_STABLE
 	 * @public
 	 * @see getPageSizeFromFormat(), setPageFormat()
 	 */
@@ -1891,6 +1921,7 @@ class TCPDF {
 		$this->font_obj_ids = array();
 		$this->page_obj_id = array();
 		$this->form_obj_id = array();
+
 		// set pdf/a mode
 		if ($pdfa != false) {
 			$this->pdfa_mode = true;
@@ -2033,6 +2064,12 @@ class TCPDF {
 		$this->header_xobj_autoreset = false;
 		$this->custom_xmp = '';
 		$this->custom_xmp_rdf = '';
+<<<<<<< HEAD
+=======
+		// Call cleanup method after script execution finishes or exit() is called.
+		// NOTE: This will not be executed if the process is killed with a SIGTERM or SIGKILL signal.
+		register_shutdown_function(array($this, '_destroy'), true);
+>>>>>>> upstream/MOODLE_38_STABLE
 	}
 
 	/**
@@ -2899,7 +2936,11 @@ class TCPDF {
 	 * @public
 	 * @since 1.4
 	 */
+<<<<<<< HEAD
 	public function setCompression($compress=true) {
+=======
+	public function SetCompression($compress=true) {
+>>>>>>> upstream/MOODLE_38_STABLE
 		$this->compress = false;
 		if (function_exists('gzcompress')) {
 			if ($compress) {
@@ -4795,16 +4836,26 @@ class TCPDF {
 
 	/**
 	 * Defines the page and position a link points to.
+<<<<<<< HEAD
 	 * @param int $link The link identifier returned by AddLink()
 	 * @param float $y Ordinate of target position; -1 indicates the current position. The default value is 0 (top of page)
 	 * @param int|string $page Number of target page; -1 indicates the current page (default value). If you prefix a page number with the * character, then this page will not be changed when adding/deleting/moving pages.
+=======
+	 * @param $link (int) The link identifier returned by AddLink()
+	 * @param $y (float) Ordinate of target position; -1 indicates the current position. The default value is 0 (top of page)
+	 * @param $page (int|string) Number of target page; -1 indicates the current page (default value). If you prefix a page number with the * character, then this page will not be changed when adding/deleting/moving pages.
+>>>>>>> upstream/MOODLE_38_STABLE
 	 * @public
 	 * @since 1.5
 	 * @see AddLink()
 	 */
 	public function setLink($link, $y=0, $page=-1) {
 		$fixed = false;
+<<<<<<< HEAD
 		if (!empty($page) AND (substr($page, 0, 1) == '*')) {
+=======
+		if (!empty($page) AND is_string($page) AND ($page[0] == '*')) {
+>>>>>>> upstream/MOODLE_38_STABLE
 			$page = intval(substr($page, 1));
 			// this page number will not be changed when moving/add/deleting pages
 			$fixed = true;
@@ -7852,7 +7903,14 @@ class TCPDF {
 		if (isset(self::$cleaned_ids[$this->file_id])) {
 			$destroyall = false;
 		}
+<<<<<<< HEAD
 		if ($destroyall AND !$preserve_objcopy && isset($this->file_id)) {
+=======
+		if (isset(self::$cleaned_ids[$this->file_id])) {
+			$destroyall = false;
+		}
+		if ($destroyall AND !$preserve_objcopy) {
+>>>>>>> upstream/MOODLE_38_STABLE
 			self::$cleaned_ids[$this->file_id] = true;
 			// remove all temporary files
 			if ($handle = @opendir(K_PATH_CACHE)) {
@@ -7865,8 +7923,13 @@ class TCPDF {
 			}
 			if (isset($this->imagekeys)) {
 				foreach($this->imagekeys as $file) {
+<<<<<<< HEAD
 					if (strpos($file, K_PATH_CACHE) === 0 && TCPDF_STATIC::file_exists($file)) {
 						@unlink($file);
+=======
+					if (strpos($file, K_PATH_CACHE) === 0) {
+						unlink($file);
+>>>>>>> upstream/MOODLE_38_STABLE
 					}
 				}
 			}
@@ -8488,7 +8551,11 @@ class TCPDF {
 							if (is_string($pl['txt']) && !empty($pl['txt'])) {
 								if ($pl['txt'][0] == '#') {
 									// internal destination
+<<<<<<< HEAD
 									$annots .= ' /A <</S /GoTo /D /'.TCPDF_STATIC::encodeNameObject(substr($pl['txt'], 1)).'>>';
+=======
+									$annots .= ' /A <</S /GoTo /D '.TCPDF_STATIC::encodeNameObject(substr($pl['txt'], 1)).'>>';
+>>>>>>> upstream/MOODLE_38_STABLE
 								} elseif ($pl['txt'][0] == '%') {
 									// embedded PDF file
 									$filename = basename(substr($pl['txt'], 1));
@@ -9621,7 +9688,11 @@ class TCPDF {
 	/**
 	 * Set additional XMP data to be added on the default XMP data just before the end of "rdf:RDF" tag.
 	 * IMPORTANT: This data is added as-is without controls, so you have to validate your data before using this method!
+<<<<<<< HEAD
 	 * @param string $xmp Custom XMP RDF data.
+=======
+	 * @param $xmp (string) Custom XMP RDF data.
+>>>>>>> upstream/MOODLE_38_STABLE
 	 * @since 6.3.0 (2019-09-19)
 	 * @public
 	 */
@@ -14135,7 +14206,11 @@ class TCPDF {
 	 */
 	public function setPDFVersion($version='1.7') {
 		if ($this->pdfa_mode && $this->pdfa_version == 1 ) {
+<<<<<<< HEAD
 			// PDF/A-1 mode
+=======
+			// PDF/A mode
+>>>>>>> upstream/MOODLE_38_STABLE
 			$this->PDFVersion = '1.4';
 		} elseif ($this->pdfa_mode && $this->pdfa_version >= 2 ) {
             // PDF/A-2 mode
@@ -15650,8 +15725,13 @@ class TCPDF {
 	 * <li>array $style['fgcolor'] color array for bars and text</li>
 	 * <li>mixed $style['bgcolor'] color array for background or false for transparent</li>
 	 * <li>string $style['position'] barcode position on the page: L = left margin; C = center; R = right margin; S = stretch</li>
+<<<<<<< HEAD
 	 * @param string $align Indicates the alignment of the pointer next to barcode insertion relative to barcode height. The value can be:<ul><li>T: top-right for LTR or top-left for RTL</li><li>M: middle-right for LTR or middle-left for RTL</li><li>B: bottom-right for LTR or bottom-left for RTL</li><li>N: next line</li></ul>
 	 * @param boolean $distort if true distort the barcode to fit width and height, otherwise preserve aspect ratio
+=======
+	 * @param $align (string) Indicates the alignment of the pointer next to barcode insertion relative to barcode height. The value can be:<ul><li>T: top-right for LTR or top-left for RTL</li><li>M: middle-right for LTR or middle-left for RTL</li><li>B: bottom-right for LTR or bottom-left for RTL</li><li>N: next line</li></ul>
+	 * @param $distort (boolean) if true distort the barcode to fit width and height, otherwise preserve aspect ratio
+>>>>>>> upstream/MOODLE_38_STABLE
 	 * @author Nicola Asuni
 	 * @since 4.5.037 (2009-04-07)
 	 * @public

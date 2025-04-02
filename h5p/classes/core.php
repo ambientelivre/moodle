@@ -20,9 +20,14 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once("$CFG->libdir/filelib.php");
 
+<<<<<<< HEAD
 use Moodle\H5PCore;
 use Moodle\H5PFrameworkInterface;
 use Moodle\H5PHubEndpoints;
+=======
+use H5PCore;
+use H5PFrameworkInterface;
+>>>>>>> upstream/MOODLE_38_STABLE
 use stdClass;
 use moodle_url;
 use core_h5p\local\library\autoloader;
@@ -191,6 +196,7 @@ class core extends H5PCore {
                 'minorVersion' => $type->version->minor,
                 'patchVersion' => $type->version->patch,
             ];
+<<<<<<< HEAD
             // Add example and tutorial to the library, to store this information too.
             if (isset($type->example)) {
                 $library['example'] = $type->example;
@@ -198,6 +204,8 @@ class core extends H5PCore {
             if (isset($type->tutorial)) {
                 $library['tutorial'] = $type->tutorial;
             }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
             $shoulddownload = true;
             if ($framework->getLibraryId($type->id, $type->version->major, $type->version->minor)) {
@@ -229,6 +237,7 @@ class core extends H5PCore {
      * @return int|null Returns the id of the content type library installed, null otherwise.
      */
     public function fetch_content_type(array $library): ?int {
+<<<<<<< HEAD
         global $DB;
 
         $factory = new factory();
@@ -247,6 +256,9 @@ class core extends H5PCore {
         if ($existing) {
             $existing->delete();
         }
+=======
+        $factory = new factory();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Download the latest content type from the H5P official repository.
         $file = $fs->create_file_from_url(
@@ -272,6 +284,7 @@ class core extends H5PCore {
         $file->delete();
 
         $librarykey = static::libraryToString($library);
+<<<<<<< HEAD
 
         if (is_null($factory->get_storage()->h5pC->librariesJsonData)) {
             // There was an error fetching the content type.
@@ -299,6 +312,9 @@ class core extends H5PCore {
         if (count($params) > 1) {
             $DB->update_record('h5p_libraries', $params);
         }
+=======
+        $libraryid = $factory->get_storage()->h5pC->librariesJsonData[$librarykey]["libraryId"];
+>>>>>>> upstream/MOODLE_38_STABLE
 
         return $libraryid;
     }

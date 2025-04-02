@@ -14,9 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 namespace core;
 
 use zip_archive;
+=======
+/**
+ * Unit tests for /lib/filestorage/zip_archive.php.
+ *
+ * @package   core_files
+ * @copyright 2020 Université Rennes 2 {@link https://www.univ-rennes2.fr}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+>>>>>>> upstream/MOODLE_38_STABLE
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -27,11 +37,19 @@ require_once($CFG->libdir . '/filestorage/zip_archive.php');
 /**
  * Unit tests for /lib/filestorage/zip_archive.php.
  *
+<<<<<<< HEAD
  * @package   core
  * @copyright 2020 Université Rennes 2 {@link https://www.univ-rennes2.fr}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class filestorage_zip_archive_test extends \advanced_testcase {
+=======
+ * @package   core_files
+ * @copyright 2020 Université Rennes 2 {@link https://www.univ-rennes2.fr}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class filestorage_zip_archive_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
     /**
      * Test mangle_pathname() method.
      *
@@ -40,10 +58,18 @@ final class filestorage_zip_archive_test extends \advanced_testcase {
      * @param string $string   Parameter sent to mangle_pathname method.
      * @param string $expected Expected return value.
      */
+<<<<<<< HEAD
     public function test_mangle_pathname($string, $expected): void {
         $ziparchive = new zip_archive();
 
         $method = new \ReflectionMethod('zip_archive', 'mangle_pathname');
+=======
+    public function test_mangle_pathname($string, $expected) {
+        $ziparchive = new zip_archive();
+
+        $method = new ReflectionMethod('zip_archive', 'mangle_pathname');
+        $method->setAccessible(true);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $result = $method->invoke($ziparchive, $string);
         $this->assertSame($expected, $result);
@@ -54,7 +80,11 @@ final class filestorage_zip_archive_test extends \advanced_testcase {
      *
      * @return array Array of tested pathnames and expected results.
      */
+<<<<<<< HEAD
     public static function pathname_provider(): array {
+=======
+    public function pathname_provider() {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             // Test a string.
             ['my file.pdf', 'my file.pdf'],

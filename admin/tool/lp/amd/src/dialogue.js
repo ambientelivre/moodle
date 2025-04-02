@@ -34,7 +34,11 @@ define(['core/yui'], function(Y) {
      * @param {Boolean} wide Specify we want an extra wide dialogue (the size is standard, but wider than the default).
      * @param {String} height The height of the dialogue.
      */
+<<<<<<< HEAD
     var dialogue = function(title, content, afterShow, afterHide, wide, height) {
+=======
+    var dialogue = function(title, content, afterShow, afterHide, wide) {
+>>>>>>> upstream/MOODLE_38_STABLE
         M.util.js_pending('tool_lp/dialogue:dialogue');
 
         this.yuiDialogue = null;
@@ -64,6 +68,10 @@ define(['core/yui'], function(Y) {
                 modal: true,
                 width: width,
                 height: height
+            });
+
+            parent.yuiDialogue.before('visibleChange', function() {
+                M.util.js_pending('tool_lp/dialogue:before:visibleChange');
             });
 
             parent.yuiDialogue.before('visibleChange', function() {

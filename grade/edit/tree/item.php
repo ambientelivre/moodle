@@ -198,7 +198,11 @@ if ($mform->is_cancelled()) {
 
     if ($item->cancontrolvisibility) {
         // Update hiding flag.
+<<<<<<< HEAD
         $gradeitem->set_hidden($hide, true);
+=======
+        $gradeitem->set_hidden($hide, false);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     $gradeitem->set_locktime($locktime); // Locktime first - it might be removed when unlocking.

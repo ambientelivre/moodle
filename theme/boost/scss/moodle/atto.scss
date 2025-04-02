@@ -228,8 +228,11 @@ div.editor_atto_content:hover .atto_control {
 .editor_atto_content.form-control {
     width: 100%;
     border-top: 0;
+<<<<<<< HEAD
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 /** Atto fields do not have form-control because that would break the layout of the editor.
@@ -243,5 +246,10 @@ div.editor_atto_content:hover .atto_control {
     display: block;
 }
 div.editor_atto_toolbar button .icon {
+<<<<<<< HEAD
     color: $atto-toolbar-button-color;
 }
+=======
+    color: $gray-700;
+}
+>>>>>>> upstream/MOODLE_38_STABLE

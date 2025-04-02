@@ -746,6 +746,7 @@ class core_course_category implements renderable, cacheable_object, IteratorAggr
      * @return mixed
      */
     protected static function get_tree($id) {
+<<<<<<< HEAD
         $all = self::get_cached_cat_tree();
         if (is_null($all) || !isset($all[$id])) {
             // Could not get or rebuild the tree, or requested a non-existant ID.
@@ -767,6 +768,8 @@ class core_course_category implements renderable, cacheable_object, IteratorAggr
      * @throws moodle_exception
      */
     private static function get_cached_cat_tree(): ?array {
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         $coursecattreecache = cache::make('core', 'coursecattree');
         $all = $coursecattreecache->get('all');
         if ($all !== false) {
@@ -786,14 +789,40 @@ class core_course_category implements renderable, cacheable_object, IteratorAggr
             $lock->release();
             return $all;
         }
+        // Might need to rebuild the tree. Put a lock in place to ensure other requests don't try and do this in parallel.
+        $lockfactory = \core\lock\lock_config::get_lock_factory('core_coursecattree');
+        $lock = $lockfactory->get_lock('core_coursecattree_cache',
+                course_modinfo::COURSE_CACHE_LOCK_WAIT, course_modinfo::COURSE_CACHE_LOCK_EXPIRY);
+        if ($lock === false) {
+            // Couldn't get a lock to rebuild the tree.
+            return [];
+        }
+        $rv = $coursecattreecache->get($id);
+        if ($rv !== false) {
+            // Tree was built while we were waiting for the lock.
+            $lock->release();
+            return $rv;
+        }
         // Re-build the tree.
         try {
             $all = self::rebuild_coursecattree_cache_contents();
+<<<<<<< HEAD
             $coursecattreecache->set('all', $all);
         } finally {
             $lock->release();
         }
         return $all;
+=======
+            $coursecattreecache->set_many($all);
+        } finally {
+            $lock->release();
+        }
+        if (array_key_exists($id, $all)) {
+            return $all[$id];
+        }
+        // Requested non-existing category.
+        return array();
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -804,7 +833,11 @@ class core_course_category implements renderable, cacheable_object, IteratorAggr
      * @throws dml_exception
      * @throws moodle_exception
      */
+<<<<<<< HEAD
     private static function rebuild_coursecattree_cache_contents(): array {
+=======
+    private static function rebuild_coursecattree_cache_contents() : array {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
         $sql = "SELECT cc.id, cc.parent, cc.visible
                 FROM {course_categories} cc

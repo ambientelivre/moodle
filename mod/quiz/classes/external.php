@@ -723,7 +723,11 @@ class mod_quiz_external extends external_api {
             require_capability('mod/quiz:viewreports', $context);
         }
 
+<<<<<<< HEAD
         $result = [];
+=======
+        $result = array();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // This code was mostly copied from mod/quiz/view.php. We need to make the web service logic consistent.
         // Get this user's attempts.

@@ -89,7 +89,31 @@ if (null !== $logid) {
 }
 
 echo $OUTPUT->header();
+<<<<<<< HEAD
 $report = system_report_factory::create(task_logs::class, context_system::instance());
+=======
+echo $OUTPUT->render_from_template('core_admin/tasklogs', (object) [
+    'action' => $pageurl->out(),
+    'filter' => htmlentities($filter),
+    'resultfilteroptions' => [
+        (object) [
+            'value' => -1,
+            'title' => get_string('all'),
+            'selected' => (-1 === $result),
+        ],
+        (object) [
+            'value' => 0,
+            'title' => get_string('success'),
+            'selected' => (0 === $result),
+        ],
+        (object) [
+            'value' => 1,
+            'title' => get_string('task_result:failed', 'admin'),
+            'selected' => (1 === $result),
+        ],
+    ],
+]);
+>>>>>>> upstream/MOODLE_38_STABLE
 
 if (!empty($filter)) {
     $report->set_filter_values([

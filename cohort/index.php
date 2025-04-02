@@ -107,12 +107,85 @@ if ($editcontrols = cohort_edit_controls($context, $baseurl)) {
 $reportparams = ['contextid' => $context->id, 'showall' => $showall];
 $report = system_report_factory::create(cohorts::class, $context, '', '', 0, $reportparams);
 
+<<<<<<< HEAD
 // Check if it needs to search by name.
 if (!empty($searchquery)) {
     $report->set_filter_values([
         'cohort:name_operator' => text::CONTAINS,
         'cohort:name_value' => $searchquery,
     ]);
+=======
+// Output pagination bar.
+echo $OUTPUT->paging_bar($cohorts['totalcohorts'], $page, 25, $baseurl);
+
+$data = array();
+$editcolumnisempty = true;
+foreach($cohorts['cohorts'] as $cohort) {
+    $line = array();
+    $cohortcontext = context::instance_by_id($cohort->contextid);
+    $cohort->description = file_rewrite_pluginfile_urls($cohort->description, 'pluginfile.php', $cohortcontext->id,
+            'cohort', 'description', $cohort->id);
+    if ($showall) {
+        if ($cohortcontext->contextlevel == CONTEXT_COURSECAT) {
+            $line[] = html_writer::link(new moodle_url('/cohort/index.php' ,
+                    array('contextid' => $cohort->contextid)), $cohortcontext->get_context_name(false));
+        } else {
+            $line[] = $cohortcontext->get_context_name(false);
+        }
+    }
+    $tmpl = new \core_cohort\output\cohortname($cohort);
+    $line[] = $OUTPUT->render_from_template('core/inplace_editable', $tmpl->export_for_template($OUTPUT));
+    $tmpl = new \core_cohort\output\cohortidnumber($cohort);
+    $line[] = $OUTPUT->render_from_template('core/inplace_editable', $tmpl->export_for_template($OUTPUT));
+    $line[] = format_text($cohort->description, $cohort->descriptionformat);
+
+    $line[] = $DB->count_records('cohort_members', array('cohortid'=>$cohort->id));
+
+    if (empty($cohort->component)) {
+        $line[] = get_string('nocomponent', 'cohort');
+    } else {
+        $line[] = get_string('pluginname', $cohort->component);
+    }
+
+    $buttons = array();
+    if (empty($cohort->component)) {
+        $cohortmanager = has_capability('moodle/cohort:manage', $cohortcontext);
+        $cohortcanassign = has_capability('moodle/cohort:assign', $cohortcontext);
+
+        $urlparams = array('id' => $cohort->id, 'returnurl' => $baseurl->out_as_local_url(false));
+        $showhideurl = new moodle_url('/cohort/edit.php', $urlparams + array('sesskey' => sesskey()));
+        if ($cohortmanager) {
+            if ($cohort->visible) {
+                $showhideurl->param('hide', 1);
+                $visibleimg = $OUTPUT->pix_icon('t/hide', get_string('hide'));
+                $buttons[] = html_writer::link($showhideurl, $visibleimg, array('title' => get_string('hide')));
+            } else {
+                $showhideurl->param('show', 1);
+                $visibleimg = $OUTPUT->pix_icon('t/show', get_string('show'));
+                $buttons[] = html_writer::link($showhideurl, $visibleimg, array('title' => get_string('show')));
+            }
+            $buttons[] = html_writer::link(new moodle_url('/cohort/edit.php', $urlparams + array('delete' => 1)),
+                $OUTPUT->pix_icon('t/delete', get_string('delete')),
+                array('title' => get_string('delete')));
+            $buttons[] = html_writer::link(new moodle_url('/cohort/edit.php', $urlparams),
+                $OUTPUT->pix_icon('t/edit', get_string('edit')),
+                array('title' => get_string('edit')));
+            $editcolumnisempty = false;
+        }
+        if ($cohortcanassign) {
+            $buttons[] = html_writer::link(new moodle_url('/cohort/assign.php', $urlparams),
+                $OUTPUT->pix_icon('i/users', get_string('assign', 'core_cohort')),
+                array('title' => get_string('assign', 'core_cohort')));
+            $editcolumnisempty = false;
+        }
+    }
+    $line[] = implode(' ', $buttons);
+
+    $data[] = $row = new html_table_row($line);
+    if (!$cohort->visible) {
+        $row->attributes['class'] = 'dimmed_text';
+    }
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 // Show the report.

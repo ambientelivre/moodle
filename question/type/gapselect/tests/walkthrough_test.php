@@ -37,7 +37,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_behaviour(): void {
 
         // Create a gapselect question.
+<<<<<<< HEAD
         $q = \test_question_maker::make_question('gapselect');
+=======
+        $q = test_question_maker::make_question('gapselect');
+>>>>>>> upstream/MOODLE_38_STABLE
         $q->hints = array(
             new question_hint_with_parts(1, 'This is the first hint.', FORMAT_HTML, false, false),
             new question_hint_with_parts(2, 'This is the second hint.', FORMAT_HTML, true, true),
@@ -157,7 +161,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $filtermanager->reset_caches();
 
         // Create a multilang gapselect question.
+<<<<<<< HEAD
         $q = \test_question_maker::make_question('gapselect', 'multilang');
+=======
+        $q = test_question_maker::make_question('gapselect', 'multilang');
+>>>>>>> upstream/MOODLE_38_STABLE
         $q->shufflechoices = false;
         $this->start_attempt_at_question($q, 'interactive', 3);
 
@@ -174,7 +182,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_choices_containing_dollars(): void {
 
         // Choices with a currency like entry (e.g. $3) should display.
+<<<<<<< HEAD
         $q = \test_question_maker::make_question('gapselect', 'currency');
+=======
+        $q = test_question_maker::make_question('gapselect', 'currency');
+>>>>>>> upstream/MOODLE_38_STABLE
         $q->shufflechoices = false;
         $this->start_attempt_at_question($q, 'interactive', 1);
 

@@ -126,6 +126,14 @@ class fetch extends external_api {
         }
 
         $gradeduser = \core_user::get_user($gradeduserid, '*', MUST_EXIST);
+<<<<<<< HEAD
+=======
+
+        // One can access its own grades. Others just if they're graders.
+        if ($gradeduserid != $USER->id) {
+            $gradeitem->require_user_can_grade($gradeduser, $USER);
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // One can access its own grades. Others just if they're graders.
         if ($gradeduserid != $USER->id) {

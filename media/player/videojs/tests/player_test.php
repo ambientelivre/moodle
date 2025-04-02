@@ -36,7 +36,11 @@ use moodle_url;
  * @copyright 2016 Marina Glancy
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
 final class player_test extends \advanced_testcase {
+=======
+class media_videojs_player_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Pre-test setup. Preserves $CFG.
@@ -270,7 +274,11 @@ final class player_test extends \advanced_testcase {
         $url = new moodle_url('https://www.youtube.com/watch?v=dv2f_xfmbD8&index=4&list=PLxcO_MFWQBDcyn9xpbmx601YSDlDcTcr0');
         $t = $manager->embed_url($url);
         $this->youtube_plugin_engaged($t);
+<<<<<<< HEAD
         $this->assertStringContainsString('list=PLxcO_MFWQBDcyn9xpbmx601YSDlDcTcr0', $t);
+=======
+        $this->assertContains('list=PLxcO_MFWQBDcyn9xpbmx601YSDlDcTcr0', $t);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Format: youtube playlist - not supported.
         $url = new moodle_url('http://www.youtube.com/view_play_list?p=PL6E18E2927047B662');
@@ -281,7 +289,11 @@ final class player_test extends \advanced_testcase {
         $this->assertStringNotContainsString('mediaplugin_videojs', $t);
         $url = new moodle_url('http://www.youtube.com/p/PL6E18E2927047B662');
         $t = $manager->embed_url($url);
+<<<<<<< HEAD
         $this->assertStringNotContainsString('mediaplugin_videojs', $t);
+=======
+        $this->assertNotContains('mediaplugin_videojs', $t);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -289,7 +301,11 @@ final class player_test extends \advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function youtube_start_time_provider(): array {
+=======
+    public function youtube_start_time_provider(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             ['https://www.youtube.com/watch?v=JNJMF1l3udM&t=1h11s', 3611],
             ['https://www.youtube.com/watch?v=dv2f_xfmbD8&index=4&list=PLxcO_MFWQBDcyn9xpbmx601YSDlDcTcr0&t=1m5s', 65],
@@ -309,13 +325,23 @@ final class player_test extends \advanced_testcase {
      *
      * @dataProvider youtube_start_time_provider
      */
+<<<<<<< HEAD
     public function test_youtube_start_time(string $url, int $expectedstart): void {
         set_config('youtube', 1, 'media_videojs');
+=======
+    public function test_youtube_start_time(string $url, int $expectedstart) {
+        set_config('youtube', 1, 'media_videojs');
+        set_config('useflash', 0, 'media_videojs');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $embedcode = core_media_manager::instance()->embed_url(new moodle_url($url));
 
         $this->youtube_plugin_engaged($embedcode);
+<<<<<<< HEAD
         $this->assertStringContainsString("&quot;youtube&quot;: {&quot;start&quot;: &quot;{$expectedstart}&quot;}", $embedcode);
+=======
+        $this->assertContains("&quot;youtube&quot;: {&quot;start&quot;: &quot;{$expectedstart}&quot;}", $embedcode);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

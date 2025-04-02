@@ -114,10 +114,169 @@ $divider-hover-color: $primary !default;
         }
     }
 
+<<<<<<< HEAD
     .sectionname > a {
         color: $gray-900;
         &:hover {
             text-decoration: none;
+=======
+.editing_show + .editing_assign,
+.editing_hide + .editing_assign {
+    // if roles icon missing, add space
+    margin-left: 20px;
+}
+
+.section .activity .commands {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.section .activity.modtype_label.label {
+    font-weight: normal;
+    padding: .2em;
+}
+
+.section li.activity {
+    padding: .2em;
+    clear: both;
+}
+
+.section .activity .activityinstance .groupinglabel {
+    padding-left: 30px;
+}
+
+.section .activity .availabilityinfo,
+.section .activity .contentafterlink {
+    margin-top: 0.5em;
+    margin-left: 30px;
+}
+
+.section .activity .contentafterlink p {
+    margin: .5em 0;
+}
+
+.editing .section .activity:hover,
+.editing .section .activity.action-menu-shown {
+    background-color: $table-bg-accent;
+}
+
+.course-content .current {
+    position: relative;
+}
+
+.course-content .current::before {
+    content: "";
+    border-left: $brand-primary 2px solid;
+    position: absolute;
+    left: -$card-spacer-x;
+    top: 0;
+    bottom: 0;
+}
+
+.course-content .section-summary {
+    border: 1px solid $table-border-color;
+    margin-top: 5px;
+    list-style: none;
+}
+
+.course-content .section-summary .section-title {
+    margin: 2px 5px 10px 5px;
+}
+
+.course-content .section-summary .summarytext {
+    margin: 2px 5px 2px 5px;
+}
+
+.course-content .section-summary .section-summary-activities .activity-count {
+    @extend .text-muted;
+    font-size: $font-size-sm;
+    margin: 3px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.course-content .section-summary .summary {
+    margin-top: 5px;
+}
+
+.course-content .single-section {
+    margin-top: 1em;
+}
+
+.course-content .single-section .section-navigation {
+    display: block;
+    padding: 0.5em;
+    margin-bottom: -0.5em;
+}
+
+.course-content .single-section .section-navigation .title {
+    font-weight: bold;
+    font-size: 108%;
+    clear: both;
+}
+
+.course-content .single-section .section-navigation .mdl-left {
+    font-weight: normal;
+    float: left;
+    margin-right: 1em;
+}
+
+.course-content .single-section .section-navigation .mdl-left .larrow {
+    margin-right: 0.1em;
+}
+
+.course-content .single-section .section-navigation .mdl-right {
+    font-weight: normal;
+    float: right;
+    margin-left: 1em;
+}
+
+.course-content .single-section .section-navigation .mdl-right .rarrow {
+    margin-left: 0.1em;
+}
+
+.course-content .single-section .section-navigation .mdl-bottom {
+    margin-top: 0;
+}
+
+.course-content ul li.section.main {
+    border-bottom: $border-width solid $table-border-color;
+    margin-top: 0;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+
+.course-content ul li.section.hidden {
+    .sectionname > span,
+    .content > div.summary,
+    .activity .activityinstance {
+        @extend .text-muted;
+    }
+}
+
+.course-content ul.topics,
+.course-content ul.weeks {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li.section {
+        margin-top: $spacer;
+        padding-bottom: $spacer;
+
+        .summary,
+        .content > .availabilityinfo {
+            margin-left: 25px;
+        }
+
+        .left,
+        .right {
+            padding: 0 6px 0;
+            text-align: right;
+            width: auto;
+>>>>>>> upstream/MOODLE_38_STABLE
         }
     }
 
@@ -545,12 +704,338 @@ $divider-hover-color: $primary !default;
     }
 }
 
+<<<<<<< HEAD
 // These styles will make the activity and section dividers buttons visible (but still without opacity) so
 // buttons can be keyboard focusable.
 .activity:focus-within + .activity .divider .divider-content,
 .course-section-header:focus-within + .content .section .activity:first-child .divider .divider-content,
 .content .section .activity:focus-within .divider .divider-content,
 .course-content:focus-within .changenumsections .divider .divider-content {
+=======
+.path-course-view.editing #region-main > .card-block {
+    padding-bottom: 13rem;
+}
+
+.jumpmenu .form-inline {
+    display: block;
+}
+
+.path-course-view .completionprogress {
+    margin-left: 25px;
+}
+
+.path-course-view .completionprogress {
+    display: block;
+    float: right;
+    height: 20px;
+    position: relative;
+}
+
+#page-site-index .subscribelink {
+    text-align: right;
+}
+
+#site-news-forum h2,
+#frontpage-course-list h2,
+#frontpage-category-names h2,
+#frontpage-category-combo h2 {
+    margin-bottom: 9px;
+}
+
+.path-course-view a.reduce-sections {
+    padding-left: 0.2em;
+}
+
+.path-course-view .subscribelink {
+    text-align: right;
+}
+
+.path-course-view .unread {
+    margin-left: 30px;
+}
+
+.path-course-view .block.drag .header {
+    cursor: move;
+}
+
+.path-course-view .completionprogress {
+    text-align: right;
+}
+
+.path-course-view .single-section .completionprogress {
+    margin-right: 5px;
+}
+
+.path-site li.activity > div,
+.path-course-view li.activity > div {
+    position: relative;
+    padding: 0 16px 0 0; /* to accommodate the floated completion icon with highlighting */
+}
+
+.path-course-view li.activity span.autocompletion img {
+    vertical-align: text-bottom;
+    margin-left: 0;
+}
+
+.path-course-view li.activity form.togglecompletion .btn {
+    padding: 0;
+}
+.path-course-view li.activity form.togglecompletion img {
+    max-width: none; /* The width is 0 so ensure we don't end up with a relative max-width */
+}
+
+.path-course-view {
+    &.editing {
+        li.activity span.autocompletion img {
+            /* Use the same spacing as the filler. */
+            margin-right: $spacer / 2;
+            margin-left: $spacer / 2;
+        }
+    }
+}
+
+.path-course-view li.activity form.togglecompletion .ajaxworking {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 22px;
+    top: 3px;
+    background: url([[pix:i/ajaxloader]]) no-repeat;
+}
+
+li.section.hidden span.commands a.editing_hide,
+li.section.hidden span.commands a.editing_show {
+    cursor: default;
+}
+
+.single-section h3.sectionname {
+    text-align: center;
+    clear: both;
+}
+
+input.titleeditor {
+    width: 330px;
+    vertical-align: text-bottom;
+}
+
+span.editinstructions {
+    /*rtl:remove*/
+    position: absolute;
+    /*rtl:raw:
+    position: relative;
+    */
+    top: 0;
+    margin-top: -22px;
+    margin-left: 30px;
+    font-size: $font-size-sm;
+    padding: .1em .4em;
+    text-decoration: none;
+    z-index: 9999;
+    border: $alert-border-width solid transparent;
+
+    @include alert-variant(
+        theme-color-level('info', $alert-bg-level),
+        theme-color-level('info', $alert-border-level),
+        theme-color-level('info', $alert-color-level)
+    );
+}
+
+/* Course drag and drop upload styles */
+#dndupload-status {
+    position: fixed;
+    left: 0;
+    width: 40%;
+    margin: 0 30%;
+    padding: 6px;
+    text-align: center;
+    z-index: 1; // Required in order to have this above relatively positioned course content@mixin
+    border: $alert-border-width solid transparent;
+
+    @include alert-variant(
+        theme-color-level('info', $alert-bg-level),
+        theme-color-level('info', $alert-border-level),
+        theme-color-level('info', $alert-color-level)
+    );
+}
+
+.dndupload-preview {
+    color: #909090;
+    border: 1px dashed #909090;
+    list-style: none;
+    margin-top: .2em;
+    padding: .3em;
+}
+
+.dndupload-hidden {
+    display: none;
+}
+
+/* COURSES LISTINGS AND COURSE SUMMARY */
+#page-course-pending .singlebutton,
+#page-course-index .singlebutton,
+#page-course-index-category .singlebutton,
+#page-course-editsection .singlebutton {
+    text-align: center;
+}
+
+#page-admin-course-manage #movecourses td img {
+    margin: 0 .22em;
+    vertical-align: text-bottom;
+}
+
+#coursesearch {
+    margin-top: 1em;
+    text-align: left;
+}
+
+#page-course-pending .pendingcourserequests {
+    margin-bottom: 1em;
+}
+
+#page-course-pending .pendingcourserequests .singlebutton {
+    display: inline;
+}
+
+#page-course-pending .pendingcourserequests .cell {
+    padding: 0 5px;
+}
+
+#page-course-pending .pendingcourserequests .cell.c6 {
+    white-space: nowrap;
+}
+
+.coursebox {
+    padding: $spacer / 2;
+}
+
+.coursebox > .info > .coursename a {
+    display: block;
+    background-image: url([[pix:moodle|i/course]]);
+    background-repeat: no-repeat;
+    padding-left: 21px;
+    background-position: left 0.2em;
+}
+
+.coursebox > .info > .coursename,
+.coursebox .content .teachers,
+.coursebox .content .courseimage,
+.coursebox .content .coursefile,
+.coursebox .content .customfields-container {
+    float: left;
+    clear: left;
+}
+
+.coursebox .content .teachers,
+.coursebox .content .courseimage,
+.coursebox .content .coursefile,
+.coursebox .content .customfields-container {
+    width: 40%;
+}
+
+.coursebox > .info > h3.coursename {
+    margin: 5px;
+}
+
+.coursebox > .info > .coursename {
+    margin: 5px;
+    padding: 0;
+}
+
+.coursebox .content .teachers li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.coursebox .moreinfo,
+.coursebox .enrolmenticons {
+    padding: 3px 0;
+    float: right;
+}
+
+.coursebox .moreinfo img {
+    margin: 0 .2em;
+}
+
+.coursebox .content {
+    clear: both;
+}
+
+.coursebox .content .summary,
+.coursebox .content .coursecat {
+    float: right;
+    width: 55%;
+}
+
+.coursebox .content .coursecat {
+    text-align: right;
+    clear: right;
+}
+
+.coursebox.remotecoursebox .remotecourseinfo {
+    float: left;
+    width: 40%;
+}
+
+.coursebox .content .courseimage img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.coursebox .content .coursecat,
+.coursebox .content .summary,
+.coursebox .content .courseimage,
+.coursebox .content .coursefile,
+.coursebox .content .teachers,
+.coursebox.remotecoursebox .remotecourseinfo,
+.coursebox .content .customfields-container {
+    margin: 15px 5px 5px;
+    padding: 0;
+}
+
+.coursebox.remotehost > .info > .categoryname a {
+    background-image: url([[pix:moodle|i/mnethost]]);
+}
+
+.coursebox.collapsed {
+    margin-bottom: 0;
+}
+
+.coursebox.collapsed > .content {
+    display: none;
+}
+
+.courses .coursebox {
+    &.collapsed {
+        padding-top: $spacer-y / 2;
+        padding-bottom: $spacer-y / 2;
+    }
+
+    &.even {
+        background-color: $table-bg-accent;
+    }
+}
+
+.courses > .paging.paging-morelink {
+    text-align: center;
+    padding: $spacer;
+}
+
+.course_category_tree .category .numberofcourse {
+    font-size: $font-size-sm;
+}
+
+.course_category_tree .controls {
+    visibility: hidden;
+}
+
+.course_category_tree .controls div {
+    display: inline;
+    cursor: pointer;
+}
+
+.jsenabled .course_category_tree .controls {
+>>>>>>> upstream/MOODLE_38_STABLE
     visibility: visible;
 }
 
@@ -718,8 +1203,45 @@ $divider-hover-color: $primary !default;
         &:focus {
             background-color: shift-color($primary, $alert-bg-scale);
 
+<<<<<<< HEAD
             a {
                 color: shift-color($primary, $alert-color-scale);
+=======
+    .listing-actions {
+        text-align: center;
+
+        > .moodle-actionmenu {
+            display: inline-block;
+        }
+    }
+
+    ul.ml {
+        list-style: none;
+        margin: 1rem 0;
+
+        ul.ml {
+            margin: 0;
+        }
+    }
+
+    .listitem {
+
+        &[data-selected='1'] {
+            border-left: calc(#{$list-group-border-width} + 5px) solid map-get($theme-colors, 'primary');
+            padding-left: calc(#{$list-group-item-padding-x} - 5px);
+        }
+    }
+
+    .item-actions {
+        margin-right: 1em;
+        display: inline-block;
+
+        &.show .menu {
+
+            img {
+                width: 12px;
+                max-width: none;
+>>>>>>> upstream/MOODLE_38_STABLE
             }
         }
 
@@ -737,8 +1259,70 @@ $divider-hover-color: $primary !default;
         }
     }
 
+<<<<<<< HEAD
     .collapse-list-item-content .collapse-list-item {
         padding: $collapse-list-item-padding-y $collapse-list-item-padding-x;
+=======
+    .listitem {
+        > div {
+            > .float-left {
+                float: left;
+            }
+
+            > .float-right {
+                float: right;
+                text-align: right;
+            }
+
+            .item-actions {
+                .action-show {
+                    display: none;
+                }
+
+                .action-hide {
+                    display: inline;
+                }
+            }
+
+            .without-actions {
+                color: #333;
+            }
+
+            .idnumber {
+                margin-right: 2em;
+            }
+        }
+        // The category or course is hidden.
+        &[data-visible="0"] {
+            @extend .text-muted;
+
+            > div {
+                > a {
+                    @extend .text-muted;
+                }
+
+                .item-actions {
+                    .action-show {
+                        display: inline;
+                    }
+
+                    .action-hide {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &.highlight {
+            background-color: $body-bg;
+
+            > div,
+            > div:hover,
+            &[data-selected='1'] > div {
+                background-color: $table-bg-hover;
+            }
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     ul {
@@ -845,9 +1429,15 @@ $divider-hover-color: $primary !default;
             animation: editinprogress-rotation 2s infinite linear;
         }
 
+<<<<<<< HEAD
         // Prevent inner editingprogress.
         .editinprogress {
             &:after {
+=======
+        .listitem {
+            &:first-child > div .item-actions .action-moveup,
+            &:last-child > div .item-actions .action-movedown {
+>>>>>>> upstream/MOODLE_38_STABLE
                 display: none;
             }
         }

@@ -3505,7 +3505,11 @@ EOD;
         $this->assertEquals(1, $DB->count_records($tablename));
     }
 
+<<<<<<< HEAD
     public function test_delete_records_subquery(): void {
+=======
+    public function test_delete_records_subquery() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $DB = $this->tdb;
         $dbman = $DB->get_manager();
 
@@ -3528,7 +3532,11 @@ EOD;
         $this->assertEquals(1, $DB->count_records($tablename));
     }
 
+<<<<<<< HEAD
     public function test_delete_records_list(): void {
+=======
+    public function test_delete_records_list() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $DB = $this->tdb;
         $dbman = $DB->get_manager();
 

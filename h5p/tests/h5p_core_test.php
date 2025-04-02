@@ -27,16 +27,35 @@ use invalid_response_exception;
  * @category   test
  * @copyright  2019 Victor Deniz <victor@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+<<<<<<< HEAD
  * @covers     \core_h5p\core
+=======
+ */
+
+namespace core_h5p;
+
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Test class covering the H5PFileStorage interface implementation.
+ *
+ * @package    core_h5p
+ * @copyright  2019 Victor Deniz <victor@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+>>>>>>> upstream/MOODLE_38_STABLE
  *
  * @runTestsInSeparateProcesses
  */
 final class h5p_core_test extends \advanced_testcase {
 
+<<<<<<< HEAD
     /** @var core */
     protected $core;
 
     protected function setUp(): void {
+=======
+    protected function setup() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         parent::setUp();
 

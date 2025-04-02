@@ -340,6 +340,7 @@ final class api_test extends \advanced_testcase {
 
         // Login as a user without DPO role.
         $this->setUser($teacher);
+<<<<<<< HEAD
         $this->expectException(\required_capability_exception::class);
         api::approve_data_request($requestid);
     }
@@ -380,6 +381,10 @@ final class api_test extends \advanced_testcase {
 
         $result1 = $DB->get_field('tool_dataprivacy_rqst_ctxlst', 'requestid', ['contextlistid' => $result->contextlistid]);
         $this->assertEquals($result1, $requestid);
+=======
+        $this->expectException(required_capability_exception::class);
+        api::approve_data_request($requestid);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

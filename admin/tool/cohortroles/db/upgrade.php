@@ -22,6 +22,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
+=======
+defined('MOODLE_INTERNAL') || die();
+
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * Function to upgrade tool_cohortroles.
  *
@@ -31,6 +36,7 @@
 function xmldb_tool_cohortroles_upgrade($oldversion) {
     global $DB;
 
+<<<<<<< HEAD
     // Automatically generated Moodle v4.2.0 release upgrade line.
     // Put any upgrade step following this.
 
@@ -50,6 +56,25 @@ function xmldb_tool_cohortroles_upgrade($oldversion) {
 
     // Automatically generated Moodle v4.5.0 release upgrade line.
     // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.8.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    if ($oldversion < 2019111801) {
+        // Normalize the memberattribute_isdn plugin config.
+        set_config('memberattribute_isdn',
+            !empty(get_config('auth_cas', 'memberattribute_isdn')), 'auth_cas');
+
+        upgrade_plugin_savepoint(true, 2019111801, 'auth', 'cas');
+=======
+    if ($oldversion < 2019111801) {
+        // Delete any tool_cohortroles mappings for roles which no longer exist.
+        $DB->delete_records_select('tool_cohortroles', 'roleid NOT IN (SELECT id FROM {role})');
+
+        // Cohortroles savepoint reached.
+        upgrade_plugin_savepoint(true, 2019111801, 'tool', 'cohortroles');
+>>>>>>> upstream/MOODLE_38_STABLE
+    }
 
     return true;
 }

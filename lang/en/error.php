@@ -193,8 +193,13 @@ $string['coursemisconf'] = 'Course is misconfigured';
 $string['courserequestdisabled'] = 'Sorry, but course requests have been disabled by the administrator.';
 $string['csvcolumnduplicates'] = 'Duplicate columns detected';
 $string['csvemptyfile'] = 'The CSV file is empty';
+<<<<<<< HEAD
 $string['csvfileerror'] = 'There is something wrong with the format of the CSV file. Please check the number of headings and columns match, and that the separator and file encoding are correct. {$a}';
 $string['csvfewcolumns'] = 'Not enough columns, please verify the separator setting';
+=======
+$string['csvfileerror'] = 'There is something wrong with the format of the CSV file. Please check the number of headings and columns match, and that the delimiter and file encoding are correct: {$a}';
+$string['csvfewcolumns'] = 'Not enough columns, please verify the delimiter setting';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['csvinvalidcols'] = '<b>Invalid CSV file:</b> First line must include "Header Fields" and the file must be type of <br />"Expanded Fields/Comma Separated"<br />or<br /> "Expanded Fields with CAVV Result Code/Comma Separated"';
 $string['csvinvalidcolsnum'] = 'Invalid CSV file - each line must include 49 or 70 fields';
 $string['csvloaderror'] = 'An error occurred while loading the CSV file: {$a}';
@@ -407,7 +412,11 @@ $string['loginasnoenrol'] = 'You cannot use enrol or unenrol when in course "Log
 $string['loginasonecourse'] = 'You cannot enter this course.<br /> You have to terminate the "Login as" session before entering any other course.';
 $string['maxbytesfile'] = 'The file {$a->file} is too large. The maximum size you can upload is {$a->size}.';
 $string['maxareabytes'] = 'The file is larger than the space remaining in this area.';
+<<<<<<< HEAD
 $string['maxdraftitemids'] = 'Your file uploads are temporarily limited after you uploaded a high volume of files. Please wait then try again.';
+=======
+$string['maxdraftitemids'] = 'Due to uploading a high volume of files, your file uploads are temporarily limited. Please try again after a few seconds.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['messageundeliveredbynotificationsettings'] = 'The message could not be sent because personal messages between users (in Notification settings) has been disabled by a site administrator.';
 $string['messagingdisable'] = 'Messaging is disabled on this site';
 $string['mimetexisnotexist'] = 'Your system is not configured to run mimeTeX. You need to obtain the C source from <a href="https://www.forkosh.com/mimetex.zip">https://www.forkosh.com/mimetex.zip</a>, compile it and put the executable into your moodle/filter/tex/ directory.';

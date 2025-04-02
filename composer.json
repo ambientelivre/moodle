@@ -5,6 +5,7 @@
     "type": "project",
     "homepage": "https://moodle.org",
     "require-dev": {
+<<<<<<< HEAD
         "phpunit/phpunit": "^11",
         "mikey179/vfsstream": "1.6.*",
         "behat/mink": "^1.11.0",
@@ -57,5 +58,12 @@
         "ext-tokenizer": "Enabling Tokenizer PHP extension is recommended, it improves Moodle Networking functionality.",
         "ext-soap": "Enabling SOAP PHP extension is useful for web services and some plugins.",
         "ext-exif": "Enabling Exif PHP extension is recommended, it is used by Moodle to parse image meta data."
+=======
+        "phpunit/phpunit": "7.5.*",
+        "phpunit/dbunit": "4.0.*",
+        "moodlehq/behat-extension": "3.38.5",
+        "mikey179/vfsstream": "^1.6",
+        "instaclick/php-webdriver": "dev-local as 1.x-dev"
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

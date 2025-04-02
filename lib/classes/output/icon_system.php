@@ -93,7 +93,11 @@ abstract class icon_system {
      * @param string $system
      * @return boolean
      */
+<<<<<<< HEAD
     final public static function is_valid_system($system) {
+=======
+    public final static function is_valid_system($system) {
+>>>>>>> upstream/MOODLE_38_STABLE
         return class_exists($system) && is_a($system, static::class, true);
     }
 
@@ -147,6 +151,7 @@ abstract class icon_system {
     public static function reset_caches() {
         self::$instance = null;
     }
+<<<<<<< HEAD
 
     /**
      * Overridable function to get the list of deprecated icons.
@@ -169,4 +174,6 @@ abstract class icon_system {
 
         return $deprecated;
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

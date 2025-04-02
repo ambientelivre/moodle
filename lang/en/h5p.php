@@ -35,10 +35,13 @@ $string['addedandupdatedss'] = 'Added {$a->%new} new H5P library and updated {$a
 $string['addednewlibraries'] = 'Added {$a->%new} new H5P libraries.';
 $string['addednewlibrary'] = 'Added {$a->%new} new H5P library.';
 $string['additionallicenseinfo'] = 'Any additional information about the licence';
+<<<<<<< HEAD
 $string['address'] = 'Address';
 $string['age'] = 'Typical age';
 $string['ageDescription'] = 'The target audience of this content. Possible input formats separated by commas: "1,34-45,-50,59-".';
 $string['altText'] = 'Alt text';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['author'] = 'Author';
 $string['authorcomments'] = 'Author comments';
 $string['authorcommentsdescription'] = 'Comments for the editor of the content. (This text will not be published as a part of the copyright info.)';
@@ -115,7 +118,10 @@ $string['emailAddress'] = 'Email address';
 $string['emailAddressDescription'] = 'The email address will be used by H5P to reach out to the publisher in case of any issues with the content or in case the publisher needs to recover their account. It will not be published or shared with any third parties';
 $string['embed'] = 'Embed';
 $string['embedtitle'] = 'View the embed code for this content.';
+<<<<<<< HEAD
 $string['error:emptycontentid'] = 'The given URL is incorrect or you cannot edit this file.';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['eventh5pviewed'] = 'H5P content viewed';
 $string['eventh5pdeleted'] = 'H5P deleted';
 $string['feature'] = 'Feature';
@@ -194,6 +200,7 @@ $string['licenseV3'] = 'Version 3';
 $string['licensee'] = 'Licensee';
 $string['licenseextras'] = 'Licence extras';
 $string['licenseversion'] = 'Licence version';
+<<<<<<< HEAD
 $string['licenseVersionDescription'] = 'Select a license version';
 $string['lockh5pdeploy'] = 'This H5P content cannot be accessed because it is being deployed. Please try again later.';
 $string['logoUploadText'] = 'Organization logo or avatar';
@@ -202,6 +209,9 @@ $string['longDescriptionPlaceholder'] = 'Long description of your content';
 $string['mainTitle'] = 'Sharing <strong>:title</strong>';
 $string['mainlibrarydisabled'] = 'This file can\'t be displayed because its content type is disabled. Please contact your administrator to ask for the content type to be enabled.';
 $string['maxLength'] = ':length is the maximum number of characters';
+=======
+$string['lockh5pdeploy'] = 'This H5P content cannot be accessed because it is being deployed. Please try again later.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['missingcontentfolder'] = 'A valid content folder is missing';
 $string['missingcoreversion'] = 'The system was unable to install the {$a->%component} component from the package, as it requires a newer version of the H5P plugin. This site is currently running version {$a->%current}, whereas the required version is {$a->%required} or higher. Please upgrade and then try again.';
 $string['missingdependency'] = 'Missing dependency {$a->@dep} required by {$a->@lib}.';

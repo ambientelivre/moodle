@@ -118,6 +118,7 @@
     }
 }
 
+<<<<<<< HEAD
 .gradingform_rubric {
     margin-bottom: 1em;
     $rubricPadding: 6px;
@@ -158,6 +159,102 @@
             font-style: italic;
             font-weight: bold;
             color: #{shift-color($success, 20%)};
+=======
+#rubric-rubric {
+    &.gradingform_rubric {
+        #rubric-criteria {
+            margin-bottom: 1em;
+            $rubricPadding: 6px;
+
+            .criterion {
+                .description {
+                    vertical-align: top;
+                    padding: $rubricPadding;
+
+                    textarea {
+                        margin-bottom: 0;
+                        height: 115px;
+                    }
+                }
+
+                .definition {
+                    textarea {
+                        width: 80%;
+                        margin-bottom: 0;
+                    }
+                }
+
+                .score {
+                    position: relative;
+                    float: left;
+                    margin-right: 28px;
+
+                    input {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .level {
+                    vertical-align: top;
+                    padding: $rubricPadding;
+
+                    .delete {
+                        position: relative;
+                        width: 32px;
+                        height: 32px;
+                        margin-top: -32px;
+                        clear: both;
+                        float: right;
+
+                        input {
+                            display: block;
+                            position: absolute;
+                            right: 0;
+                            bottom: 0;
+                            height: 24px;
+                            width: 24px;
+                            margin: 0;
+
+                            &:hover {
+                                background-color: #ddd;
+                            }
+                        }
+                    }
+                }
+
+                .scorevalue {
+                    input {
+                        // Should handle at least three chars with room to spare.
+                        float: none;
+                        width: 2em;
+
+                        &.hiddenelement,
+                        &.pseudotablink {
+                            // Zero out the width if it's still in the block flow for some reason
+                            // when hidden
+                            width: 0;
+                        }
+                    }
+                }
+
+                .addlevel {
+                    vertical-align: top;
+                    padding-top: 6px;
+
+                    input {
+                        font-weight: bold;
+                        height: 30px;
+                        line-height: 1rem;
+                        padding-left: 24px;
+                    }
+                }
+            }
+        }
+
+        .addcriterion {
+            margin-left: 5px;
+            padding: 0;
+>>>>>>> upstream/MOODLE_38_STABLE
 
             input {
                 margin-bottom: 0;
@@ -561,6 +658,13 @@
  */
 .path-grade-report-grader {
     .gradeparent {
+<<<<<<< HEAD
+=======
+        table {
+            @include border-radius($border-radius);
+        }
+
+>>>>>>> upstream/MOODLE_38_STABLE
         tr .cell,
         .floater .cell {
             background-color: $pagination-bg;
@@ -579,10 +683,19 @@
             border-color: $table-border-color;
         }
 
+<<<<<<< HEAD
         .heading .cell,
         .cell.category,
         .avg .cell {
             background-color: $gray-100;
+=======
+        .userrow.odd .cell,
+        .floater .cell.odd,
+        .heading .cell,
+        .cell.category,
+        .avg .cell {
+            background-color: $gray-lightest;
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         table .clickable {

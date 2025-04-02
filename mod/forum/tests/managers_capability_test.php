@@ -26,6 +26,12 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once(__DIR__ . '/generator_trait.php');
 
+<<<<<<< HEAD
+=======
+use mod_forum\local\entities\forum;
+use mod_forum\local\managers\capability as capability_manager;
+
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * The capability manager tests.
  *
@@ -990,7 +996,11 @@ final class managers_capability_test extends \advanced_testcase {
     /**
      * Test for \mod_forum\local\managers\capability::can_reply_to_post() involving Q & A forums.
      */
+<<<<<<< HEAD
     public function test_can_reply_to_post_in_qanda_forum(): void {
+=======
+    public function test_can_reply_to_post_in_qanda_forum() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
 
         $this->resetAfterTest();
@@ -1018,7 +1028,11 @@ final class managers_capability_test extends \advanced_testcase {
         $now = time();
         $options = ['parent' => $this->post->get_id(), 'created' => $now - 100];
         $student1post = $this->helper_post_to_discussion($this->forumrecord, $this->discussionrecord, $student1, $options);
+<<<<<<< HEAD
         $student1postentity = $this->entityfactory->get_post_from_stdClass($student1post);
+=======
+        $student1postentity = $this->entityfactory->get_post_from_stdclass($student1post);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Confirm Student 2 cannot reply student 1's answer yet.
         $this->assertFalse($capabilitymanager->can_reply_to_post($student2, $this->discussion, $student1postentity));

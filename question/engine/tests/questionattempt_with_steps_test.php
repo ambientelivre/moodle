@@ -171,7 +171,11 @@ final class questionattempt_with_steps_test extends \advanced_testcase {
      *
      * @return array test cases
      */
+<<<<<<< HEAD
     public static function validate_manual_mark_cases(): array {
+=======
+    public function validate_manual_mark_cases(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         // Recall, the DB schema stores question grade information to 7 decimal places.
         return [
             [0, 1, 2, null, ''],
@@ -201,7 +205,11 @@ final class questionattempt_with_steps_test extends \advanced_testcase {
      * @param string $expectederror expected error, if any.
      */
     public function test_validate_manual_mark(float $minfraction, float $maxfraction,
+<<<<<<< HEAD
             float $maxmark, ?string $currentmark, string $expectederror): void {
+=======
+            float $maxmark, ?string $currentmark, string $expectederror) {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->qa->set_min_fraction($minfraction);
         $this->qa->set_max_fraction($maxfraction);
         $this->qa->set_max_mark($maxmark);

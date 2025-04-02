@@ -117,13 +117,18 @@ function question_save_qtype_order($neworder, $config = null): void {
  * @param array $questionids of question ids.
  * @return boolean whether any of these questions are being used by any part of Moodle.
  */
+<<<<<<< HEAD
 function questions_in_use($questionids): bool {
+=======
+function questions_in_use($questionids) {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     // Are they used by the core question system?
     if (question_engine::questions_in_use($questionids)) {
         return true;
     }
 
+<<<<<<< HEAD
     if (question_reference_manager::questions_with_references($questionids)) {
         return true;
     }
@@ -148,6 +153,25 @@ function questions_in_use($questionids): bool {
             continue; // Already done.
         }
 
+=======
+    // Check if any plugins are using these questions.
+    $callbacksbytype = get_plugins_with_function('questions_in_use');
+    foreach ($callbacksbytype as $callbacks) {
+        foreach ($callbacks as $function) {
+            if ($function($questionids)) {
+                return true;
+            }
+        }
+    }
+
+    // Finally check legacy callback.
+    $legacycallbacks = get_plugin_list_with_function('mod', 'question_list_instances');
+    foreach ($legacycallbacks as $plugin => $function) {
+        if (isset($callbacksbytype['mod'][substr($plugin, 4)])) {
+            continue; // Already done.
+        }
+
+>>>>>>> upstream/MOODLE_38_STABLE
         foreach ($questionids as $questionid) {
             if (!empty($function($questionid))) {
                 return true;
@@ -332,14 +356,29 @@ function delete_question_bank_entry($entryid): void {
 /**
  * Deletes question and all associated data from the database
  *
+<<<<<<< HEAD
  * It will not delete a question if it is used somewhere, instead it will just delete the reference.
  *
  * @param int $questionid The id of the question being deleted
+=======
+ * It will not delete a question if it is used somewhere.
+ *
+ * @param object $question  The question being deleted
+>>>>>>> upstream/MOODLE_38_STABLE
  */
 function question_delete_question($questionid): void {
     global $DB;
 
+<<<<<<< HEAD
     $question = $DB->get_record('question', ['id' => $questionid]);
+=======
+    $question = $DB->get_record_sql('
+            SELECT q.*, ctx.id AS contextid
+            FROM {question} q
+            LEFT JOIN {question_categories} qc ON qc.id = q.category
+            LEFT JOIN {context} ctx ON ctx.id = qc.contextid
+            WHERE q.id = ?', array($questionid));
+>>>>>>> upstream/MOODLE_38_STABLE
     if (!$question) {
         // In some situations, for example if this was a child of a
         // Cloze question that was previously deleted, the question may already
@@ -374,12 +413,20 @@ function question_delete_question($questionid): void {
     }
 
     // This sometimes happens in old sites with bad data.
+<<<<<<< HEAD
     if (!$questiondata->contextid) {
         debugging('Deleting question ' . $question->id . ' which is no longer linked to a context. ' .
             'Assuming system context to avoid errors, but this may mean that some data like files, ' .
             'tags, are not cleaned up.');
         $questiondata->contextid = context_system::instance()->id;
         $questiondata->categoryid = 0;
+=======
+    if (!$question->contextid) {
+        debugging('Deleting question ' . $question->id . ' which is no longer linked to a context. ' .
+                'Assuming system context to avoid errors, but this may mean that some data like files, ' .
+                'tags, are not cleaned up.');
+        $question->contextid = context_system::instance()->id;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     // Delete previews of the question.
@@ -734,6 +781,71 @@ function question_move_category_to_context($categoryid, $oldcontextid, $newconte
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * Generate the URL for starting a new preview of a given question with the given options.
+ * @param integer $questionid the question to preview.
+ * @param string $preferredbehaviour the behaviour to use for the preview.
+ * @param float $maxmark the maximum to mark the question out of.
+ * @param question_display_options $displayoptions the display options to use.
+ * @param int $variant the variant of the question to preview. If null, one will
+ *      be picked randomly.
+ * @param object $context context to run the preview in (affects things like
+ *      filter settings, theme, lang, etc.) Defaults to $PAGE->context.
+ * @return moodle_url the URL.
+ */
+function question_preview_url($questionid, $preferredbehaviour = null,
+        $maxmark = null, $displayoptions = null, $variant = null, $context = null) {
+
+    $params = array('id' => $questionid);
+
+    if (is_null($context)) {
+        global $PAGE;
+        $context = $PAGE->context;
+    }
+    if ($context->contextlevel == CONTEXT_MODULE) {
+        $params['cmid'] = $context->instanceid;
+    } else if ($context->contextlevel == CONTEXT_COURSE) {
+        $params['courseid'] = $context->instanceid;
+    }
+
+    if (!is_null($preferredbehaviour)) {
+        $params['behaviour'] = $preferredbehaviour;
+    }
+
+    if (!is_null($maxmark)) {
+        $params['maxmark'] = format_float($maxmark, -1);
+    }
+
+    if (!is_null($displayoptions)) {
+        $params['correctness']     = $displayoptions->correctness;
+        $params['marks']           = $displayoptions->marks;
+        $params['markdp']          = $displayoptions->markdp;
+        $params['feedback']        = (bool) $displayoptions->feedback;
+        $params['generalfeedback'] = (bool) $displayoptions->generalfeedback;
+        $params['rightanswer']     = (bool) $displayoptions->rightanswer;
+        $params['history']         = (bool) $displayoptions->history;
+    }
+
+    if ($variant) {
+        $params['variant'] = $variant;
+    }
+
+    return new moodle_url('/question/preview.php', $params);
+}
+
+/**
+ * @return array that can be passed as $params to the {@link popup_action} constructor.
+ */
+function question_preview_popup_params() {
+    return array(
+        'height' => 600,
+        'width' => 800,
+    );
+}
+
+/**
+>>>>>>> upstream/MOODLE_38_STABLE
  * Given a list of ids, load the basic information about a set of questions from
  * the questions table. The $join and $extrafields arguments can be used together
  * to pull in extra data. See, for example, the usage in {@see \mod_quiz\quiz_attempt}, and
@@ -1153,7 +1265,185 @@ function question_get_top_categories_for_contexts($contextids): array {
 /**
  * Get the list of categories.
  *
+<<<<<<< HEAD
  * @param int $categoryid
+=======
+ * @param array $contexts  The context objects for this context and all parent contexts.
+ * @return object The default category - the category in the course context
+ */
+function question_make_default_categories($contexts) {
+    global $DB;
+    static $preferredlevels = array(
+        CONTEXT_COURSE => 4,
+        CONTEXT_MODULE => 3,
+        CONTEXT_COURSECAT => 2,
+        CONTEXT_SYSTEM => 1,
+    );
+
+    $toreturn = null;
+    $preferredness = 0;
+    // If it already exists, just return it.
+    foreach ($contexts as $key => $context) {
+        $topcategory = question_get_top_category($context->id, true);
+        if (!$exists = $DB->record_exists("question_categories",
+                array('contextid' => $context->id, 'parent' => $topcategory->id))) {
+            // Otherwise, we need to make one
+            $category = new stdClass();
+            $contextname = $context->get_context_name(false, true);
+            // Max length of name field is 255.
+            $category->name = shorten_text(get_string('defaultfor', 'question', $contextname), 255);
+            $category->info = get_string('defaultinfofor', 'question', $contextname);
+            $category->contextid = $context->id;
+            $category->parent = $topcategory->id;
+            // By default, all categories get this number, and are sorted alphabetically.
+            $category->sortorder = 999;
+            $category->stamp = make_unique_id_code();
+            $category->id = $DB->insert_record('question_categories', $category);
+        } else {
+            $category = question_get_default_category($context->id);
+        }
+        $thispreferredness = $preferredlevels[$context->contextlevel];
+        if (has_any_capability(array('moodle/question:usemine', 'moodle/question:useall'), $context)) {
+            $thispreferredness += 10;
+        }
+        if ($thispreferredness > $preferredness) {
+            $toreturn = $category;
+            $preferredness = $thispreferredness;
+        }
+    }
+
+    if (!is_null($toreturn)) {
+        $toreturn = clone($toreturn);
+    }
+    return $toreturn;
+}
+
+/**
+ * Get all the category objects, including a count of the number of questions in that category,
+ * for all the categories in the lists $contexts.
+ *
+ * @param mixed $contexts either a single contextid, or a comma-separated list of context ids.
+ * @param string $sortorder used as the ORDER BY clause in the select statement.
+ * @param bool $top Whether to return the top categories or not.
+ * @return array of category objects.
+ */
+function get_categories_for_contexts($contexts, $sortorder = 'parent, sortorder, name ASC', $top = false) {
+    global $DB;
+    $topwhere = $top ? '' : 'AND c.parent <> 0';
+    return $DB->get_records_sql("
+            SELECT c.*, (SELECT count(1) FROM {question} q
+                        WHERE c.id = q.category AND q.hidden='0' AND q.parent='0') AS questioncount
+              FROM {question_categories} c
+             WHERE c.contextid IN ($contexts) $topwhere
+          ORDER BY $sortorder");
+}
+
+/**
+ * Output an array of question categories.
+ *
+ * @param array $contexts The list of contexts.
+ * @param bool $top Whether to return the top categories or not.
+ * @param int $currentcat
+ * @param bool $popupform
+ * @param int $nochildrenof
+ * @return array
+ */
+function question_category_options($contexts, $top = false, $currentcat = 0,
+        $popupform = false, $nochildrenof = -1) {
+    global $CFG;
+    $pcontexts = array();
+    foreach ($contexts as $context) {
+        $pcontexts[] = $context->id;
+    }
+    $contextslist = join(', ', $pcontexts);
+
+    $categories = get_categories_for_contexts($contextslist, 'parent, sortorder, name ASC', $top);
+
+    if ($top) {
+        $categories = question_fix_top_names($categories);
+    }
+
+    $categories = question_add_context_in_key($categories);
+    $categories = add_indented_names($categories, $nochildrenof);
+
+    // sort cats out into different contexts
+    $categoriesarray = array();
+    foreach ($pcontexts as $contextid) {
+        $context = context::instance_by_id($contextid);
+        $contextstring = $context->get_context_name(true, true);
+        foreach ($categories as $category) {
+            if ($category->contextid == $contextid) {
+                $cid = $category->id;
+                if ($currentcat != $cid || $currentcat == 0) {
+                    $a = new stdClass;
+                    $a->name = format_string($category->indentedname, true,
+                            array('context' => $context));
+                    if ($category->idnumber !== null && $category->idnumber !== '') {
+                        $a->idnumber = s($category->idnumber);
+                    }
+                    if (!empty($category->questioncount)) {
+                        $a->questioncount = $category->questioncount;
+                    }
+                    if (isset($a->idnumber) && isset($a->questioncount)) {
+                        $formattedname = get_string('categorynamewithidnumberandcount', 'question', $a);
+                    } else if (isset($a->idnumber)) {
+                        $formattedname = get_string('categorynamewithidnumber', 'question', $a);
+                    } else if (isset($a->questioncount)) {
+                        $formattedname = get_string('categorynamewithcount', 'question', $a);
+                    } else {
+                        $formattedname = $a->name;
+                    }
+                    $categoriesarray[$contextstring][$cid] = $formattedname;
+                }
+            }
+        }
+    }
+    if ($popupform) {
+        $popupcats = array();
+        foreach ($categoriesarray as $contextstring => $optgroup) {
+            $group = array();
+            foreach ($optgroup as $key => $value) {
+                $key = str_replace($CFG->wwwroot, '', $key);
+                $group[$key] = $value;
+            }
+            $popupcats[] = array($contextstring => $group);
+        }
+        return $popupcats;
+    } else {
+        return $categoriesarray;
+    }
+}
+
+function question_add_context_in_key($categories) {
+    $newcatarray = array();
+    foreach ($categories as $id => $category) {
+        $category->parent = "$category->parent,$category->contextid";
+        $category->id = "$category->id,$category->contextid";
+        $newcatarray["$id,$category->contextid"] = $category;
+    }
+    return $newcatarray;
+}
+
+/**
+ * Finds top categories in the given categories hierarchy and replace their name with a proper localised string.
+ *
+ * @param array $categories An array of question categories.
+ * @return array The same question category list given to the function, with the top category names being translated.
+ */
+function question_fix_top_names($categories) {
+
+    foreach ($categories as $id => $category) {
+        if ($category->parent == 0) {
+            $context = context::instance_by_id($category->contextid);
+            $categories[$id]->name = get_string('topfor', 'question', $context->get_context_name(false));
+        }
+    }
+
+    return $categories;
+}
+
+/**
+>>>>>>> upstream/MOODLE_38_STABLE
  * @return array of question category ids of the category and all subcategories.
  */
 function question_categorylist($categoryid): array {
@@ -1274,6 +1564,60 @@ function question_default_export_filename($course, $category): string {
 /**
  * Check capability on category.
  *
+<<<<<<< HEAD
+=======
+ * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class context_to_string_translator{
+    /**
+     * @var array used to translate between contextids and strings for this context.
+     */
+    protected $contexttostringarray = array();
+
+    public function __construct($contexts) {
+        $this->generate_context_to_string_array($contexts);
+    }
+
+    public function context_to_string($contextid) {
+        return $this->contexttostringarray[$contextid];
+    }
+
+    public function string_to_context($contextname) {
+        $contextid = array_search($contextname, $this->contexttostringarray);
+        return $contextid;
+    }
+
+    protected function generate_context_to_string_array($contexts) {
+        if (!$this->contexttostringarray) {
+            $catno = 1;
+            foreach ($contexts as $context) {
+                switch ($context->contextlevel) {
+                    case CONTEXT_MODULE :
+                        $contextstring = 'module';
+                        break;
+                    case CONTEXT_COURSE :
+                        $contextstring = 'course';
+                        break;
+                    case CONTEXT_COURSECAT :
+                        $contextstring = "cat$catno";
+                        $catno++;
+                        break;
+                    case CONTEXT_SYSTEM :
+                        $contextstring = 'system';
+                        break;
+                }
+                $this->contexttostringarray[$context->id] = $contextstring;
+            }
+        }
+    }
+
+}
+
+/**
+ * Check capability on category
+ *
+>>>>>>> upstream/MOODLE_38_STABLE
  * @param int|stdClass|question_definition $questionorid object or id.
  *      If an object is passed, it should include ->contextid and ->createdby.
  * @param string $cap 'add', 'edit', 'view', 'use', 'move' or 'tag'.
@@ -1305,6 +1649,7 @@ function question_has_capability_on($questionorid, $cap, $notused = -1): bool {
             if (!defined('BEHAT_SITE_RUNNING')) {
                 debugging($e->getMessage(), DEBUG_NORMAL, $e->getTrace());
             }
+<<<<<<< HEAD
 
             $sql = 'SELECT q.id,
                            q.createdby,
@@ -1317,6 +1662,8 @@ function question_has_capability_on($questionorid, $cap, $notused = -1): bool {
                       JOIN {question_categories} qc
                         ON qc.id = qbe.questioncategoryid
                      WHERE q.id = :id';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
             // Well, at least we tried. Seems that we really have to read from DB.
             $question = $DB->get_record_sql($sql, ['id' => $questionid], MUST_EXIST);
@@ -1525,9 +1872,13 @@ function question_get_question_capabilities(): array {
         'moodle/question:moveall',
         'moodle/question:tagmine',
         'moodle/question:tagall',
+<<<<<<< HEAD
         'moodle/question:commentmine',
         'moodle/question:commentall',
     ];
+=======
+    );
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 /**
@@ -1542,6 +1893,191 @@ function question_get_all_capabilities(): array {
     return $caps;
 }
 
+<<<<<<< HEAD
+=======
+
+/**
+ * Tracks all the contexts related to the one where we are currently editing
+ * questions, and provides helper methods to check permissions.
+ *
+ * @copyright 2007 Jamie Pratt me@jamiep.org
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class question_edit_contexts {
+
+    public static $caps = array(
+        'editq' => array('moodle/question:add',
+            'moodle/question:editmine',
+            'moodle/question:editall',
+            'moodle/question:viewmine',
+            'moodle/question:viewall',
+            'moodle/question:usemine',
+            'moodle/question:useall',
+            'moodle/question:movemine',
+            'moodle/question:moveall'),
+        'questions'=>array('moodle/question:add',
+            'moodle/question:editmine',
+            'moodle/question:editall',
+            'moodle/question:viewmine',
+            'moodle/question:viewall',
+            'moodle/question:movemine',
+            'moodle/question:moveall'),
+        'categories'=>array('moodle/question:managecategory'),
+        'import'=>array('moodle/question:add'),
+        'export'=>array('moodle/question:viewall', 'moodle/question:viewmine'));
+
+    protected $allcontexts;
+
+    /**
+     * Constructor
+     * @param context the current context.
+     */
+    public function __construct(context $thiscontext) {
+        $this->allcontexts = array_values($thiscontext->get_parent_contexts(true));
+    }
+
+    /**
+     * @return context[] all parent contexts
+     */
+    public function all() {
+        return $this->allcontexts;
+    }
+
+    /**
+     * @return context lowest context which must be either the module or course context
+     */
+    public function lowest() {
+        return $this->allcontexts[0];
+    }
+
+    /**
+     * @param string $cap capability
+     * @return context[] parent contexts having capability, zero based index
+     */
+    public function having_cap($cap) {
+        $contextswithcap = array();
+        foreach ($this->allcontexts as $context) {
+            if (has_capability($cap, $context)) {
+                $contextswithcap[] = $context;
+            }
+        }
+        return $contextswithcap;
+    }
+
+    /**
+     * @param array $caps capabilities
+     * @return context[] parent contexts having at least one of $caps, zero based index
+     */
+    public function having_one_cap($caps) {
+        $contextswithacap = array();
+        foreach ($this->allcontexts as $context) {
+            foreach ($caps as $cap) {
+                if (has_capability($cap, $context)) {
+                    $contextswithacap[] = $context;
+                    break; //done with caps loop
+                }
+            }
+        }
+        return $contextswithacap;
+    }
+
+    /**
+     * @param string $tabname edit tab name
+     * @return context[] parent contexts having at least one of $caps, zero based index
+     */
+    public function having_one_edit_tab_cap($tabname) {
+        return $this->having_one_cap(self::$caps[$tabname]);
+    }
+
+    /**
+     * @return context[] those contexts where a user can add a question and then use it.
+     */
+    public function having_add_and_use() {
+        $contextswithcap = array();
+        foreach ($this->allcontexts as $context) {
+            if (!has_capability('moodle/question:add', $context)) {
+                continue;
+            }
+            if (!has_any_capability(array('moodle/question:useall', 'moodle/question:usemine'), $context)) {
+                            continue;
+            }
+            $contextswithcap[] = $context;
+        }
+        return $contextswithcap;
+    }
+
+    /**
+     * Has at least one parent context got the cap $cap?
+     *
+     * @param string $cap capability
+     * @return boolean
+     */
+    public function have_cap($cap) {
+        return (count($this->having_cap($cap)));
+    }
+
+    /**
+     * Has at least one parent context got one of the caps $caps?
+     *
+     * @param array $caps capability
+     * @return boolean
+     */
+    public function have_one_cap($caps) {
+        foreach ($caps as $cap) {
+            if ($this->have_cap($cap)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Has at least one parent context got one of the caps for actions on $tabname
+     *
+     * @param string $tabname edit tab name
+     * @return boolean
+     */
+    public function have_one_edit_tab_cap($tabname) {
+        return $this->have_one_cap(self::$caps[$tabname]);
+    }
+
+    /**
+     * Throw error if at least one parent context hasn't got the cap $cap
+     *
+     * @param string $cap capability
+     */
+    public function require_cap($cap) {
+        if (!$this->have_cap($cap)) {
+            print_error('nopermissions', '', '', $cap);
+        }
+    }
+
+    /**
+     * Throw error if at least one parent context hasn't got one of the caps $caps
+     *
+     * @param array $caps capabilities
+     */
+    public function require_one_cap($caps) {
+        if (!$this->have_one_cap($caps)) {
+            $capsstring = join(', ', $caps);
+            print_error('nopermissions', '', '', $capsstring);
+        }
+    }
+
+    /**
+     * Throw error if at least one parent context hasn't got one of the caps $caps
+     *
+     * @param string $tabname edit tab name
+     */
+    public function require_one_edit_tab_cap($tabname) {
+        if (!$this->have_one_edit_tab_cap($tabname)) {
+            print_error('nopermissions', '', '', 'access question edit tab '.$tabname);
+        }
+    }
+}
+
+
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * Helps call file_rewrite_pluginfile_urls with the right parameters.
  *

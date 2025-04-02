@@ -21,12 +21,31 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
 import {publish, subscribe} from 'core/pubsub';
 import MessageDrawerEvents from 'core_message/message_drawer_events';
+=======
+    /**
+     * Trigger an event to create a new conversation in the message drawer.
+     *
+     * @param {Number} userId The user id to start a conversation.
+     */
+    var createConversationWithUser = function(args) {
+        PubSub.publish(MessageDrawerEvents.CREATE_CONVERSATION_WITH_USER, args);
+    };
+
+    /**
+     * Trigger an event to hide the message drawer.
+     */
+    var hide = function() {
+        PubSub.publish(MessageDrawerEvents.HIDE);
+    };
+>>>>>>> upstream/MOODLE_38_STABLE
 
 /** @property {boolean} Whether the drawer is ready or not */
 let drawerMarkedReady = false;
 
+<<<<<<< HEAD
 /**
  * Trigger an event to create a new conversation in the message drawer.
  *
@@ -37,6 +56,16 @@ export const createConversationWithUser = async(args) => {
     await waitForDrawerToLoad();
     publish(MessageDrawerEvents.CREATE_CONVERSATION_WITH_USER, args);
 };
+=======
+    /**
+     * Trigger an event to show the given conversation.
+     *
+     * @param {int} conversationId Id for the conversation to show.
+     */
+    var showConversation = function(args) {
+        PubSub.publish(MessageDrawerEvents.SHOW_CONVERSATION, args);
+    };
+>>>>>>> upstream/MOODLE_38_STABLE
 
 /**
  * Trigger an event to hide the message drawer.
@@ -46,6 +75,7 @@ export const hide = async() => {
     publish(MessageDrawerEvents.HIDE);
 };
 
+<<<<<<< HEAD
 /**
  * Trigger an event to show the message drawer.
  */
@@ -84,6 +114,15 @@ export const waitForDrawerToLoad = () => new Promise((resolve) => {
     } else {
         subscribe(MessageDrawerEvents.READY, resolve);
     }
+=======
+    return {
+        createConversationWithUser: createConversationWithUser,
+        hide: hide,
+        show: show,
+        showConversation: showConversation,
+        showSettings: showSettings
+    };
+>>>>>>> upstream/MOODLE_38_STABLE
 });
 
 /**

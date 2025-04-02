@@ -14,17 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace enrol_paypal;
-
 /**
  * paypal enrolment plugin tests.
  *
  * @package    enrol_paypal
- * @category   test
+ * @category   phpunit
  * @copyright  2012 Petr Skoda {@link http://skodak.org}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-final class paypal_test extends \advanced_testcase {
+
+defined('MOODLE_INTERNAL') || die();
+
+
+class enrol_paypal_testcase extends advanced_testcase {
 
     protected function enable_plugin() {
         $enabled = enrol_get_plugins(true);
@@ -40,35 +42,35 @@ final class paypal_test extends \advanced_testcase {
         set_config('enrol_plugins_enabled', implode(',', $enabled));
     }
 
-    public function test_basics(): void {
+    public function test_basics() {
         $this->assertFalse(enrol_is_enabled('paypal'));
         $plugin = enrol_get_plugin('paypal');
         $this->assertInstanceOf('enrol_paypal_plugin', $plugin);
         $this->assertEquals(ENROL_EXT_REMOVED_SUSPENDNOROLES, get_config('enrol_paypal', 'expiredaction'));
     }
 
-    public function test_sync_nothing(): void {
+    public function test_sync_nothing() {
         $this->resetAfterTest();
 
         $this->enable_plugin();
         $paypalplugin = enrol_get_plugin('paypal');
 
         // Just make sure the sync does not throw any errors when nothing to do.
-        $paypalplugin->sync(new \null_progress_trace());
+        $paypalplugin->sync(new null_progress_trace());
     }
 
-    public function test_expired(): void {
+    public function test_expired() {
         global $DB;
         $this->resetAfterTest();
 
-        /** @var \enrol_paypal_plugin $paypalplugin  */
+        /** @var enrol_paypal_plugin $paypalplugin  */
         $paypalplugin = enrol_get_plugin('paypal');
-        /** @var \enrol_manual_plugin $manualplugin  */
+        /** @var enrol_manual_plugin $manualplugin  */
         $manualplugin = enrol_get_plugin('manual');
         $this->assertNotEmpty($manualplugin);
 
         $now = time();
-        $trace = new \null_progress_trace();
+        $trace = new null_progress_trace();
         $this->enable_plugin();
 
 
@@ -88,8 +90,8 @@ final class paypal_test extends \advanced_testcase {
 
         $course1 = $this->getDataGenerator()->create_course();
         $course2 = $this->getDataGenerator()->create_course();
-        $context1 = \context_course::instance($course1->id);
-        $context2 = \context_course::instance($course2->id);
+        $context1 = context_course::instance($course1->id);
+        $context2 = context_course::instance($course2->id);
 
         $data = array('roleid'=>$studentrole->id, 'courseid'=>$course1->id);
         $id = $paypalplugin->add_instance($course1, $data);
@@ -170,7 +172,7 @@ final class paypal_test extends \advanced_testcase {
     /**
      * Test for getting user enrolment actions.
      */
-    public function test_get_user_enrolment_actions(): void {
+    public function test_get_user_enrolment_actions() {
         global $CFG, $PAGE;
         $this->resetAfterTest();
 
@@ -198,7 +200,7 @@ final class paypal_test extends \advanced_testcase {
         $generator->enrol_user($student->id, $course->id, 'student', $pluginname);
 
         require_once($CFG->dirroot . '/enrol/locallib.php');
-        $manager = new \course_enrolment_manager($PAGE, $course);
+        $manager = new course_enrolment_manager($PAGE, $course);
         $userenrolments = $manager->get_user_enrolments($student->id);
         $this->assertCount(1, $userenrolments);
 

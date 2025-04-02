@@ -60,14 +60,25 @@ class flickr_client extends oauth_helper {
      * @param moodle_url|string $callbackurl
      */
     public function __construct($consumerkey, $consumersecret, $callbackurl = '') {
+<<<<<<< HEAD
+=======
+        global $CFG;
+        $version = moodle_major_version();
+        $useragent = "MoodleSite/$version (+{$CFG->wwwroot})";
+
+>>>>>>> upstream/MOODLE_38_STABLE
         parent::__construct([
             'api_root' => self::OAUTH_ROOT,
             'oauth_consumer_key' => $consumerkey,
             'oauth_consumer_secret' => $consumersecret,
             'oauth_callback' => $callbackurl,
+<<<<<<< HEAD
             'http_options' => [
                 'CURLOPT_USERAGENT' => static::user_agent(),
             ],
+=======
+            'http_options' => ['CURLOPT_USERAGENT' => $useragent]
+>>>>>>> upstream/MOODLE_38_STABLE
         ]);
     }
 

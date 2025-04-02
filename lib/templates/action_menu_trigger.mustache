@@ -83,6 +83,7 @@
     }
 }}
 <div class="dropdown{{^secondary.items}} hidden{{/secondary.items}}">
+<<<<<<< HEAD
     <a
         href="#"
         tabindex="0"
@@ -98,6 +99,9 @@
         {{name}}="{{value}}"
     {{/triggerattributes}}
     >
+=======
+    <a href="#" tabindex="0" class="{{triggerextraclasses}} dropdown-toggle icon-no-margin" id="action-menu-toggle-{{instance}}" aria-label="{{title}}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="action-menu-{{instance}}-menu">
+>>>>>>> upstream/MOODLE_38_STABLE
         {{{actiontext}}}
         {{{menutrigger}}}
             {{#icon}}
@@ -111,7 +115,11 @@
         {{/menutrigger}}
     </a>
     {{#secondary}}
+<<<<<<< HEAD
         <div class="dropdown-menu {{classes}} {{dropdownalignment}}"{{#attributes}} {{name}}="{{value}}"{{/attributes}}>
+=======
+        <div class="dropdown-menu dropdown-menu-right {{classes}}"{{#attributes}} {{name}}="{{value}}"{{/attributes}}>
+>>>>>>> upstream/MOODLE_38_STABLE
             {{#items}}
                 {{#actionmenulink}}
                     {{< core/action_menu_link}}

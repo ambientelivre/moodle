@@ -1358,6 +1358,7 @@ class block_manager {
             $str = new lang_string('configureblock', 'block', $blocktitle);
             $editactionurl = new moodle_url($actionurl, ['bui_editid' => $block->instance->id]);
             $editactionurl->remove_params(['sesskey']);
+<<<<<<< HEAD
 
             // Handle editing block on admin index page, prevent the page redirecting before block action can begin.
             if ($editactionurl->compare(new moodle_url('/admin/index.php'), URL_MATCH_BASE)) {
@@ -1367,6 +1368,11 @@ class block_manager {
             $controls[] = new action_menu_link_secondary(
                 $editactionurl,
                 new pix_icon('i/settings', $str, 'moodle', ['class' => 'iconsmall', 'title' => '']),
+=======
+            $controls[] = new action_menu_link_secondary(
+                $editactionurl,
+                new pix_icon('t/edit', $str, 'moodle', array('class' => 'iconsmall', 'title' => '')),
+>>>>>>> upstream/MOODLE_38_STABLE
                 $str,
                 [
                     'class' => 'editing_edit',
@@ -1436,6 +1442,7 @@ class block_manager {
             $str = new lang_string('deleteblock', 'block', $blocktitle);
             $deleteactionurl = new moodle_url($actionurl, ['bui_deleteid' => $block->instance->id]);
             $deleteactionurl->remove_params(['sesskey']);
+<<<<<<< HEAD
 
             // Handle deleting block on admin index page, prevent the page redirecting before block action can begin.
             if ($deleteactionurl->compare(new moodle_url('/admin/index.php'), URL_MATCH_BASE)) {
@@ -1449,6 +1456,8 @@ class block_manager {
             ]);
             $blocktitle = $block->get_title();
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             $controls[] = new action_menu_link_secondary(
                 $deleteactionurl,
                 new pix_icon('t/delete', $str, 'moodle', array('class' => 'iconsmall', 'title' => '')),

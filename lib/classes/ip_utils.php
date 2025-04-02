@@ -245,6 +245,7 @@ final class ip_utils {
         return false;
     }
 
+<<<<<<< HEAD
     /**
      * Return IP address for given hostname, or null on failure
      *
@@ -353,4 +354,6 @@ final class ip_utils {
 
         return implode($separator, $addresses);
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

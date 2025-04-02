@@ -1,8 +1,14 @@
 {{< core_form/element-group }}
     {{$element}}
+<<<<<<< HEAD
         <fieldset data-fieldtype="date" class="m-0 p-0 border-0" id="{{element.id}}">
             <legend class="visually-hidden">{{label}}</legend>
             <span class="fdate_selector d-flex flex-wrap align-items-center">
+=======
+        <fieldset class="m-0 p-0 border-0" id="{{element.id}}">
+            <legend class="sr-only">{{label}}</legend>
+            <span class="fdate_selector d-flex">
+>>>>>>> upstream/MOODLE_38_STABLE
             {{#element.elements}}
                 {{{separator}}}
                 {{{html}}}

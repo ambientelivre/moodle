@@ -37,7 +37,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_deferred_feedback_unanswered(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->shufflestems = false;
         $this->start_attempt_at_question($m, 'deferredfeedback', 4);
 
@@ -94,7 +98,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_deferred_feedback_partial_answer(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->shufflestems = false;
         $this->start_attempt_at_question($m, 'deferredfeedback', 4);
 
@@ -151,7 +159,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_correct_no_submit(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->hints = array(
             new question_hint_with_parts(11, 'This is the first hint.', FORMAT_HTML, false, false),
             new question_hint_with_parts(12, 'This is the second hint.', FORMAT_HTML, true, true),
@@ -224,7 +236,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_partial_no_submit(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->hints = array(
             new question_hint_with_parts(11, 'This is the first hint.', FORMAT_HTML, false, false),
             new question_hint_with_parts(12, 'This is the second hint.', FORMAT_HTML, true, true),
@@ -278,7 +294,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_with_invalid(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->hints = array(
             new question_hint_with_parts(11, 'This is the first hint.', FORMAT_HTML, false, false),
             new question_hint_with_parts(12, 'This is the second hint.', FORMAT_HTML, true, true),
@@ -348,7 +368,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_match_with_tricky_html_choices(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->stems = array(
             1 => '(1, 2]',
             2 => '[1, 2]',
@@ -402,7 +426,11 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_match_clear_wrong(): void {
 
         // Create a matching question.
+<<<<<<< HEAD
         $m = \test_question_maker::make_question('match');
+=======
+        $m = test_question_maker::make_question('match');
+>>>>>>> upstream/MOODLE_38_STABLE
         $m->hints = array(
             new question_hint_with_parts(11, 'This is the first hint.', FORMAT_HTML, false, true),
             new question_hint_with_parts(12, 'This is the second hint.', FORMAT_HTML, true, true),

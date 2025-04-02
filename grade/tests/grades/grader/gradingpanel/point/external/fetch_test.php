@@ -190,7 +190,11 @@ final class fetch_test extends advanced_testcase {
     /**
      * Executes the fetch method with the given users and returns the result.
      */
+<<<<<<< HEAD:grade/tests/grades/grader/gradingpanel/point/external/fetch_test.php
     private function execute_and_assert_fetch($forum, $fetcheruser, $grader, $gradeduser) {
+=======
+    private function execute_and_assert_fetch ($forum, $fetcheruser, $grader, $gradeduser) {
+>>>>>>> upstream/MOODLE_38_STABLE:grade/tests/grades_grader_gradingpanel_point_external_fetch_test.php
         $this->setUser($grader);
 
         $gradeitem = component_gradeitem::instance('mod_forum', $forum->get_context(), 'forum');

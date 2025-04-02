@@ -1,8 +1,15 @@
 MOODLE TRADEMARKS POLICY
 ========================
 
+<<<<<<< HEAD
 The Moodle Trademark
 --------------------
+=======
+The word "Moodle" is trademarked in many countries around the world. The word
+was originally coined as an acronym: Modular Object-Oriented Dynamic Learning
+Environment. The trademark is owned by Martin Dougiamas, Founder and Director
+of Moodle.
+>>>>>>> upstream/MOODLE_38_STABLE
 
 The brand and word "Moodle" has trade mark protection in many countries around
 the world. Various Moodle™ trade marks are owned by either Moodle Pty Ltd or

@@ -53,6 +53,7 @@ class api {
     const LOGIN_KEY_TTL = 60;
     /** @var string URL of the Moodle Apps Portal */
     const MOODLE_APPS_PORTAL_URL = 'https://apps.moodle.com';
+<<<<<<< HEAD
     /** @var int default value in seconds a QR login key will expire. */
     const LOGIN_QR_KEY_TTL = 600;
     /** @var int QR code disabled value */
@@ -71,6 +72,8 @@ class api {
     const AUTOLOGOUT_INMEDIATE = 1;
     /** @var int AUTOLOGOUT type custom value */
     const AUTOLOGOUT_CUSTOM = 2;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Returns a list of Moodle plugins supporting the mobile app.
@@ -576,10 +579,13 @@ class api {
                 'NoDelegate_ResponsiveMainMenuItems' => new lang_string('responsivemainmenuitems', 'tool_mobile'),
                 'NoDelegate_H5POffline' => new lang_string('h5poffline', 'tool_mobile'),
                 'NoDelegate_DarkMode' => new lang_string('darkmode', 'tool_mobile'),
+<<<<<<< HEAD
                 'CoreFilterDelegate' => new lang_string('type_filter_plural', 'plugin'),
                 'CoreReportBuilderDelegate' => new lang_string('reportbuilder', 'core_reportbuilder'),
                 'NoDelegate_CoreUserSupport' => new lang_string('contactsitesupport', 'admin'),
                 'NoDelegate_GlobalSearch' => new lang_string('globalsearch', 'search'),
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             ),
             "$mainmenu" => array(
                 '$mmSideMenuDelegate_mmaFrontpage' => new lang_string('sitehome'),
@@ -595,12 +601,18 @@ class api {
             "$useraccount" => array(
                 '$mmSideMenuDelegate_mmaGrades' => new lang_string('grades', 'grades'),
                 '$mmSideMenuDelegate_mmaFiles' => new lang_string('files'),
+<<<<<<< HEAD
                 'CoreUserDelegate_AddonBadges:account' => new lang_string('badges', 'badges'),
                 'CoreUserDelegate_AddonBlog:account' => new lang_string('blog', 'blog'),
                 '$mmSideMenuDelegate_mmaCompetency' => new lang_string('myplans', 'tool_lp'),
                 'CoreUserDelegate_CorePolicy' => new lang_string('policiesagreements', 'tool_policy'),
                 'CoreUserDelegate_CoreDataPrivacy' => new lang_string('pluginname', 'tool_dataprivacy'),
                 'NoDelegate_SwitchAccount' => new lang_string('switchaccount', 'tool_mobile'),
+=======
+                'CoreMainMenuDelegate_CoreTag' => new lang_string('tags'),
+                '$mmSideMenuDelegate_website' => new lang_string('webpage'),
+                '$mmSideMenuDelegate_help' => new lang_string('help'),
+>>>>>>> upstream/MOODLE_38_STABLE
             ),
             "$course" => array(
                 '$mmCoursesDelegate_mmaParticipants' => new lang_string('participants'),
@@ -637,12 +649,15 @@ class api {
             $features["$remoteaddons"] = $remoteaddonslist;
         }
 
+<<<<<<< HEAD
         if (!empty($availablemods['lti'])) {
             $ltidisplayname = $availablemods['lti']->displayname;
             $features["$ltidisplayname"]['CoreCourseModuleDelegate_AddonModLti:launchViaSite'] =
                 new lang_string('launchviasiteinbrowser', 'tool_mobile');
         }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         // Display OAuth 2 identity providers.
         if (is_enabled_auth('oauth2')) {
             $identityproviderslist = array();
@@ -698,6 +713,7 @@ class api {
                 $warnings[] = ['selfsignedoruntrustedcertificatewarning', 'tool_mobile'];
             } else {
                 $timenow = time();
+<<<<<<< HEAD
                 $infokeys = array_keys($info['certinfo']);
                 $lastkey = end($infokeys);
 
@@ -726,6 +742,26 @@ class api {
                     if ($key != $lastkey &&
                             ($signaturealgorithm == 'sha1WithRSAEncryption' || $signaturealgorithm == 'sha1WithRSA')) {
                         $warnings['insecurealgorithmwarning'] = ['insecurealgorithmwarning', 'tool_mobile'];
+=======
+                $expectedissuer = null;
+                foreach ($info['certinfo'] as $cert) {
+
+                    // Due to a bug in certain curl/openssl versions the signature algorithm isn't always correctly parsed.
+                    // See https://github.com/curl/curl/issues/3706 for reference.
+                    if (!array_key_exists('Signature Algorithm', $cert)) {
+                        // The malformed field that does contain the algorithm we're looking for looks like the following:
+                        // <WHITESPACE>Signature Algorithm: <ALGORITHM><CRLF><ALGORITHM>.
+                        preg_match('/\s+Signature Algorithm: (?<algorithm>[^\s]+)/', $cert['Public Key Algorithm'], $matches);
+
+                        $signaturealgorithm = $matches['algorithm'] ?? '';
+                    } else {
+                        $signaturealgorithm = $cert['Signature Algorithm'];
+                    }
+
+                    // Check if the signature algorithm is weak (Android won't work with SHA-1).
+                    if ($signaturealgorithm == 'sha1WithRSAEncryption' || $signaturealgorithm == 'sha1WithRSA') {
+                        $warnings[] = ['insecurealgorithmwarning', 'tool_mobile'];
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
                     // Check certificate start date.
                     if (strtotime($cert['start date']) > $timenow) {

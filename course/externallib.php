@@ -399,6 +399,15 @@ class core_course_external extends external_api {
             // We didn't this before to be able to retrieve stealth activities.
             foreach ($coursecontents as $sectionnumber => $sectioncontents) {
                 $section = $sections[$sectionnumber];
+<<<<<<< HEAD
+=======
+                // Show the section if the user is permitted to access it OR
+                // if it's not available but there is some available info text which explains the reason & should display OR
+                // the course is configured to show hidden sections name.
+                $showsection = $section->uservisible ||
+                    ($section->visible && !$section->available && !empty($section->availableinfo)) ||
+                    (!$section->visible && empty($courseformat->get_course()->hiddensections));
+>>>>>>> upstream/MOODLE_38_STABLE
 
                 if (!$courseformat->is_section_visible($section)) {
                     unset($coursecontents[$sectionnumber]);
@@ -2748,7 +2757,10 @@ class core_course_external extends external_api {
             'fullname' => new external_value(PARAM_RAW, 'course full name'),
             'displayname' => new external_value(PARAM_RAW, 'course display name'),
             'shortname' => new external_value(PARAM_RAW, 'course short name'),
+<<<<<<< HEAD
             'courseimage' => new external_value(PARAM_URL, 'Course image', VALUE_OPTIONAL),
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             'categoryid' => new external_value(PARAM_INT, 'category id'),
             'categoryname' => new external_value(PARAM_RAW, 'category name'),
             'sortorder' => new external_value(PARAM_INT, 'Sort order in the category', VALUE_OPTIONAL),

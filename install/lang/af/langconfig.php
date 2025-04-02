@@ -29,6 +29,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD
 $string['parentlanguage'] = '';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['thisdirection'] = 'ltr';
 $string['thislanguage'] = 'Afrikaans';

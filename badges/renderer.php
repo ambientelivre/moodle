@@ -285,6 +285,7 @@ class core_badges_renderer extends plugin_renderer_base {
         return parent::render_from_template('core_badges/issued_badge', $data);
     }
 
+<<<<<<< HEAD
     /**
      * Render an issued badge.
      *
@@ -294,6 +295,170 @@ class core_badges_renderer extends plugin_renderer_base {
     protected function render_badgeclass(\core_badges\output\badgeclass $badge) {
         $data = $badge->export_for_template($this);
         return parent::render_from_template('core_badges/issued_badge', $data);
+=======
+        $output = '';
+        $output .= html_writer::start_tag('div', array('id' => 'badge'));
+        $output .= html_writer::start_tag('div', array('id' => 'badge-image'));
+        $output .= html_writer::empty_tag('img', array('src' => $badgeimage, 'alt' => $badge->name, 'width' => '100'));
+        if ($expiration < $now) {
+            $output .= $this->output->pix_icon('i/expired',
+            get_string('expireddate', 'badges', userdate($issued['expires'])),
+                'moodle',
+                array('class' => 'expireimage'));
+        }
+
+        if ($USER->id == $userinfo->id && !empty($CFG->enablebadges)) {
+            $output .= $this->output->single_button(
+                        new moodle_url('/badges/badge.php', array('hash' => $ibadge->hash, 'bake' => true)),
+                        get_string('download'),
+                        'POST');
+            if (!empty($CFG->badges_allowexternalbackpack) && ($expiration > $now) && badges_user_has_backpack($USER->id)) {
+
+                if (badges_open_badges_backpack_api() == OPEN_BADGES_V1) {
+                    $assertion = new moodle_url('/badges/assertion.php', array('b' => $ibadge->hash));
+                    $action = new component_action('click', 'addtobackpack', array('assertion' => $assertion->out(false)));
+                    $attributes = array(
+                            'type'  => 'button',
+                            'class' => 'btn btn-secondary m-1',
+                            'id'    => 'addbutton',
+                            'value' => get_string('addtobackpack', 'badges'));
+                    $tobackpack = html_writer::tag('input', '', $attributes);
+                    $this->output->add_action_handler($action, 'addbutton');
+                    $output .= $tobackpack;
+                } else {
+                    $assertion = new moodle_url('/badges/backpack-add.php', array('hash' => $ibadge->hash));
+                    $attributes = ['class' => 'btn btn-secondary m-1', 'role' => 'button'];
+                    $tobackpack = html_writer::link($assertion, get_string('addtobackpack', 'badges'), $attributes);
+                    $output .= $tobackpack;
+                }
+            }
+        }
+        $output .= html_writer::end_tag('div');
+
+        $output .= html_writer::start_tag('div', array('id' => 'badge-details'));
+        // Recipient information.
+        $output .= $this->output->heading(get_string('recipientdetails', 'badges'), 3);
+        $dl = array();
+        if ($userinfo->deleted) {
+            $strdata = new stdClass();
+            $strdata->user = fullname($userinfo);
+            $strdata->site = format_string($SITE->fullname, true, array('context' => context_system::instance()));
+
+            $dl[get_string('name')] = get_string('error:userdeleted', 'badges', $strdata);
+        } else {
+            $dl[get_string('name')] = fullname($userinfo);
+        }
+        $output .= $this->definition_list($dl);
+
+        $output .= $this->output->heading(get_string('issuerdetails', 'badges'), 3);
+        $dl = array();
+        $dl[get_string('issuername', 'badges')] = $badge->issuername;
+        if (isset($badge->issuercontact) && !empty($badge->issuercontact)) {
+            $dl[get_string('contact', 'badges')] = obfuscate_mailto($badge->issuercontact);
+        }
+        $output .= $this->definition_list($dl);
+
+        $output .= $this->output->heading(get_string('badgedetails', 'badges'), 3);
+        $dl = array();
+        $dl[get_string('name')] = $badge->name;
+        if (!empty($badge->version)) {
+            $dl[get_string('version', 'badges')] = $badge->version;
+        }
+        if (!empty($badge->language)) {
+            $dl[get_string('language')] = $languages[$badge->language];
+        }
+        $dl[get_string('description', 'badges')] = $badge->description;
+        if (!empty($badge->imageauthorname)) {
+            $dl[get_string('imageauthorname', 'badges')] = $badge->imageauthorname;
+        }
+        if (!empty($badge->imageauthoremail)) {
+            $dl[get_string('imageauthoremail', 'badges')] =
+                    html_writer::tag('a', $badge->imageauthoremail, array('href' => 'mailto:' . $badge->imageauthoremail));
+        }
+        if (!empty($badge->imageauthorurl)) {
+            $dl[get_string('imageauthorurl', 'badges')] =
+                    html_writer::link($badge->imageauthorurl, $badge->imageauthorurl, array('target' => '_blank'));
+        }
+        if (!empty($badge->imagecaption)) {
+            $dl[get_string('imagecaption', 'badges')] = $badge->imagecaption;
+        }
+
+        if ($badge->type == BADGE_TYPE_COURSE && isset($badge->courseid)) {
+            $coursename = $DB->get_field('course', 'fullname', array('id' => $badge->courseid));
+            $dl[get_string('course')] = $coursename;
+        }
+        $dl[get_string('bcriteria', 'badges')] = self::print_badge_criteria($badge);
+        $output .= $this->definition_list($dl);
+
+        $output .= $this->output->heading(get_string('issuancedetails', 'badges'), 3);
+        $dl = array();
+        if (!is_numeric($issued['issuedOn'])) {
+            $issued['issuedOn'] = strtotime($issued['issuedOn']);
+        }
+        $dl[get_string('dateawarded', 'badges')] = userdate($issued['issuedOn']);
+        if (isset($issued['expires'])) {
+            if (!is_numeric($issued['expires'])) {
+                $issued['expires'] = strtotime($issued['expires']);
+            }
+            if ($issued['expires'] < $now) {
+                $dl[get_string('expirydate', 'badges')] = userdate($issued['expires']) . get_string('warnexpired', 'badges');
+
+            } else {
+                $dl[get_string('expirydate', 'badges')] = userdate($issued['expires']);
+            }
+        }
+
+        // Print evidence.
+        $agg = $badge->get_aggregation_methods();
+        $evidence = $badge->get_criteria_completions($userinfo->id);
+        $eids = array_map(function($o) {
+            return $o->critid;
+        }, $evidence);
+        unset($badge->criteria[BADGE_CRITERIA_TYPE_OVERALL]);
+
+        $items = array();
+        foreach ($badge->criteria as $type => $c) {
+            if (in_array($c->id, $eids)) {
+                if (count($c->params) == 1) {
+                    $items[] = get_string('criteria_descr_single_' . $type , 'badges') . $c->get_details();
+                } else {
+                    $items[] = get_string('criteria_descr_' . $type , 'badges',
+                            core_text::strtoupper($agg[$badge->get_aggregation_method($type)])) . $c->get_details();
+                }
+            }
+        }
+
+        $dl[get_string('evidence', 'badges')] = get_string('completioninfo', 'badges') . html_writer::alist($items, array(), 'ul');
+        $output .= $this->definition_list($dl);
+        $endorsement = $badge->get_endorsement();
+        if (!empty($endorsement)) {
+            $output .= self::print_badge_endorsement($badge);
+        }
+
+        $relatedbadges = $badge->get_related_badges(true);
+        $items = array();
+        foreach ($relatedbadges as $related) {
+            $relatedurl = new moodle_url('/badges/overview.php', array('id' => $related->id));
+            $items[] = html_writer::link($relatedurl->out(), $related->name, array('target' => '_blank'));
+        }
+        if (!empty($items)) {
+            $output .= $this->heading(get_string('relatedbages', 'badges'), 3);
+            $output .= html_writer::alist($items, array(), 'ul');
+        }
+
+        $alignments = $badge->get_alignments();
+        if (!empty($alignments)) {
+            $output .= $this->heading(get_string('alignment', 'badges'), 3);
+            $items = array();
+            foreach ($alignments as $alignment) {
+                $items[] = html_writer::link($alignment->targeturl, $alignment->targetname, array('target' => '_blank'));
+            }
+            $output .= html_writer::alist($items, array(), 'ul');
+        }
+        $output .= html_writer::end_tag('div');
+
+        return $output;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -441,9 +606,143 @@ class core_badges_renderer extends plugin_renderer_base {
     /**
      * @deprecated since Moodle 4.3
      */
+<<<<<<< HEAD
     #[\core\attribute\deprecated(null, reason: 'It is no longer used', since: '4.3', mdl: 'MDL-77061', final: true)]
     protected function render_badge_management() {
         \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
+=======
+    protected function render_badge_management(\core_badges\output\badge_management $badges) {
+        $paging = new paging_bar($badges->totalcount, $badges->page, $badges->perpage, $this->page->url, 'page');
+
+        // New badge button.
+        $htmlnew = '';
+        if (has_capability('moodle/badges:createbadge', $this->page->context)) {
+            $n['type'] = $this->page->url->get_param('type');
+            $n['id'] = $this->page->url->get_param('id');
+            $btn = $this->output->single_button(new moodle_url('newbadge.php', $n), get_string('newbadge', 'badges'));
+            $htmlnew = $this->output->box($btn);
+        }
+
+        $htmlpagingbar = $this->render($paging);
+        $table = new html_table();
+        $table->attributes['class'] = 'collection';
+
+        $sortbyname = $this->helper_sortable_heading(get_string('name'),
+                'name', $badges->sort, $badges->dir);
+        $sortbystatus = $this->helper_sortable_heading(get_string('status', 'badges'),
+                'status', $badges->sort, $badges->dir);
+        $table->head = array(
+                $sortbyname,
+                $sortbystatus,
+                get_string('bcriteria', 'badges'),
+                get_string('awards', 'badges'),
+                get_string('actions')
+            );
+        $table->colclasses = array('name', 'status', 'criteria', 'awards', 'actions');
+
+        foreach ($badges->badges as $b) {
+            $style = !$b->is_active() ? array('class' => 'dimmed') : array();
+            $forlink =  print_badge_image($b, $this->page->context) . ' ' .
+                        html_writer::start_tag('span') . $b->name . html_writer::end_tag('span');
+            $name = html_writer::link(new moodle_url('/badges/overview.php', array('id' => $b->id)), $forlink, $style);
+            $status = $b->statstring;
+            $criteria = self::print_badge_criteria($b, 'short');
+
+            if (has_capability('moodle/badges:viewawarded', $this->page->context)) {
+                $awards = html_writer::link(new moodle_url('/badges/recipients.php', array('id' => $b->id)), $b->awards);
+            } else {
+                $awards = $b->awards;
+            }
+
+            $actions = self::print_badge_table_actions($b, $this->page->context);
+
+            $row = array($name, $status, $criteria, $awards, $actions);
+            $table->data[] = $row;
+        }
+        $htmltable = html_writer::table($table);
+
+        return $htmlnew . $htmlpagingbar . $htmltable . $htmlpagingbar;
+    }
+
+    /**
+     * Prints tabs for badge editing.
+     *
+     * @param integer $badgeid The badgeid to edit.
+     * @param context $context The current context.
+     * @param string $current The currently selected tab.
+     * @return string
+     */
+    public function print_badge_tabs($badgeid, $context, $current = 'overview') {
+        global $DB;
+
+        $badge = new badge($badgeid);
+        $row = array();
+
+        $row[] = new tabobject('overview',
+                    new moodle_url('/badges/overview.php', array('id' => $badgeid)),
+                    get_string('boverview', 'badges')
+                );
+
+        if (has_capability('moodle/badges:configuredetails', $context)) {
+            $row[] = new tabobject('badge',
+                        new moodle_url('/badges/edit.php', array('id' => $badgeid, 'action' => 'badge')),
+                        get_string('bdetails', 'badges')
+                    );
+        }
+
+        if (has_capability('moodle/badges:configurecriteria', $context)) {
+            $row[] = new tabobject('criteria',
+                        new moodle_url('/badges/criteria.php', array('id' => $badgeid)),
+                        get_string('bcriteria', 'badges')
+                    );
+        }
+
+        if (has_capability('moodle/badges:configuremessages', $context)) {
+            $row[] = new tabobject('message',
+                        new moodle_url('/badges/edit.php', array('id' => $badgeid, 'action' => 'message')),
+                        get_string('bmessage', 'badges')
+                    );
+        }
+
+        if (has_capability('moodle/badges:viewawarded', $context)) {
+            $awarded = $DB->count_records_sql('SELECT COUNT(b.userid)
+                                               FROM {badge_issued} b INNER JOIN {user} u ON b.userid = u.id
+                                               WHERE b.badgeid = :badgeid AND u.deleted = 0', array('badgeid' => $badgeid));
+            $row[] = new tabobject('awards',
+                        new moodle_url('/badges/recipients.php', array('id' => $badgeid)),
+                        get_string('bawards', 'badges', $awarded)
+                    );
+        }
+
+        if (has_capability('moodle/badges:configuredetails', $context)) {
+            $row[] = new tabobject('bendorsement',
+                new moodle_url('/badges/endorsement.php', array('id' => $badgeid)),
+                get_string('bendorsement', 'badges')
+            );
+        }
+
+        if (has_capability('moodle/badges:configuredetails', $context)) {
+            $sql = "SELECT COUNT(br.badgeid)
+                      FROM {badge_related} br
+                     WHERE (br.badgeid = :badgeid OR br.relatedbadgeid = :badgeid2)";
+            $related = $DB->count_records_sql($sql, ['badgeid' => $badgeid, 'badgeid2' => $badgeid]);
+            $row[] = new tabobject('brelated',
+                new moodle_url('/badges/related.php', array('id' => $badgeid)),
+                get_string('brelated', 'badges', $related)
+            );
+        }
+
+        if (has_capability('moodle/badges:configuredetails', $context)) {
+            $alignments = $DB->count_records_sql("SELECT COUNT(bc.id)
+                      FROM {badge_alignment} bc WHERE bc.badgeid = :badgeid", array('badgeid' => $badgeid));
+            $row[] = new tabobject('alignment',
+                new moodle_url('/badges/alignment.php', array('id' => $badgeid)),
+                get_string('balignment', 'badges', $alignments)
+            );
+        }
+
+        echo $this->tabtree($row, $current);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -997,6 +1296,7 @@ class core_badges_renderer extends plugin_renderer_base {
 
         return $result;
     }
+<<<<<<< HEAD
 
     /**
      * Render the tertiary navigation for the page.
@@ -1007,4 +1307,6 @@ class core_badges_renderer extends plugin_renderer_base {
     public function render_tertiary_navigation(\core_badges\output\base_action_bar $actionbar) {
         return $this->render_from_template($actionbar->get_template(), $actionbar->export_for_template($this));
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

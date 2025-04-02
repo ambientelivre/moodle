@@ -48,6 +48,7 @@ class backup_cleanup_task extends scheduled_task {
     public function execute() {
         global $DB;
 
+<<<<<<< HEAD
         $sql = 'SELECT * FROM {backup_controllers} WHERE purpose = ? AND status <> ?';
         $params = [\backup::MODE_COPY, \backup::STATUS_FINISHED_OK];
         $copyrecords = $DB->get_records_sql($sql, $params);
@@ -57,6 +58,12 @@ class backup_cleanup_task extends scheduled_task {
         if (empty($loglifetime)) {
             mtrace('The \'loglifetime\' config is not set. Can\'t proceed and delete old backup records.');
             return;
+=======
+        $loglifetime = get_config('backup', 'loglifetime');
+
+        if (empty($loglifetime)) {
+            throw new coding_exception('The \'loglifetime\' config is not set. Can\'t proceed and delete old backup records.');
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         // First, get the list of all backupids older than loglifetime.
@@ -74,9 +81,12 @@ class backup_cleanup_task extends scheduled_task {
                 $DB->delete_records('backup_controllers', array('backupid' => $record->backupid));
             }
         }
+<<<<<<< HEAD
 
         // Delete files and dirs older than 1 week.
         \backup_helper::delete_old_backup_dirs(strtotime('-1 week'));
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
 }

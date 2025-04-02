@@ -38,6 +38,11 @@
  * @copyright Andreas Grabs
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
+=======
+
+defined('MOODLE_INTERNAL') || die();
+>>>>>>> upstream/MOODLE_38_STABLE
 
 function xmldb_feedback_upgrade($oldversion) {
     // Automatically generated Moodle v4.2.0 release upgrade line.
@@ -50,6 +55,9 @@ function xmldb_feedback_upgrade($oldversion) {
     // Put any upgrade step following this.
 
     // Automatically generated Moodle v4.5.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.8.0 release upgrade line.
     // Put any upgrade step following this.
 
     return true;

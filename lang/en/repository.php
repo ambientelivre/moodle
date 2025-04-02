@@ -58,7 +58,11 @@ $string['cannotdownload'] = 'Cannot download this file';
 $string['cannotdownloaddir'] = 'Cannot download this folder';
 $string['cannotinitplugin'] = 'Call plugin_init failed';
 $string['cannotunzipcontentunreadable'] = 'Cannot unzip this file because the contents of the file cannot be read.';
+<<<<<<< HEAD
 $string['cannotunzipextractfileerror'] = 'Cannot unzip this file because one or more of its files cannot be read.';
+=======
+$string['cannotunzipextractfileerror'] = 'Cannot unzip this file because one or more of it\'s files cannot be read.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['cannotunzipquotaexceeded'] = 'Cannot unzip this file because the maximum size allowed in this draft area will be exceeded.';
 $string['cleancache'] = 'Clean my cache files';
 $string['close'] = 'Close';

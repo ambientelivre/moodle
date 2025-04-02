@@ -106,8 +106,18 @@ Feature: Assign group override
     And I select "Group overrides" from the "jump" singleselect
     And I press "Add group override"
     And I set the following fields to these values:
+<<<<<<< HEAD
       | Override group | Group 1              |
       | Cut-off date   | ##1 Jan 2030 08:00## |
+=======
+      | Override group     | Group 1 |
+      | id_cutoffdate_enabled | 1 |
+      | cutoffdate[day]       | 1 |
+      | cutoffdate[month]     | January |
+      | cutoffdate[year]      | 2030 |
+      | cutoffdate[hour]      | 08 |
+      | cutoffdate[minute]    | 00 |
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Save"
     And I should see "Tuesday, 1 January 2030, 8:00"
     And I log out
@@ -121,9 +131,20 @@ Feature: Assign group override
     Given I am on the "Test assignment name" Activity page logged in as teacher1
     When I navigate to "Settings" in current page administration
     And I set the following fields to these values:
+<<<<<<< HEAD
       | Due date               | disabled                 |
       | Allow submissions from | ##1 January 2030 08:00## |
       | Cut-off date           | disabled                 |
+=======
+      | id_duedate_enabled | 0 |
+      | id_allowsubmissionsfromdate_enabled | 1 |
+      | id_cutoffdate_enabled | 0 |
+      | allowsubmissionsfromdate[day]       | 1 |
+      | allowsubmissionsfromdate[month]     | January |
+      | allowsubmissionsfromdate[year]      | 2030 |
+      | allowsubmissionsfromdate[hour]      | 08 |
+      | allowsubmissionsfromdate[minute]    | 00 |
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Save and display"
     And I navigate to "Overrides" in current page administration
     And I select "Group overrides" from the "jump" singleselect
@@ -134,27 +155,52 @@ Feature: Assign group override
     And I press "Save"
     And I should see "Thursday, 1 January 2015, 8:00"
     And I log out
+<<<<<<< HEAD
     And I am on the "Test assignment name" Activity page logged in as student2
     Then the activity date in "Test assignment name" should contain "Opens: Tuesday, 1 January 2030, 8:00"
     And I should not see "Add submission"
     And I log out
     And I am on the "Test assignment name" Activity page logged in as student1
     And I should not see "Tuesday, 1 January 2030, 8:00"
+=======
+    And I log in as "student2"
+    And I am on "Course 1" course homepage
+    And I follow "Test assignment name"
+    Then I should see "This assignment will accept submissions from Tuesday, 1 January 2030, 8:00"
+    And I should not see "Add submission"
+    And I log out
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test assignment name"
+    And I should not see "This assignment will accept submissions from Tuesday, 1 January 2030, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   @javascript
   Scenario: Add both a user and group override and verify that both are applied correctly
     Given I am on the "Test assignment name" Activity page logged in as teacher1
     When I navigate to "Settings" in current page administration
     And I set the following fields to these values:
+<<<<<<< HEAD
       | Due date               | disabled                 |
       | Allow submissions from | ##1 January 2040 08:00## |
       | Cut-off date           | disabled                 |
       | Group mode             | Visible groups           |
+=======
+      | id_duedate_enabled | 0 |
+      | id_allowsubmissionsfromdate_enabled | 1 |
+      | id_cutoffdate_enabled | 0 |
+      | allowsubmissionsfromdate[day]       | 1 |
+      | allowsubmissionsfromdate[month]     | January |
+      | allowsubmissionsfromdate[year]      | 2040 |
+      | allowsubmissionsfromdate[hour]      | 08 |
+      | allowsubmissionsfromdate[minute]    | 00 |
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Save and display"
     And I navigate to "Overrides" in current page administration
     And I select "Group overrides" from the "jump" singleselect
     And I press "Add group override"
     And I set the following fields to these values:
+<<<<<<< HEAD
       | Override group         | Group 1                  |
       | Allow submissions from | ##1 January 2030 08:00## |
     And I press "Save"
@@ -176,6 +222,45 @@ Feature: Assign group override
     And I log out
     And I am on the "Test assignment name" Activity page logged in as student3
     And the activity date in "Test assignment name" should contain "Opens: Tuesday, 1 January 2030, 8:00"
+=======
+      | Override group       | Group 1 |
+      | id_allowsubmissionsfromdate_enabled | 1 |
+      | allowsubmissionsfromdate[day]       | 1 |
+      | allowsubmissionsfromdate[month]     | January |
+      | allowsubmissionsfromdate[year]      | 2030 |
+      | allowsubmissionsfromdate[hour]      | 08 |
+      | allowsubmissionsfromdate[minute]    | 00 |
+    And I press "Save"
+    And I should see "Tuesday, 1 January 2030, 8:00"
+    And I follow "Test assignment name"
+    And I navigate to "User overrides" in current page administration
+    And I press "Add user override"
+    And I set the following fields to these values:
+      | Override user        | Student1 |
+      | id_allowsubmissionsfromdate_enabled | 1 |
+      | allowsubmissionsfromdate[day]       | 1 |
+      | allowsubmissionsfromdate[month]     | January |
+      | allowsubmissionsfromdate[year]      | 2031 |
+      | allowsubmissionsfromdate[hour]      | 08 |
+      | allowsubmissionsfromdate[minute]    | 00 |
+    And I press "Save"
+    And I should see "Wednesday, 1 January 2031, 8:00"
+    And I log out
+    Then I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test assignment name"
+    And I should see "This assignment will accept submissions from Wednesday, 1 January 2031, 8:00"
+    And I log out
+    And I log in as "student2"
+    And I am on "Course 1" course homepage
+    And I follow "Test assignment name"
+    And I should see "This assignment will accept submissions from Sunday, 1 January 2040, 8:00"
+    And I log out
+    And I log in as "student3"
+    And I am on "Course 1" course homepage
+    And I follow "Test assignment name"
+    And I should see "This assignment will accept submissions from Tuesday, 1 January 2030, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: Override a group when teacher is in no group, and does not have accessallgroups permission, and the activity's group mode is "separate groups"
     Given the following "permission overrides" exist:

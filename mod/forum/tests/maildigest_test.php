@@ -375,7 +375,11 @@ final class maildigest_test extends \advanced_testcase {
     /**
      * Send digests to a user who cannot view fullnames
      */
+<<<<<<< HEAD
     public function test_cron_digest_view_fullnames_off(): void {
+=======
+    public function test_cron_digest_view_fullnames_off() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $CFG;
 
         $CFG->fullnamedisplay = 'lastname';
@@ -407,6 +411,7 @@ final class maildigest_test extends \advanced_testcase {
         $this->send_digests_and_assert($user, $posts);
 
         // The user does not, by default, have permission to view the fullname.
+<<<<<<< HEAD
         $messages = $this->messagesink->get_messages_by_component('mod_forum');
         $messages = reset($messages);
         $messagecontent = $messages->fullmessage;
@@ -416,12 +421,25 @@ final class maildigest_test extends \advanced_testcase {
 
         // Assert that the full name is not present (firstname lastname only).
         $this->assertStringNotContainsString(fullname($user, true), $messagecontent);
+=======
+        $messagecontent = $this->messagesink->get_messages()[0]->fullmessage;
+
+        // Assert that the expected name is present (lastname only).
+        $this->assertContains(fullname($user, false), $messagecontent);
+
+        // Assert that the full name is not present (firstname lastname only).
+        $this->assertNotContains(fullname($user, true), $messagecontent);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
      * Send digests to a user who can view fullnames.
      */
+<<<<<<< HEAD
     public function test_cron_digest_view_fullnames_on(): void {
+=======
+    public function test_cron_digest_view_fullnames_on() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $CFG;
 
         $CFG->fullnamedisplay = 'lastname';
@@ -460,6 +478,7 @@ final class maildigest_test extends \advanced_testcase {
 
         // The user does not, by default, have permission to view the fullname.
         // However we have given the user that capability so we expect to see both firstname and lastname.
+<<<<<<< HEAD
         $messages = $this->messagesink->get_messages_by_component('mod_forum');
         $messages = reset($messages);
         $messagecontent = $messages->fullmessage;
@@ -469,6 +488,15 @@ final class maildigest_test extends \advanced_testcase {
 
         // Assert that the full name is also present (firstname lastname only).
         $this->assertStringContainsString(fullname($user, true), $messagecontent);
+=======
+        $messagecontent = $this->messagesink->get_messages()[0]->fullmessage;
+
+        // Assert that the expected name is present (lastname only).
+        $this->assertContains(fullname($user, false), $messagecontent);
+
+        // Assert that the full name is also present (firstname lastname only).
+        $this->assertContains(fullname($user, true), $messagecontent);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -712,6 +740,7 @@ final class maildigest_test extends \advanced_testcase {
     }
 
     /**
+<<<<<<< HEAD
      * Tests that if a new message is posted after the days digest time,
      * but before that days digests are sent a new task is created.
      */
@@ -782,6 +811,11 @@ final class maildigest_test extends \advanced_testcase {
      * The sending of a digest marks posts as read if automatic message read marking is set.
      */
     public function test_cron_digest_marks_posts_read(): void {
+=======
+     * The sending of a digest marks posts as read if automatic message read marking is set.
+     */
+    public function test_cron_digest_marks_posts_read() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $CFG;
 
         $this->resetAfterTest(true);
@@ -838,7 +872,11 @@ final class maildigest_test extends \advanced_testcase {
     /**
      * The sending of a digest does not mark posts as read when manual message read marking is set.
      */
+<<<<<<< HEAD
     public function test_cron_digest_leaves_posts_unread(): void {
+=======
+    public function test_cron_digest_leaves_posts_unread() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $CFG;
 
         $this->resetAfterTest(true);

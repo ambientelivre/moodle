@@ -94,8 +94,18 @@ Feature: Assign user override
     And I navigate to "Overrides" in current page administration
     And I press "Add user override"
     And I set the following fields to these values:
+<<<<<<< HEAD
       | Override user       | Student1             |
       | Cut-off date        | ##1 Jan 2030 08:00## |
+=======
+      | Override user       | Student1 |
+      | id_cutoffdate_enabled | 1 |
+      | cutoffdate[day]       | 1 |
+      | cutoffdate[month]     | January |
+      | cutoffdate[year]      | 2030 |
+      | cutoffdate[hour]      | 08 |
+      | cutoffdate[minute]    | 00 |
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Save"
     And I should see "Tuesday, 1 January 2030, 8:00"
     And I log out
@@ -110,9 +120,20 @@ Feature: Assign user override
     Given I am on the "Test assignment name" Activity page logged in as teacher1
     When I navigate to "Settings" in current page administration
     And I set the following fields to these values:
+<<<<<<< HEAD
       | Due date               | disabled                 |
       | Allow submissions from | ##1 January 2030 08:00## |
       | Cut-off date           | disabled                 |
+=======
+      | id_duedate_enabled | 0 |
+      | id_allowsubmissionsfromdate_enabled | 1 |
+      | id_cutoffdate_enabled | 0 |
+      | allowsubmissionsfromdate[day]       | 1 |
+      | allowsubmissionsfromdate[month]     | January |
+      | allowsubmissionsfromdate[year]      | 2030 |
+      | allowsubmissionsfromdate[hour]      | 08 |
+      | allowsubmissionsfromdate[minute]    | 00 |
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Save and display"
     And I navigate to "Overrides" in current page administration
     And I press "Add user override"
@@ -124,6 +145,7 @@ Feature: Assign user override
     And I log out
     And I log in as "student2"
     And I am on "Course 1" course homepage
+<<<<<<< HEAD
     And I click on "Test assignment name" "link" in the "region-main" "region"
     Then the activity date in "Test assignment name" should contain "Opens: Tuesday, 1 January 2030, 8:00"
     And I log out
@@ -131,6 +153,15 @@ Feature: Assign user override
     And I am on "Course 1" course homepage
     And I click on "Test assignment name" "link" in the "region-main" "region"
     And I should not see "1 January 2030, 8:00"
+=======
+    And I follow "Test assignment name"
+    Then I should see "This assignment will accept submissions from Tuesday, 1 January 2030, 8:00"
+    And I log out
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test assignment name"
+    And I should not see "This assignment will accept submissions from Tuesday, 1 January 2030, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: Override a user when teacher is in no group, and does not have accessallgroups permission, and the activity's group mode is "separate groups"
     Given the following "permission overrides" exist:
@@ -201,6 +232,7 @@ Feature: Assign user override
     And I am on the "Assignment 2" Activity page logged in as teacher1
     When I navigate to "Overrides" in current page administration
     Then I should see "Student1" in the ".generaltable" "css_element"
+<<<<<<< HEAD
     But I should not see "Student2" in the ".generaltable" "css_element"
 
   @javascript
@@ -215,6 +247,29 @@ Feature: Assign user override
     And I set the following fields to these values:
       | Override user          | Student1             |
       | Allow submissions from | ##1 Jan 2015 08:00## |
+=======
+    And I should not see "Student2" in the ".generaltable" "css_element"
+
+  @javascript
+  Scenario: Create a user override when the assignment is not available to the student
+    Given I log in as "teacher1"
+    And I am on "Course 1" course homepage with editing mode on
+    And I follow "Test assignment name"
+    And I navigate to "Edit settings" in current page administration
+    And I expand all fieldsets
+    And I set the field "Availability" to "Hide from students"
+    And I click on "Save and display" "button"
+    When I navigate to "User overrides" in current page administration
+    And I press "Add user override"
+    And I set the following fields to these values:
+      | Override user                       | Student1 |
+      | id_allowsubmissionsfromdate_enabled | 1       |
+      | allowsubmissionsfromdate[day]       | 1       |
+      | allowsubmissionsfromdate[month]     | January |
+      | allowsubmissionsfromdate[year]      | 2015    |
+      | allowsubmissionsfromdate[hour]      | 08      |
+      | allowsubmissionsfromdate[minute]    | 00      |
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Save"
     Then I should see "This override is inactive"
     And "Edit" "icon" should exist in the "Sam1 Student1" "table_row"

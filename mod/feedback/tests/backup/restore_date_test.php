@@ -59,7 +59,11 @@ final class restore_date_test extends \restore_date_testcase {
     /**
      * Test that dependency for items is restored correctly.
      */
+<<<<<<< HEAD:mod/feedback/tests/backup/restore_date_test.php
     public function test_restore_item_dependency(): void {
+=======
+    public function test_restore_item_dependency() {
+>>>>>>> upstream/MOODLE_38_STABLE:mod/feedback/tests/restore_date_test.php
         global $DB;
         // Create a course and a feedback activity.
         $course = $this->getDataGenerator()->create_course();

@@ -86,8 +86,12 @@ class fetcher {
         }
         $params = array();
 
+<<<<<<< HEAD
         $userfieldsapi = \core_user\fields::for_userpic()->including('username', 'deleted');
         $userfields = $userfieldsapi->get_sql('u', false, '', '', false)->selects;
+=======
+        $userfields = \user_picture::fields('u', array('username', 'deleted'));
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Add this to the SQL to show only group users.
         if ($currentgroup !== null) {

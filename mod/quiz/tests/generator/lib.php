@@ -194,7 +194,10 @@ class mod_quiz_generator extends testing_module_generator {
     public function create_override(array $data): void {
         global $DB;
 
+<<<<<<< HEAD
         // Validate.
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         if (!isset($data['quiz'])) {
             throw new coding_exception('Must specify quiz (id) when creating a quiz override.');
         }
@@ -207,6 +210,7 @@ class mod_quiz_generator extends testing_module_generator {
             throw new coding_exception('Cannot specify both userid and groupid when creating a quiz override.');
         }
 
+<<<<<<< HEAD
         // Create the override.
         $DB->insert_record('quiz_overrides', (object) $data);
 
@@ -244,5 +248,8 @@ class mod_quiz_generator extends testing_module_generator {
         $gradeitem = (object) $data;
         $gradeitem->id = $DB->insert_record('quiz_grade_items', $gradeitem);
         return $gradeitem;
+=======
+        $DB->insert_record('quiz_overrides', (object) $data);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

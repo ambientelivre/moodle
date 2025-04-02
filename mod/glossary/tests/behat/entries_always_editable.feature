@@ -21,6 +21,16 @@ Feature: A teacher can set whether glossary entries are always editable or not
       | glossary   | Test glossary name     | Test glossary description     | C1     | glossary1   | 0          |
     And the following config values are set as admin:
       | maxeditingtime | 5 |
+<<<<<<< HEAD
+=======
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage with editing mode on
+    And I add a "Glossary" to section "1" and I fill the form with:
+      | Name | Test glossary name |
+      | Description | Test glossary description |
+      | Always allow editing | No |
+    And I log out
+>>>>>>> upstream/MOODLE_38_STABLE
     And I log in as "student1"
     And I am on "Course 1" course homepage
     And I follow "Test glossary name"

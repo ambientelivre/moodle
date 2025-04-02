@@ -330,6 +330,7 @@ foreach ($members as $gpgid=>$groupdata) {
         $options = new stdClass;
         $options->noclean = true;
         $options->overflowdiv = true;
+<<<<<<< HEAD
         $line[] = $name;
         $viewfullnames = has_capability('moodle/site:viewfullnames', $context);
         $fullnames = array();
@@ -345,6 +346,20 @@ foreach ($members as $gpgid=>$groupdata) {
 
             $fullnames[] = html_writer::link(new moodle_url('/user/view.php', ['id' => $user->id, 'course' => $course->id]),
                 $displayname);
+=======
+        $jsdescription = trim(format_text($description, $groups[$gpid]->descriptionformat, $options));
+        if (empty($jsdescription)) {
+            $line[] = $name;
+        } else {
+            $line[] = html_writer::tag('span', $name, array('class' => 'group_hoverdescription', 'data-groupid' => $gpid));
+            $hoverevents[$gpid] = get_string('descriptiona', null, $jsdescription);
+        }
+        $viewfullnames = has_capability('moodle/site:viewfullnames', $context);
+        $fullnames = array();
+        foreach ($users as $user) {
+            $fullnames[] = html_writer::link(new moodle_url('/user/view.php', ['id' => $user->id, 'course' => $course->id]),
+                fullname($user, $viewfullnames));
+>>>>>>> upstream/MOODLE_38_STABLE
         }
         $line[] = implode(', ', $fullnames);
         $line[] = count($users);

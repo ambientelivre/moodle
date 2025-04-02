@@ -4,7 +4,12 @@ Feature: Teachers can enable comments only if comments are enabled at site level
   As an admin
   I need to enable comments at site level
 
+<<<<<<< HEAD
   Background:
+=======
+  @javascript
+  Scenario: Teacher cannot enable comments if they are disabled at site level
+>>>>>>> upstream/MOODLE_38_STABLE
     Given the following "users" exist:
       | username | firstname | lastname | email |
       | teacher1 | Teacher | 1 | teacher1@example.com |
@@ -15,6 +20,7 @@ Feature: Teachers can enable comments only if comments are enabled at site level
       | user | course | role |
       | teacher1 | C1 | editingteacher |
     When I log in as "teacher1"
+<<<<<<< HEAD
     And I am on "Course 1" course homepage
     And I turn editing mode on
 
@@ -23,10 +29,16 @@ Feature: Teachers can enable comments only if comments are enabled at site level
     Given I open the activity chooser
     And I click on "Add a new Database" "link" in the "Add an activity or resource" "dialogue"
     When I expand all fieldsets
+=======
+    And I am on "Course 1" course homepage with editing mode on
+    And I add a "Database" to section "1"
+    And I expand all fieldsets
+>>>>>>> upstream/MOODLE_38_STABLE
     And "Allow comments on entries" "field" should exist
     And I set the field "Name" to "Test Database name"
     And I set the field "Allow comments on entries" to "Yes"
     And I press "Save and return to course"
+<<<<<<< HEAD
     And I should see "Test Database name"
 
   @javascript
@@ -37,8 +49,19 @@ Feature: Teachers can enable comments only if comments are enabled at site level
     And I open the activity chooser
     And I click on "Add a new Database" "link" in the "Add an activity or resource" "dialogue"
     When I expand all fieldsets
+=======
+    # Disable comments in site config.
+    And the following config values are set as admin:
+      | usecomments | 0 |
+    And I add a "Database" to section "1"
+    And I expand all fieldsets
+>>>>>>> upstream/MOODLE_38_STABLE
     And I set the field "Name" to "Test Database name 2"
     And "Allow comments on entries" "field" should not exist
     Then I should see "No" in the "//*[@id=\"fitem_id_comments\"]/*[@data-fieldtype=\"selectyesno\"]" "xpath_element"
     And I press "Save and return to course"
+<<<<<<< HEAD
     And I should see "Test Database name 2"
+=======
+    And I log out
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -19,9 +19,12 @@ Feature: The online users block allow you to see who is currently online on dash
       | teacher1 | C1 | editingteacher |
       | student1 | C1 | student        |
       | student2 | C1 | student        |
+<<<<<<< HEAD
     And the following "blocks" exist:
       | blockname           | contextlevel | reference | pagetypepattern | defaultregion |
       | online_users        | System       | 1         | my-index        | side-post     |
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: View the online users block on the dashboard and see myself
     Given I log in as "teacher1"

@@ -172,8 +172,13 @@ class core_backup_renderer extends plugin_renderer_base {
             $html .= html_writer::start_tag('div', ['class' => 'backup-section',
                     'role' => 'table', 'aria-labelledby' => 'backupcoursedetailsheader']);
             $html .= $this->output->heading(get_string('backupcoursedetails', 'backup'), 2, 'header', 'backupcoursedetailsheader');
+<<<<<<< HEAD
             $html .= $this->backup_detail_pair(get_string('coursetitle', 'backup'), format_string($details->course->title));
             $html .= $this->backup_detail_pair(get_string('courseid', 'backup'), clean_param($details->course->courseid, PARAM_INT));
+=======
+            $html .= $this->backup_detail_pair(get_string('coursetitle', 'backup'), $details->course->title);
+            $html .= $this->backup_detail_pair(get_string('courseid', 'backup'), $details->course->courseid);
+>>>>>>> upstream/MOODLE_38_STABLE
 
             // Warning users about front page backups.
             if ($details->original_course_format === 'site') {
@@ -206,6 +211,7 @@ class core_backup_renderer extends plugin_renderer_base {
                         $table->data = array();
                     }
                     $name = get_string('pluginname', $activity->modulename);
+<<<<<<< HEAD
                     $icon = activity_icon::from_modname($activity->modulename)
                         ->set_icon_size(iconsize::SIZE4)
                         ->set_colourize(false);
@@ -213,6 +219,13 @@ class core_backup_renderer extends plugin_renderer_base {
                     $content = $this->output->container(
                         contents: $this->output->render($icon) . $name,
                         classes: 'd-flex align-items-center',
+=======
+                    $icon = new image_icon('icon', '', $activity->modulename, ['class' => 'iconlarge icon-pre']);
+                    $table->data[] = array(
+                        $this->output->render($icon).$name,
+                        $activity->title,
+                        ($activity->settings[$activitykey.'_userinfo']) ? $yestick : $notick,
+>>>>>>> upstream/MOODLE_38_STABLE
                     );
 
                     $table->data[] = [
@@ -440,7 +453,11 @@ class core_backup_renderer extends plugin_renderer_base {
         $count ++;
         $html  = html_writer::start_tag('div', ['class' => 'detail-pair', 'role' => 'row']);
         $html .= html_writer::tag('div', $label, ['class' => 'detail-pair-label mb-2', 'role' => 'cell']);
+<<<<<<< HEAD
         $html .= html_writer::tag('div', $value, ['class' => 'detail-pair-value ps-2', 'role' => 'cell']);
+=======
+        $html .= html_writer::tag('div', $value, ['class' => 'detail-pair-value pl-2', 'role' => 'cell']);
+>>>>>>> upstream/MOODLE_38_STABLE
         $html .= html_writer::end_tag('div');
         return $html;
     }
@@ -800,8 +817,13 @@ class core_backup_renderer extends plugin_renderer_base {
      * @return string
      */
     public function render_restore_course_search(restore_course_search $component) {
+<<<<<<< HEAD
         $output = html_writer::start_tag('div', array('class' => 'restore-course-search mb-1'));
         $output .= html_writer::start_tag('div', array('class' => 'rcs-results table-sm w-75'));
+=======
+        $output = html_writer::start_tag('div', array('class' => 'restore-course-search form-inline mb-1'));
+        $output .= html_writer::start_tag('div', array('class' => 'rcs-results w-75'));
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $table = new html_table();
         $table->head = array('', get_string('shortnamecourse'), get_string('fullnamecourse'));
@@ -814,12 +836,18 @@ class core_backup_renderer extends plugin_renderer_base {
                     $row->attributes['class'] .= ' dimmed';
                 }
                 $id = $this->make_unique_id('restore-course');
+<<<<<<< HEAD
                 $attrs = ['type' => 'radio', 'name' => 'targetid', 'value' => $course->id, 'id' => $id];
                 if ($course->id == $component->get_current_course_id()) {
                     $attrs['checked'] = 'checked';
                 }
                 $row->cells = [
                     html_writer::empty_tag('input', $attrs),
+=======
+                $row->cells = [
+                    html_writer::empty_tag('input', ['type' => 'radio', 'name' => 'targetid', 'value' => $course->id,
+                        'id' => $id]),
+>>>>>>> upstream/MOODLE_38_STABLE
                     html_writer::label(
                         format_string($course->shortname, true, ['context' => context_course::instance($course->id)]),
                         $id,
@@ -849,6 +877,7 @@ class core_backup_renderer extends plugin_renderer_base {
         $output .= html_writer::table($table);
         $output .= html_writer::end_tag('div');
 
+<<<<<<< HEAD
         $data = [
             'inform' => true,
             'extraclasses' => 'rcs-search mb-3 w-25',
@@ -861,6 +890,26 @@ class core_backup_renderer extends plugin_renderer_base {
             'query' => $component->get_search(),
         ];
         $output .= $this->output->render_from_template('core/search_input', $data);
+=======
+        $output .= html_writer::start_tag('div', array('class' => 'rcs-search'));
+        $attrs = array(
+            'type' => 'text',
+            'name' => restore_course_search::$VAR_SEARCH,
+            'value' => $component->get_search(),
+            'aria-label' => get_string('searchcourses'),
+            'placeholder' => get_string('searchcourses'),
+            'class' => 'form-control'
+        );
+        $output .= html_writer::empty_tag('input', $attrs);
+        $attrs = array(
+            'type' => 'submit',
+            'name' => 'searchcourses',
+            'value' => get_string('search'),
+            'class' => 'btn btn-secondary'
+        );
+        $output .= html_writer::empty_tag('input', $attrs);
+        $output .= html_writer::end_tag('div');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $output .= html_writer::end_tag('div');
         return $output;
@@ -973,8 +1022,13 @@ class core_backup_renderer extends plugin_renderer_base {
      * @return string
      */
     public function render_restore_category_search(restore_category_search $component) {
+<<<<<<< HEAD
         $output = html_writer::start_tag('div', array('class' => 'restore-course-search mb-1'));
         $output .= html_writer::start_tag('div', array('class' => 'rcs-results table-sm w-75'));
+=======
+        $output = html_writer::start_tag('div', array('class' => 'restore-course-search form-inline mb-1'));
+        $output .= html_writer::start_tag('div', array('class' => 'rcs-results w-75'));
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $table = new html_table();
         $table->head = array('', get_string('name'), get_string('description'));
@@ -1022,6 +1076,7 @@ class core_backup_renderer extends plugin_renderer_base {
         $output .= html_writer::table($table);
         $output .= html_writer::end_tag('div');
 
+<<<<<<< HEAD
         $data = [
             'inform' => true,
             'extraclasses' => 'rcs-search mb-3 w-25',
@@ -1034,6 +1089,26 @@ class core_backup_renderer extends plugin_renderer_base {
             'query' => $component->get_search(),
         ];
         $output .= $this->output->render_from_template('core/search_input', $data);
+=======
+        $output .= html_writer::start_tag('div', array('class' => 'rcs-search'));
+        $attrs = array(
+            'type' => 'text',
+            'name' => restore_category_search::$VAR_SEARCH,
+            'value' => $component->get_search(),
+            'aria-label' => get_string('searchcoursecategories'),
+            'placeholder' => get_string('searchcoursecategories'),
+            'class' => 'form-control'
+        );
+        $output .= html_writer::empty_tag('input', $attrs);
+        $attrs = array(
+            'type' => 'submit',
+            'name' => 'searchcourses',
+            'value' => get_string('search'),
+            'class' => 'btn btn-secondary'
+        );
+        $output .= html_writer::empty_tag('input', $attrs);
+        $output .= html_writer::end_tag('div');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $output .= html_writer::end_tag('div');
         return $output;

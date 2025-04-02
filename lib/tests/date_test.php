@@ -177,6 +177,7 @@ final class date_test extends advanced_testcase {
         }
     }
 
+<<<<<<< HEAD
     /**
      * We are only checking lang strings existence here, not code.
      *
@@ -189,6 +190,9 @@ final class date_test extends advanced_testcase {
             $this->markTestSkipped('PHPUNIT_LONGTEST is not defined');
         }
 
+=======
+    public function test_timezone_lang_strings() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $phpzones = DateTimeZone::listIdentifiers();
         $manager = get_string_manager();
         foreach ($phpzones as $tz) {
@@ -197,10 +201,14 @@ final class date_test extends advanced_testcase {
         }
     }
 
+<<<<<<< HEAD
     /**
      * @covers ::get_localised_timezone
      */
     public function test_get_localised_timezone(): void {
+=======
+    public function test_get_localised_timezone() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         $this->setTimezone('Pacific/Auckland', 'Pacific/Auckland');

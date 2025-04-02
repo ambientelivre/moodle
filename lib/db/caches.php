@@ -475,6 +475,7 @@ $definitions = array(
         'simpledata' => false,
     ],
 
+<<<<<<< HEAD
     // The list of content items (activities, resources and their subtypes) that can be added to a course for a user.
     'user_course_content_items' => [
         'mode' => cache_store::MODE_REQUEST,
@@ -528,6 +529,8 @@ $definitions = array(
         'canuselocalstore' => true
     ],
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     // Cache the grade letters for faster retrival.
     'grade_letters' => [
         'mode'                   => cache_store::MODE_REQUEST,
@@ -535,6 +538,7 @@ $definitions = array(
         'staticacceleration'     => true,
         'staticaccelerationsize' => 100
     ],
+<<<<<<< HEAD
 
     // Cache for licenses.
     'license' => [
@@ -655,4 +659,6 @@ $definitions = array(
         'simpledata' => true,
         'ttl' => 1800,
     ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 );

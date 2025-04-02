@@ -230,9 +230,15 @@ class cache implements loader_interface {
         $this->store = $store;
         $this->storetype = get_class($store);
         $this->perfdebug = (!empty($CFG->perfdebug) and $CFG->perfdebug > 7);
+<<<<<<< HEAD:cache/classes/cache.php
         if ($loader instanceof loader_interface) {
             $this->set_loader($loader);
         } else if ($loader instanceof data_source_interface) {
+=======
+        if ($loader instanceof cache_loader) {
+            $this->set_loader($loader);
+        } else if ($loader instanceof cache_data_source) {
+>>>>>>> upstream/MOODLE_38_STABLE:cache/classes/loaders.php
             $this->set_data_source($loader);
         }
         $this->definition->generate_definition_hash();
@@ -246,9 +252,15 @@ class cache implements loader_interface {
     /**
      * Set the loader for this cache.
      *
+<<<<<<< HEAD:cache/classes/cache.php
      * @param   loader_interface $loader
      */
     protected function set_loader(loader_interface $loader): void {
+=======
+     * @param   cache_loader $loader
+     */
+    protected function set_loader(cache_loader $loader): void {
+>>>>>>> upstream/MOODLE_38_STABLE:cache/classes/loaders.php
         $this->loader = $loader;
 
         // Mark the loader as a sub (chained) loader.
@@ -258,9 +270,15 @@ class cache implements loader_interface {
     /**
      * Set the data source for this cache.
      *
+<<<<<<< HEAD:cache/classes/cache.php
      * @param   data_source_interface $datasource
      */
     protected function set_data_source(data_source_interface $datasource): void {
+=======
+     * @param   cache_data_source $datasource
+     */
+    protected function set_data_source(cache_data_source $datasource): void {
+>>>>>>> upstream/MOODLE_38_STABLE:cache/classes/loaders.php
         $this->datasource = $datasource;
     }
 

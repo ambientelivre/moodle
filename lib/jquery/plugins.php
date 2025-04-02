@@ -36,7 +36,13 @@
  */
 
 $plugins = array(
+<<<<<<< HEAD
     'jquery'  => array('files' => array('jquery-3.7.1.min.js')),
     'ui'      => ['files' => ['ui-1.14.1/jquery-ui.min.js']],
     'ui-css'  => ['files' => ['ui-1.14.1/theme/smoothness/jquery-ui.min.css']],
+=======
+    'jquery'  => array('files' => array('jquery-3.5.1.min.js')),
+    'ui'      => array('files' => array('ui-1.12.1/jquery-ui.min.js')),
+    'ui-css'  => array('files' => array('ui-1.12.1/theme/smoothness/jquery-ui.min.css')),
+>>>>>>> upstream/MOODLE_38_STABLE
 );

@@ -642,7 +642,11 @@ final class externallib_test extends externallib_advanced_testcase {
         $this->resetAfterTest();
 
         $course = $this->getDataGenerator()->create_course();
+<<<<<<< HEAD
         $context = \context_course::instance($course->id);
+=======
+        $context = context_course::instance($course->id);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $user1 = $this->getDataGenerator()->create_and_enrol($course, 'student');
         $user2 = $this->getDataGenerator()->create_and_enrol($course, 'student');
@@ -711,7 +715,11 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test get_users_courses with mathjax in the name.
      */
+<<<<<<< HEAD
     public function test_get_users_courses_with_mathjax(): void {
+=======
+    public function test_get_users_courses_with_mathjax() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest(true);
@@ -730,7 +738,11 @@ final class externallib_test extends externallib_advanced_testcase {
         ];
 
         $course = self::getDataGenerator()->create_course($coursedata);
+<<<<<<< HEAD
         $context = \context_course::instance($course->id);
+=======
+        $context = context_course::instance($course->id);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Enrol a student in the course.
         $student = $this->getDataGenerator()->create_user();
@@ -749,6 +761,7 @@ final class externallib_test extends externallib_advanced_testcase {
         $this->assertCount(1, $enrolledincourses);
 
         // Filter the values to compare them with the returned ones.
+<<<<<<< HEAD
         $course->fullname = \core_external\util::format_string($course->fullname, $context->id);
         $course->shortname = \core_external\util::format_string($course->shortname, $context->id);
         [$course->summary, $course->summaryformat] = \core_external\util::format_text(
@@ -759,6 +772,12 @@ final class externallib_test extends externallib_advanced_testcase {
             'summary',
             0
         );
+=======
+        $course->fullname = external_format_string($course->fullname, $context->id);
+        $course->shortname = external_format_string($course->shortname, $context->id);
+        list($course->summary, $course->summaryformat) =
+             external_format_text($course->summary, $course->summaryformat, $context->id, 'course', 'summary', 0);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Compare the values.
         $this->assertStringContainsString('<span class="filter_mathjaxloader_equation">', $enrolledincourses[0]['fullname']);

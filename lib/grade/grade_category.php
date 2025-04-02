@@ -293,6 +293,12 @@ class grade_category extends grade_object {
      */
     public function delete($source=null) {
         global $DB;
+<<<<<<< HEAD
+=======
+
+        $transaction = $DB->start_delegated_transaction();
+        $grade_item = $this->load_grade_item();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         try {
             $transaction = $DB->start_delegated_transaction();
@@ -351,6 +357,17 @@ class grade_category extends grade_object {
         } catch (Exception $e) {
             $transaction->rollback($e);
         }
+<<<<<<< HEAD
+=======
+
+        // first delete the attached grade item and grades
+        $grade_item->delete($source);
+
+        // delete category itself
+        $success = parent::delete($source);
+
+        $transaction->allow_commit();
+>>>>>>> upstream/MOODLE_38_STABLE
         return $success;
     }
 

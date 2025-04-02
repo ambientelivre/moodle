@@ -135,8 +135,14 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test get databases by courses
      */
+<<<<<<< HEAD
     public function test_mod_data_get_databases_by_courses(): void {
         global $DB;
+=======
+    public function test_mod_data_get_databases_by_courses() {
+        global $DB, $CFG;
+        require_once($CFG->libdir . '/externallib.php');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->resetAfterTest(true);
 
@@ -185,7 +191,11 @@ final class externallib_test extends externallib_advanced_testcase {
         $enrol->enrol_user($instance2, $student->id, $studentrole->id);
 
         // Enable multilang filter to on content and heading.
+<<<<<<< HEAD
         \filter_manager::reset_caches();
+=======
+        filter_manager::reset_caches();
+>>>>>>> upstream/MOODLE_38_STABLE
         filter_set_global_state('multilang', TEXTFILTER_ON);
         filter_set_applies_to_strings('multilang', true);
         // Set WS filtering.
@@ -407,12 +417,18 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test get_data_access_information with groups.
      */
+<<<<<<< HEAD
     public function test_get_data_access_information_groups(): void {
         global $DB;
 
         // Add a field to database to let users add new entries.
         $this->add_test_field();
 
+=======
+    public function test_get_data_access_information_groups() {
+        global $DB;
+
+>>>>>>> upstream/MOODLE_38_STABLE
         $DB->set_field('course', 'groupmode', VISIBLEGROUPS, ['id' => $this->course->id]);
 
         // Check I can see my group.
@@ -1181,11 +1197,15 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test add_entry invalid group.
      */
+<<<<<<< HEAD
     public function test_add_entry_invalid_group(): void {
 
         // Add a field to database to let users add new entries.
         $this->add_test_field();
 
+=======
+    public function test_add_entry_invalid_group() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->setUser($this->student1);
         $this->expectExceptionMessage(get_string('noaccess', 'data'));
         $this->expectException('moodle_exception');
@@ -1193,6 +1213,7 @@ final class externallib_test extends externallib_advanced_testcase {
     }
 
     /**
+<<<<<<< HEAD
      * Test add_entry for an empty database (no fields).
      *
      * @covers ::add_entry
@@ -1203,6 +1224,8 @@ final class externallib_test extends externallib_advanced_testcase {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Test update_entry.
      */
     public function test_update_entry(): void {

@@ -119,6 +119,7 @@ class block_news_items extends block_base {
                 if (!empty($CFG->forum_enabletimedposts) && ($discussion->timestart > $posttime)) {
                     $posttime = $discussion->timestart;
                 }
+<<<<<<< HEAD
 
                 // If the user who created the discussion post has been deleted, indicate so.
                 if ($discussion->userdeleted) {
@@ -132,6 +133,12 @@ class block_news_items extends block_base {
                          '<div class="date">'.userdate($posttime, $strposttimeformat).'</div>'.
                          '<div class="name">'.$userfullname.'</div>'.
                          '</div>'.
+=======
+                $text .= '<li class="post">'.
+                         '<div class="head clearfix">'.
+                         '<div class="date">'.userdate($posttime, $strftimerecent).'</div>'.
+                         '<div class="name">'.fullname($discussion).'</div></div>'.
+>>>>>>> upstream/MOODLE_38_STABLE
                          '<div class="info"><a href="'.$CFG->wwwroot.'/mod/forum/discuss.php?d='.$discussion->discussion.'">'.$discussion->subject.'</a></div>'.
                          "</li>\n";
             }

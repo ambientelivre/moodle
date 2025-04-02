@@ -186,12 +186,21 @@ Feature: The my overview block allows users to group courses by custom fields
       | displaygroupingcustomfield | 1          | block_myoverview |
       | customfiltergrouping       | textfield2 | block_myoverview |
     And I log in as "admin"
+<<<<<<< HEAD
     And I navigate to "Courses > Default settings > Course custom fields" in site administration
+=======
+    And I navigate to "Courses > Course custom fields" in site administration
+>>>>>>> upstream/MOODLE_38_STABLE
     And I click on "Edit" "link" in the "Text field 2" "table_row"
     And I set the field "Visible to" to "Nobody"
     And I press "Save changes"
     And I log out
+<<<<<<< HEAD
     When I am on the "My courses" page logged in as "student1"
     And I click on "All" "button" in the "Course overview" "block"
+=======
+    When I log in as "student1"
+    And I click on "All (except removed from view)" "button" in the "Course overview" "block"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should not see "penguin" in the "Course overview" "block"
     Then I should not see "No text field" in the "Course overview" "block"

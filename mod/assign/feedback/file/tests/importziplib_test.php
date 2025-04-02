@@ -22,10 +22,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
 namespace assignfeedback_file;
 
 use mod_assign_test_generator;
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
@@ -35,11 +38,18 @@ require_once($CFG->dirroot . '/mod/assign/feedback/file/importziplib.php');
 /**
  * Unit tests for importziplib.
  *
+<<<<<<< HEAD
  * @package    assignfeedback_file
  * @copyright  2020 Eric Merrill <merrill@oakland.edu>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class importziplib_test extends \advanced_testcase {
+=======
+ * @copyright  2020 Eric Merrill <merrill@oakland.edu>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class assignfeedback_importziplib_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     // Use the generator helper.
     use mod_assign_test_generator;
@@ -47,7 +57,11 @@ final class importziplib_test extends \advanced_testcase {
     /**
      * Test the assignfeedback_file_zip_importer->is_valid_filename_for_import() method.
      */
+<<<<<<< HEAD
     public function test_is_valid_filename_for_import(): void {
+=======
+    public function test_is_valid_filename_for_import() {
+>>>>>>> upstream/MOODLE_38_STABLE
         // Do the initial assign setup.
         $this->resetAfterTest();
         $course = $this->getDataGenerator()->create_course();
@@ -66,7 +80,11 @@ final class importziplib_test extends \advanced_testcase {
         $fs = get_file_storage();
 
         // Setup a basic file we will work with. We will keep renaming and repathing it.
+<<<<<<< HEAD
         $record = new \stdClass;
+=======
+        $record = new stdClass;
+>>>>>>> upstream/MOODLE_38_STABLE
         $record->contextid = $assign->get_context()->id;
         $record->component = 'assignfeedback_file';
         $record->filearea  = ASSIGNFEEDBACK_FILE_FILEAREA;
@@ -77,7 +95,11 @@ final class importziplib_test extends \advanced_testcase {
         $file = $fs->create_file_from_string($record, 'file content');
 
         // The importer we will use.
+<<<<<<< HEAD
         $importer = new \assignfeedback_file_zip_importer();
+=======
+        $importer = new assignfeedback_file_zip_importer();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Setup some variable we use.
         $user = null;
@@ -137,7 +159,11 @@ final class importziplib_test extends \advanced_testcase {
         $this->assertTrue($result);
         $this->assertEquals($participants[$studentid], $user);
         $this->assertEquals('My_cool_filename.txt', $filename);
+<<<<<<< HEAD
         $this->assertInstanceOf(\assign_submission_file::class, $plugin);
+=======
+        $this->assertInstanceOf(assign_submission_file::class, $plugin);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Test another good file, with some additional path and underscores.
         $user = null;
@@ -148,6 +174,10 @@ final class importziplib_test extends \advanced_testcase {
         $this->assertTrue($result);
         $this->assertEquals($participants[$studentid], $user);
         $this->assertEquals('/some_path/My File.txt', $filename);
+<<<<<<< HEAD
         $this->assertInstanceOf(\assign_submission_file::class, $plugin);
+=======
+        $this->assertInstanceOf(assign_submission_file::class, $plugin);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

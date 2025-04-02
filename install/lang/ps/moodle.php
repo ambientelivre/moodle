@@ -29,8 +29,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD
 $string['language'] = 'ژبه';
 $string['moodlelogo'] = 'د موډل نښان';
 $string['next'] = 'بل';
 $string['previous'] = 'مخکینۍ';
 $string['reload'] = 'بیا بار کړئ';
+=======
+$string['moodlelogo'] = 'د موډل نښان';
+$string['next'] = 'بل';
+>>>>>>> upstream/MOODLE_38_STABLE

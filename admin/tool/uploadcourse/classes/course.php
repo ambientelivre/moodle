@@ -509,12 +509,17 @@ class tool_uploadcourse_course {
         }
 
         // Ensure we don't overflow the maximum length of the fullname field.
+<<<<<<< HEAD
         if (
             !empty($coursedata['fullname']) &&
             core_text::strlen($coursedata['fullname']) > \core_course\constants::FULLNAME_MAXIMUM_LENGTH
         ) {
             $this->error('invalidfullnametoolong', new lang_string('invalidfullnametoolong', 'tool_uploadcourse',
                 \core_course\constants::FULLNAME_MAXIMUM_LENGTH));
+=======
+        if (!empty($coursedata['fullname']) && core_text::strlen($coursedata['fullname']) > 254) {
+            $this->error('invalidfullnametoolong', new lang_string('invalidfullnametoolong', 'tool_uploadcourse', 254));
+>>>>>>> upstream/MOODLE_38_STABLE
             return false;
         }
 
@@ -797,6 +802,7 @@ class tool_uploadcourse_course {
             return false;
         }
 
+<<<<<<< HEAD
         // Ensure that user is allowed to configure course content download and the field contains a valid value.
         if (isset($coursedata['downloadcontent'])) {
             if (!$CFG->downloadcoursecontentallowed ||
@@ -817,6 +823,8 @@ class tool_uploadcourse_course {
             }
         }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         // Saving data.
         $this->data = $coursedata;
 
@@ -1069,6 +1077,7 @@ class tool_uploadcourse_course {
                 // Remove the enrolment method.
                 if ($instance) {
                     $plugin = $enrolmentplugins[$instance->enrol];
+<<<<<<< HEAD
 
                     // Ensure user is able to delete the instance.
                     if ($plugin->can_delete_instance($instance) && $plugin->is_csv_upload_supported()) {
@@ -1155,6 +1164,65 @@ class tool_uploadcourse_course {
                 } else {
                     foreach ($errors as $key => $message) {
                         $this->error($key, $message);
+=======
+                    $plugin->delete_instance($instance);
+                }
+            } else if (!empty($instance) && $todisable) {
+                // Disable the enrolment.
+                $plugin = $enrolmentplugins[$instance->enrol];
+                $plugin->update_status($instance, ENROL_INSTANCE_DISABLED);
+                $enrol_updated = true;
+            } else {
+                $plugin = null;
+
+                $status = ($todisable) ? ENROL_INSTANCE_DISABLED : ENROL_INSTANCE_ENABLED;
+
+                if (empty($instance)) {
+                    $plugin = $enrolmentplugins[$enrolmethod];
+                    $instanceid = $plugin->add_default_instance($course);
+                    $instance = $DB->get_record('enrol', ['id' => $instanceid]);
+                    $instance->roleid = $plugin->get_config('roleid');
+                    $plugin->update_status($instance, $status);
+                } else {
+                    $plugin = $enrolmentplugins[$instance->enrol];
+                    $plugin->update_status($instance, $status);
+                }
+
+                // Now update values.
+                foreach ($method as $k => $v) {
+                    $instance->{$k} = $v;
+                }
+
+                // Sort out the start, end and date.
+                $instance->enrolstartdate = (isset($method['startdate']) ? strtotime($method['startdate']) : 0);
+                $instance->enrolenddate = (isset($method['enddate']) ? strtotime($method['enddate']) : 0);
+
+                // Is the enrolment period set?
+                if (isset($method['enrolperiod']) && ! empty($method['enrolperiod'])) {
+                    if (preg_match('/^\d+$/', $method['enrolperiod'])) {
+                        $method['enrolperiod'] = (int) $method['enrolperiod'];
+                    } else {
+                        // Try and convert period to seconds.
+                        $method['enrolperiod'] = strtotime('1970-01-01 GMT + ' . $method['enrolperiod']);
+                    }
+                    $instance->enrolperiod = $method['enrolperiod'];
+                }
+                if ($instance->enrolstartdate > 0 && isset($method['enrolperiod'])) {
+                    $instance->enrolenddate = $instance->enrolstartdate + $method['enrolperiod'];
+                }
+                if ($instance->enrolenddate > 0) {
+                    $instance->enrolperiod = $instance->enrolenddate - $instance->enrolstartdate;
+                }
+                if ($instance->enrolenddate < $instance->enrolstartdate) {
+                    $instance->enrolenddate = $instance->enrolstartdate;
+                }
+
+                // Sort out the given role. This does not filter the roles allowed in the course.
+                if (isset($method['role'])) {
+                    $roleids = tool_uploadcourse_helper::get_role_ids();
+                    if (isset($roleids[$method['role']])) {
+                        $instance->roleid = $roleids[$method['role']];
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
                 }
             }

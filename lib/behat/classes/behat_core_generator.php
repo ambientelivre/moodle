@@ -87,6 +87,7 @@ class behat_core_generator extends behat_generator_base {
                 'required' => ['name', 'category', 'type', 'shortname'],
                 'switchids' => [],
             ],
+<<<<<<< HEAD
             'custom profile field categories' => [
                 'singular' => 'custom profile field category',
                 'datagenerator' => 'custom_profile_field_category',
@@ -99,6 +100,8 @@ class behat_core_generator extends behat_generator_base {
                 'required' => ['datatype', 'shortname', 'name'],
                 'switchids' => [],
             ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             'permission overrides' => [
                 'singular' => 'permission override',
                 'datagenerator' => 'permission_override',
@@ -120,7 +123,11 @@ class behat_core_generator extends behat_generator_base {
             'activities' => [
                 'singular' => 'activity',
                 'datagenerator' => 'activity',
+<<<<<<< HEAD
                 'required' => ['activity', 'course'],
+=======
+                'required' => ['activity', 'idnumber', 'course'],
+>>>>>>> upstream/MOODLE_38_STABLE
                 'switchids' => ['course' => 'course', 'gradecategory' => 'gradecat', 'grouping' => 'groupingid'],
             ],
             'blocks' => [
@@ -156,24 +163,30 @@ class behat_core_generator extends behat_generator_base {
                 'datagenerator' => 'role',
                 'required' => ['shortname'],
             ],
+<<<<<<< HEAD
             'role capabilities' => [
                 'singular' => 'role capability',
                 'datagenerator' => 'role_capability',
                 'required' => ['role'],
                 'switchids' => ['role' => 'roleid'],
             ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             'grade categories' => [
                 'singular' => 'grade category',
                 'datagenerator' => 'grade_category',
                 'required' => ['fullname', 'course'],
                 'switchids' => ['course' => 'courseid', 'gradecategory' => 'parent'],
             ],
+<<<<<<< HEAD
             'grade grades' => [
                 'singular' => 'grade grade',
                 'datagenerator' => 'grade_grade',
                 'required' => ['gradeitem'],
                 'switchids' => ['user' => 'userid', 'gradeitem' => 'itemid'],
             ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             'grade items' => [
                 'singular' => 'grade item',
                 'datagenerator' => 'grade_item',
@@ -265,11 +278,14 @@ class behat_core_generator extends behat_generator_base {
                 'datagenerator' => 'customlang',
                 'required' => ['component', 'stringid', 'value'],
             ],
+<<<<<<< HEAD
             'language packs' => [
                 'singular' => 'language pack',
                 'datagenerator' => 'langpack',
                 'required' => ['language'],
             ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             'analytics models' => [
                 'singular' => 'analytics model',
                 'datagenerator' => 'analytics_model',
@@ -281,6 +297,7 @@ class behat_core_generator extends behat_generator_base {
                 'required' => array('user', 'preference', 'value'),
                 'switchids' => array('user' => 'userid'),
             ],
+<<<<<<< HEAD
             'contentbank contents' => [
                 'singular' => 'contentbank content',
                 'datagenerator' => 'contentbank_content',
@@ -321,12 +338,15 @@ class behat_core_generator extends behat_generator_base {
                 'datagenerator' => 'stored_progress_bar',
                 'required' => ['idnumber'],
             ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         ];
 
         return $entities;
     }
 
     /**
+<<<<<<< HEAD
      * Get the grade item id using a name.
      *
      * @param string $name
@@ -343,6 +363,8 @@ class behat_core_generator extends behat_generator_base {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Remove any empty custom fields, to avoid errors when creating the course.
      *
      * @param array $data
@@ -412,6 +434,7 @@ class behat_core_generator extends behat_generator_base {
             $data['categoryid'] = $cat->id;
         }
 
+<<<<<<< HEAD
         // We need to ensure that all these attributes coming from data are not-localised floats.
         $attrs = [
             'grademax',
@@ -428,6 +451,8 @@ class behat_core_generator extends behat_generator_base {
             }
         }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         return $data;
     }
 
@@ -455,6 +480,7 @@ class behat_core_generator extends behat_generator_base {
             }
         }
 
+<<<<<<< HEAD
         if (!array_key_exists('idnumber', $data)) {
             $data['idnumber'] = $data['name'];
             if (strlen($data['name']) > 100) {
@@ -466,6 +492,8 @@ class behat_core_generator extends behat_generator_base {
             }
         }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         // We split $data in the activity $record and the course module $options.
         $cmoptions = array();
         $cmcolumns = $DB->get_columns('course_modules');
@@ -475,7 +503,17 @@ class behat_core_generator extends behat_generator_base {
             }
         }
 
+<<<<<<< HEAD
         $this->datagenerator->create_module($activityname, $data, $cmoptions);
+=======
+        // Custom exception.
+        try {
+            $this->datagenerator->create_module($activityname, $data, $cmoptions);
+        } catch (coding_exception $e) {
+            throw new Exception('\'' . $activityname . '\' activity can not be added using this step,' .
+                    ' use the step \'I add a "ACTIVITY_OR_RESOURCE_NAME_STRING" to section "SECTION_NUMBER"\' instead');
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -565,6 +603,7 @@ class behat_core_generator extends behat_generator_base {
             tool_customlang_utils::checkin($USER->lang);
         }
     }
+<<<<<<< HEAD
     /**
      * Imports a langpack.
      *
@@ -575,6 +614,8 @@ class behat_core_generator extends behat_generator_base {
         $controller->install_languagepacks($data['language']);
         get_string_manager()->reset_caches();
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Adapter to enrol_user() data generator.
@@ -612,6 +653,7 @@ class behat_core_generator extends behat_generator_base {
 
         if (!isset($data['status'])) {
             $data['status'] = null;
+<<<<<<< HEAD
         } else {
             $status = strtolower($data['status']);
             switch ($status) {
@@ -622,6 +664,8 @@ class behat_core_generator extends behat_generator_base {
                     $data['status'] = ENROL_USER_SUSPENDED;
                     break;
             }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         // If the provided course shortname is the site shortname we consider it a system role assign.
@@ -746,6 +790,7 @@ class behat_core_generator extends behat_generator_base {
     }
 
     /**
+<<<<<<< HEAD
      * Assign capabilities to a role.
      *
      * @param array $data
@@ -763,6 +808,8 @@ class behat_core_generator extends behat_generator_base {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Adds members to cohorts
      *
      * @param array $data
@@ -804,9 +851,13 @@ class behat_core_generator extends behat_generator_base {
         }
 
         $data['contextid'] = $context->id;
+<<<<<<< HEAD
         /** @var core_question_generator $qgenerator */
         $qgenerator = $this->datagenerator->get_plugin_generator('core_question');
         $qgenerator->create_question_category($data);
+=======
+        $this->datagenerator->get_plugin_generator('core_question')->create_question_category($data);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -853,9 +904,13 @@ class behat_core_generator extends behat_generator_base {
             $missingtypespecialcase = true;
         }
 
+<<<<<<< HEAD
         /** @var core_question_generator $qgenerator */
         $qgenerator = $this->datagenerator->get_plugin_generator('core_question');
         $questiondata = $qgenerator
+=======
+        $questiondata = $this->datagenerator->get_plugin_generator('core_question')
+>>>>>>> upstream/MOODLE_38_STABLE
             ->create_question($data['qtype'], $which, $data);
 
         if ($missingtypespecialcase) {
@@ -1004,7 +1059,11 @@ class behat_core_generator extends behat_generator_base {
     /**
      * Creates an analytics model
      *
+<<<<<<< HEAD
      * @param array $data target
+=======
+     * @param target $data
+>>>>>>> upstream/MOODLE_38_STABLE
      * @return void
      */
     protected function process_analytics_model($data) {
@@ -1020,6 +1079,7 @@ class behat_core_generator extends behat_generator_base {
     protected function process_user_preferences(array $data) {
         set_user_preference($data['preference'], $data['value'], $data['userid']);
     }
+<<<<<<< HEAD
 
     /**
      * Create content in the given context's content bank.
@@ -1281,4 +1341,6 @@ class behat_core_generator extends behat_generator_base {
             $DB->update_record('user', $updatedata);
         }
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

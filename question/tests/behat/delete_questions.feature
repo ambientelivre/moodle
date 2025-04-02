@@ -72,6 +72,7 @@ Feature: A teacher can delete questions in the question bank
     And I reload the page
     When I choose "Delete" action for "Broken question" in the question bank
     And I press "Delete"
+<<<<<<< HEAD
     And I apply question bank filter "Show hidden questions" with value "Yes"
     Then I should not see "Broken question"
 
@@ -87,3 +88,7 @@ Feature: A teacher can delete questions in the question bank
     And I press "Delete"
     Then I should not see "Test question to be deleted"
     And I should not see "Test question to be deleted version2"
+=======
+    And I click on "Also show old questions" "checkbox"
+    Then I should not see "Broken question"
+>>>>>>> upstream/MOODLE_38_STABLE

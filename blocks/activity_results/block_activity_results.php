@@ -513,7 +513,11 @@ class block_activity_results extends block_base {
                 $users = $DB->get_records_list('user', 'id', $userids, '', $fields);
 
                 // If configured to view user idnumber, ensure current user can see it.
+<<<<<<< HEAD
                 $extrafields = \core_user\fields::for_identity($this->context)->get_required_fields();
+=======
+                $extrafields = get_extra_user_fields($this->context);
+>>>>>>> upstream/MOODLE_38_STABLE
                 $canviewidnumber = (array_search('idnumber', $extrafields) !== false);
 
                 // Ready for output!

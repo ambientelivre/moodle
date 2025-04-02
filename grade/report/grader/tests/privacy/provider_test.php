@@ -64,11 +64,19 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
      * Ensure that export_user_preferences returns single preferences.
      * These preferences can be set on each course, but the value is shared in the whole site.
      */
+<<<<<<< HEAD:grade/report/grader/tests/privacy/provider_test.php
     public function test_export_user_preferences_single(): void {
+=======
+    public function test_export_user_preferences_single() {
+>>>>>>> upstream/MOODLE_38_STABLE:grade/report/grader/tests/privacy_test.php
         // Create test user, add some preferences.
         $user = $this->getDataGenerator()->create_user();
         $this->setUser($user);
 
+<<<<<<< HEAD:grade/report/grader/tests/privacy/provider_test.php
+=======
+        set_user_preference('grade_report_showcalculations', 1, $user);
+>>>>>>> upstream/MOODLE_38_STABLE:grade/report/grader/tests/privacy_test.php
         set_user_preference('grade_report_meanselection', GRADE_REPORT_MEAN_GRADED, $user);
         set_user_preference('grade_report_studentsperpage', 50, $user);
 

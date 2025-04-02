@@ -24,6 +24,7 @@ namespace core;
  * @copyright  2012 Petr Skoda {@link http://skodak.org}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
 final class geoip_test extends \advanced_testcase {
     #[\Override]
     public static function setUpBeforeClass(): void {
@@ -33,6 +34,11 @@ final class geoip_test extends \advanced_testcase {
 
         require_once("{$CFG->libdir}/filelib.php");
         require_once("{$CFG->dirroot}/iplookup/lib.php");
+=======
+class core_iplookup_geoip_testcase extends advanced_testcase {
+    public function setUp() {
+        $this->resetAfterTest();
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

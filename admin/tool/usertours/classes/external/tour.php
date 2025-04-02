@@ -60,8 +60,13 @@ class tour extends external_api {
 
         \tool_usertours\event\tour_started::create([
             'contextid' => $context->id,
+<<<<<<< HEAD
             'objectid' => $tour->get_id(),
             'other' => [
+=======
+            'objectid'  => $tour->get_id(),
+            'other'     => [
+>>>>>>> upstream/MOODLE_38_STABLE
                 'pageurl' => $params['pageurl'],
             ],
         ])->trigger();
@@ -91,12 +96,19 @@ class tour extends external_api {
      */
     public static function fetch_and_start_tour_returns() {
         return new external_single_structure([
+<<<<<<< HEAD
             'tourconfig' => new external_single_structure([
                 'name' => new external_value(PARAM_RAW, 'Tour Name'),
                 'steps' => new external_multiple_structure(self::step_structure_returns()),
                 'endtourlabel' => new external_value(PARAM_RAW, 'Label of the end tour button'),
                 'displaystepnumbers' => new external_value(PARAM_BOOL, 'display step number'),
             ], 'Tour config', VALUE_OPTIONAL),
+=======
+            'tourconfig'    => new external_single_structure([
+                'name'      => new external_value(PARAM_RAW, 'Tour Name'),
+                'steps'     => new external_multiple_structure(self::step_structure_returns()),
+            ], 'Tour config', VALUE_OPTIONAL)
+>>>>>>> upstream/MOODLE_38_STABLE
         ]);
     }
 

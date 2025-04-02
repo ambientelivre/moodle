@@ -18,13 +18,20 @@ Feature: Edited book chapters handle tags correctly
       | course      | C1                  |
       | idnumber    | book1               |
       | name        | Test book           |
+<<<<<<< HEAD
+=======
+      | description | A book about dreams |
+>>>>>>> upstream/MOODLE_38_STABLE
     And the following "course enrolments" exist:
       | user | course | role |
       | teacher1 | C1 | editingteacher |
       | student1 | C1 | student |
+<<<<<<< HEAD
     And the following "blocks" exist:
       | blockname       | contextlevel | reference | pagetypepattern | defaultregion |
       | tags            | System       | 1         | my-index        | side-pre      |
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
   @javascript
   Scenario: Book chapter edition of custom tags works as expected

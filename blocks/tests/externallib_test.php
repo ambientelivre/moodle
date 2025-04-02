@@ -233,9 +233,17 @@ final class externallib_test extends externallib_advanced_testcase {
     /**
      * Test get_course_blocks contents with mathjax.
      */
+<<<<<<< HEAD
     public function test_get_course_blocks_contents_with_mathjax(): void {
         global $DB, $CFG;
 
+=======
+    public function test_get_course_blocks_contents_with_mathjax() {
+        global $DB, $CFG;
+
+        require_once($CFG->dirroot . '/lib/externallib.php');
+
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest(true);
 
         // Enable MathJax filter in content and headings.
@@ -248,13 +256,21 @@ final class externallib_test extends externallib_advanced_testcase {
         $course = $this->getDataGenerator()->create_course();
         $studentrole = $DB->get_record('role', array('shortname' => 'student'));
         $this->getDataGenerator()->enrol_user($user->id, $course->id, $studentrole->id);
+<<<<<<< HEAD
         $coursecontext = \context_course::instance($course->id);
+=======
+        $coursecontext = context_course::instance($course->id);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Create a HTML block.
         $title = 'My block $$(a+b)=2$$';
         $body = 'My block contents $$(a+b)=2$$';
         $bodyformat = FORMAT_MOODLE;
+<<<<<<< HEAD
         $page = new \moodle_page();
+=======
+        $page = new moodle_page();
+>>>>>>> upstream/MOODLE_38_STABLE
         $page->set_context($coursecontext);
         $page->set_pagelayout('course');
         $course->format = course_get_format($course)->get_format();
@@ -265,7 +281,11 @@ final class externallib_test extends externallib_advanced_testcase {
 
         $this->setUser($user);
         // Re-create the page.
+<<<<<<< HEAD
         $page = new \moodle_page();
+=======
+        $page = new moodle_page();
+>>>>>>> upstream/MOODLE_38_STABLE
         $page->set_context($coursecontext);
         $page->set_pagelayout('course');
         $course->format = course_get_format($course)->get_format();
@@ -290,12 +310,21 @@ final class externallib_test extends externallib_advanced_testcase {
 
         // Check for the new block.
         $result = core_block_external::get_course_blocks($course->id, true);
+<<<<<<< HEAD
         $result = \core_external\external_api::clean_returnvalue(core_block_external::get_course_blocks_returns(), $result);
 
         // Format the original data.
         $sitecontext = \context_system::instance();
         $title = \core_external\util::format_string($title, $coursecontext->id);
         list($body, $bodyformat) = \core_external\util::format_text($body, $bodyformat, $coursecontext, 'block_html', 'content');
+=======
+        $result = external_api::clean_returnvalue(core_block_external::get_course_blocks_returns(), $result);
+
+        // Format the original data.
+        $sitecontext = context_system::instance();
+        $title = external_format_string($title, $coursecontext->id);
+        list($body, $bodyformat) = external_format_text($body, $bodyformat, $coursecontext->id, 'block_html', 'content');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Check that the block data is formatted.
         $this->assertCount(1, $result['blocks']);
@@ -343,7 +372,11 @@ final class externallib_test extends externallib_advanced_testcase {
             $this->assertContains($block['name'], $alldefaultblocksordered);
             $returnedblocks[] = $block['name'];
             // Check the configuration returned for this default block.
+<<<<<<< HEAD
             if ($block['name'] == 'myoverview') {
+=======
+            if ($block['name'] == 'recentlyaccessedcourses') {
+>>>>>>> upstream/MOODLE_38_STABLE
                 // Convert config to associative array to avoid DB sorting randomness.
                 $config = array_column($block['configs'], null, 'name');
                 $this->assertArrayHasKey('displaycategories', $config);

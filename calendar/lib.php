@@ -979,7 +979,11 @@ class calendar_event {
             $this->editorcontext = $this->get_context();
         }
 
+<<<<<<< HEAD
         return \core_external\util::format_string($this->properties->name, $this->editorcontext->id);
+=======
+        return external_format_string($this->properties->name, $this->editorcontext->id);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -2498,8 +2502,14 @@ function calendar_get_icalendar($url) {
  * Import events from an iCalendar object into a course calendar.
  *
  * @param iCalendar $ical The iCalendar object.
+<<<<<<< HEAD
  * @param int|null $subscriptionid The subscription ID.
  * @return array A log of the import progress, including errors.
+=======
+ * @param int $unused Deprecated
+ * @param int $subscriptionid The subscription ID.
+ * @return string A log of the import progress, including errors.
+>>>>>>> upstream/MOODLE_38_STABLE
  */
 function calendar_import_events_from_ical(iCalendar $ical, ?int $subscriptionid = null): array {
     global $DB;
@@ -3398,6 +3408,7 @@ function calendar_internal_update_course_and_group_permission(int $courseid, con
         }
     }
 }
+<<<<<<< HEAD
 
 /**
  * Get the auth token for exporting the given user calendar.
@@ -3462,3 +3473,5 @@ function calendar_inplace_editable(string $itemtype, int $itemid, int $newvalue)
 
     external_api::validate_context(context_system::instance());
 }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -122,8 +122,12 @@ class Cache
     {
         $fileCache = self::$cacheDir . self::cacheName($operation, $what, $options);
 
+<<<<<<< HEAD:lib/scssphp/src/Cache.php
         if (
             ((self::$forceRefresh === false) || (self::$forceRefresh === 'once' &&
+=======
+        if (((self::$forceRefresh === false) || (self::$forceRefresh === 'once' &&
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Cache.php
             isset(self::$refreshed[$fileCache]))) && file_exists($fileCache)
         ) {
             $cacheTime = filemtime($fileCache);
@@ -210,7 +214,13 @@ class Cache
         self::$cacheDir = rtrim(self::$cacheDir, '/') . '/';
 
         if (! is_dir(self::$cacheDir)) {
+<<<<<<< HEAD:lib/scssphp/src/Cache.php
             throw new Exception('Cache directory doesn\'t exist: ' . self::$cacheDir);
+=======
+            if (! mkdir(self::$cacheDir)) {
+                throw new Exception('Cache directory couldn\'t be created: ' . self::$cacheDir);
+            }
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Cache.php
         }
 
         if (! is_writable(self::$cacheDir)) {

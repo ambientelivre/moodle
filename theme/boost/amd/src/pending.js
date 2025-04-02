@@ -104,6 +104,7 @@ const moduleTransitions = {
         },
     ],
 
+<<<<<<< HEAD
     tooltip: [
         {
             start: 'hide',
@@ -128,6 +129,18 @@ export default () => {
                 });
             });
 
+=======
+    Object.keys(moduleTransitions).forEach(function(key) {
+        moduleTransitions[key].forEach(function(pair) {
+            var eventStart = pair.start + '.bs.' + key;
+            var eventEnd = pair.end + '.bs.' + key;
+            $(document.body).on(eventStart, function(e) {
+                M.util.js_pending(eventEnd);
+                $(e.target).one(eventEnd, function() {
+                    M.util.js_complete(eventEnd);
+                });
+            });
+>>>>>>> upstream/MOODLE_38_STABLE
         });
     });
 };

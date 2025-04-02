@@ -48,10 +48,24 @@ class behat_form_passwordunmask extends behat_form_text {
      * @return void
      */
     public function set_value($value) {
+<<<<<<< HEAD
         if (!$this->running_javascript()) {
             $this->field->setValue($value);
 
             return;
+=======
+        if ($this->running_javascript()) {
+            $id = $this->field->getAttribute('id');
+            $js = <<<JS
+(function() {
+    require(["jquery"], function($) {
+        var wrapper = $(document.getElementById("{$id}")).closest('[data-passwordunmask="wrapper"]');
+            wrapper.find('[data-passwordunmask="edit"]').trigger("click");
+    });
+})();
+JS;
+            behat_base::execute_script_in_session($this->session, $js);
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         $id = $this->field->getAttribute('id');

@@ -48,6 +48,11 @@ if (!is_null($displaysection)) {
     $format->set_sectionnum($displaysection);
 }
 
+<<<<<<< HEAD
 $outputclass = $format->get_output_classname('content');
 $output = new $outputclass($format);
 echo $renderer->render($output);
+=======
+$PAGE->requires->js('/course/format/weeks/format.js');
+$PAGE->requires->js_call_amd('core_course/sectionlistener');
+>>>>>>> upstream/MOODLE_38_STABLE

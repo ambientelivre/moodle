@@ -6,6 +6,7 @@ This file has been replaced by UPGRADING.md. See MDL-81125 for further informati
 This files describes API changes in /mod/forum/*,
 information provided here is intended especially for developers.
 
+<<<<<<< HEAD
 === 4.5 ===
 
 * Final deprecation of forum_update_subscriptions_button().
@@ -59,6 +60,9 @@ information provided here is intended especially for developers.
     * add_discussion_post
 
 === 3.10 ===
+=======
+=== 3.8.6 ===
+>>>>>>> upstream/MOODLE_38_STABLE
 
 * Changes in external function mod_forum_external::get_discussion_posts_by_userid
   Now returns the posts of a given user checking the current user capabilities ($USER, the user who is requesting the posts).

@@ -29,6 +29,7 @@ import {DefaultAllowlist} from './bootstrap/util/sanitizer';
 import setupBootstrapPendingChecks from './pending';
 import EventHandler from './bootstrap/dom/event-handler';
 
+<<<<<<< HEAD
 /**
  * Rember the last visited tabs.
  */
@@ -40,6 +41,67 @@ const rememberTabs = () => {
             history.replaceState(null, null, hash);
         } else {
             location.hash = hash;
+=======
+    require(['theme_boost/aria',
+            'theme_boost/pending',
+            'theme_boost/util',
+            'theme_boost/alert',
+            'theme_boost/button',
+            'theme_boost/carousel',
+            'theme_boost/collapse',
+            'theme_boost/dropdown',
+            'theme_boost/modal',
+            'theme_boost/scrollspy',
+            'theme_boost/tab',
+            'theme_boost/tooltip',
+            'theme_boost/popover'],
+            function(Aria) {
+
+        // We do twice because: https://github.com/twbs/bootstrap/issues/10547
+        jQuery('body').popover({
+            trigger: 'focus',
+            selector: "[data-toggle=popover][data-trigger!=hover]",
+            placement: 'auto'
+        });
+
+        // Popovers must close on Escape for accessibility reasons.
+        customEvents.define(jQuery('body'), [
+            customEvents.events.escape,
+        ]);
+        jQuery('body').on(customEvents.events.escape, '[data-toggle=popover]', function() {
+            // Use "blur" instead of "popover('hide')" to prevent issue that the same tooltip can't be opened again.
+            jQuery(this).trigger('blur');
+        });
+
+        jQuery("html").popover({
+            container: "body",
+            selector: "[data-toggle=popover][data-trigger=hover]",
+            trigger: "hover",
+            delay: {
+                hide: 500
+            }
+        });
+
+        jQuery("html").tooltip({
+            selector: '[data-toggle="tooltip"]'
+        });
+
+        // Disables flipping the dropdowns up and getting hidden behind the navbar.
+        jQuery.fn.dropdown.Constructor.Default.flip = false;
+
+        jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            var hash = jQuery(e.target).attr('href');
+            if (history.replaceState) {
+                history.replaceState(null, null, hash);
+            } else {
+                location.hash = hash;
+            }
+        });
+
+        var hash = window.location.hash;
+        if (hash) {
+           jQuery('.nav-link[href="' + hash + '"]').tab('show');
+>>>>>>> upstream/MOODLE_38_STABLE
         }
     }));
     const hash = window.location.hash;

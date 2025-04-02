@@ -125,11 +125,22 @@ Feature: Upload users
     And I should see "Users created: 4"
     And I press "Continue"
     # Boost check.
+<<<<<<< HEAD
     And I am on the "jonest@example.com" "user > editing" page
     And I should see "Boost"
     # Classic check.
     And I am on the "reznor@example.com" "user > editing" page
     And I should see "Classic"
+=======
+    And I log in as "jonest"
+    And I am on "Maths" course homepage
+    And "Calendar" "link" should be visible
+    And I log out
+    # Classic check.
+    And I log in as "reznor"
+    And I am on "Maths" course homepage
+    And "Calendar" "link" should not be visible
+>>>>>>> upstream/MOODLE_38_STABLE
 
   @javascript
   Scenario: Upload users setting their user theme when allowuserthemes is false

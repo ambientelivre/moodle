@@ -68,9 +68,13 @@ class Nested extends Formatter
 
         foreach ($block->lines as $index => $line) {
             if (substr($line, 0, 2) === '/*') {
+<<<<<<< HEAD:lib/scssphp/src/Formatter/Nested.php
                 $replacedLine = preg_replace('/\r\n?|\n|\f/', $this->break, $line);
                 assert($replacedLine !== null);
                 $block->lines[$index] = $replacedLine;
+=======
+                $block->lines[$index] = preg_replace('/[\r\n]+/', $glue, $line);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Formatter/Nested.php
             }
         }
 
@@ -105,8 +109,12 @@ class Nested extends Formatter
             array_pop($depths);
             $this->depth--;
 
+<<<<<<< HEAD:lib/scssphp/src/Formatter/Nested.php
             if (
                 ! $this->depth && ($block->depth <= 1 || (! $this->indentLevel && $block->type === Type::T_COMMENT)) &&
+=======
+            if (! $this->depth && ($block->depth <= 1 || (! $this->indentLevel && $block->type === Type::T_COMMENT)) &&
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Formatter/Nested.php
                 (($block->selectors && ! $isMediaOrDirective) || $previousHasSelector)
             ) {
                 $downLevel = $this->break;
@@ -223,7 +231,11 @@ class Nested extends Formatter
      *
      * @param \ScssPhp\ScssPhp\Formatter\OutputBlock $block
      *
+<<<<<<< HEAD:lib/scssphp/src/Formatter/Nested.php
      * @return bool
+=======
+     * @return boolean
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Formatter/Nested.php
      */
     private function hasFlatChild($block)
     {

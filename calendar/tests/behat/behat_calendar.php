@@ -210,8 +210,13 @@ class behat_calendar extends behat_base {
      * @param int $year the four digit year
      */
     public function i_view_the_calendar_for($month, $year) {
+<<<<<<< HEAD
         $this->view_the_calendar('month', 1, $month, $year);
     }
+=======
+        $time = make_timestamp($year, $month, 1);
+        $this->execute('behat_general::i_visit', ['/calendar/view.php?view=month&course=1&time='.$time]);
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Navigate to a specific date in the calendar.
@@ -246,6 +251,7 @@ class behat_calendar extends behat_base {
      * @return void
      */
     public function i_am_viewing_site_calendar() {
+<<<<<<< HEAD
         $this->i_am_viewing_calendar_in_view('month');
     }
 
@@ -263,6 +269,9 @@ class behat_calendar extends behat_base {
         }
 
         $url = new moodle_url('/calendar/view.php', ['view' => $view]);
+=======
+        $url = new moodle_url('/calendar/view.php', ['view' => 'month']);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->execute('behat_general::i_visit', [$url]);
     }
 }

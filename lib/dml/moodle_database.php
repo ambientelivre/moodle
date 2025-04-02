@@ -2076,7 +2076,11 @@ abstract class moodle_database {
      * @param string $subquery Subquery that will return values of the field to delete
      * @param array $params Parameters for subquery
      * @throws dml_exception If there is any error
+<<<<<<< HEAD
      * @since Moodle 3.10
+=======
+     * @since Moodle 3.8.6
+>>>>>>> upstream/MOODLE_38_STABLE
      */
     public function delete_records_subquery(string $table, string $field, string $alias,
             string $subquery, array $params = []): void {

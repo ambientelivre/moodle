@@ -975,7 +975,11 @@ final class moodle2_test extends \advanced_testcase {
      * Test restoring courses based on the backup plan. Primarily used with
      * the import functionality
      */
+<<<<<<< HEAD
     public function test_restore_course_using_plan_defaults(): void {
+=======
+    public function test_restore_course_using_plan_defaults() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $CFG, $USER;
 
         $this->resetAfterTest(true);
@@ -1006,7 +1010,11 @@ final class moodle2_test extends \advanced_testcase {
         // Restore it on top of course2 (should duplicate the forum).
         $rc = new restore_controller($backupid, $course2->id,
             backup::INTERACTIVE_NO, backup::MODE_IMPORT, $USER->id,
+<<<<<<< HEAD
             backup::TARGET_EXISTING_ADDING, null, backup::RELEASESESSION_NO);
+=======
+            backup::TARGET_EXISTING_ADDING, null);
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->assertTrue($rc->execute_precheck());
         $rc->execute_plan();
         $rc->destroy();

@@ -119,14 +119,28 @@ class restore_gradebook_structure_step extends restore_structure_step {
             return false;
         }
 
+<<<<<<< HEAD
         $restoretask = $this->get_task();
+=======
+        // Identify the backup we're dealing with.
+        $backuprelease = $this->get_task()->get_info()->backup_release; // The major version: 2.9, 3.0, 3.10...
+        $backupbuild = 0;
+        preg_match('/(\d{8})/', $this->get_task()->get_info()->moodle_release, $matches);
+        if (!empty($matches[1])) {
+            $backupbuild = (int) $matches[1]; // The date of Moodle build at the time of the backup.
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // On older versions the freeze value has to be converted.
         // We do this from here as it is happening right before the file is read.
         // This only targets the backup files that can contain the legacy freeze.
+<<<<<<< HEAD
         if ($restoretask->backup_version_compare(20150618, '>')
                 && $restoretask->backup_release_compare('3.0', '<')
                 || $restoretask->backup_version_compare(20160527, '<')) {
+=======
+        if ($backupbuild > 20150618 && (version_compare($backuprelease, '3.0', '<') || $backupbuild < 20160527)) {
+>>>>>>> upstream/MOODLE_38_STABLE
             $this->rewrite_step_backup_file_for_legacy_freeze($fullpath);
         }
 
@@ -501,7 +515,13 @@ class restore_gradebook_structure_step extends restore_structure_step {
     protected function gradebook_calculation_freeze() {
         global $CFG;
         $gradebookcalculationsfreeze = get_config('core', 'gradebook_calculations_freeze_' . $this->get_courseid());
+<<<<<<< HEAD
         $restoretask = $this->get_task();
+=======
+        preg_match('/(\d{8})/', $this->get_task()->get_info()->moodle_release, $matches);
+        $backupbuild = (int)$matches[1];
+        $backuprelease = $this->get_task()->get_info()->backup_release; // The major version: 2.9, 3.0, 3.10...
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Extra credits need adjustments only for backups made between 2.8 release (20141110) and the fix release (20150619).
         if (!$gradebookcalculationsfreeze && $restoretask->backup_version_compare(20141110, '>=')
@@ -518,8 +538,12 @@ class restore_gradebook_structure_step extends restore_structure_step {
         // Courses from before 3.1 (20160518) may have a letter boundary problem and should be checked for this issue.
         // Backups from before and including 2.9 could have a build number that is greater than 20160518 and should
         // be checked for this problem.
+<<<<<<< HEAD
         if (!$gradebookcalculationsfreeze
                 && ($restoretask->backup_version_compare(20160518, '<') || $restoretask->backup_release_compare('2.9', '<='))) {
+=======
+        if (!$gradebookcalculationsfreeze && ($backupbuild < 20160518 || version_compare($backuprelease, '2.9', '<='))) {
+>>>>>>> upstream/MOODLE_38_STABLE
             require_once($CFG->libdir . '/db/upgradelib.php');
             upgrade_course_letter_boundary($this->get_courseid());
         }
@@ -2316,8 +2340,13 @@ class restore_ras_and_caps_structure_step extends restore_structure_step {
                 // Check if the new role is an overrideable role AND if the user performing the restore has the
                 // capability to assign the capability.
                 if (in_array($newrole->info['shortname'], $overrideableroles) &&
+<<<<<<< HEAD
                     (has_capability('moodle/role:override', $context, $userid) ||
                             ($safecapability && has_capability('moodle/role:safeoverride', $context, $userid)))
+=======
+                    ($safecapability && has_capability('moodle/role:safeoverride', $context, $userid) ||
+                        !$safecapability && has_capability('moodle/role:override', $context, $userid))
+>>>>>>> upstream/MOODLE_38_STABLE
                 ) {
                     assign_capability($data->capability, $data->permission, $newroleid, $this->task->get_contextid());
                 } else {
@@ -5112,6 +5141,7 @@ class restore_create_categories_and_questions extends restore_structure_step {
 
         // Before 3.5, question categories could be created at top level.
         // From 3.5 onwards, all question categories should be a child of a special category called the "top" category.
+<<<<<<< HEAD
         $restoretask = $this->get_task();
         $before35 = $restoretask->backup_release_compare('3.5', '<') || $restoretask->backup_version_compare(20180205, '<');
 
@@ -5119,6 +5149,15 @@ class restore_create_categories_and_questions extends restore_structure_step {
         // to the correct module context in restore_move_module_questions_categories.
         // As we can't create a 'Top' category in CONTEXT_COURSE we'll make a default
         // qbank module and map it to that until they are created later.
+=======
+        $backuprelease = $this->get_task()->get_info()->backup_release; // The major version: 2.9, 3.0, 3.10...
+        preg_match('/(\d{8})/', $this->get_task()->get_info()->moodle_release, $matches);
+        $backupbuild = (int)$matches[1];
+        $before35 = false;
+        if (version_compare($backuprelease, '3.5', '<') || $backupbuild < 20180205) {
+            $before35 = true;
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
         if (empty($mapping->info->parent) && $before35) {
             if ($context->contextlevel === CONTEXT_COURSE) {
                 $course = get_course($context->instanceid);
@@ -5477,7 +5516,17 @@ class restore_move_module_questions_categories extends restore_execution_step {
     protected function define_execution() {
         global $DB;
 
+<<<<<<< HEAD
         $after35 = $this->task->backup_release_compare('3.5', '>=') && $this->task->backup_version_compare(20180205, '>');
+=======
+        $backuprelease = $this->task->get_info()->backup_release; // The major version: 2.9, 3.0, 3.10...
+        preg_match('/(\d{8})/', $this->task->get_info()->moodle_release, $matches);
+        $backupbuild = (int)$matches[1];
+        $after35 = false;
+        if (version_compare($backuprelease, '3.5', '>=') && $backupbuild > 20180205) {
+            $after35 = true;
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $contexts = restore_dbops::restore_get_question_banks($this->get_restoreid(), CONTEXT_MODULE);
         foreach ($contexts as $contextid => $contextlevel) {

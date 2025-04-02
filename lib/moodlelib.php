@@ -3684,6 +3684,16 @@ function delete_user(stdClass $user) {
 
     // Generate username from email address, or a fake email.
     $delemail = !empty($user->email) ? $user->email : $user->username . '.' . $user->id . '@unknownemail.invalid';
+<<<<<<< HEAD
+=======
+
+    $deltime = time();
+    $deltimelength = core_text::strlen((string) $deltime);
+
+    // Max username length is 100 chars. Select up to limit - (length of current time + 1 [period character]) from users email.
+    $delname = clean_param($delemail, PARAM_USERNAME);
+    $delname = core_text::substr($delname, 0, 100 - ($deltimelength + 1)) . ".{$deltime}";
+>>>>>>> upstream/MOODLE_38_STABLE
 
     $deltime = time();
 
@@ -4846,7 +4856,10 @@ function remove_course_contents($courseid, $showfeedback = true, ?array $options
                         // Delete cm and its context - orphaned contexts are purged in cron in case of any race condition.
                         context_helper::delete_instance(CONTEXT_MODULE, $cm->id);
                         $DB->delete_records('course_modules_completion', ['coursemoduleid' => $cm->id]);
+<<<<<<< HEAD
                         $DB->delete_records('course_modules_viewed', ['coursemoduleid' => $cm->id]);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
                         $DB->delete_records('course_modules', array('id' => $cm->id));
                         rebuild_course_cache($cm->course, true);
                     }
@@ -4870,8 +4883,11 @@ function remove_course_contents($courseid, $showfeedback = true, ?array $options
     // features are not enabled now, in case they were enabled previously.
     $DB->delete_records_subquery('course_modules_completion', 'coursemoduleid', 'id',
             'SELECT id from {course_modules} WHERE course = ?', [$courseid]);
+<<<<<<< HEAD
     $DB->delete_records_subquery('course_modules_viewed', 'coursemoduleid', 'id',
         'SELECT id from {course_modules} WHERE course = ?', [$courseid]);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
     // Remove course-module data that has not been removed in modules' _delete_instance callbacks.
     $cms = $DB->get_records('course_modules', array('course' => $course->id));
@@ -5829,6 +5845,7 @@ function email_to_user($user, $from, $subject, $messagetext, $messagehtml = '', 
             $mimetype = mimeinfo('type', $attachname);
 
             // Before doing the comparison, make sure that the paths are correct (Windows uses slashes in the other direction).
+<<<<<<< HEAD
             // The absolute (real) path is also fetched to ensure that comparisons to allowed paths are compared equally.
             $attachpath = str_replace('\\', '/', realpath($attachment));
 
@@ -5836,10 +5853,17 @@ function email_to_user($user, $from, $subject, $messagetext, $messagehtml = '', 
             $allowedpaths = array_map(function(string $path): string {
                 return str_replace('\\', '/', realpath($path));
             }, [
+=======
+            $attachpath = str_replace('\\', '/', $attachmentpath);
+
+            // Add allowed paths to an array (also check if it's not empty).
+            $allowedpaths = array_filter([
+>>>>>>> upstream/MOODLE_38_STABLE
                 $CFG->cachedir,
                 $CFG->dataroot,
                 $CFG->dirroot,
                 $CFG->localcachedir,
+<<<<<<< HEAD
                 $CFG->tempdir,
                 $CFG->localrequestdir,
             ]);
@@ -5854,6 +5878,27 @@ function email_to_user($user, $from, $subject, $messagetext, $messagehtml = '', 
                     $addpath = false;
                     break;
                 }
+=======
+                $CFG->tempdir
+            ]);
+            // Set addpath to true.
+            $addpath = true;
+            // Check if attachment includes one of the allowed paths.
+            foreach ($allowedpaths as $tmpvar) {
+                // Make sure both variables are normalised before comparing.
+                $temppath = str_replace('\\', '/', realpath($tmpvar));
+                // Set addpath to false if the attachment includes one of the allowed paths.
+                if (strpos($attachpath, $temppath) === 0) {
+                    $addpath = false;
+                    break;
+                }
+            }
+
+            // If the attachment is a full path to a file in the multiple allowed paths, use it as is,
+            // otherwise assume it is a relative path from the dataroot (for backwards compatibility reasons).
+            if ($addpath == true) {
+                $attachmentpath = $CFG->dataroot . '/' . $attachmentpath;
+>>>>>>> upstream/MOODLE_38_STABLE
             }
 
             // If the attachment is a full path to a file in the multiple allowed paths, use it as is,
@@ -9153,8 +9198,14 @@ function get_performance_info() {
                     $mode = ' <span title="request cache">Req</span>';
                     break;
             }
+<<<<<<< HEAD
             $row = [$mode, $definition];
 
+=======
+            $html .= '<li class="d-inline-flex"><ul class="cache-definition-stats list-unstyled ml-1 mb-1 cache-mode-'.$modeclass.' card d-inline-block">';
+            $html .= '<li class="cache-definition-stats-heading p-t-1 card-header bg-dark bg-inverse font-weight-bold">' .
+                $definition . $mode.'</li>';
+>>>>>>> upstream/MOODLE_38_STABLE
             $text .= "$definition {";
 
             $storec = 0;
@@ -9246,6 +9297,11 @@ function get_performance_info() {
                     $storetotal['iobytes'] += $data['iobytes'];
                 }
             }
+<<<<<<< HEAD
+=======
+            $html .= '</ul></li>';
+            $text .= '} ';
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         $table = new html_table();

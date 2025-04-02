@@ -15,6 +15,7 @@ Feature: An activity module instance with questions in its context can be delete
       | user | course | role |
       | teacher1 | C1 | editingteacher |
 
+<<<<<<< HEAD
   Scenario: Synchronously deleting a quiz with existing questions in its context
     Given the following config values are set as admin:
       | coursebinenable | 0 | tool_recyclebin |
@@ -33,5 +34,20 @@ Feature: An activity module instance with questions in its context can be delete
       | Test used question to be deleted | 1    |
     And I am on the "Course 1" course page logged in as teacher1
     And I am on "Course 1" course homepage with editing mode on
+=======
+  @javascript
+  Scenario: Synchronously deleting a quiz with existing questions in its context
+    Given the following config values are set as admin:
+      | coursebinenable | 0 | tool_recyclebin |
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage with editing mode on
+    And I add a "Quiz" to section "1" and I fill the form with:
+      | Name | Test quiz Q001 |
+    And I add a "True/False" question to the "Test quiz" quiz with:
+      | Category      | Default for Test quiz Q001       |
+      | Question name | Test used question to be deleted |
+      | Question text | Write about whatever you want    |
+    And I am on "Course 1" course homepage
+>>>>>>> upstream/MOODLE_38_STABLE
     When I delete "Test quiz Q001" activity
     Then I should not see "Test quiz Q001"

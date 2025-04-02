@@ -55,6 +55,13 @@ $renderer = $PAGE->get_renderer('format_topics');
 if (!is_null($displaysection)) {
     $format->set_sectionnum($displaysection);
 }
+<<<<<<< HEAD
 $outputclass = $format->get_output_classname('content');
 $widget = new $outputclass($format);
 echo $renderer->render($widget);
+=======
+
+// Include course format js module
+$PAGE->requires->js('/course/format/topics/format.js');
+$PAGE->requires->js_call_amd('core_course/sectionlistener');
+>>>>>>> upstream/MOODLE_38_STABLE

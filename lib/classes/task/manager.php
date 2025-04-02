@@ -702,14 +702,19 @@ class manager {
      * {@link adhoc_task_failed} or {@link adhoc_task_complete} to release the lock and reschedule the task.
      *
      * @param int $timestart
+<<<<<<< HEAD
      * @param bool $checklimits Should we check limits?
      * @param string|null $classname Return only task of this class
      * @return \core\task\adhoc_task|null
+=======
+     * @return \core\task\adhoc_task or null if not found
+>>>>>>> upstream/MOODLE_38_STABLE
      * @throws \moodle_exception
      */
     public static function get_next_adhoc_task(int $timestart, ?bool $checklimits = true, ?string $classname = null): ?adhoc_task {
         global $DB;
 
+<<<<<<< HEAD
         $concurrencylimit = get_config('core', 'task_adhoc_concurrency_limit');
         $cachedqueuesize = 1200;
 
@@ -735,6 +740,11 @@ class manager {
                 $uniquetasksinqueue
             );
         }
+=======
+        $where = '(nextruntime IS NULL OR nextruntime < :timestart1)';
+        $params = array('timestart1' => $timestart);
+        $records = $DB->get_records_select('task_adhoc', $where, $params, 'nextruntime ASC, id ASC');
+>>>>>>> upstream/MOODLE_38_STABLE
 
         /*
          * The maximum number of cron runners that an individual task is allowed to use.
@@ -853,6 +863,7 @@ class manager {
                     continue;
                 }
 
+<<<<<<< HEAD
                 $tasklimit = $task->get_concurrency_limit();
                 if ($checklimits && $tasklimit > 0) {
                     if ($concurrencylock = self::get_concurrent_task_lock($task)) {
@@ -865,6 +876,20 @@ class manager {
                         $lock->release();
                         continue;
                     }
+=======
+                // The global cron lock is under the most contention so request it
+                // as late as possible and release it as soon as possible.
+                if (!$cronlock = $cronlockfactory->get_lock('core_cron', 10)) {
+                    $lock->release();
+                    throw new \moodle_exception('locktimeout');
+                }
+
+                $task->set_lock($lock);
+                if (!$task->is_blocking()) {
+                    $cronlock->release();
+                } else {
+                    $task->set_cron_lock($cronlock);
+>>>>>>> upstream/MOODLE_38_STABLE
                 }
 
                 self::set_locks($task, $lock, $cronlockfactory);
@@ -1080,6 +1105,15 @@ class manager {
                 if (!$cronlock = $cronlockfactory->get_lock('core_cron', 10)) {
                     $lock->release();
                     throw new \moodle_exception('locktimeout');
+<<<<<<< HEAD
+=======
+                }
+
+                if (!$task->is_blocking()) {
+                    $cronlock->release();
+                } else {
+                    $task->set_cron_lock($cronlock);
+>>>>>>> upstream/MOODLE_38_STABLE
                 }
 
                 $cronlock->release();

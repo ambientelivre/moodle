@@ -1,7 +1,11 @@
 Description of MathJAX library integration in Moodle
 ====================================================
 
+<<<<<<< HEAD
 * Default MathJax version: 3.2.2
+=======
+* Default MathJax version: 2.7.8
+>>>>>>> upstream/MOODLE_38_STABLE
 * License: Apache 2.0
 * Source: https://www.mathjax.org/
 
@@ -24,9 +28,12 @@ Upgrading the default MathJax version
 Changes
 -------
 
+<<<<<<< HEAD
 * Updated to the 3.2.2 version. See MDL-75486 for details
 
 * Updated to the 2.7.9 version. See MDL-70317 for details.
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 * The MathJax 2.7.2 seems to have a possible security issue, the CDN default value have been
 updated to point to the recommended 2.7.8 version. See MDL-68430 for details.

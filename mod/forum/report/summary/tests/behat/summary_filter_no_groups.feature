@@ -27,10 +27,17 @@ Feature: Groups report filter is not available if no groups exist
       | user     | group |
       | teacher1 | G1    |
     And the following "activities" exist:
+<<<<<<< HEAD
       | activity | name   | course | idnumber | groupmode |
       | forum    | forum1 | C1     | forum1C1   | 0         |
       | forum    | forum2 | C1     | forum2C1   | 0         |
       | forum    | forum1 | C2     | forum1C2   | 2         |
+=======
+      | activity | name   | description     | course | idnumber | groupmode |
+      | forum    | forum1 | C1 first forum  | C1     | forum1   | 0         |
+      | forum    | forum2 | C1 second forum | C1     | forum2   | 0         |
+      | forum    | forum1 | C2 first forum  | C2     | forum1   | 2         |
+>>>>>>> upstream/MOODLE_38_STABLE
     And the following forum discussions exist in course "Course 1":
       | user     | forum  | name        | message    | created           |
       | teacher1 | forum1 | discussion1 | D1 message | ## 1 month ago ## |
@@ -49,12 +56,23 @@ Feature: Groups report filter is not available if no groups exist
       | user     | forum  | name        | message         | created          |
       | teacher1 | forum1 | discussion1 | D1 other course | ## 1 week ago ## |
       | teacher1 | forum1 | discussion2 | D2 other course | ## 4 days ago ## |
+<<<<<<< HEAD
     When I am on the forum1C1 "forum activity" page logged in as teacher1
     And I navigate to "Reports" in current page administration
     Then "Groups" "button" should not exist
     And the following should exist in the "forumreport_summary_table" table:
     # |                      | Discussions |
       | First name           | -3-         |
+=======
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "forum1"
+    And I navigate to "Summary report" in current page administration
+    Then "Groups" "button" should not exist
+    And the following should exist in the "forumreport_summary_table" table:
+    # |                      | Discussions |
+      | First name / Surname | -3-         |
+>>>>>>> upstream/MOODLE_38_STABLE
       | Teacher 1            | 2           |
       | Student 1            | 1           |
       | Student 2            | 0           |

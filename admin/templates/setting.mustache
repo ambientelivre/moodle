@@ -48,15 +48,26 @@
     Setting.
 }}
 <div class="form-item row" id="{{id}}">
+<<<<<<< HEAD
     <div class="form-label col-sm-3 text-sm-end">
+=======
+    <div class="form-label col-sm-3 text-sm-right">
+>>>>>>> upstream/MOODLE_38_STABLE
         {{#customcontrol}}
             <p {{#labelfor}}id="{{labelfor}}_label"{{/labelfor}}>
                 {{{title}}}
                 {{#override}}
+<<<<<<< HEAD
                     <div class="alert alert-info">{{override}}</div>
                 {{/override}}
                 {{#warning}}
                     <div class="alert alert-warning">{{warning}}</div>
+=======
+                    <div class="form-overridden">{{override}}</div>
+                {{/override}}
+                {{#warning}}
+                    <div class="form-warning">{{warning}}</div>
+>>>>>>> upstream/MOODLE_38_STABLE
                 {{/warning}}
             </p>
         {{/customcontrol}}
@@ -64,10 +75,17 @@
             <label {{#labelfor}}for="{{labelfor}}"{{/labelfor}}>
                 {{{title}}}
                 {{#override}}
+<<<<<<< HEAD
                     <div class="alert alert-info">{{override}}</div>
                 {{/override}}
                 {{#warning}}
                     <div class="alert alert-warning">{{warning}}</div>
+=======
+                    <div class="form-overridden">{{override}}</div>
+                {{/override}}
+                {{#warning}}
+                    <div class="form-warning">{{warning}}</div>
+>>>>>>> upstream/MOODLE_38_STABLE
                 {{/warning}}
             </label>
         {{/customcontrol}}

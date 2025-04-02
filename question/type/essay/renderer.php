@@ -300,6 +300,7 @@ class qtype_essay_format_editor_renderer extends qtype_essay_format_renderer_bas
     }
 
     public function response_area_read_only($name, $qa, $step, $lines, $context) {
+<<<<<<< HEAD
         $labelbyid = $qa->get_qt_field_name($name) . '_label';
 
         $responselabel = $this->displayoptions->add_question_identifier_to_label(get_string('answertext', 'qtype_essay'));
@@ -315,6 +316,13 @@ class qtype_essay_format_editor_renderer extends qtype_essay_format_renderer_bas
         // That seems to give results that look OK.
 
         return $output;
+=======
+        return html_writer::tag('div', $this->prepare_response($name, $qa, $step, $context),
+                ['class' => $this->class_name() . ' qtype_essay_response readonly',
+                        'style' => 'min-height: ' . ($lines * 1.5) . 'em;']);
+        // Height $lines * 1.5 because that is a typical line-height on web pages.
+        // That seems to give results that look OK.
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     public function response_area_input($name, $qa, $step, $lines, $context) {

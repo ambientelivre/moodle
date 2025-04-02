@@ -137,8 +137,14 @@ final class external_test extends externallib_advanced_testcase {
     /**
      * Test test_mod_lesson_get_lessons_by_courses
      */
+<<<<<<< HEAD:mod/lesson/tests/external/external_test.php
     public function test_mod_lesson_get_lessons_by_courses(): void {
         global $DB;
+=======
+    public function test_mod_lesson_get_lessons_by_courses() {
+        global $DB, $CFG;
+        require_once($CFG->libdir . '/externallib.php');
+>>>>>>> upstream/MOODLE_38_STABLE:mod/lesson/tests/external_test.php
 
         // Create additional course.
         $course2 = self::getDataGenerator()->create_course();
@@ -163,7 +169,11 @@ final class external_test extends externallib_advanced_testcase {
         self::setUser($this->student);
 
         // Enable multilang filter to on content and heading.
+<<<<<<< HEAD:mod/lesson/tests/external/external_test.php
         \filter_manager::reset_caches();
+=======
+        filter_manager::reset_caches();
+>>>>>>> upstream/MOODLE_38_STABLE:mod/lesson/tests/external_test.php
         filter_set_global_state('multilang', TEXTFILTER_ON);
         filter_set_applies_to_strings('multilang', true);
         // Set WS filtering.

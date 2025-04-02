@@ -89,7 +89,11 @@ Feature: Context freezing apply to child contexts
 
   Scenario: Freeze course should freeze all children
     Given I am on the "courseaa1" "Course" page logged in as "admin"
+<<<<<<< HEAD
     Then edit mode should be available on the current page
+=======
+    And I should see "Turn editing on"
+>>>>>>> upstream/MOODLE_38_STABLE
     When I follow "Freeze this context"
     And I click on "Continue" "button"
     Then edit mode should not be available on the current page
@@ -166,7 +170,11 @@ Feature: Context freezing apply to child contexts
 
     And I log out
     When I am on the "courseaa1" "Course" page logged in as "teacher"
+<<<<<<< HEAD
     Then edit mode should not be available on the current page
+=======
+    Then I should not see "Turn editing on"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I follow "faa1"
     Then "Add a new discussion topic" "link" should not exist
     When I am on "courseaa1" course homepage

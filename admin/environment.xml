@@ -3163,11 +3163,14 @@
           <ON_CHECK message="sixtyfourbitswarning" />
         </FEEDBACK>
       </CUSTOM_CHECK>
+<<<<<<< HEAD
       <CUSTOM_CHECK file="lib/upgradelib.php" function="check_igbinary322_version" level="optional">
         <FEEDBACK>
           <ON_CHECK message="igbinary322buggyversion" />
         </FEEDBACK>
       </CUSTOM_CHECK>
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     </CUSTOM_CHECKS>
   </MOODLE>
   <MOODLE version="3.10" requires="3.5">
@@ -3350,11 +3353,14 @@
           <ON_CHECK message="sixtyfourbitswarning" />
         </FEEDBACK>
       </CUSTOM_CHECK>
+<<<<<<< HEAD
       <CUSTOM_CHECK file="lib/upgradelib.php" function="check_igbinary322_version" level="optional">
         <FEEDBACK>
           <ON_CHECK message="igbinary322buggyversion" />
         </FEEDBACK>
       </CUSTOM_CHECK>
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     </CUSTOM_CHECKS>
   </MOODLE>
   <MOODLE version="3.11" requires="3.6">
@@ -3371,7 +3377,10 @@
       <VENDOR name="oracle" version="11.2" />
     </DATABASE>
     <PHP version="7.3.0" level="required">
+<<<<<<< HEAD
       <RESTRICT function="restrict_php_version_81" message="unsupportedphpversion81" />
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     </PHP>
     <PCREUNICODE level="optional">
       <FEEDBACK>
@@ -3540,6 +3549,7 @@
       </CUSTOM_CHECK>
       <CUSTOM_CHECK file="lib/upgradelib.php" function="check_max_input_vars" level="optional">
       </CUSTOM_CHECK>
+<<<<<<< HEAD
       <CUSTOM_CHECK file="lib/upgradelib.php" function="check_xmlrpc_usage" level="optional">
       </CUSTOM_CHECK>
     </CUSTOM_CHECKS>
@@ -4893,6 +4903,8 @@
       </CUSTOM_CHECK>
       <CUSTOM_CHECK file="lib/upgradelib.php" function="check_async_backup" level="recommended">
       </CUSTOM_CHECK>
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     </CUSTOM_CHECKS>
   </MOODLE>
 </COMPATIBILITY_MATRIX>

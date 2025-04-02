@@ -44,9 +44,65 @@ require_once($CFG->dirroot . '/question/editlib.php');
  *
  * @return array|string
  */
+<<<<<<< HEAD
 function core_question_output_fragment_question_data(array $args): string {
     if (empty($args)) {
         return '';
+=======
+function core_question_output_fragment_tags_form($args) {
+
+    if (!empty($args['id'])) {
+        global $CFG, $DB;
+        require_once($CFG->dirroot . '/question/type/tags_form.php');
+        require_once($CFG->libdir . '/questionlib.php');
+        $id = clean_param($args['id'], PARAM_INT);
+        $editingcontext = $args['context'];
+
+        // Load the question and some related information.
+        $question = $DB->get_record('question', ['id' => $id]);
+
+        if ($coursecontext = $editingcontext->get_course_context(false)) {
+            $course = $DB->get_record('course', ['id' => $coursecontext->instanceid]);
+            $filtercourses = [$course];
+        } else {
+            $filtercourses = null;
+        }
+
+        $category = $DB->get_record('question_categories', ['id' => $question->category]);
+        $questioncontext = \context::instance_by_id($category->contextid);
+        $contexts = new \question_edit_contexts($editingcontext);
+
+        // Load the question tags and filter the course tags by the current course.
+        if (core_tag_tag::is_enabled('core_question', 'question')) {
+            $tagobjectsbyquestion = core_tag_tag::get_items_tags('core_question', 'question', [$question->id]);
+            if (!empty($tagobjectsbyquestion[$question->id])) {
+                $tagobjects = $tagobjectsbyquestion[$question->id];
+                $sortedtagobjects = question_sort_tags($tagobjects,
+                        context::instance_by_id($category->contextid), $filtercourses);
+            }
+        }
+        $formoptions = [
+            'editingcontext' => $editingcontext,
+            'questioncontext' => $questioncontext,
+            'contexts' => $contexts->all()
+        ];
+        $data = [
+            'id' => $question->id,
+            'questioncategory' => $category->name,
+            'questionname' => $question->name,
+            'categoryid' => $category->id,
+            'contextid' => $category->contextid,
+            'context' => $questioncontext->get_context_name(),
+            'tags' => $sortedtagobjects->tags ?? [],
+            'coursetags' => $sortedtagobjects->coursetags ?? [],
+        ];
+
+        $cantag = question_has_capability_on($question, 'tag');
+        $mform = new \core_question\form\tags(null, $formoptions, 'post', '', null, $cantag, $data);
+        $mform->set_data($data);
+
+        return $mform->render();
+>>>>>>> upstream/MOODLE_38_STABLE
     }
     [$params, $extraparams] = \core_question\local\bank\filter_condition_manager::extract_parameters_from_fragment_args($args);
     [

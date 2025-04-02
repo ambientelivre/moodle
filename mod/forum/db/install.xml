@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <XMLDB PATH="mod/forum/db" VERSION="20220729" COMMENT="XMLDB file for Moodle mod/forum"
+=======
+<XMLDB PATH="mod/forum/db" VERSION="20200508" COMMENT="XMLDB file for Moodle mod/forum"
+>>>>>>> upstream/MOODLE_38_STABLE
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >

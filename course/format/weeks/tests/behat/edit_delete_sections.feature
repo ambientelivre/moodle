@@ -52,7 +52,11 @@ Feature: Sections can be edited and deleted in weekly sections format
 
   @javascript
   Scenario: Inline edit section name in weeks format
+<<<<<<< HEAD
     When I set the field "Edit section name" in the "1 May - 7 May" "section" to "Midterm evaluation"
+=======
+    When I set the field "Edit week name" in the "li#section-1" "css_element" to "Midterm evaluation"
+>>>>>>> upstream/MOODLE_38_STABLE
     Then I should not see "1 May - 7 May" in the "region-main" "region"
     And "New name for week" "field" should not exist
     And I should see "Midterm evaluation" in the "Midterm evaluation" "section"

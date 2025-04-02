@@ -79,7 +79,11 @@
           <tr>
                 {{# daynames }}
                 <th class="header text-xs-center">
+<<<<<<< HEAD
                     <span class="visually-hidden">{{fullname}}</span>
+=======
+                    <span class="sr-only">{{fullname}}</span>
+>>>>>>> upstream/MOODLE_38_STABLE
                     <span aria-hidden="true">{{shortname}}</span>
                 </th>
                 {{/ daynames }}
@@ -129,7 +133,11 @@
                         This is the timestamp for this month.
                         }} data-day-timestamp="{{timestamp}}"{{!
                     }}>{{!
+<<<<<<< HEAD
                         }}<span class="visually-hidden">{{daytitle}}</span>
+=======
+                        }}<span class="sr-only">{{daytitle}}</span>
+>>>>>>> upstream/MOODLE_38_STABLE
                         {{#popovertitle}}
                             {{< core_calendar/minicalendar_day_link }}
                                 {{$day}}{{mday}}{{/day}}

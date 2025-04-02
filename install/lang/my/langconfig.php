@@ -29,5 +29,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD
 $string['thisdirection'] = 'ltr';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['thislanguage'] = 'ဗမာစာ';

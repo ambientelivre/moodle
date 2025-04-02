@@ -179,7 +179,12 @@ class discussion extends exporter {
                 ];
 
                 // If not hiding the group picture, and the group has a picture then use it. Fallback to generic group image.
+<<<<<<< HEAD
                 if ($url = get_group_picture_url($group, $forum->get_course_id(), true)) {
+=======
+                if (!$group->hidepicture &&
+                        ($url = get_group_picture_url($group, $forum->get_course_id(), true))) {
+>>>>>>> upstream/MOODLE_38_STABLE
 
                     $groupdata['urls']['picture'] = $url;
                 } else {

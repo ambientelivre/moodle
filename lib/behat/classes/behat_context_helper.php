@@ -103,6 +103,7 @@ class behat_context_helper {
     }
 
     /**
+<<<<<<< HEAD
      * Find all Behat contexts which match the specified context class name prefix.
      *
      * Moodle uses a consistent class naming scheme for all Behat contexts, whereby the context name is in the format:
@@ -131,6 +132,8 @@ class behat_context_helper {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Check for any theme override of the specified class name.
      *
      * @param string $classname
@@ -146,6 +149,7 @@ class behat_context_helper {
         $overrideclassname = "behat_theme_{$suitename}_{$classname}";
         if (self::$environment->hasContextClass($overrideclassname)) {
             return $overrideclassname;
+<<<<<<< HEAD
         }
 
         try {
@@ -163,6 +167,8 @@ class behat_context_helper {
                     return $overrideclassname;
                 }
             }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         if (self::$environment->hasContextClass($classname)) {

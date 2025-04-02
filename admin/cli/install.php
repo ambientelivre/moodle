@@ -737,6 +737,7 @@ if (!$skipdatabase) {
         cli_error(get_string('cliincorrectvalueerror', 'admin', $a));
     }
 
+<<<<<<< HEAD
     // Ask for the support email address.
     if ($interactive) {
         cli_separator();
@@ -752,6 +753,8 @@ if (!$skipdatabase) {
     }
 }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 // Ask for the upgrade key.
 if ($interactive) {
     cli_separator();

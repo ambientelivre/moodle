@@ -449,7 +449,11 @@ final class authlib_test extends \advanced_testcase {
     /**
      * Test the {@link signup_validate_data()} duplicate email validation.
      */
+<<<<<<< HEAD
     public function test_signup_validate_data_same_email(): void {
+=======
+    public function test_signup_validate_data_same_email() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         require_once($CFG->libdir . '/authlib.php');
         require_once($CFG->libdir . '/phpmailer/moodle_phpmailer.php');
@@ -465,8 +469,13 @@ final class authlib_test extends \advanced_testcase {
         // inject our own validation method here and revert it back once we are done. This custom validator method is
         // identical to the default 'php' validator with the only difference: it has the FILTER_FLAG_EMAIL_UNICODE set
         // so that it allows to use non-ASCII characters in email addresses.
+<<<<<<< HEAD
         $defaultvalidator = \moodle_phpmailer::$validator;
         \moodle_phpmailer::$validator = function($address) {
+=======
+        $defaultvalidator = moodle_phpmailer::$validator;
+        moodle_phpmailer::$validator = function($address) {
+>>>>>>> upstream/MOODLE_38_STABLE
             return (bool) filter_var($address, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE);
         };
 
@@ -488,7 +497,11 @@ final class authlib_test extends \advanced_testcase {
         ];
 
         $errors = signup_validate_data($formdata, []);
+<<<<<<< HEAD
         $this->assertStringContainsString('This email address is already registered.', $errors['email']);
+=======
+        $this->assertContains('This email address is already registered.', $errors['email']);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Emails are accent-sensitive though so if we change a -> á in the u1's email, it should pass.
         // Please note that Moodle does not normally support such emails yet. We test the DB search sensitivity here.
@@ -503,6 +516,7 @@ final class authlib_test extends \advanced_testcase {
         $this->assertArrayNotHasKey('email', $errors);
 
         // Restore the original email address validator.
+<<<<<<< HEAD
         \moodle_phpmailer::$validator = $defaultvalidator;
     }
 
@@ -567,4 +581,8 @@ final class authlib_test extends \advanced_testcase {
         $this->assertStringContainsString('Hi ' . $user->firstname, quoted_printable_decode($result[0]->body));
     }
 
+=======
+        moodle_phpmailer::$validator = $defaultvalidator;
+    }
+>>>>>>> upstream/MOODLE_38_STABLE
 }

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "tecnickcom/tcpdf",
     "type": "library",
     "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
@@ -48,5 +49,27 @@
         "exclude": [
             "/examples"
         ]
+=======
+  "name": "tecnickcom/tcpdf",
+  "version": "6.3.2",
+  "homepage": "http://www.tcpdf.org/",
+  "type": "library",
+  "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
+  "keywords": [
+    "PDF",
+    "tcpdf",
+    "PDFD32000-2008",
+    "qrcode",
+    "datamatrix",
+    "pdf417",
+    "barcodes"
+  ],
+  "license": "LGPL-3.0",
+  "authors": [
+    {
+      "name": "Nicola Asuni",
+      "email": "info@tecnick.com",
+      "role": "lead"
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }

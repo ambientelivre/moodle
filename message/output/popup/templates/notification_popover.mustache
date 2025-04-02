@@ -70,12 +70,20 @@
             <span class="normal-icon">{{#pix}} t/markasread, core {{/pix}}</span>
             {{> core/loading }}
         </a>
+<<<<<<< HEAD
         {{# urls.preferences }}
             <a href="{{{ . }}}"
                title="{{#str}} notificationpreferences, message {{/str}}"
                aria-label="{{#str}} notificationpreferences, message {{/str}}">
                 {{#pix}} i/settings, core {{/pix}}</a>
         {{/ urls.preferences }}
+=======
+        <a href="{{{urls.preferences}}}"
+           title="{{#str}} notificationpreferences, message {{/str}}"
+           aria-label="{{#str}} notificationpreferences, message {{/str}}">
+            {{#pix}} i/settings, core {{/pix}}
+        </a>
+>>>>>>> upstream/MOODLE_38_STABLE
     {{/headeractions}}
 
     {{$content}}

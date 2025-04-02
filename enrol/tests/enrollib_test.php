@@ -234,7 +234,11 @@ final class enrollib_test extends advanced_testcase {
      * Test enrol_course_delete() without passing a user id. When a value for user id is not present, the method
      * should delete all enrolment related data in the course.
      */
+<<<<<<< HEAD
     public function test_enrol_course_delete_without_userid(): void {
+=======
+    public function test_enrol_course_delete_without_userid() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
@@ -297,7 +301,11 @@ final class enrollib_test extends advanced_testcase {
      * @param array $excludedcapabilities The capabilities that should be excluded from the user's role
      * @param bool $expected The expected results
      */
+<<<<<<< HEAD
     public function test_enrol_course_delete_with_userid($excludedcapabilities, $expected): void {
+=======
+    public function test_enrol_course_delete_with_userid($excludedcapabilities, $expected) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
@@ -381,12 +389,20 @@ final class enrollib_test extends advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function enrol_course_delete_with_userid_provider(): array {
+=======
+    public function enrol_course_delete_with_userid_provider() {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             'The teacher can un-enrol users in a course' =>
                 [
                     'excludedcapabilities' => [],
+<<<<<<< HEAD
                     'expected' => [
+=======
+                    'results' => [
+>>>>>>> upstream/MOODLE_38_STABLE
                         // Whether certain enrolment related data still exists in the course after the deletion.
                         // When the user has the capabilities to un-enrol users and the enrolment plugins allow manual
                         // unenerolment than all course enrolment data should be removed.
@@ -406,7 +422,11 @@ final class enrollib_test extends advanced_testcase {
                         // Exclude the following capabilities for the editing teacher.
                         'enrol/self:unenrol'
                     ],
+<<<<<<< HEAD
                     'expected' => [
+=======
+                    'results' => [
+>>>>>>> upstream/MOODLE_38_STABLE
                         // When the user does not have the capabilities to un-enrol self enrolled users, the data
                         // related to this enrolment method should not be removed. Everything else should be removed.
                         'Manual course enrolment instance exists' => false,
@@ -426,7 +446,11 @@ final class enrollib_test extends advanced_testcase {
                         'enrol/manual:unenrol',
                         'enrol/self:unenrol'
                     ],
+<<<<<<< HEAD
                     'expected' => [
+=======
+                    'results' => [
+>>>>>>> upstream/MOODLE_38_STABLE
                         // When the user does not have the capabilities to un-enrol self and manually enrolled users,
                         // the data related to these enrolment methods should not be removed.
                         'Manual course enrolment instance exists' => true,
@@ -443,7 +467,11 @@ final class enrollib_test extends advanced_testcase {
     }
 
 
+<<<<<<< HEAD
     public function test_enrol_user_sees_own_courses(): void {
+=======
+    public function test_enrol_user_sees_own_courses() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB, $CFG;
 
         $this->resetAfterTest();

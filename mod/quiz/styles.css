@@ -504,11 +504,20 @@ table.quizreviewsummary td.cell {
 #page-mod-quiz-edit .mod_quiz-edit-top-controls {
     position: relative;
 }
-#page-mod-quiz-edit .mod_quiz-edit-action-buttons {
-    display: block;
-    min-height: 2.85em;
+
+<<<<<<< HEAD
+=======
+@media (max-width: 576px) {
+    #page-mod-quiz-edit .maxgrade {
+        margin-bottom: 0.6em;
+    }
+    #page-mod-quiz-edit .maxgrade .form-control {
+        display: inline-block;
+        vertical-align: middle;
+    }
 }
 
+>>>>>>> upstream/MOODLE_38_STABLE
 #page-mod-quiz-edit .maxgrade label {
     display: inline;
 }
@@ -563,6 +572,7 @@ table.quizreviewsummary td.cell {
 }
 
 #page-mod-quiz-edit .section-heading .instancesectioncontainer {
+    font-size: 24px;
     display: inline;
 }
 

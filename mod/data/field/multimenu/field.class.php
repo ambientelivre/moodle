@@ -74,7 +74,11 @@ class data_field_multimenu extends data_field_base {
         $str .= '<input name="field_' . $this->field->id . '[xxx]" type="hidden" value="xxx"/>'; // hidden field - needed for empty selection
 
         $str .= '<label for="field_' . $this->field->id . '">';
+<<<<<<< HEAD
         $str .= '<legend><span class="accesshide">' . s($this->field->name);
+=======
+        $str .= '<legend><span class="accesshide">' . $this->field->name;
+>>>>>>> upstream/MOODLE_38_STABLE
 
         if ($this->field->required) {
             $str .= '&nbsp;' . get_string('requiredelement', 'form') . '</span></legend>';

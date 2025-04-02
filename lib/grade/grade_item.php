@@ -431,6 +431,7 @@ class grade_item extends grade_object {
     public function delete($source=null) {
         global $DB;
 
+<<<<<<< HEAD
         try {
             $transaction = $DB->start_delegated_transaction();
             $this->delete_all_grades($source);
@@ -443,6 +444,12 @@ class grade_item extends grade_object {
         } catch (Exception $e) {
             $transaction->rollback($e);
         }
+=======
+        $transaction = $DB->start_delegated_transaction();
+        $this->delete_all_grades($source);
+        $success = parent::delete($source);
+        $transaction->allow_commit();
+>>>>>>> upstream/MOODLE_38_STABLE
         return $success;
     }
 
@@ -454,6 +461,15 @@ class grade_item extends grade_object {
      */
     public function delete_all_grades($source=null) {
         global $DB;
+<<<<<<< HEAD
+=======
+
+        $transaction = $DB->start_delegated_transaction();
+
+        if (!$this->is_course_item()) {
+            $this->force_regrading();
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
 
         try {
             $transaction = $DB->start_delegated_transaction();
@@ -468,6 +484,7 @@ class grade_item extends grade_object {
                 }
             }
 
+<<<<<<< HEAD
             // Delete all the historical files.
             // We only support feedback files for modules atm.
             if ($this->is_external_item()) {
@@ -479,6 +496,10 @@ class grade_item extends grade_object {
         } catch (Exception $e) {
             $transaction->rollback($e);
         }
+=======
+        $transaction->allow_commit();
+
+>>>>>>> upstream/MOODLE_38_STABLE
         return true;
     }
 
@@ -1825,11 +1846,20 @@ class grade_item extends grade_object {
      * @param int $feedbackformat A format like FORMAT_PLAIN or FORMAT_HTML
      * @param int $usermodified The ID of the user making the modification
      * @param int $timemodified Optional parameter to set the time modified, if not present current time.
+<<<<<<< HEAD
      * @param bool $isbulkupdate If bulk grade update is happening.
      * @return bool success
      */
     public function update_final_grade($userid, $finalgrade = false, $source = null, $feedback = false,
             $feedbackformat = FORMAT_MOODLE, $usermodified = null, $timemodified = null, $isbulkupdate = false) {
+=======
+     * @return bool success
+     */
+    public function update_final_grade($userid, $finalgrade = false,
+                                       $source = null, $feedback = false,
+                                       $feedbackformat = FORMAT_MOODLE,
+                                       $usermodified = null, $timemodified = null) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $USER, $CFG;
 
         $result = true;
@@ -1897,7 +1927,11 @@ class grade_item extends grade_object {
         if (empty($grade->id)) {
             $grade->timecreated = null;   // Hack alert - date submitted - no submission yet.
             $grade->timemodified = $timemodified ?? time(); // Hack alert - date graded.
+<<<<<<< HEAD
             $result = (bool)$grade->insert($source, $isbulkupdate);
+=======
+            $result = (bool)$grade->insert($source);
+>>>>>>> upstream/MOODLE_38_STABLE
 
             // If the grade insert was successful and the final grade was not null then trigger a user_graded event.
             if ($result && !is_null($grade->finalgrade)) {
@@ -1921,7 +1955,11 @@ class grade_item extends grade_object {
             }
 
             $grade->timemodified = $timemodified ?? time(); // Hack alert - date graded.
+<<<<<<< HEAD
             $result = $grade->update($source, $isbulkupdate);
+=======
+            $result = $grade->update($source);
+>>>>>>> upstream/MOODLE_38_STABLE
 
             // If the grade update was successful and the actual grade has changed then trigger a user_graded event.
             if ($result && grade_floats_different($grade->finalgrade, $oldgrade->finalgrade)) {

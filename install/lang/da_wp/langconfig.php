@@ -30,4 +30,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['parentlanguage'] = 'da';
+<<<<<<< HEAD
 $string['thislanguage'] = 'Dansk';
+=======
+$string['thislanguage'] = 'Dansk til Workplace';
+>>>>>>> upstream/MOODLE_38_STABLE

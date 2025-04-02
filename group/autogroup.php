@@ -185,6 +185,7 @@ if ($editform->is_cancelled()) {
             if ($data->allocateby != 'no') {
                 $unames = array();
                 foreach ($group['members'] as $user) {
+<<<<<<< HEAD
                     $fullname = fullname($user, $viewfullnames);
                     if ($extrafields) {
                         $extrafieldsdisplay = [];
@@ -195,6 +196,9 @@ if ($editform->is_cancelled()) {
                     }
 
                     $unames[] = $fullname;
+=======
+                    $unames[] = fullname($user, $viewfullnames);
+>>>>>>> upstream/MOODLE_38_STABLE
                 }
                 $line[] = implode(', ', $unames);
                 $line[] = count($group['members']);

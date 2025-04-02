@@ -557,7 +557,11 @@ class CSS extends Minify
         );
 
         return preg_replace_callback(
+<<<<<<< HEAD
             '/(?<=[: ])(' . implode('|', array_keys($colors)) . ')(?=[; }])/i',
+=======
+            '/(?<=[: ])('.implode('|', array_keys($colors)).')(?=[; }])/i',
+>>>>>>> upstream/MOODLE_38_STABLE
             function ($match) use ($colors) {
                 return $colors[strtolower($match[0])];
             },
@@ -723,7 +727,50 @@ class CSS extends Minify
      */
     protected function stripComments()
     {
+<<<<<<< HEAD
         $this->stripMultilineComments();
+=======
+        // PHP only supports $this inside anonymous functions since 5.4
+        $minifier = $this;
+        $callback = function ($match) use ($minifier) {
+            $count = count($minifier->extracted);
+            $placeholder = '/*'.$count.'*/';
+            $minifier->extracted[$placeholder] = $match[0];
+
+            return $placeholder;
+        };
+        // Moodle-specific change MDL-68191 starts.
+        /* This was the old code:
+        $this->registerPattern('/\n?\/\*(!|.*?@license|.*?@preserve).*?\*\/\n?/s', $callback);
+        */
+        // This is the new, more accurate and faster regex.
+        $this->registerPattern('/
+            # optional newline
+            \n?
+
+            # start comment
+            \/\*
+
+            # comment content
+            (?:
+                # either starts with an !
+                !
+            |
+                # or, after some number of characters which do not end the comment
+                (?:(?!\*\/).)*?
+
+                # there is either a @license or @preserve tag
+                @(?:license|preserve)
+            )
+
+            # then match to the end of the comment
+            .*?\*\/\n?
+
+            /ixs', $callback);
+        // Moodle-specific change MDL-68191.
+
+        $this->registerPattern('/\/\*.*?\*\//s', '');
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

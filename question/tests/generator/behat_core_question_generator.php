@@ -41,6 +41,7 @@ class behat_core_question_generator extends behat_generator_base {
                 'required' => ['question', 'tag'],
                 'switchids' => ['question' => 'questionid'],
             ],
+<<<<<<< HEAD
             'updated questions' => [
                 'singular' => 'question',
                 'datagenerator' => 'updated_question',
@@ -52,6 +53,8 @@ class behat_core_question_generator extends behat_generator_base {
                     'createdbyuser' => 'createdby',
                 ],
             ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         ];
     }
 
@@ -69,6 +72,7 @@ class behat_core_question_generator extends behat_generator_base {
         }
         return $id;
     }
+<<<<<<< HEAD
 
     /**
      * Look up the id of the createdby user from their username
@@ -108,4 +112,6 @@ class behat_core_question_generator extends behat_generator_base {
 
         $this->datagenerator->get_plugin_generator('core_question')->update_question($question, overrides: $overrides);
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

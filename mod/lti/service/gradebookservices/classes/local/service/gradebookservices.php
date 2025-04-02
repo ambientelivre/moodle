@@ -542,8 +542,14 @@ class gradebookservices extends service_base {
             $grade->feedback = $feedback;
             $grade->rawgrade = $finalgrade;
             $status = grade_update($source, $gradeitem->courseid,
+<<<<<<< HEAD
                 $gradeitem->itemtype, $gradeitem->itemmodule,
                 $gradeitem->iteminstance, $gradeitem->itemnumber, $grade);
+=======
+                         $gradeitem->itemtype, $gradeitem->itemmodule,
+                         $gradeitem->iteminstance, $gradeitem->itemnumber,
+                         $grade);
+>>>>>>> upstream/MOODLE_38_STABLE
 
             $result = ($status == GRADE_UPDATE_OK);
         }

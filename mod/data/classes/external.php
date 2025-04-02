@@ -132,7 +132,11 @@ class mod_data_external extends external_api {
                 }
                 $exporter = new database_summary_exporter($database, array('context' => $context));
                 $data = $exporter->export($PAGE->get_renderer('core'));
+<<<<<<< HEAD
                 $data->name = \core_external\util::format_string($data->name, $context);
+=======
+                $data->name = external_format_string($data->name, $context);
+>>>>>>> upstream/MOODLE_38_STABLE
                 $arrdatabases[] = $data;
             }
         }

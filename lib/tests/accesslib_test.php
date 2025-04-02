@@ -4555,11 +4555,15 @@ final class accesslib_test extends advanced_testcase {
         $this->assertFalse(array_key_exists($guest->id, $users));
     }
 
+<<<<<<< HEAD
 
     /**
      * @covers ::get_with_capability_sql
      */
     public function test_get_with_capability_sql(): void {
+=======
+    public function test_get_with_capability_sql() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
@@ -4620,7 +4624,11 @@ final class accesslib_test extends advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function get_get_with_capability_join_override_cases(): array {
+=======
+    public function get_get_with_capability_join_override_cases() {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
                 'no overrides' => [true, []],
                 'one override' => [true, ['moodle/course:viewscales']],
@@ -4632,13 +4640,20 @@ final class accesslib_test extends advanced_testcase {
      * Test get_with_capability_join.
      *
      * @dataProvider get_get_with_capability_join_override_cases
+<<<<<<< HEAD
      * @covers ::get_with_capability_join
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      *
      * @param bool $studentshouldbereturned whether, with this combination of capabilities, the student should be in the results.
      * @param array $capabilitiestoprevent capabilities to override to prevent in the course context.
      */
     public function test_get_with_capability_join_when_overrides_present(
+<<<<<<< HEAD
             bool $studentshouldbereturned, array $capabilitiestoprevent): void {
+=======
+            bool $studentshouldbereturned, array $capabilitiestoprevent) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
         $this->resetAfterTest();
         $generator = $this->getDataGenerator();
@@ -4821,6 +4836,205 @@ final class accesslib_test extends advanced_testcase {
      * Data provider for is_parent_of context checks.
      *
      * @return  array
+<<<<<<< HEAD
+=======
+     */
+    public function is_parent_of_provider(): array {
+        $provideboth = function(string $desc, string $contextpath, string $testpath, bool $expected): array {
+            return [
+                "includeself: true; {$desc}" => [
+                    $contextpath,
+                    $testpath,
+                    true,
+                    $expected,
+                ],
+                "includeself: false; {$desc}" => [
+                    $contextpath,
+                    $testpath,
+                    false,
+                    $expected,
+                ],
+            ];
+        };
+
+        return array_merge(
+            [
+                'includeself: true, testing self' => [
+                    '/1/4/17/291/1001/17105',
+                    '/1/4/17/291/1001/17105',
+                    true,
+                    true,
+                ],
+                'includeself: false, testing self' => [
+                    '/1/4/17/291/1001/17105',
+                    '/1/4/17/291/1001/17105',
+                    false,
+                    false,
+                ],
+            ],
+            $provideboth(
+                'testing parent',
+                '/1/4/17/291/1001/17105',
+                '/1/4/17/291/1001',
+                false
+            ),
+            $provideboth(
+                'testing child',
+                '/1/4/17/291/1001',
+                '/1/4/17/291/1001/17105',
+                true
+            ),
+            $provideboth(
+                'testing grandchild',
+                '/1',
+                '/1/4/17/291/1001/17105',
+                true
+            )
+        );
+    }
+
+    /**
+     * Ensure that the is_parent_of() function works as anticipated.
+     *
+     * @dataProvider is_parent_of_provider
+     * @param   string $contextpath The path of the context being compared with
+     * @param   string $testpath The path of the context being compared
+     * @param   bool $testself Whether to check the current context
+     * @param   bool $expected The expected result
+     */
+    public function test_is_parent_of(string $contextpath, string $testpath, bool $testself, bool $expected): void {
+        $context = $this->getMockBuilder(\context::class)
+            ->disableOriginalConstructor()
+            ->setMethods([
+                'get_url',
+                'get_capabilities',
+            ])
+            ->getMock();
+
+        $rcp = new ReflectionProperty($context, '_path');
+        $rcp->setAccessible(true);
+        $rcp->setValue($context, $contextpath);
+
+        $comparisoncontext = $this->getMockBuilder(\context::class)
+            ->disableOriginalConstructor()
+            ->setMethods([
+                'get_url',
+                'get_capabilities',
+            ])
+            ->getMock();
+
+        $rcp = new ReflectionProperty($comparisoncontext, '_path');
+        $rcp->setAccessible(true);
+        $rcp->setValue($comparisoncontext, $testpath);
+
+        $this->assertEquals($expected, $context->is_parent_of($comparisoncontext, $testself));
+    }
+
+    /**
+     * Data provider for is_child_of context checks.
+     *
+     * @return  array
+     */
+    public function is_child_of_provider(): array {
+        $provideboth = function(string $desc, string $contextpath, string $testpath, bool $expected): array {
+            return [
+                "includeself: true; {$desc}" => [
+                    $contextpath,
+                    $testpath,
+                    true,
+                    $expected,
+                ],
+                "includeself: false; {$desc}" => [
+                    $contextpath,
+                    $testpath,
+                    false,
+                    $expected,
+                ],
+            ];
+        };
+
+        return array_merge(
+            [
+                'includeself: true, testing self' => [
+                    '/1/4/17/291/1001/17105',
+                    '/1/4/17/291/1001/17105',
+                    true,
+                    true,
+                ],
+                'includeself: false, testing self' => [
+                    '/1/4/17/291/1001/17105',
+                    '/1/4/17/291/1001/17105',
+                    false,
+                    false,
+                ],
+            ],
+            $provideboth(
+                'testing child',
+                '/1/4/17/291/1001/17105',
+                '/1/4/17/291/1001',
+                true
+            ),
+            $provideboth(
+                'testing parent',
+                '/1/4/17/291/1001',
+                '/1/4/17/291/1001/17105',
+                false
+            ),
+            $provideboth(
+                'testing grandchild',
+                '/1/4/17/291/1001/17105',
+                '/1',
+                true
+            ),
+            $provideboth(
+                'testing grandparent',
+                '/1',
+                '/1/4/17/291/1001/17105',
+                false
+            )
+        );
+    }
+
+    /**
+     * Ensure that the is_child_of() function works as anticipated.
+     *
+     * @dataProvider is_child_of_provider
+     * @param   string $contextpath The path of the context being compared with
+     * @param   string $testpath The path of the context being compared
+     * @param   bool $testself Whether to check the current context
+     * @param   bool $expected The expected result
+     */
+    public function test_is_child_of(string $contextpath, string $testpath, bool $testself, bool $expected): void {
+        $context = $this->getMockBuilder(\context::class)
+            ->disableOriginalConstructor()
+            ->setMethods([
+                'get_url',
+                'get_capabilities',
+            ])
+            ->getMock();
+
+        $rcp = new ReflectionProperty($context, '_path');
+        $rcp->setAccessible(true);
+        $rcp->setValue($context, $contextpath);
+
+        $comparisoncontext = $this->getMockBuilder(\context::class)
+            ->disableOriginalConstructor()
+            ->setMethods([
+                'get_url',
+                'get_capabilities',
+            ])
+            ->getMock();
+
+        $rcp = new ReflectionProperty($comparisoncontext, '_path');
+        $rcp->setAccessible(true);
+        $rcp->setValue($comparisoncontext, $testpath);
+
+        $this->assertEquals($expected, $context->is_child_of($comparisoncontext, $testself));
+    }
+
+    /**
+     * Ensure that the get_parent_contexts() function limits the number of queries it performs.
+>>>>>>> upstream/MOODLE_38_STABLE
      */
     public static function is_parent_of_provider(): array {
         $provideboth = function(string $desc, string $contextpath, string $testpath, bool $expected): array {

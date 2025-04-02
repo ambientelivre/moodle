@@ -57,6 +57,36 @@ final class ldap_test extends \advanced_testcase {
         return $combinations;
     }
 
+<<<<<<< HEAD
+=======
+global $CFG;
+
+
+class enrol_ldap_testcase extends advanced_testcase {
+
+    /**
+     * Data provider for enrol_ldap tests
+     *
+     * Used to ensure that all the paged stuff works properly, irrespectively
+     * of the pagesize configured (that implies all the chunking and paging
+     * built in the plugis is doing its work consistently). Both searching and
+     * not searching within subcontexts.
+     *
+     * @return array[]
+     */
+    public function enrol_ldap_provider() {
+        $pagesizes = [1, 3, 5, 1000];
+        $subcontexts = [0, 1];
+        $combinations = [];
+        foreach ($pagesizes as $pagesize) {
+            foreach ($subcontexts as $subcontext) {
+                $combinations["pagesize {$pagesize}, subcontexts {$subcontext}"] = [$pagesize, $subcontext];
+            }
+        }
+        return $combinations;
+    }
+
+>>>>>>> upstream/MOODLE_38_STABLE
     /**
      * General enrol_ldap testcase
      *
@@ -64,7 +94,11 @@ final class ldap_test extends \advanced_testcase {
      * @param int $pagesize Value to be configured in settings controlling page size.
      * @param int $subcontext Value to be configured in settings controlling searching in subcontexts.
      */
+<<<<<<< HEAD
     public function test_enrol_ldap(int $pagesize, int $subcontext): void {
+=======
+    public function test_enrol_ldap(int $pagesize, int $subcontext) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG, $DB;
 
         if (!extension_loaded('ldap')) {

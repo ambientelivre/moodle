@@ -31,7 +31,13 @@ Feature: File types of the submission and feedback attachments can be limitted
     And I press "Save and display"
     And I change phase in workshop "TestWorkshop" to "Submission phase"
     # As a student, attempt to attach a non-image file.
+<<<<<<< HEAD
     And I am on the TestWorkshop "workshop activity" page logged in as student1
+=======
+    And I log in as "student1"
+    And I am on "Course1" course homepage
+    And I follow "TestWorkshop"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Add submission"
     And I set the following fields to these values:
       | Title              | Submission1           |

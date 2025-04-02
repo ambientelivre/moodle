@@ -123,7 +123,11 @@ EOD;
         $oldproxybypass = $CFG->proxybypass; // Ensure we don't get locally served extests bypassing the proxy.
         $CFG->proxybypass = '';
 
+<<<<<<< HEAD
         $feed = new \moodle_simplepie($this->getExternalTestFileUrl('/rsstest.xml'));
+=======
+        $feed = new moodle_simplepie($this->getExternalTestFileUrl('/rsstest.xml'));
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->assertNotEmpty($feed->error());
         $this->assertEmpty($feed->get_title());

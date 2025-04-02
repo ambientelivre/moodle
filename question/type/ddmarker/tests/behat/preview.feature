@@ -34,8 +34,18 @@ Feature: Preview a drag-drop marker question
     And I should see "Mark 1.00 out of 1.00"
 
   @javascript
+<<<<<<< HEAD
   Scenario: Preview a question using the keyboard
     When I am on the "Drag markers" "core_question > preview" page logged in as teacher
+=======
+  Scenario: Preview a question using the keyboard.
+    When I choose "Preview" action for "Drag markers" in the question bank
+    And I switch to "questionpreview" window
+    # Increase window size and wait 2 seconds to ensure elements are placed properly by js.
+    # Keep window large else drag will scroll the window to find element.
+    And I change window size to "medium"
+    And I wait "2" seconds
+>>>>>>> upstream/MOODLE_38_STABLE
     And I type "up" "88" times on marker "Railway station" in the drag and drop markers question
     And I type "right" "26" times on marker "Railway station" in the drag and drop markers question
     And I press "Submit and finish"

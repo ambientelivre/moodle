@@ -30,15 +30,26 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['clianswerno'] = 'n';
+<<<<<<< HEAD
 $string['cliansweryes'] = 'd';
 $string['cliincorrectvalueerror'] = 'Eroare, valoare incorectă "{$a->value}" pentru "{$a->option}"';
 $string['cliincorrectvalueretry'] = 'Valoare incorectă, încercaţi din nou';
+=======
+$string['cliansweryes'] = 'y';
+$string['cliincorrectvalueerror'] = 'Eroare, valoare incorectă "{$a->value}" pentru "{$a->option}"';
+$string['cliincorrectvalueretry'] = 'Valoarea nu este corectă, încercați din nou';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['clitypevalue'] = 'introduceţi valoarea';
 $string['clitypevaluedefault'] = 'introduceţi valoarea, apăsaţi Enter pentru a folosi valoarea implicită ({$a})';
 $string['cliunknowoption'] = 'Opţiuni necunoscute:
  {$a}
 Vă rugăm folosiţi --opţiunea Ajutor.';
 $string['cliyesnoprompt'] = 'tastați d (pentru \'da\') sau \'n\' (pentru \'nu\')';
+<<<<<<< HEAD
 $string['environmentrequireinstall'] = 'trebuie instalat şi activat';
 $string['environmentrequireversion'] = 'versiuna necesară este {$a->needed} în timp ce dumneavoastră rulaţi versiunea {$a->current}';
 $string['upgradekeyset'] = 'Actualizează cheie  (lăsați gol pentru a nu fi setat)';
+=======
+$string['environmentrequireinstall'] = 'trebuie să fie instalat și activat';
+$string['environmentrequireversion'] = 'versiunea {$a->needed} este necesară iar dumneavoastră rulați {$a->current}';
+>>>>>>> upstream/MOODLE_38_STABLE

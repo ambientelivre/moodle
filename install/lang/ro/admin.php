@@ -37,8 +37,13 @@ $string['clitypevalue'] = 'introdu valoarea';
 $string['clitypevaluedefault'] = 'introdu valoarea, apasă Enter pentru a folosi valoarea implicită ({$a})';
 $string['cliunknowoption'] = 'Opţiuni necunoscute:
  {$a}
+<<<<<<< HEAD
 Te rugăm folosește--opţiunea Ajutor.';
 $string['cliyesnoprompt'] = 'tastează d (pentru \'da\') sau \'n\' (pentru \'nu\')';
+=======
+Vă rugăm folosiţi --opţiunea Ajutor.';
+$string['cliyesnoprompt'] = 'tastați d (pentru \'da\') sau \'n\' (pentru \'nu\')';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['environmentrequireinstall'] = 'trebuie instalat şi activat';
 $string['environmentrequireversion'] = 'versiuna necesară este {$a->needed} în timp ce dumneavoastră rulaţi versiunea {$a->current}';
 $string['upgradekeyset'] = 'Actualizează cheie (lăsați necompletat pentru a nu fi setat)';

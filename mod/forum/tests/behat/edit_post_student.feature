@@ -45,6 +45,7 @@ Feature: Students can edit or delete their forum posts within a set time limit
 
   @block_recent_activity
   Scenario: Time limit expires
+<<<<<<< HEAD
     Given the following "blocks" exist:
       | blockname       | contextlevel | reference | pagetypepattern | defaultregion |
       | recent_activity | Course       | C1        | course-view-*   | side-pre      |
@@ -54,6 +55,17 @@ Feature: Students can edit or delete their forum posts within a set time limit
       | user     | forum | name               | message          | timemodified       |
       | student1 | forum | Forum post subject | This is the body | ##now +1 second##  |
     And I am on the "Course 1" course page logged in as student1
+=======
+    Given I log out
+    And I log in as "admin"
+    And the following config values are set as admin:
+      | maxeditingtime | 1 |
+    And I am on "Course 1" course homepage with editing mode on
+    And I add the "Recent activity" block
+    And I log out
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should see "New forum posts:" in the "Recent activity" "block"
     And I should see "Forum post subject" in the "Recent activity" "block"
     When I wait "2" seconds

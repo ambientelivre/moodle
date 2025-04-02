@@ -372,9 +372,14 @@ $string['eventpagebreakcreated'] = 'Page break created';
 $string['eventpagebreakdeleted'] = 'Page break deleted';
 $string['eventquestionmanuallygraded'] = 'Question manually graded';
 $string['eventquizattemptabandoned'] = 'Quiz attempt abandoned';
+<<<<<<< HEAD
 $string['eventquizattemptgraded'] = 'Quiz attempt graded';
 $string['eventquizattemptregraded'] = 'Quiz attempt regraded';
 $string['eventquizattemptreopened'] = 'Quiz attempt reopened';
+=======
+$string['eventquizattempttimelimitexceeded'] = 'Quiz attempt time limit exceeded';
+$string['eventquizattemptregraded'] = 'Quiz attempt regraded';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['eventquizattemptstarted'] = 'Quiz attempt started';
 $string['eventquizattemptsubmitted'] = 'Quiz attempt submitted';
 $string['eventquizattempttimelimitexceeded'] = 'Quiz attempt time limit exceeded';

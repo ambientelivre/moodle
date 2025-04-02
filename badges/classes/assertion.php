@@ -200,8 +200,16 @@ class core_badges_assertion {
             $badgeurl = new moodle_url('/badges/badgeclass.php', $params);
             $class['criteria'] = $badgeurl->out(false); // Currently badge URL.
             if ($issued) {
+<<<<<<< HEAD
                 $params = ['id' => $this->get_badge_id()];
                 $issuerurl = new moodle_url('/badges/issuer_json.php', $params);
+=======
+                if ($this->_obversion == OPEN_BADGES_V2) {
+                    $issuerurl = new moodle_url('/badges/issuer_json.php', array('id' => $this->get_badge_id()));
+                } else {
+                    $issuerurl = new moodle_url('/badges/assertion.php', array('b' => $this->_data->uniquehash, 'action' => 0));
+                }
+>>>>>>> upstream/MOODLE_38_STABLE
                 $class['issuer'] = $issuerurl->out(false);
             }
             $tags = $this->get_tags();
@@ -222,9 +230,30 @@ class core_badges_assertion {
      * @return array Issuer information.
      */
     public function get_issuer() {
+<<<<<<< HEAD
         $badge = new badge($this->get_badge_id());
         $issuer = $badge->get_badge_issuer();
 
+=======
+        global $CFG;
+        $issuer = array();
+        if ($this->_data) {
+            // Required.
+            if (badges_open_badges_backpack_api() == OPEN_BADGES_V1) {
+                $issuer['name'] = $this->_data->issuername;
+                $issuer['url'] = $this->_data->issuerurl;
+                // Optional.
+                if (!empty($this->_data->issuercontact)) {
+                    $issuer['email'] = $this->_data->issuercontact;
+                } else {
+                    $issuer['email'] = $CFG->badges_defaultissuercontact;
+                }
+            } else {
+                $badge = new badge($this->get_badge_id());
+                $issuer = $badge->get_badge_issuer();
+            }
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->embed_data_badge_version2($issuer, OPEN_BADGES_V2_TYPE_ISSUER);
         return $issuer;
     }

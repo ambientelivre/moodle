@@ -580,6 +580,7 @@ EOD;
             }
         }
 
+<<<<<<< HEAD
         // This should never happen, there should be a version of the pages available
         // whenever we are requesting the readonly version.
         if (empty($pages) && $readonly) {
@@ -600,6 +601,16 @@ EOD;
         $totalpagesforattempt = self::page_number_for_attempt($assignment, $userid, $attemptnumber, false);
         $submissionmodified = isset($pagemodified) && $submission->timemodified > $pagemodified;
         if (empty($pages) || (count($pages) != $totalpagesforattempt && !$submissionmodified)) {
+=======
+        $totalpagesforattempt = self::page_number_for_attempt($assignment, $userid, $attemptnumber, false);
+        // Here we are comparing the total number of images against the total number of pages from the combined PDF.
+        if (empty($pages) || count($pages) != $totalpagesforattempt) {
+            if ($readonly) {
+                // This should never happen, there should be a version of the pages available
+                // whenever we are requesting the readonly version.
+                throw new \moodle_exception('Could not find readonly pages for grade ' . $grade->id);
+            }
+>>>>>>> upstream/MOODLE_38_STABLE
             $pages = self::generate_page_images_for_attempt($assignment, $userid, $attemptnumber, $resetrotation);
         }
 

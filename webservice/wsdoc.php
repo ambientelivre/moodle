@@ -35,13 +35,23 @@ $tokenid = required_param('id', PARAM_INT);
 $PAGE->set_context($usercontext);
 $PAGE->set_url('/user/wsdoc.php');
 $PAGE->set_title(get_string('wsdocumentation', 'webservice'));
+<<<<<<< HEAD
+=======
+$PAGE->set_heading(get_string('wsdocumentation', 'webservice'));
+>>>>>>> upstream/MOODLE_38_STABLE
 $PAGE->set_pagelayout('standard');
 
 // nav bar
 $PAGE->navbar->ignore_active(true);
 $PAGE->navbar->add(get_string('preferences'), new moodle_url('/user/preferences.php'));
 $PAGE->navbar->add(get_string('useraccount'));
+<<<<<<< HEAD
 $PAGE->navbar->add(get_string('securitykeys', 'webservice'), new moodle_url('/user/managetoken.php'));
+=======
+$PAGE->navbar->add(get_string('securitykeys', 'webservice'),
+        new moodle_url('/user/managetoken.php', 
+                array('id' => $tokenid, 'sesskey' => sesskey())));
+>>>>>>> upstream/MOODLE_38_STABLE
 $PAGE->navbar->add(get_string('wsdocumentation', 'webservice'));
 
 // check web service are enabled

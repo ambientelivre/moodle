@@ -146,6 +146,7 @@ if ($action === 'pollconversions') {
                 $page->annotations = $annotations;
                 $response->pages[] = $page;
             }
+<<<<<<< HEAD
 
             $component = 'assignfeedback_editpdf';
             $filearea = document_services::PAGE_IMAGE_FILEAREA;
@@ -158,6 +159,19 @@ if ($action === 'pollconversions') {
         // Release lock, and re-throw exception.
         $lock->release();
         throw $e;
+=======
+            $annotations = page_editor::get_annotations($grade->id, $index, $draft);
+            $page->annotations = $annotations;
+            $response->pages[] = $page;
+        }
+
+        $component = 'assignfeedback_editpdf';
+        $filearea = document_services::PAGE_IMAGE_FILEAREA;
+        $filepath = '/';
+        $fs = get_file_storage();
+        $files = $fs->get_directory_files($context->id, $component, $filearea, $grade->id, $filepath);
+        $response->pageready = count($files);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     echo json_encode($response);

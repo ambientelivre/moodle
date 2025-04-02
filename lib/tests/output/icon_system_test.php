@@ -31,9 +31,15 @@ use coding_exception;
 /**
  * Unit tests for the `icon_system` class.
  *
+<<<<<<< HEAD
  * @coversDefaultClass \core\output\icon_system
  */
 final class icon_system_test extends advanced_testcase {
+=======
+ * @coversDefaultClass core\output\icon_system
+ */
+class icon_system_test extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
     /**
      * Check whether the supplied classes are valid icon subsystems of the supplied one.
      *
@@ -160,7 +166,11 @@ final class icon_system_test extends advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function icon_system_provider(): array {
+=======
+    public function icon_system_provider(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             'icon_system => icon_system_standard' => [
                 icon_system::class,
@@ -211,8 +221,13 @@ final class icon_system_test extends advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function is_valid_subsystem_provider(): array {
         return self::icon_system_provider();
+=======
+    public function is_valid_subsystem_provider(): array {
+        return $this->icon_system_provider();
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -220,9 +235,15 @@ final class icon_system_test extends advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function invalid_instance_provider(): array {
         return array_filter(
             self::icon_system_provider(),
+=======
+    public function invalid_instance_provider(): array {
+        return array_filter(
+            $this->icon_system_provider(),
+>>>>>>> upstream/MOODLE_38_STABLE
             function($data) {
                 return !$data[2];
             },
@@ -235,9 +256,15 @@ final class icon_system_test extends advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function valid_instance_provider(): array {
         return array_filter(
             self::icon_system_provider(),
+=======
+    public function valid_instance_provider(): array {
+        return array_filter(
+            $this->icon_system_provider(),
+>>>>>>> upstream/MOODLE_38_STABLE
             function($data) {
                 return $data[2];
             },

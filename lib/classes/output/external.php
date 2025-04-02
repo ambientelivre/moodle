@@ -22,6 +22,10 @@ use core_external\external_multiple_structure;
 use core_external\external_single_structure;
 use core_external\external_value;
 use context_system;
+<<<<<<< HEAD
+=======
+use theme_config;
+>>>>>>> upstream/MOODLE_38_STABLE
 use core\external\output\icon_system\load_fontawesome_map;
 
 /**
@@ -183,4 +187,36 @@ class external extends external_api {
             'strings' => new external_multiple_structure($resourcestructure),
         ]);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Returns description of load_icon_map() parameters.
+     *
+     * @return external_function_parameters
+     */
+    public static function load_fontawesome_icon_map_parameters() {
+        return new external_function_parameters([]);
+    }
+
+    /**
+     * Return a mapping of icon names to icons.
+     *
+     * @return array the mapping
+     */
+    public static function load_fontawesome_icon_map() {
+        global $PAGE;
+
+        return load_fontawesome_map::execute($PAGE->theme->name);
+    }
+
+    /**
+     * Returns description of load_icon_map() result value.
+     *
+     * @return external_description
+     */
+    public static function load_fontawesome_icon_map_returns() {
+        return load_fontawesome_map::execute_returns();
+    }
+>>>>>>> upstream/MOODLE_38_STABLE
 }

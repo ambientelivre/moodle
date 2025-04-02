@@ -39,7 +39,10 @@ $string['h5poptions'] = 'H5P options';
 $string['h5purl'] = 'H5P URL';
 $string['invalidh5purl'] = 'Invalid URL';
 $string['instructions'] = 'You can insert H5P content by <strong>either</strong> entering a URL <strong>or</strong> by uploading an H5P file.';
+<<<<<<< HEAD:lib/editor/tiny/plugins/h5p/lang/en/tiny_h5p.php
 $string['mobileappautoplay'] = 'Auto-play in the mobile app';
+=======
+>>>>>>> upstream/MOODLE_38_STABLE:lib/editor/atto/plugins/h5p/lang/en/atto_h5p.php
 $string['noh5pcontent'] = 'No H5P content added';
 $string['privacy:metadata'] = 'The H5P plugin for TinyMCE does not store any personal data.';
 

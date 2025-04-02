@@ -75,7 +75,11 @@ class tool_capability_renderer extends plugin_renderer_base {
      * @param bool $onlydiff show only different permissions
      * @return string
      */
+<<<<<<< HEAD
     public function capability_comparison_table(array $capabilities, $contextid, array $roles, $onlydiff=false) {
+=======
+    public function capability_comparison_table(array $capabilities, $contextid, array $roles) {
+>>>>>>> upstream/MOODLE_38_STABLE
         static $capabilitycontexts = array();
 
         $strpermissions = $this->get_permission_strings();
@@ -120,9 +124,14 @@ class tool_capability_renderer extends plugin_renderer_base {
                 $cell->attributes['class'] = $permissionclasses[$permission];
                 $row->cells[] = $cell;
             }
+<<<<<<< HEAD
             if (!$onlydiff || count($permissiontypes) > 1) {
                 $table->data[] = $row;
             }
+=======
+
+            $table->data[] = $row;
+>>>>>>> upstream/MOODLE_38_STABLE
             if (!empty($contexts[$contextid]->children)) {
                 $childcontextsids = array_merge($childcontextsids, $contexts[$contextid]->children);
                 $childcontextsids = array_unique($childcontextsids);
@@ -149,7 +158,11 @@ class tool_capability_renderer extends plugin_renderer_base {
         // If there are any child contexts, print them recursively.
         if (!empty($childcontextsids)) {
             foreach ($childcontextsids as $childcontextid) {
+<<<<<<< HEAD
                 $html .= $this->capability_comparison_table($capabilities, $childcontextid, $roles, $onlydiff);
+=======
+                $html .= $this->capability_comparison_table($capabilities, $childcontextid, $roles);
+>>>>>>> upstream/MOODLE_38_STABLE
             }
         }
         return $html;

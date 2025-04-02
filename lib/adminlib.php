@@ -1729,8 +1729,11 @@ abstract class admin_setting {
     private $dependenton = [];
     /** @var bool Whether this setting uses a custom form control */
     protected $customcontrol = false;
+<<<<<<< HEAD
     /** @var mixed int means PARAM_XXX type, string is a allowed format in regex */
     public $paramtype;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Constructor
@@ -1813,7 +1816,11 @@ abstract class admin_setting {
         global $CFG;
 
         if (empty($this->plugin)) {
+<<<<<<< HEAD
             if ($this->is_forceable() && array_key_exists($this->name, $CFG->config_php_settings)) {
+=======
+            if (array_key_exists($this->name, $CFG->config_php_settings)) {
+>>>>>>> upstream/MOODLE_38_STABLE
                 return true;
             }
         } else {
@@ -2157,6 +2164,7 @@ abstract class admin_setting {
     public function has_custom_form_control(): bool {
         return $this->customcontrol;
     }
+<<<<<<< HEAD
 
     /**
      * Whether the setting can be overridden in config.php.
@@ -2169,6 +2177,8 @@ abstract class admin_setting {
     public function is_forceable(): bool {
         return true;
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 /**
@@ -2550,8 +2560,11 @@ class admin_setting_configtext extends admin_setting {
             'value' => $data,
             'forceltr' => $this->get_force_ltr(),
             'readonly' => $this->is_readonly(),
+<<<<<<< HEAD
             'data' => $this->datavalues,
             'maxcharacter' => array_key_exists('validation-max-length', $this->datavalues),
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         ];
         $element = $OUTPUT->render_from_template('core_admin/setting_configtext', $context);
 
@@ -4142,7 +4155,11 @@ class admin_setting_configduration extends admin_setting {
         $context = (object) [
             'id' => $this->get_id(),
             'name' => $this->get_full_name(),
+<<<<<<< HEAD
             'value' => $data['v'] ?? '',
+=======
+            'value' => $data['v'],
+>>>>>>> upstream/MOODLE_38_STABLE
             'readonly' => $this->is_readonly(),
             'options' => array_map(function($unit) use ($units, $data, $defaultunit) {
                 return [
@@ -8866,13 +8883,20 @@ function admin_get_root($reload=false, $requirefulltree=true) {
  * @param bool $unconditional if true overrides all values with defaults (true for installation, false for CLI upgrade)
  * @return array The names and values of the applied setting defaults
  */
+<<<<<<< HEAD
 function admin_apply_default_settings(?part_of_admin_tree $node = null, bool $unconditional = true): array {
+=======
+function admin_apply_default_settings($node=null, $unconditional=true, $admindefaultsettings=array(), $settingsoutput=array()) {
+    $counter = 0;
+
+>>>>>>> upstream/MOODLE_38_STABLE
     if (is_null($node)) {
         // This function relies heavily on config cache, so we need to enable in-memory caches if it
         // is used during install when normal caching is disabled.
         $token = new \core_cache\allow_temporary_caches(); // Value not used intentionally, see its destructor.
 
         core_plugin_manager::reset_caches();
+<<<<<<< HEAD
         $root = admin_get_root(true, true);
         $saved = admin_apply_default_settings($root, $unconditional);
         if (!$saved) {
@@ -8894,6 +8918,10 @@ function admin_apply_default_settings(?part_of_admin_tree $node = null, bool $un
         // We should not get here unless there are some problematic settings.php files.
         core_plugin_manager::reset_caches();
         return $saved;
+=======
+        $node = admin_get_root(true, true);
+        $counter = count($settingsoutput);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     // Recursive applying of defaults in admin tree.
@@ -8912,12 +8940,16 @@ function admin_apply_default_settings(?part_of_admin_tree $node = null, bool $un
         }
 
     } else if ($node instanceof admin_settingpage) {
+<<<<<<< HEAD
         /** @var admin_setting $setting */
         foreach ((array)$node->settings as $setting) {
             if ($setting->nosave) {
                 // Not a real setting, must be a heading or description.
                 continue;
             }
+=======
+        foreach ($node->settings as $setting) {
+>>>>>>> upstream/MOODLE_38_STABLE
             if (!$unconditional && !is_null($setting->get_setting())) {
                 // Do not override existing defaults.
                 continue;
@@ -8948,7 +8980,18 @@ function admin_apply_default_settings(?part_of_admin_tree $node = null, bool $un
         }
     }
 
+<<<<<<< HEAD
     return $saved;
+=======
+    // Call this function recursively until all settings are processed.
+    if (($node instanceof admin_root) && ($counter != count($settingsoutput))) {
+        $settingsoutput = admin_apply_default_settings(null, $unconditional, $admindefaultsettings, $settingsoutput);
+    }
+    // Just in case somebody modifies the list of active plugins directly.
+    core_plugin_manager::reset_caches();
+
+    return $settingsoutput;
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 /**
@@ -9292,6 +9335,7 @@ function any_new_admin_settings($node) {
  * @param string $column name
  * @return bool success or fail
  */
+<<<<<<< HEAD
 function db_should_replace($table, $column = '', $additionalskiptables = ''): bool {
 
     // TODO: this is horrible hack, we should have a hook and each plugin should be responsible for proper replacing...
@@ -9303,6 +9347,14 @@ function db_should_replace($table, $column = '', $additionalskiptables = ''): bo
         $skiptables = array_merge($skiptables, explode(',', str_replace(' ', '',  $additionalskiptables)));
     }
 
+=======
+function db_should_replace($table, $column = ''): bool {
+
+    // TODO: this is horrible hack, we should do whitelisting and each plugin should be responsible for proper replacing...
+    $skiptables = ['config', 'config_plugins', 'filter_config', 'sessions',
+        'events_queue', 'repository_instance_config', 'block_instances', 'files'];
+
+>>>>>>> upstream/MOODLE_38_STABLE
     // Don't process these.
     if (in_array($table, $skiptables)) {
         return false;
@@ -9342,7 +9394,11 @@ function db_replace($search, $replace, $additionalskiptables = '') {
     }
     foreach ($tables as $table) {
 
+<<<<<<< HEAD
         if (!db_should_replace($table, '', $additionalskiptables)) {
+=======
+        if (!db_should_replace($table)) {
+>>>>>>> upstream/MOODLE_38_STABLE
             continue;
         }
 

@@ -42,13 +42,17 @@ class behat_mod_quiz_generator extends behat_generator_base {
                 'required' => ['quiz', 'group'],
                 'switchids' => ['quiz' => 'quiz', 'group' => 'groupid'],
             ],
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             'user overrides' => [
                 'singular' => 'user override',
                 'datagenerator' => 'override',
                 'required' => ['quiz', 'user'],
                 'switchids' => ['quiz' => 'quiz', 'user' => 'userid'],
             ],
+<<<<<<< HEAD
 
             'grade items' => [
                 'singular' => 'grade item',
@@ -56,6 +60,8 @@ class behat_mod_quiz_generator extends behat_generator_base {
                 'required' => ['quiz', 'name'],
                 'switchids' => ['quiz' => 'quizid'],
             ],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         ];
     }
 

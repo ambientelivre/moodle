@@ -131,9 +131,18 @@ final class externallib_test extends externallib_advanced_testcase {
         $irecord->clientsecret = 'mock';
         \core\oauth2\api::update_issuer($irecord);
 
+<<<<<<< HEAD
         set_config('auth', 'oauth2');
 
         list($authinstructions, $notusedformat) = \core_external\util::format_text($authinstructions, FORMAT_MOODLE, $context->id);
+=======
+        set_config('hostname', 'localhost', 'auth_cas');
+        set_config('auth_logo', 'http://invalidurl.com//invalid/', 'auth_cas');
+        set_config('auth_name', 'CAS', 'auth_cas');
+        set_config('auth', 'oauth2,cas');
+
+        list($authinstructions, $notusedformat) = external_format_text($authinstructions, FORMAT_MOODLE, $context->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $expected['registerauth'] = 'email';
         $expected['authinstructions'] = $authinstructions;
         $expected['typeoflogin'] = api::LOGIN_VIA_BROWSER;

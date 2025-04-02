@@ -250,7 +250,11 @@ final class field_controller_test extends \advanced_testcase {
     /**
      * Tests for \core_customfield\field_controller::get_configdata_property() behaviour.
      */
+<<<<<<< HEAD
     public function test_get_configdata_property(): void {
+=======
+    public function test_get_configdata_property() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->resetAfterTest();
 
         $lpg = $this->get_generator();

@@ -31,6 +31,10 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['language'] = 'Jezik';
 $string['moodlelogo'] = 'Logotip Moodle';
+<<<<<<< HEAD
 $string['next'] = 'Naprej';
+=======
+$string['next'] = 'Naslednji';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['previous'] = 'Prejšnji';
 $string['reload'] = 'Ponovno naloži';

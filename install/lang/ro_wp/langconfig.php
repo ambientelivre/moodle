@@ -31,4 +31,8 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['parentlanguage'] = 'ro';
 $string['thisdirection'] = 'ltr';
+<<<<<<< HEAD
 $string['thislanguage'] = 'Română';
+=======
+$string['thislanguage'] = 'Workplace în limba română';
+>>>>>>> upstream/MOODLE_38_STABLE

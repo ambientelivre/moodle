@@ -425,7 +425,11 @@ define(['jquery', 'core/ajax', 'core/paged_content_factory', 'core/notification'
      * @private
      * @return {Promise} jQuery Deferred object
      */
+<<<<<<< HEAD
     var addLTILegacyTool = function() {
+=======
+    var addTool = function() {
+>>>>>>> upstream/MOODLE_38_STABLE
         var url = getToolURL().trim();
 
         if (url === "") {

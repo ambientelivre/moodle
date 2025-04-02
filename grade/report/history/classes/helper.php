@@ -129,8 +129,12 @@ class helper {
      */
     protected static function get_users_sql_and_params($context, $search = '', $count = false) {
         global $DB, $USER;
+<<<<<<< HEAD
         $userfieldsapi = \core_user\fields::for_identity($context)->with_userpic()->including('username');
         $userfieldssql = $userfieldsapi->get_sql('u', true, '', '', false);
+=======
+
+>>>>>>> upstream/MOODLE_38_STABLE
         // Fields we need from the user table.
         $extrafields = [];
         foreach ($userfieldsapi->get_required_fields([\core_user\fields::PURPOSE_IDENTITY]) as $field) {
@@ -163,6 +167,10 @@ class helper {
         if ($groupmode == SEPARATEGROUPS && !has_capability('moodle/site:accessallgroups', $context)) {
             // Fetch the groups that the user can see.
             $groups = groups_get_all_groups($courseid, $USER->id, 0, 'g.id');
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/MOODLE_38_STABLE
             // Add join condition to include users that only belong to the same group as the user.
             list($insql, $inparams) = $DB->get_in_or_equal(array_keys($groups), SQL_PARAMS_NAMED, 'gid', true, 0);
             $groupjoinsql = " JOIN {groups_members} gm ON gm.userid = u.id ";
@@ -174,12 +182,19 @@ class helper {
                  FROM {user} u
                  JOIN {grade_grades_history} ggh ON u.id = ggh.userid
                  JOIN {grade_items} gi ON gi.id = ggh.itemid
+<<<<<<< HEAD
                  $userfieldjoinssql
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
                  $groupjoinsql
                 WHERE $filtersql gi.courseid = :courseid $groupwheresql";
         $sql .= $orderby;
         $params['courseid'] = $courseid;
+<<<<<<< HEAD
         $params = array_merge($userfieldssql->params, $params);
+=======
+
+>>>>>>> upstream/MOODLE_38_STABLE
         return array($sql, $params);
     }
 
@@ -192,6 +207,21 @@ class helper {
      */
     public static function get_graders($courseid) {
         global $DB, $USER;
+<<<<<<< HEAD
+=======
+
+        $groupjoinsql = $groupwheresql = '';
+        $inparams = [];
+        $groupmode = groups_get_course_groupmode(get_course($courseid));
+        if ($groupmode == SEPARATEGROUPS && !has_capability('moodle/site:accessallgroups', \context_course::instance($courseid))) {
+            // Fetch the groups that the user can see.
+            $groups = groups_get_all_groups($courseid, $USER->id, 0, 'g.id');
+            // Add join condition to include users that only belong to the same group as the user.
+            list($insql, $inparams) = $DB->get_in_or_equal(array_keys($groups), SQL_PARAMS_NAMED, 'gid', true, 0);
+            $groupjoinsql = " JOIN {groups_members} gm ON gm.userid = u.id ";
+            $groupwheresql = " AND gm.groupid $insql ";
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $groupjoinsql = $groupwheresql = '';
         $inparams = [];

@@ -6,15 +6,25 @@ Feature: Clear my answers
 
   Background:
     Given the following "users" exist:
+<<<<<<< HEAD
       | username |
       | student  |
+=======
+      | username | firstname | lastname | email               |
+      | student1 | S1        | Student1 | student1@moodle.com |
+>>>>>>> upstream/MOODLE_38_STABLE
     And the following "course" exists:
       | fullname  | Course 1  |
       | shortname | C1        |
       | category  | 0         |
     And the following "course enrolments" exist:
+<<<<<<< HEAD
       | user    | course | role    |
       | student | C1     | student |
+=======
+      | user     | course | role           |
+      | student1 | C1     | student        |
+>>>>>>> upstream/MOODLE_38_STABLE
     And the following "question category" exists:
       | contextlevel  | Course          |
       | reference     | C1              |
@@ -39,10 +49,19 @@ Feature: Clear my answers
 
   @javascript
   Scenario: Attempt a quiz and reset my chosen answer.
+<<<<<<< HEAD
     Given I am on the "Quiz 1" "quiz activity" page logged in as student
     When I press "Attempt quiz"
     And I should see "Question One"
     And I click on "Four" "qtype_multichoice > Answer" in the "Question One" "question"
+=======
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Quiz 1"
+    And I press "Attempt quiz now"
+    And I should see "Question One"
+    And I click on "Four" "radio" in the "Question One" "question"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should see "Clear my choice"
     And I click on "Clear my choice" "button" in the "Question One" "question"
     Then I should not see "Clear my choice"
@@ -51,10 +70,19 @@ Feature: Clear my answers
 
   @javascript
   Scenario: Attempt a quiz and revisit a cleared answer.
+<<<<<<< HEAD
     Given I am on the "Quiz 1" "quiz activity" page logged in as student
     When I press "Attempt quiz"
     And I should see "Question One"
     And I click on "Four" "qtype_multichoice > Answer" in the "Question One" "question"
+=======
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Quiz 1"
+    And I press "Attempt quiz now"
+    And I should see "Question One"
+    And I click on "Four" "radio" in the "Question One" "question"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I follow "Finish attempt ..."
     And I click on "Return to attempt" "button"
     And I click on "Clear my choice" "button" in the "Question One" "question"

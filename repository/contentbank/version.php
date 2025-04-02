@@ -25,6 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD:repository/contentbank/version.php
 $plugin->version   = 2024121800;               // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2024100100;            // Requires this Moodle version.
 $plugin->component = 'repository_contentbank'; // Full name of the plugin (used for diagnostics).
+=======
+$plugin->version   = 2019111801;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->requires  = 2019111200;        // Requires this Moodle version
+$plugin->component = 'auth_cas';        // Full name of the plugin (used for diagnostics)
+
+$plugin->dependencies = array('auth_ldap' => 2019111200);
+>>>>>>> upstream/MOODLE_38_STABLE:auth/cas/version.php

@@ -312,7 +312,11 @@ class qtype_multichoice_single_renderer extends qtype_multichoice_renderer_base 
             'name' => $qa->get_qt_field_name('answer'),
             'id' => $clearchoiceid,
             'value' => -1,
+<<<<<<< HEAD
             'class' => 'visually-hidden',
+=======
+            'class' => 'sr-only',
+>>>>>>> upstream/MOODLE_38_STABLE
             'aria-hidden' => 'true'
         ];
         $clearchoicewrapperattrs = [
@@ -321,11 +325,19 @@ class qtype_multichoice_single_renderer extends qtype_multichoice_renderer_base 
         ];
 
         // When no choice selected during rendering, then hide the clear choice option.
+<<<<<<< HEAD
         // We are using .visually-hidden and aria-hidden together so while the element is hidden
         // from both the monitor and the screen-reader, it is still tabbable.
         $linktabindex = 0;
         if (!$hascheckedchoice && $response == -1) {
             $clearchoicewrapperattrs['class'] .= ' visually-hidden';
+=======
+        // We are using .sr-only and aria-hidden together so while the element is hidden
+        // from both the monitor and the screen-reader, it is still tabbable.
+        $linktabindex = 0;
+        if (!$hascheckedchoice && $response == -1) {
+            $clearchoicewrapperattrs['class'] .= ' sr-only';
+>>>>>>> upstream/MOODLE_38_STABLE
             $clearchoicewrapperattrs['aria-hidden'] = 'true';
             $clearchoiceradioattrs['checked'] = 'checked';
             $linktabindex = -1;
@@ -333,7 +345,11 @@ class qtype_multichoice_single_renderer extends qtype_multichoice_renderer_base 
         // Adds an hidden radio that will be checked to give the impression the choice has been cleared.
         $clearchoiceradio = html_writer::empty_tag('input', $clearchoiceradioattrs);
         $clearchoice = html_writer::link('#', get_string('clearchoice', 'qtype_multichoice'),
+<<<<<<< HEAD
             ['tabindex' => $linktabindex, 'role' => 'button', 'class' => 'btn btn-link ms-3 mt-n1']);
+=======
+            ['tabindex' => $linktabindex, 'role' => 'button']);
+>>>>>>> upstream/MOODLE_38_STABLE
         $clearchoiceradio .= html_writer::label($clearchoice, $clearchoiceid);
 
         // Now wrap the radio and label inside a div.

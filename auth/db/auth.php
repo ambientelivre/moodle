@@ -607,7 +607,11 @@ class auth_plugin_db extends auth_plugin_base {
                        SET ".implode(',', $update)."
                      WHERE {$this->config->fielduser} = ?";
             if (!$authdb->Execute($sql, array($this->ext_addslashes($extusername)))) {
+<<<<<<< HEAD
                 throw new \moodle_exception('auth_dbupdateerror', 'auth_db');
+=======
+                print_error('auth_dbupdateerror', 'auth_db');
+>>>>>>> upstream/MOODLE_38_STABLE
             }
         }
         $authdb->Close();

@@ -260,7 +260,12 @@ class lesson_page_type_numerical extends lesson_page {
                             $valformatted = s(format_float($valentered, strlen($valentered), true, true));
                         }
                         $data = '<input class="form-control" type="text" size="50" ' .
+<<<<<<< HEAD
                                 'disabled="disabled" readonly="readonly" value="'. $valformatted .'" />';
+=======
+                                'disabled="disabled" readonly="readonly" value="'.
+                                s(format_float($valentered, strlen($valentered), true, true)).'" />';
+>>>>>>> upstream/MOODLE_38_STABLE
                         $percent = $ntimes / $total * 100;
                         $percent = round($percent, 2);
                         $percent .= "% ".get_string("enteredthis", "lesson");
@@ -278,7 +283,12 @@ class lesson_page_type_numerical extends lesson_page {
                     $valformatted = s(format_float($useranswer->useranswer, strlen($useranswer->useranswer), true, true));
                 }
                 $data = '<input class="form-control" type="text" size="50" ' .
+<<<<<<< HEAD
                         'disabled="disabled" readonly="readonly" value="' . $valformatted .'">';
+=======
+                        'disabled="disabled" readonly="readonly" value="'.
+                        s(format_float($useranswer->useranswer, strlen($useranswer->useranswer), true, true)).'">';
+>>>>>>> upstream/MOODLE_38_STABLE
                 if (isset($pagestats[$this->properties->id][$useranswer->useranswer])) {
                     $percent = $pagestats[$this->properties->id][$useranswer->useranswer] / $pagestats[$this->properties->id]["total"] * 100;
                     $percent = round($percent, 2);
@@ -403,7 +413,11 @@ class lesson_add_page_form_numerical extends lesson_add_page_form_base {
      *
      * @return object|void
      */
+<<<<<<< HEAD
     public function get_data(): ?stdClass {
+=======
+    public function get_data() : ?stdClass {
+>>>>>>> upstream/MOODLE_38_STABLE
         $data = parent::get_data();
 
         if (!empty($data->answer_editor)) {
@@ -421,7 +435,11 @@ class lesson_add_page_form_numerical extends lesson_add_page_form_base {
      *
      * @return object submitted data; NULL if not valid or not submitted or cancelled
      */
+<<<<<<< HEAD
     public function get_submitted_data(): ?stdClass {
+=======
+    public function get_submitted_data() : ?stdClass {
+>>>>>>> upstream/MOODLE_38_STABLE
         $data = parent::get_submitted_data();
 
         if (!empty($data->answer_editor)) {

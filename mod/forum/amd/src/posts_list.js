@@ -25,6 +25,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define([
+<<<<<<< HEAD
     'jquery',
     'core/templates',
     'core/notification',
@@ -41,6 +42,24 @@ define([
     InPageReply,
     FormChangeChecker
 ) {
+=======
+        'jquery',
+        'core/templates',
+        'core/notification',
+        'core/pending',
+        'core/yui',
+        'mod_forum/selectors',
+        'mod_forum/inpage_reply',
+    ], function(
+        $,
+        Templates,
+        Notification,
+        Pending,
+        Y,
+        Selectors,
+        InPageReply
+    ) {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     var registerEventListeners = function(root, throttlingwarningmsg) {
         root.on('click', Selectors.post.inpageReplyLink, function(e) {
@@ -79,10 +98,20 @@ define([
                             .slideToggle(300, pending.resolve).find('textarea').focus();
                     })
                     .then(function() {
+<<<<<<< HEAD
                         FormChangeChecker.watchFormById(`inpage-reply-${context.postid}`);
                         return;
                     })
                     .catch(Notification.exception);
+=======
+                        // Load formchangechecker module.
+                        Y.use('moodle-core-formchangechecker', () => {
+                            M.core_formchangechecker.init({formid: `inpage-reply-${context.postid}`});
+                        });
+                        return;
+                    })
+                    .fail(Notification.exception);
+>>>>>>> upstream/MOODLE_38_STABLE
             } else {
                 var form = currentRoot.find(Selectors.post.inpageReplyContent);
                 form.slideToggle(300, pending.resolve);

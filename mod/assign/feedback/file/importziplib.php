@@ -69,10 +69,14 @@ class assignfeedback_file_zip_importer {
             $pathpart = array_shift($pathparts);
             $info = explode('_', $pathpart, 5);
 
+<<<<<<< HEAD
             // Expected format for the directory names in $pathpart is fullname_userid_plugintype_pluginname (as created by zip
             // export in Moodle >= 4.1) resp. fullname_userid_plugintype_pluginname_ (as created by earlier versions). We ensure
             // compatibility with both ways here.
             if (count($info) < 4) {
+=======
+            if (count($info) < 5) {
+>>>>>>> upstream/MOODLE_38_STABLE
                 continue;
             }
 
@@ -91,7 +95,11 @@ class assignfeedback_file_zip_importer {
             }
 
             // Set user, which is by reference, so is used by the calling script.
+<<<<<<< HEAD
             $users = $participants[$participantid];
+=======
+            $user = $participants[$participantid];
+>>>>>>> upstream/MOODLE_38_STABLE
 
             // Set the plugin. This by reference, and is used by the calling script.
             $plugin = $assignment->get_plugin_by_type($info[2], $info[3]);
@@ -100,10 +108,13 @@ class assignfeedback_file_zip_importer {
                 continue;
             }
 
+<<<<<<< HEAD
             // To get clean path names, we need to have at least an empty entry for $info[4].
             if (count($info) == 4) {
                 $info[4] = '';
             }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             // Take any remaining text in this part and put it back in the path parts array.
             array_unshift($pathparts, $info[4]);
 

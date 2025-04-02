@@ -37,7 +37,11 @@ use core_customfield\privacy\provider;
  * @copyright   2019 Marina Glancy
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD:customfield/tests/privacy/provider_test.php
 final class provider_test extends provider_testcase {
+=======
+class core_customfield_privacy_testcase extends provider_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE:customfield/tests/privacy_test.php
 
     /**
      * Generate data.
@@ -117,6 +121,7 @@ final class provider_test extends provider_testcase {
         list($sql, $params) = $DB->get_in_or_equal([$courses[1]->id, $courses[2]->id], SQL_PARAMS_NAMED);
         $r = provider::get_customfields_data_contexts('core_course', 'course', '=0',
             $sql, $params);
+<<<<<<< HEAD:customfield/tests/privacy/provider_test.php
         $this->assertEqualsCanonicalizing(
             [
                 \context_course::instance($courses[1]->id)->id,
@@ -124,12 +129,21 @@ final class provider_test extends provider_testcase {
             ],
             array_values($r->get_contextids()),
         );
+=======
+        $this->assertEquals([context_course::instance($courses[1]->id)->id,
+            context_course::instance($courses[2]->id)->id],
+            $r->get_contextids(), '', 0, 10, true);
+>>>>>>> upstream/MOODLE_38_STABLE:customfield/tests/privacy_test.php
     }
 
     /**
      * Test for provider::get_customfields_configuration_contexts()
      */
+<<<<<<< HEAD:customfield/tests/privacy/provider_test.php
     public function test_get_customfields_configuration_contexts(): void {
+=======
+    public function test_get_customfields_configuration_contexts() {
+>>>>>>> upstream/MOODLE_38_STABLE:customfield/tests/privacy_test.php
         $this->generate_test_data();
 
         $r = provider::get_customfields_configuration_contexts('core_course', 'course');
@@ -152,7 +166,11 @@ final class provider_test extends provider_testcase {
         $invalidfieldid = $cffields[21]->get('id');
         $DB->update_record('customfield_field', ['id' => $invalidfieldid, 'type' => 'invalid']);
 
+<<<<<<< HEAD:customfield/tests/privacy/provider_test.php
         $context = \context_course::instance($courses[1]->id);
+=======
+        $context = context_course::instance($courses[1]->id);
+>>>>>>> upstream/MOODLE_38_STABLE:customfield/tests/privacy_test.php
         $contextlist = new approved_contextlist($USER, 'core_customfield', [$context->id]);
         provider::export_customfields_data($contextlist, 'core_course', 'course', '=0', '=:i', ['i' => $courses[1]->id]);
         /** @var core_privacy\tests\request\content_writer $writer */
@@ -190,7 +208,11 @@ final class provider_test extends provider_testcase {
             'courses' => $courses,
         ] = $this->generate_test_data();
 
+<<<<<<< HEAD:customfield/tests/privacy/provider_test.php
         $approvedcontexts = new approved_contextlist($USER, 'core_course', [\context_course::instance($courses[1]->id)->id]);
+=======
+        $approvedcontexts = new approved_contextlist($USER, 'core_course', [context_course::instance($courses[1]->id)->id]);
+>>>>>>> upstream/MOODLE_38_STABLE:customfield/tests/privacy_test.php
         provider::delete_customfields_data($approvedcontexts, 'core_course', 'course');
         $this->assertEmpty($DB->get_records('customfield_data', ['instanceid' => $courses[1]->id]));
         $this->assertNotEmpty($DB->get_records('customfield_data', ['instanceid' => $courses[2]->id]));
@@ -283,7 +305,11 @@ final class provider_test extends provider_testcase {
         ] = $this->generate_test_data();
 
         provider::delete_customfields_data_for_context('core_course', 'course',
+<<<<<<< HEAD:customfield/tests/privacy/provider_test.php
             \context_course::instance($courses[1]->id));
+=======
+            context_course::instance($courses[1]->id));
+>>>>>>> upstream/MOODLE_38_STABLE:customfield/tests/privacy_test.php
         $fids2 = $DB->get_fieldset_select('customfield_field', 'id', '1=1', []);
         list($fsql, $fparams) = $DB->get_in_or_equal($fids2, SQL_PARAMS_NAMED);
         $fparams['course1'] = $courses[1]->id;

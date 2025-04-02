@@ -66,11 +66,28 @@ $blocks-plus-gutter: calc(#{$blocks-column-width} + (#{$grid-gutter-width} * 0.5
         float: right;
     }
 }
+<<<<<<< HEAD
 
 @include media-breakpoint-down(md) {
     #region-main-settings-menu .menubar {
         justify-content: flex-end;
     }
+=======
+#region-main-settings-menu > div {
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    margin: 1rem;
+}
+.region_main_settings_menu_proxy {
+    width: 4rem;
+    height: 2rem;
+    background-color: $body-bg;
+    margin-left: $card-spacer-x / 2;
+    margin-bottom: $card-spacer-x / 2;
+    border-bottom-left-radius: 0.5rem;
+    float: right;
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 // Required for IE11 to prevent blocks being pushed under the content.
@@ -171,12 +188,51 @@ $blocks-plus-gutter: calc(#{$blocks-column-width} + (#{$grid-gutter-width} * 0.5
         }
     }
 }
+<<<<<<< HEAD
 .course-card,
 .theme-card {
     .card-img-top {
         height: 7rem;
         background-position: center;
         background-size: cover;
+=======
+
+.dashboard-card-deck.one-row {
+    flex-flow: nowrap;
+    overflow-x: scroll;
+}
+
+.summaryimage {
+    height: 5rem;
+    width: 5rem;
+    background-position: center;
+    background-size: cover;
+}
+
+.dashboard-card-deck {
+    .dashboard-card {
+        margin-bottom: $card-gutter;
+        flex-basis: auto;
+        width: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        .dashboard-card-img {
+            height: 7rem;
+            background-position: center;
+            background-size: cover;
+        }
+        .dashboard-card-footer {
+            padding: 0.8rem;
+        }
+    }
+    @include media-breakpoint-up(sm) {
+        &.fixed-width-cards {
+            .dashboard-card {
+                width: 300px;
+                max-width: 100%;
+            }
+        }
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }
 

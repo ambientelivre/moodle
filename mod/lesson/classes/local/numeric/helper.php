@@ -60,7 +60,11 @@ class helper {
      * @param string|number $value The value to be formatted
      * @return string $formattedvalue Formatted value OR $value if not numeric
      */
+<<<<<<< HEAD
     public static function lesson_format_numeric_value($value): string {
+=======
+    public static function lesson_format_numeric_value($value) : string {
+>>>>>>> upstream/MOODLE_38_STABLE
         $formattedvalue = $value;
         if (strpos($value, ':')) {
             list($min, $max) = explode(':', $value);

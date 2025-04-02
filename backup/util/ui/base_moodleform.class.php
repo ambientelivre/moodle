@@ -427,7 +427,12 @@ abstract class base_moodleform extends moodleform {
         $modinfo = get_fast_modinfo($COURSE);
         $modnames = array_map('strval', $modinfo->get_used_module_names(true));
         core_collator::asort($modnames);
+<<<<<<< HEAD
         $PAGE->requires->js_call_amd('core_backup/schema_backup_form', 'init', [$modnames]);
+=======
+        $PAGE->requires->yui_module('moodle-backup-backupselectall', 'M.core_backup.backupselectall',
+                array($modnames));
+>>>>>>> upstream/MOODLE_38_STABLE
         $PAGE->requires->strings_for_js(array('select', 'all', 'none'), 'moodle');
         $PAGE->requires->strings_for_js(array('showtypes', 'hidetypes'), 'backup');
 

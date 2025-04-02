@@ -56,9 +56,13 @@ $string['pathshead'] = 'Útvonalak megerősítése';
 $string['pathsrodataroot'] = 'Az adatok gyökérkönyvtára nem írható.';
 $string['pathsroparentdataroot'] = 'A felettes könyvtár ({$a->parent}) nem írható. A telepítő nem tudja létrehozni az adatkönyvtárat ({$a->dataroot}).';
 $string['pathssubadmindir'] = 'Egy pár webes gazdagép esetén az /admin speciális URL pl. a vezérlőpanel eléréséhez. Ez ütközik a Moodle admin oldalainak standard helyével. Javítás: a telepítésben nevezze át a rendszergazda könyvtárát, az új nevet pedig írja be ide. Például: <em>moodleadmin</em>. Ezzel helyrehozhatók a Moodle rendszergazdai hivatkozásai.';
+<<<<<<< HEAD
 $string['pathssubdataroot'] = 'Szüksége van egy helyre, ahol a Moodle mentheti a feltöltött állományokat. Ez a könyvtár a webszerver felhasználója (általában \'www-data\', \'nobody\' vagy \'apache\') számára legyen mind olvasható, mind írható.
 A könyvtár a webről közvetlenül nem lehet elérhető.
 Ha nem létezik, a telepítő megpróbálja létrehozni.';
+=======
+$string['pathssubdataroot'] = 'Szüksége van egy helyre, ahol a Moodle mentheti a feltöltött állományokat. Ez a könyvtár a webszerver felhasználója (általában \'nobody\' vagy \'apache\') számára legyen mind olvasható, MIND ÍRHATÓ. Ha nem létezik, a telepítő megpróbálja létrehozni.';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['pathssubdirroot'] = 'Teljes útvonal a Moodle telepítéséhez. ';
 $string['pathssubwwwroot'] = 'A Moodle elérésére használandó teljes webcím. A Moodle egyszerre több címről nem érhető el. Ha portálja több címet használ, a jelen cím kivételével az összeshez állandó
 átirányítást kell beállítania. Ha portálja mind intranetről, mind az internetről elérhető, a nyilvános címet itt adja meg, a DNS-t pedig úgy állítsa be, hogy az intranetről a nyilvános cím is elérhető legyen. Ha a cím hibás, módosítsa böngészőjében a webcímet, hogy a telepítés egy másik értékkel induljon újra.';

@@ -1683,6 +1683,7 @@ function restrict_php_version_74(&$result) {
 function restrict_php_version_80($result) {
     return restrict_php_version($result, '8.0');
 }
+<<<<<<< HEAD
 
 /**
  * Check if the current PHP version is greater than or equal to
@@ -1716,3 +1717,5 @@ function restrict_php_version_82($result) {
 function restrict_php_version_83($result) {
     return restrict_php_version($result, '8.3');
 }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

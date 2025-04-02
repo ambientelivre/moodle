@@ -50,6 +50,22 @@ A verificação completa do ambiente é feita antes de cada instalação e atual
 $string['errorsinenvironment'] = 'Verificação do Ambiente falhou!';
 $string['installation'] = 'Instalação';
 $string['langdownloaderror'] = 'Infelizmente não foi possível fazer download do idioma "{$a}". O processo de instalação continuará em Inglês.';
+<<<<<<< HEAD
+=======
+$string['memorylimithelp'] = '<p>O limite de memória do PHP configurado atualmente no seu servidor é de {$a}.</p>
+
+<p>Este limite pode causar problemas com o Moodle no futuro, especialmente quando muitos módulos estiverem ativados ou em caso de um número elevado de usuários.</p>
+
+<p>É aconselhável a configuração do limite de memória com o valor mais alto possível, como 40M. Você pode tentar uma das seguintes opções:</p>
+<ol>
+<li>Se você puder, recompile o PHP com <i>--enable-memory-limit</i>.
+Com esta operação Moodle será capaz de configurar o seu limite de memória sózinho.</li>
+<li>Se você tiver acesso ao arquivo php.ini, você pode mudar o parâmetro <b>memory_limit</b> para um valor próximo a 40M. Se você não tiver acesso a este arquivo de configuração, peça ao administrador do sistema para fazer esta configuração para você.</li>
+<li>Em alguns servidores é possível fazer esta mudança criando um arquivo .htaccess no diretório Moodle. O arquivo deve conter a seguinte expressão:
+<p><blockquote>php_value memory_limit 40M</blockquote></p>
+<p>Entretanto, em alguns servidores não aceitam este procedimento e <b>todas</b> as páginas PHP do servidor ficam bloqueadas ou imprimem mensagens de erro. Neste caso será necessário excluir o arquivo .htaccess .</p>
+</li></ol>';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['paths'] = 'Caminhos';
 $string['pathserrcreatedataroot'] = 'O diretório de dados ({$a->dataroot}) não pode ser criado pelo instalador.';
 $string['pathshead'] = 'Confirme os caminhos';

@@ -339,6 +339,11 @@ case 'download':
                 unlink($thefile['path']);
                 throw new \moodle_exception('maxdraftitemids');
             }
+            // Ensure the user does not upload too many draft files in a short period.
+            if (file_is_draft_areas_limit_reached($USER->id)) {
+                unlink($thefile['path']);
+                print_error('maxdraftitemids');
+            }
             try {
                 $info = repository::move_to_filepool($thefile['path'], $record);
                 redirect($home_url, get_string('downloadsucc', 'repository'));

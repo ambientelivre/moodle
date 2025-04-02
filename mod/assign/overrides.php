@@ -231,7 +231,10 @@ foreach ($overrides as $override) {
             array('id' => $override->id, 'action' => 'duplicate'));
     $iconstr .= '<a title="' . get_string('copy') . '" href="' . $copyurlstr . '">' .
             $OUTPUT->pix_icon('t/copy', get_string('copy')) . '</a> ';
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     // Delete.
     $deletelink = html_writer::link(
         "#",

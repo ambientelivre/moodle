@@ -202,8 +202,13 @@ final class external_externallib_test extends externallib_advanced_testcase {
         // More detailed test for tag updating can be found in core_tag component.
         $this->setAdminUser();
         $tag = $this->getDataGenerator()->create_tag();
+<<<<<<< HEAD:lib/external/tests/external_externallib_test.php
         $res = \core_external::update_inplace_editable('core_tag', 'tagname', $tag->id, 'new tag name');
         $res = external_api::clean_returnvalue(\core_external::update_inplace_editable_returns(), $res);
+=======
+        $res = core_external::update_inplace_editable('core_tag', 'tagname', $tag->id, 'new tag name');
+        $res = external_api::clean_returnvalue(core_external::update_inplace_editable_returns(), $res);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/external/tests/external_test.php
 
         $this->assertEquals('new tag name', $res['value']);
     }
@@ -211,7 +216,11 @@ final class external_externallib_test extends externallib_advanced_testcase {
     /**
      * Test update_inplace_editable with mathjax.
      */
+<<<<<<< HEAD:lib/external/tests/external_externallib_test.php
     public function test_update_inplace_editable_with_mathjax(): void {
+=======
+    public function test_update_inplace_editable_with_mathjax() {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/external/tests/external_test.php
         $this->resetAfterTest(true);
         $this->setAdminUser();
 
@@ -226,12 +235,21 @@ final class external_externallib_test extends externallib_advanced_testcase {
 
         // Change the forum name.
         $newname = 'New forum name $$(a+b)=2$$';
+<<<<<<< HEAD:lib/external/tests/external_externallib_test.php
         $res = \core_external::update_inplace_editable('core_course', 'activityname', $forum->cmid, $newname);
         $res = external_api::clean_returnvalue(\core_external::update_inplace_editable_returns(), $res);
 
         // Format original data.
         $context = \context_module::instance($forum->cmid);
         $newname = \core_external\util::format_string($newname, $context);
+=======
+        $res = core_external::update_inplace_editable('core_course', 'activityname', $forum->cmid, $newname);
+        $res = external_api::clean_returnvalue(core_external::update_inplace_editable_returns(), $res);
+
+        // Format original data.
+        $context = context_module::instance($forum->cmid);
+        $newname = external_format_string($newname, $context->id);
+>>>>>>> upstream/MOODLE_38_STABLE:lib/external/tests/external_test.php
         $editlabel = get_string('newactivityname', '', $newname);
 
         // Check editlabel is the same and has mathjax.
@@ -239,7 +257,11 @@ final class external_externallib_test extends externallib_advanced_testcase {
         $this->assertEquals($editlabel, $res['editlabel']);
     }
 
+<<<<<<< HEAD:lib/external/tests/external_externallib_test.php
     public function test_get_user_dates(): void {
+=======
+    public function test_get_user_dates() {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/external/tests/external_test.php
         $this->resetAfterTest();
 
         $this->setAdminUser();

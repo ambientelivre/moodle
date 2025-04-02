@@ -378,7 +378,11 @@ final class ip_utils_test extends \basic_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function data_is_ip_in_subnet_list(): array {
+=======
+    public function data_is_ip_in_subnet_list() {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             [true, '1.1.1.1', '1.1.1.1', "\n"],
             [false, '1.1.1.1', '2.2.2.2', "\n"],
@@ -396,6 +400,7 @@ final class ip_utils_test extends \basic_testcase {
      * @param  string $delim delimiter of list
      * @dataProvider data_is_ip_in_subnet_list
      */
+<<<<<<< HEAD
     public function test_is_ip_in_subnet_list($expected, $ip, $list, $delim): void {
         $this->assertEquals($expected, \core\ip_utils::is_ip_in_subnet_list($ip, $list, $delim));
     }
@@ -551,4 +556,10 @@ final class ip_utils_test extends \basic_testcase {
     public function test_normalize_internet_address_list(string $input, string $expected): void {
         $this->assertEquals($expected, \core\ip_utils::normalize_internet_address_list($input));
     }
+=======
+    public function test_is_ip_in_subnet_list($expected, $ip, $list, $delim) {
+        $this->assertEquals($expected, \core\ip_utils::is_ip_in_subnet_list($ip, $list, $delim));
+    }
+
+>>>>>>> upstream/MOODLE_38_STABLE
 }

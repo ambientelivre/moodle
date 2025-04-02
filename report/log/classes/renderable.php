@@ -235,7 +235,12 @@ class report_log_renderable implements renderable {
             $section = 0;
             $thissection = array();
             foreach ($modinfo->cms as $cm) {
+<<<<<<< HEAD
                 if (!$modname = $this->get_activity_name($cm)) {
+=======
+                // Exclude activities that aren't visible or have no view link (e.g. label). Account for folders displayed inline.
+                if (!$cm->uservisible || (!$cm->has_view() && strcmp($cm->modname, 'folder') !== 0)) {
+>>>>>>> upstream/MOODLE_38_STABLE
                     continue;
                 }
 

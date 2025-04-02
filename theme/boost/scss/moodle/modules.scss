@@ -157,6 +157,20 @@ select {
             // Do not use the default bold style for the table headings.
             font-weight: inherit;
         }
+<<<<<<< HEAD
+=======
+    }
+
+    // Style for the forum subscription mode node.
+    .subscriptionmode {
+        color: $body-color;
+    }
+
+    // Style for the currently selected subscription mode.
+    .activesetting {
+        color: $body-color;
+        font-weight: bold;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 }
 

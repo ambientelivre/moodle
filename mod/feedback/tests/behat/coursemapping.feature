@@ -132,7 +132,11 @@ Feature: Mapping courses in a feedback
     And I log in as "manager"
     And I am on site homepage
     And I follow "Course feedback"
+<<<<<<< HEAD
     And I navigate to "Mapped courses" in current page administration
+=======
+    And I follow "Map feedback to courses"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I set the field "Courses" to "Course 2, Course 3"
     And I press "Save changes"
     And I should see "Course mapping has been changed"

@@ -34,13 +34,33 @@
             {
                 "displayname": "Notices about minor problems",
                 "preferencekey": "message_provider_moodle_notices",
+<<<<<<< HEAD
+=======
+                "onlinehelphtml": "<p>some help HTML</p>",
+                "offlinehelphtml": "<p>some help HTML</p>",
+>>>>>>> upstream/MOODLE_38_STABLE
                 "processors": [
                     {
                         "displayname": "Popup notification",
                         "name": "popup",
                         "locked": 0,
                         "userconfigured": 1,
+<<<<<<< HEAD
                         "enabled": 1
+=======
+                        "loggedin": {
+                            "name": "loggedin",
+                            "displayname": "When I'm logged in",
+                            "checked": 0,
+                            "disableall": 0
+                        },
+                        "loggedoff": {
+                            "name": "loggedoff",
+                            "displayname": "When I'm offline",
+                            "checked": 0,
+                            "disableall": 0
+                        }
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
                 ]
             }
@@ -51,7 +71,22 @@
     <tr data-preference-key="{{preferencekey}}">
         <th>{{displayname}}</th>
         <td class="align-bottom">
+<<<<<<< HEAD
             {{#str}} enabled, core_message {{/str}}
+=======
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span6 col-xs-6">
+                        {{#str}} loggedin, message {{/str}}
+                        {{#onlinehelphtml}}{{{.}}}{{/onlinehelphtml}}
+                    </div>
+                    <div class="span6 col-xs-6">
+                        {{#str}} loggedoff, message {{/str}}
+                        {{#offlinehelphtml}}{{{.}}}{{/offlinehelphtml}}
+                    </div>
+                </div>
+            </div>
+>>>>>>> upstream/MOODLE_38_STABLE
         </td>
     </tr>
     {{#processors}}

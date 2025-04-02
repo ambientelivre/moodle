@@ -118,6 +118,7 @@ Feature: Managers can create and manage tag collections
     And I click on "Site pages" "list_item" in the "Navigation" "block"
     And I click on "Tags" "link" in the "Navigation" "block"
     And "Select tag collection" "select" should not exist
+<<<<<<< HEAD
 
   Scenario: Making default tag collection not searchable
     Given the following "courses" exist:
@@ -131,3 +132,5 @@ Feature: Managers can create and manage tag collections
     And I visit "/tag/search.php"
     Then I should not see "cats"
     Then I should not see "dogs"
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -52,8 +52,12 @@ class behat_search extends behat_base {
         $this->execute('behat_forms::i_set_the_field_to', ['q', $query]);
 
         // Submit the form.
+<<<<<<< HEAD
         $this->execute("behat_general::i_click_on_in_the",
             [get_string('search', 'core'), 'button', '#usernavigation', 'css_element']);
+=======
+        $this->execute_script('return document.querySelector(".search-input-form.expanded").submit();');
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

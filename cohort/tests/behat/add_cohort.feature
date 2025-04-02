@@ -120,6 +120,7 @@ Feature: Add cohorts of users
 
   @javascript
   Scenario: Edit cohort name in-place
+<<<<<<< HEAD
     When I navigate to "Users > Accounts > Cohorts" in site administration
     Then the following should exist in the "reportbuilder-table" table:
       | Name             | Cohort ID | Description             |
@@ -135,3 +136,11 @@ Feature: Add cohorts of users
     And the following should exist in the "reportbuilder-table" table:
       | Name            | Cohort ID | Description             |
       | Students cohort | 333       | Test cohort description |
+=======
+    When I follow "Cohorts"
+    And I set the field "Edit cohort name" to "Students cohort"
+    Then I should not see "Test cohort name"
+    And I should see "Students cohort"
+    And I follow "Cohorts"
+    And I should see "Students cohort"
+>>>>>>> upstream/MOODLE_38_STABLE

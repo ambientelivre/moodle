@@ -129,6 +129,7 @@ if ($formaction == 'bulkchange.php') {
                         $groupmemberjoin = '';
                     }
 
+<<<<<<< HEAD
                     // Add column for groups if the user can view them.
                     if (!isset($hiddenfields['groups'])) {
                         $columnnames['groupnames'] = get_string('groups');
@@ -142,6 +143,9 @@ if ($formaction == 'bulkchange.php') {
                     }
 
                     $sql = "SELECT u.firstname, u.lastname {$userfields->selects}
+=======
+                    $sql = "SELECT u.firstname, u.lastname" . $identityfieldsselect . "
+>>>>>>> upstream/MOODLE_38_STABLE
                               FROM {user} u
                                    {$userfields->joins}
                               JOIN ({$enrolledsql}) je ON je.id = u.id

@@ -105,6 +105,7 @@ $PAGE->add_body_class('limitedwidth');
 // No content in the book.
 if (!$chapterid) {
     $PAGE->set_url('/mod/book/view.php', array('id' => $id));
+<<<<<<< HEAD
     echo $OUTPUT->header();
     echo $OUTPUT->notification(get_string('nocontent', 'mod_book'), 'info', false);
 } else {
@@ -113,12 +114,58 @@ if (!$chapterid) {
     if (!$chapter or ($chapter->hidden and !$viewhidden)) {
         $courseurl = new moodle_url('/course/view.php', ['id' => $course->id]);
         throw new moodle_exception('errorchapter', 'mod_book', $courseurl);
+=======
+    notice(get_string('nocontent', 'mod_book'), $courseurl->out(false));
+}
+// Chapter doesnt exist or it is hidden for students
+if ((!$chapter = $DB->get_record('book_chapters', array('id' => $chapterid, 'bookid' => $book->id))) or ($chapter->hidden and !$viewhidden)) {
+    print_error('errorchapter', 'mod_book', $courseurl);
+}
+
+$PAGE->set_url('/mod/book/view.php', array('id'=>$id, 'chapterid'=>$chapterid));
+
+
+// Unset all page parameters.
+unset($id);
+unset($bid);
+unset($chapterid);
+
+// Read standard strings.
+$strbooks = get_string('modulenameplural', 'mod_book');
+$strbook  = get_string('modulename', 'mod_book');
+$strtoc   = get_string('toc', 'mod_book');
+
+// prepare header
+$pagetitle = $book->name . ": " . $chapter->title;
+$PAGE->set_title($pagetitle);
+$PAGE->set_heading($course->fullname);
+
+book_add_fake_block($chapters, $chapter, $book, $cm, $edit);
+
+// prepare chapter navigation icons
+$previd = null;
+$prevtitle = null;
+$navprevtitle = null;
+$nextid = null;
+$nexttitle = null;
+$navnexttitle = null;
+$last = null;
+foreach ($chapters as $ch) {
+    if (!$edit and ($ch->hidden && !$viewhidden)) {
+        continue;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
     // Add the Book TOC block.
     book_add_fake_block($chapters, $chapter, $book, $cm, $edit);
     book_view($book, $chapter, \mod_book\helper::is_last_visible_chapter($chapter->id, $chapters), $course, $cm, $context);
 
+<<<<<<< HEAD
     echo $OUTPUT->header();
+=======
+if ($book->navstyle) {
+    $navprevicon = right_to_left() ? 'nav_next' : 'nav_prev';
+    $navnexticon = right_to_left() ? 'nav_prev' : 'nav_next';
+>>>>>>> upstream/MOODLE_38_STABLE
 
     $renderer = $PAGE->get_renderer('mod_book');
     $actionmenu = new \mod_book\output\main_action_menu($cm->id, $chapters, $chapter, $book);
@@ -134,10 +181,17 @@ if (!$chapterid) {
             $currtitle = book_get_chapter_title($chapter->id, $chapters, $book, $context);
             echo $OUTPUT->heading($currtitle, 3);
         } else {
+<<<<<<< HEAD
             $currtitle = book_get_chapter_title($chapters[$chapter->id]->parent, $chapters, $book, $context);
             $currsubtitle = book_get_chapter_title($chapter->id, $chapters, $book, $context);
             echo $OUTPUT->heading($currtitle, 3);
             echo $OUTPUT->heading($currsubtitle, 4);
+=======
+            $chnavigation .= '<a title="' . $navprev . '" class="bookprev" href="view.php?id=' .
+                $cm->id . '&amp;chapterid=' . $previd . '">' .
+                '<span class="chaptername"><span class="arrow">' . $OUTPUT->larrow() . '&nbsp;</span></span>' .
+                $navprev . ':&nbsp;<span class="chaptername">' . $prevtitle . '</span></a>';
+>>>>>>> upstream/MOODLE_38_STABLE
         }
     }
     $chaptertext = file_rewrite_pluginfile_urls($chapter->content, 'pluginfile.php', $context->id, 'mod_book',

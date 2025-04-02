@@ -259,7 +259,11 @@ define(['jquery', 'core/notification', 'core/str', 'core/form-autocomplete',
 
         var select = this._region.find('[data-action=change-user]');
         var currentUserID = select.data('currentuserid');
+<<<<<<< HEAD
         this._updateFilterPreferences(currentUserID, this._filters, preferenceNames).then(function() {
+=======
+        this._updateFilterPreferences(currentUserID, this._filters, preferenceNames).done(function() {
+>>>>>>> upstream/MOODLE_38_STABLE
             // Reload the list of users to apply the new filters.
             if (!this._loadAllUsers()) {
                 var userid = parseInt(select.attr('data-selected'));

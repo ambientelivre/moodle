@@ -141,7 +141,18 @@ if ($rev > 0 and $rev < (time() + 60 * 60)) {
             $js = rtrim($js);
             $js .= "\n";
 
+<<<<<<< HEAD
             $js = requirejs_fix_define($modulename, $js);
+=======
+            if (preg_match('/define\(\s*(\[|function)/', $js)) {
+                // If the JavaScript module has been defined without specifying a name then we'll
+                // add the Moodle module name now.
+                $replace = 'define(\'' . $modulename . '\', ';
+                $search = 'define(';
+                // Replace only the first occurrence.
+                $js = implode($replace, explode($search, $js, 2));
+            }
+>>>>>>> upstream/MOODLE_38_STABLE
 
             $content .= $js;
         }
@@ -187,7 +198,21 @@ if (!empty($jsfiles)) {
         $js = rtrim($js);
     }
 
+<<<<<<< HEAD
     $js = requirejs_fix_define($modulename, $js);
+=======
+    if (preg_match('/define\(\s*(\[|function)/', $js)) {
+        // If the JavaScript module has been defined without specifying a name then we'll
+        // add the Moodle module name now.
+        $replace = 'define(\'' . $modulename . '\', ';
+
+        // Replace only the first occurrence.
+        $js = implode($replace, explode('define(', $js, 2));
+    } else if (!preg_match('/define\s*\(/', $js)) {
+        debugging('JS file: ' . $shortfilename . ' cannot be loaded, or does not contain a javascript' .
+                  ' module in AMD format. "define()" not found.', DEBUG_DEVELOPER);
+    }
+>>>>>>> upstream/MOODLE_38_STABLE
 
     js_send_uncached($js, 'requirejs.php');
 } else {

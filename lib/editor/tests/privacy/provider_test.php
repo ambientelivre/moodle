@@ -45,7 +45,11 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
     /**
      * When preference exists but is empty, there should be no export.
      */
+<<<<<<< HEAD:lib/editor/tests/privacy/provider_test.php
     public function test_empty_preference(): void {
+=======
+    public function test_empty_preference() {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/editor/tests/privacy_provider_test.php
         $this->resetAfterTest();
 
         // Create test user, add some preferences.
@@ -59,25 +63,36 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
 
         // Export test users preferences.
         provider::export_user_preferences($user->id);
+<<<<<<< HEAD:lib/editor/tests/privacy/provider_test.php
         /** @var \core_privacy\tests\request\content_writer $writer */
         $writer = writer::with_context(\context_system::instance());
         $this->assertFalse($writer->has_any_data());
+=======
+        $this->assertFalse(writer::with_context(\context_system::instance())->has_any_data());
+>>>>>>> upstream/MOODLE_38_STABLE:lib/editor/tests/privacy_provider_test.php
     }
 
     /**
      * When an editor is set, the name of that editor will be reported.
      */
+<<<<<<< HEAD:lib/editor/tests/privacy/provider_test.php
     public function test_editor_tiny(): void {
+=======
+    public function test_editor_atto() {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/editor/tests/privacy_provider_test.php
         $this->resetAfterTest();
 
         // Create test user, add some preferences.
         $user = $this->getDataGenerator()->create_user();
         $this->setUser($user);
+<<<<<<< HEAD:lib/editor/tests/privacy/provider_test.php
 
         set_user_preference('htmleditor', 'tiny');
 
         // Switch to admin user (so we can validate preferences of the correct user are being exported).
         $this->setAdminUser();
+=======
+>>>>>>> upstream/MOODLE_38_STABLE:lib/editor/tests/privacy_provider_test.php
 
         // Export test users preferences.
         provider::export_user_preferences($user->id);
@@ -85,7 +100,18 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
         $writer = writer::with_context(\context_system::instance());
         $this->assertTrue($writer->has_any_data());
 
+<<<<<<< HEAD:lib/editor/tests/privacy/provider_test.php
         $prefs = $writer->get_user_preferences('core_editor');
+=======
+        // Switch to admin user (so we can validate preferences of the correct user are being exported).
+        $this->setAdminUser();
+
+        // Export test users preferences.
+        provider::export_user_preferences($user->id);
+        $this->assertTrue(writer::with_context(\context_system::instance())->has_any_data());
+
+        $prefs = writer::with_context(\context_system::instance())->get_user_preferences('core_editor');
+>>>>>>> upstream/MOODLE_38_STABLE:lib/editor/tests/privacy_provider_test.php
         $this->assertNotEmpty($prefs->htmleditor);
         $this->assertNotEmpty($prefs->htmleditor->value);
         $this->assertNotEmpty($prefs->htmleditor->description);

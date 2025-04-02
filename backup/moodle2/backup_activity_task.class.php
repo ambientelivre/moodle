@@ -323,10 +323,24 @@ abstract class backup_activity_task extends backup_task {
         // - activities root setting.
         // - sectionincluded setting (if exists).
         $settingname = $settingprefix . 'included';
+<<<<<<< HEAD
         if ($this->is_in_subsection()) {
             $activityincluded = new backup_subactivity_generic_setting($settingname, base_setting::IS_BOOLEAN, true);
         } else {
             $activityincluded = new backup_activity_generic_setting($settingname, base_setting::IS_BOOLEAN, true);
+=======
+        $activity_included = new backup_activity_generic_setting($settingname, base_setting::IS_BOOLEAN, true);
+        $activity_included->get_ui()->set_icon(new image_icon('icon', get_string('pluginname', $this->modulename),
+            $this->modulename, array('class' => 'iconlarge icon-post ml-1')));
+        $this->add_setting($activity_included);
+        // Look for "activities" root setting
+        $activities = $this->plan->get_setting('activities');
+        $activities->add_dependency($activity_included);
+
+        if (question_module_uses_questions($this->modulename)) {
+            $questionbank = $this->plan->get_setting('questionbank');
+            $questionbank->add_dependency($activity_included);
+>>>>>>> upstream/MOODLE_38_STABLE
         }
         $activityincluded->get_ui()->set_icon(new image_icon('monologo', get_string('pluginname', $this->modulename),
             $this->modulename, array('class' => 'ms-1')));

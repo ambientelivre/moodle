@@ -171,9 +171,18 @@ Feature: Lesson user override
       | deadline[minute]    | 00 |
     And I press "Save"
     And I should see "Lesson closes"
+<<<<<<< HEAD
     And I am on the "Test lesson name" "lesson activity" page logged in as student2
     And I wait until the page is ready
     Then the activity date in "Test lesson name" should contain "Closed: Saturday, 1 January 2000, 8:00"
+=======
+    And I log out
+    And I log in as "student2"
+    And I am on "Course 1" course homepage
+    And I follow "Test lesson"
+    And I wait until the page is ready
+    Then I should see "This lesson closed on Saturday, 1 January 2000, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should not see "Cat is an amphibian"
     And I am on the "Test lesson name" "lesson activity" page logged in as student1
     And I should see "Cat is an amphibian"
@@ -201,9 +210,18 @@ Feature: Lesson user override
       | available[minute]    | 00 |
     And I press "Save"
     And I should see "Lesson opens"
+<<<<<<< HEAD
     And I am on the "Test lesson name" "lesson activity" page logged in as student2
     And I wait until the page is ready
     Then the activity date in "Test lesson name" should contain "Opens: Tuesday, 1 January 2030, 8:00"
+=======
+    And I log out
+    And I log in as "student2"
+    And I am on "Course 1" course homepage
+    And I follow "Test lesson"
+    And I wait until the page is ready
+    Then I should see "This lesson will be open on Tuesday, 1 January 2030, 8:00"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should not see "Cat is an amphibian"
     And I am on the "Test lesson name" "lesson activity" page logged in as student1
     And I should see "Cat is an amphibian"
@@ -320,6 +338,7 @@ Feature: Lesson user override
 
   @javascript
   Scenario: Create a user override when the lesson is not available to the student
+<<<<<<< HEAD
     Given I am on the "Test lesson name" "lesson activity editing" page logged in as teacher1
     And I expand all fieldsets
     And I set the field "Availability" to "Hide on course page"
@@ -329,6 +348,20 @@ Feature: Lesson user override
     And I set the following fields to these values:
       | Override user              | Student1 |
       | Maximum number of attempts per question | 2 |
+=======
+    Given I log in as "teacher1"
+    And I am on "Course 1" course homepage with editing mode on
+    And I follow "Test lesson name"
+    And I navigate to "Edit settings" in current page administration
+    And I expand all fieldsets
+    And I set the field "Availability" to "Hide from students"
+    And I click on "Save and display" "button"
+    When I navigate to "User overrides" in current page administration
+    And I press "Add user override"
+    And I set the following fields to these values:
+      | Override user              | Student1 |
+      | Maximum number of attempts | 2 |
+>>>>>>> upstream/MOODLE_38_STABLE
     And I press "Save"
     Then I should see "This override is inactive"
     And "Edit" "icon" should exist in the "Sam1 Student1" "table_row"

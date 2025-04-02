@@ -32,9 +32,13 @@ global $CFG;
 require_once($CFG->dirroot . '/mod/quiz/locallib.php');
 require_once($CFG->dirroot . '/mod/quiz/report/reportlib.php');
 require_once($CFG->dirroot . '/mod/quiz/report/overview/report.php');
+<<<<<<< HEAD
 require_once($CFG->dirroot . '/mod/quiz/report/overview/overview_form.php');
 require_once($CFG->dirroot . '/mod/quiz/report/overview/tests/helpers.php');
 require_once($CFG->dirroot . '/mod/quiz/tests/quiz_question_helper_test_trait.php');
+=======
+require_once($CFG->dirroot . '/mod/quiz/report/overview/tests/helpers.php');
+>>>>>>> upstream/MOODLE_38_STABLE
 
 
 /**
@@ -293,8 +297,13 @@ final class report_test extends \advanced_testcase {
     /**
      * Test delete_selected_attempts function.
      */
+<<<<<<< HEAD
     public function test_delete_selected_attempts(): void {
         $this->resetAfterTest();
+=======
+    public function test_delete_selected_attempts() {
+        $this->resetAfterTest(true);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $timestamp = 1234567890;
         $timestart = $timestamp + 3600;
@@ -312,7 +321,10 @@ final class report_test extends \advanced_testcase {
         ]);
 
         // Add one question.
+<<<<<<< HEAD
         /** @var core_question_generator $questiongenerator */
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         $questiongenerator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $questiongenerator->create_question_category();
         $q = $questiongenerator->create_question('essay', 'plain', ['category' => $cat->id]);
@@ -324,6 +336,7 @@ final class report_test extends \advanced_testcase {
         $generator->enrol_user($student->id, $course->id);
         $generator->enrol_user($student->id, $course->id, null, 'self');
 
+<<<<<<< HEAD
         $context = \context_module::instance($quiz->cmid);
         $cm = get_coursemodule_from_id('quiz', $quiz->cmid);
         $allowedjoins = get_enrolled_with_capabilities_join($context, '', ['mod/quiz:attempt', 'mod/quiz:reviewmyattempts']);
@@ -331,6 +344,15 @@ final class report_test extends \advanced_testcase {
 
         // Create the new attempt and initialize the question sessions.
         $quizobj = quiz_settings::create($quiz->id, $student->id);
+=======
+        $context = context_module::instance($quiz->cmid);
+        $cm = get_coursemodule_from_id('quiz', $quiz->cmid);
+        $allowedjoins = get_enrolled_with_capabilities_join($context, '', ['mod/quiz:attempt', 'mod/quiz:reviewmyattempts']);
+        $quizattemptsreport = new testable_quiz_attempts_report();
+
+        // Create the new attempt and initialize the question sessions.
+        $quizobj = quiz::create($quiz->id, $student->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $quba = question_engine::make_questions_usage_by_activity('mod_quiz', $quizobj->get_context());
         $quba->set_preferred_behaviour($quizobj->get_quiz()->preferredbehaviour);
         $attempt = quiz_create_attempt($quizobj, 1, null, $timestart, false, $student->id);
@@ -341,6 +363,7 @@ final class report_test extends \advanced_testcase {
         $quizattemptsreport->delete_selected_attempts($quiz, $cm, [$attempt->id], $allowedjoins);
     }
 
+<<<<<<< HEAD
     /**
      * Test question regrade for selected versions.
      *
@@ -423,4 +446,6 @@ final class report_test extends \advanced_testcase {
         $attemptobj = quiz_attempt::create($attempt->id);
         $this->assertEquals(5, $attemptobj->get_question_usage()->get_total_mark());
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

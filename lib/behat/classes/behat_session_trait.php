@@ -23,6 +23,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Element\Element;
 use Behat\Mink\Exception\DriverException;
@@ -34,14 +35,28 @@ use Behat\Testwork\Hook\Scope\HookScope;
 use Facebook\WebDriver\Exception\ScriptTimeoutException;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverElement;
+=======
+use Behat\Mink\Exception\DriverException;
+use Behat\Mink\Exception\ExpectationException;
+use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Mink\Element\NodeElement;
+use Behat\Mink\Element\Element;
+use Behat\Mink\Session;
+>>>>>>> upstream/MOODLE_38_STABLE
 
 // NOTE: no MOODLE_INTERNAL test here, this file may be required by behat before including /config.php.
 
 require_once(__DIR__ . '/component_named_replacement.php');
 require_once(__DIR__ . '/component_named_selector.php');
 
+<<<<<<< HEAD
 // Alias the Facebook\WebDriver\WebDriverKeys class to behat_keys for better b/c with the older Instaclick driver.
 class_alias('Facebook\WebDriver\WebDriverKeys', 'behat_keys');
+=======
+// Alias the WebDriver\Key  class to behat_keys to make future transition to a different WebDriver implementation
+// easier.
+class_alias('WebDriver\\Key', 'behat_keys');
+>>>>>>> upstream/MOODLE_38_STABLE
 
 /**
  * A trait containing functionality used by the behat base context, and form fields.
@@ -135,7 +150,11 @@ trait behat_session_trait {
         }
 
         // How much we will be waiting for the element to appear.
+<<<<<<< HEAD
         if ($timeout === false) {
+=======
+        if (!$timeout) {
+>>>>>>> upstream/MOODLE_38_STABLE
             $timeout = self::get_timeout();
             $microsleep = false;
         } else {
@@ -225,6 +244,7 @@ trait behat_session_trait {
     }
 
     /**
+<<<<<<< HEAD
      * Get a description of the selector and locator to use in an exception message.
      *
      * @param string $selector The type of locator
@@ -241,6 +261,8 @@ trait behat_session_trait {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Send key presses straight to the currently active element.
      *
      * The `$keys` array contains a list of key values to send to the session as defined in the WebDriver and JsonWire
@@ -273,7 +295,13 @@ trait behat_session_trait {
      * @param string[] $keys
      */
     public static function type_keys(Session $session, array $keys): void {
+<<<<<<< HEAD
         $session->getDriver()->getWebDriver()->getKeyboard()->sendKeys($keys);
+=======
+        $session->getDriver()->getWebDriverSession()->keys([
+            'value' => $keys,
+        ]);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -346,7 +374,11 @@ trait behat_session_trait {
      * an exception.
      *
      * @throws Exception If it timeouts without receiving something != false from the closure
+<<<<<<< HEAD
      * @param callable $lambda The function to execute or an array passed to call_user_func (maps to a class method)
+=======
+     * @param Function|array|string $lambda The function to execute or an array passed to call_user_func (maps to a class method)
+>>>>>>> upstream/MOODLE_38_STABLE
      * @param mixed $args Arguments to pass to the closure
      * @param int $timeout Timeout in seconds
      * @param Exception $exception The exception to throw in case it time outs.
@@ -356,7 +388,11 @@ trait behat_session_trait {
     protected function spin($lambda, $args = false, $timeout = false, $exception = false, $microsleep = false) {
 
         // Using default timeout which is pretty high.
+<<<<<<< HEAD
         if ($timeout === false) {
+=======
+        if (!$timeout) {
+>>>>>>> upstream/MOODLE_38_STABLE
             $timeout = self::get_timeout();
         }
 
@@ -440,12 +476,22 @@ trait behat_session_trait {
         if ($containerselectortype === 'NodeElement' && is_a($containerelement, NodeElement::class)) {
             // Support a NodeElement being passed in for use in step chaining.
             $containernode = $containerelement;
+<<<<<<< HEAD
         } else {
             // Gets the container, it will always be text based.
             $containernode = $this->get_text_selector_node($containerselectortype, $containerelement);
         }
 
         $locatorexceptionmsg = $element . '" in the "' . $this->get_selector_description($containerselectortype, $containerelement);
+=======
+            $locatorexceptionmsg = $element;
+        } else {
+            // Gets the container, it will always be text based.
+            $containernode = $this->get_text_selector_node($containerselectortype, $containerelement);
+            $locatorexceptionmsg = $element . '" in the "' . $containerelement. '" "' . $containerselectortype. '"';
+        }
+
+>>>>>>> upstream/MOODLE_38_STABLE
         $exception = new ElementNotFoundException($this->getSession(), $selectortype, null, $locatorexceptionmsg);
 
         return $this->find($selectortype, $element, $exception, $containernode);
@@ -514,11 +560,18 @@ trait behat_session_trait {
     /**
      * Require that javascript be available in the current Session.
      *
+<<<<<<< HEAD
      * @param null|string $message An additional information message to show when JS is not available
      * @throws DriverException
      */
     protected function require_javascript(?string $message = null) {
         return self::require_javascript_in_session($this->getSession(), $message);
+=======
+     * @throws DriverException
+     */
+    protected function require_javascript() {
+        return self::require_javascript_in_session($this->getSession());
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -528,26 +581,40 @@ trait behat_session_trait {
      * @return boolean
      */
     protected static function running_javascript_in_session(Session $session): bool {
+<<<<<<< HEAD
         return get_class($session->getDriver()) !== 'Behat\Mink\Driver\BrowserKitDriver';
+=======
+        return get_class($session->getDriver()) !== 'Behat\Mink\Driver\GoutteDriver';
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
      * Require that javascript be available for the specified Session.
      *
      * @param Session $session
+<<<<<<< HEAD
      * @param null|string $message An additional information message to show when JS is not available
      * @throws DriverException
      */
     protected static function require_javascript_in_session(Session $session, ?string $message = null): void {
+=======
+     * @throws DriverException
+     */
+    protected static function require_javascript_in_session(Session $session): void {
+>>>>>>> upstream/MOODLE_38_STABLE
         if (self::running_javascript_in_session($session)) {
             return;
         }
 
+<<<<<<< HEAD
         $error = "Javascript is required for this step.";
         if ($message) {
             $error = "{$error} {$message}";
         }
         throw new DriverException($error);
+=======
+        throw new DriverException('Javascript is required');
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -555,7 +622,11 @@ trait behat_session_trait {
      *
      * @return bool True if it's in the app
      */
+<<<<<<< HEAD
     protected function is_in_app(): bool {
+=======
+    protected function is_in_app() : bool {
+>>>>>>> upstream/MOODLE_38_STABLE
         // Cannot be in the app if there's no @app tag on scenario.
         if (!$this->has_tag('app')) {
             return false;
@@ -645,6 +716,10 @@ trait behat_session_trait {
      * @return void Throws an exception if it times out without the element being visible
      */
     protected function ensure_node_is_visible($node) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/MOODLE_38_STABLE
         if (!$this->running_javascript()) {
             return;
         }
@@ -714,6 +789,10 @@ trait behat_session_trait {
      * @return NodeElement Throws an exception if it times out without being visible
      */
     protected function ensure_element_is_visible($element, $selectortype) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/MOODLE_38_STABLE
         if (!$this->running_javascript()) {
             return;
         }
@@ -725,25 +804,55 @@ trait behat_session_trait {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Ensures that all the page's editors are loaded.
+     *
+     * @deprecated since Moodle 2.7 MDL-44084 - please do not use this function any more.
+     * @throws ElementNotFoundException
+     * @throws ExpectationException
+     * @return void
+     */
+    protected function ensure_editors_are_loaded() {
+        global $CFG;
+
+        if (empty($CFG->behat_usedeprecated)) {
+            debugging('Function behat_base::ensure_editors_are_loaded() is deprecated. It is no longer required.');
+        }
+        return;
+    }
+
+    /**
+>>>>>>> upstream/MOODLE_38_STABLE
      * Checks if the current scenario, or its feature, has a specified tag.
      *
      * @param string $tag Tag to check
      * @return bool True if the tag exists in scenario or feature
      */
+<<<<<<< HEAD
     public function has_tag(string $tag): bool {
+=======
+    public function has_tag(string $tag) : bool {
+>>>>>>> upstream/MOODLE_38_STABLE
         return array_key_exists($tag, behat_hooks::get_tags_for_scenario());
     }
 
     /**
      * Change browser window size.
+<<<<<<< HEAD
      *   - mobile: 425x750
      *   - tablet: 768x1024
      *   - small: 1024x768
      *   - medium: 1366x768
+=======
+     *   - small: 640x480
+     *   - medium: 1024x768
+>>>>>>> upstream/MOODLE_38_STABLE
      *   - large: 2560x1600
      *
      * @param string $windowsize size of window.
      * @param bool $viewport If true, changes viewport rather than window size
+<<<<<<< HEAD
      * @param bool $scalesize Whether to scale the size by the WINDOWSCALE environment variable
      * @throws ExpectationException
      */
@@ -754,12 +863,18 @@ trait behat_session_trait {
     ): void {
         global $CFG;
 
+=======
+     * @throws ExpectationException
+     */
+    protected function resize_window($windowsize, $viewport = false) {
+>>>>>>> upstream/MOODLE_38_STABLE
         // Non JS don't support resize window.
         if (!$this->running_javascript()) {
             return;
         }
 
         switch ($windowsize) {
+<<<<<<< HEAD
             case "mobile":
                 $width = 425;
                 $height = 750;
@@ -768,6 +883,8 @@ trait behat_session_trait {
                 $width = 768;
                 $height = 1024;
                 break;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             case "small":
                 $width = 1024;
                 $height = 768;
@@ -789,6 +906,7 @@ trait behat_session_trait {
                 $width = (int) $size[0];
                 $height = (int) $size[1];
         }
+<<<<<<< HEAD
 
         if (isset($CFG->behat_window_size_modifier) && is_numeric($CFG->behat_window_size_modifier)) {
             $width *= $CFG->behat_window_size_modifier;
@@ -805,6 +923,8 @@ trait behat_session_trait {
             $height *= $scalefactor;
         }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         if ($viewport) {
             // When setting viewport size, we set it so that the document width will be exactly
             // as specified, assuming that there is a vertical scrollbar. (In cases where there is
@@ -870,7 +990,11 @@ EOF;
                         return M.util.pending_js.join(":");
                     })()'));
                 $pending = self::evaluate_script_in_session($session, $jscode);
+<<<<<<< HEAD
             } catch (NoSuchWindowException $nsw) {
+=======
+            } catch (NoSuchWindow $nsw) {
+>>>>>>> upstream/MOODLE_38_STABLE
                 // We catch an exception here, in case we just closed the window we were interacting with.
                 // No javascript is running if there is no window right?
                 $pending = '';
@@ -936,7 +1060,11 @@ EOF;
                         $msgs[] = $errnostring . ": " .$error['message'] . " at " . $error['file'] . ": " . $error['line'];
                     }
                     $msg = "PHP errors found:\n" . implode("\n", $msgs);
+<<<<<<< HEAD
                     throw new \Exception(htmlentities($msg, ENT_COMPAT));
+=======
+                    throw new \Exception(htmlentities($msg));
+>>>>>>> upstream/MOODLE_38_STABLE
                 }
 
                 return;
@@ -966,6 +1094,7 @@ EOF;
                     }
 
                 } else {
+<<<<<<< HEAD
                     $errorinfo = implode("\n", [
                         $this->get_debug_text($errorinfoboxes[0]->getHtml()),
                         $this->get_debug_text($errorinfoboxes[1]->getHtml()),
@@ -975,6 +1104,14 @@ EOF;
 
                 $msg = "Moodle exception: " . $errormsg->getText() . "\n" . $errorinfo;
                 throw new \Exception(html_entity_decode($msg, ENT_COMPAT));
+=======
+                    $errorinfo = $this->get_debug_text($errorinfoboxes[0]->getHtml()) . "\n" .
+                        $this->get_debug_text($errorinfoboxes[1]->getHtml());
+                }
+
+                $msg = "Moodle exception: " . $errormsg->getText() . "\n" . $errorinfo;
+                throw new \Exception(html_entity_decode($msg));
+>>>>>>> upstream/MOODLE_38_STABLE
             }
 
             // Debugging messages.
@@ -984,7 +1121,11 @@ EOF;
                     $msgs[] = $this->get_debug_text($debuggingmessage->getHtml());
                 }
                 $msg = "debugging() message/s found:\n" . implode("\n", $msgs);
+<<<<<<< HEAD
                 throw new \Exception(html_entity_decode($msg, ENT_COMPAT));
+=======
+                throw new \Exception(html_entity_decode($msg));
+>>>>>>> upstream/MOODLE_38_STABLE
             }
 
             // PHP debug messages.
@@ -995,7 +1136,11 @@ EOF;
                     $msgs[] = $this->get_debug_text($phpmessage->getHtml());
                 }
                 $msg = "PHP debug message/s found:\n" . implode("\n", $msgs);
+<<<<<<< HEAD
                 throw new \Exception(html_entity_decode($msg, ENT_COMPAT));
+=======
+                throw new \Exception(html_entity_decode($msg));
+>>>>>>> upstream/MOODLE_38_STABLE
             }
 
             // Any other backtrace.
@@ -1009,11 +1154,19 @@ EOF;
                         $msgs[] = $backtrace . '()';
                     }
                     $msg = "Other backtraces found:\n" . implode("\n", $msgs);
+<<<<<<< HEAD
                     throw new \Exception(htmlentities($msg, ENT_COMPAT));
                 }
             }
 
         } catch (NoSuchWindowException $e) {
+=======
+                    throw new \Exception(htmlentities($msg));
+                }
+            }
+
+        } catch (NoSuchWindow $e) {
+>>>>>>> upstream/MOODLE_38_STABLE
             // If we were interacting with a popup window it will not exists after closing it.
         } catch (DriverException $e) {
             // Same reason as above.
@@ -1021,6 +1174,7 @@ EOF;
     }
 
     /**
+<<<<<<< HEAD
      * Internal step definition to find deprecated styles.
      *
      * Part of behat_hooks class as is part of the testing framework, is auto-executed
@@ -1094,6 +1248,8 @@ EOF;
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Converts HTML tags to line breaks to display the info in CLI
      *
      * @param string $html
@@ -1110,7 +1266,11 @@ EOF;
      * Helper function to execute api in a given context.
      *
      * @param string $contextapi context in which api is defined.
+<<<<<<< HEAD
      * @param array|mixed $params list of params to pass or a single parameter
+=======
+     * @param array $params list of params to pass.
+>>>>>>> upstream/MOODLE_38_STABLE
      * @throws Exception
      */
     protected function execute($contextapi, $params = array()) {
@@ -1131,6 +1291,7 @@ EOF;
 
         // Look for exceptions.
         $this->look_for_exceptions();
+<<<<<<< HEAD
 
         // Look for deprecated styles.
         $this->look_for_deprecated_styles();
@@ -1160,6 +1321,8 @@ EOF;
                 call_user_func_array([$context, $method], $params);
             }
         }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -1174,11 +1337,19 @@ EOF;
         if (empty($sid)) {
             throw new coding_exception('failed to get moodle session');
         }
+<<<<<<< HEAD
         $session = \core\session\manager::get_session_by_sid($sid);
         if (empty($session->userid)) {
             throw new coding_exception('failed to get user from session id: '.$sid);
         }
         return $DB->get_record('user', ['id' => $session->userid]);
+=======
+        $userid = $DB->get_field('sessions', 'userid', ['sid' => $sid]);
+        if (empty($userid)) {
+            throw new coding_exception('failed to get user from seession id '.$sid);
+        }
+        return $DB->get_record('user', ['id' => $userid]);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -1209,6 +1380,7 @@ EOF;
 
         \core\session\manager::set_user($user);
     }
+<<<<<<< HEAD
 
     /**
      * Gets the internal moodle context id from the context reference.
@@ -1231,6 +1403,8 @@ EOF;
         throw new Exception("The specified context \"$levelname, $contextref\" does not exist");
     }
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     /**
      * Trigger click on node via javascript instead of actually clicking on it via pointer.
      *
@@ -1243,16 +1417,28 @@ EOF;
         if (!$this->running_javascript()) {
             $node->click();
         }
+<<<<<<< HEAD
         $driver = $this->getSession()->getDriver();
         if ($driver instanceof \Moodle\BehatExtension\Driver\WebDriver) {
             $this->execute_js_on_node($node, '{{ELEMENT}}.click();');
         } else {
             $this->ensure_node_is_visible($node); // Ensures hidden elements can't be clicked.
             $driver->click($node->getXpath());
+=======
+        $this->ensure_node_is_visible($node); // Ensures hidden elements can't be clicked.
+        $xpath = $node->getXpath();
+        $driver = $this->getSession()->getDriver();
+        if ($driver instanceof \Moodle\BehatExtension\Driver\MoodleSelenium2Driver) {
+            $script = "Syn.click({{ELEMENT}})";
+            $driver->triggerSynScript($xpath, $script);
+        } else {
+            $driver->click($xpath);
+>>>>>>> upstream/MOODLE_38_STABLE
         }
     }
 
     /**
+<<<<<<< HEAD
      * Execute JS on the specified NodeElement.
      *
      * @param NodeElement $node
@@ -1300,6 +1486,8 @@ EOF;
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Convert page names to URLs for steps like 'When I am on the "[page name]" page'.
      *
      * You should override this as appropriate for your plugin. The method
@@ -1355,7 +1543,11 @@ EOF;
      * @param int $timeout One of the TIMEOUT constants
      * @return int Actual timeout (in seconds)
      */
+<<<<<<< HEAD
     protected static function get_real_timeout(int $timeout): int {
+=======
+    protected static function get_real_timeout(int $timeout) : int {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         if (!empty($CFG->behat_increasetimeout)) {
             return $timeout * $CFG->behat_increasetimeout;
@@ -1371,7 +1563,11 @@ EOF;
      *
      * @return int Timeout in seconds
      */
+<<<<<<< HEAD
     public static function get_timeout(): int {
+=======
+    public static function get_timeout() : int {
+>>>>>>> upstream/MOODLE_38_STABLE
         return self::get_real_timeout(6);
     }
 
@@ -1384,7 +1580,11 @@ EOF;
      *
      * @return int Timeout in seconds
      */
+<<<<<<< HEAD
     public static function get_reduced_timeout(): int {
+=======
+    public static function get_reduced_timeout() : int {
+>>>>>>> upstream/MOODLE_38_STABLE
         return self::get_real_timeout(2);
     }
 
@@ -1395,7 +1595,11 @@ EOF;
      *
      * @return int Timeout in seconds
      */
+<<<<<<< HEAD
     public static function get_extended_timeout(): int {
+=======
+    public static function get_extended_timeout() : int {
+>>>>>>> upstream/MOODLE_38_STABLE
         return self::get_real_timeout(10);
     }
 
@@ -1518,6 +1722,7 @@ EOF;
 
         return $this->evaluate_script($script);
     }
+<<<<<<< HEAD
 
     /**
      * Set the timeout factor for the remaining lifetime of the session.
@@ -1770,4 +1975,6 @@ EOF;
         ];
         return str_replace($newlines, ' ', $xpath);
     }
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }

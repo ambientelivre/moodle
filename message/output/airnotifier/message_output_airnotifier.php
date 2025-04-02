@@ -106,6 +106,9 @@ class message_output_airnotifier extends message_output {
         // Send wwwroot to airnotifier.
         $extra->wwwroot = $CFG->wwwroot;
 
+        // Send wwwroot to airnotifier.
+        $extra->wwwroot = $CFG->wwwroot;
+
         // We are sending to message to all devices.
         $airnotifiermanager = new message_airnotifier_manager();
         $devicetokens = $airnotifiermanager->get_user_devices($CFG->airnotifiermobileappname, $eventdata->userto->id);

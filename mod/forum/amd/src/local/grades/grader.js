@@ -32,7 +32,12 @@ import {failedUpdate} from 'core_grades/grades/grader/gradingpanel/normalise';
 import {addIconToContainerWithPromise} from 'core/loadingicon';
 import {debounce} from 'core/utils';
 import {fillInitialValues} from 'core_grades/grades/grader/gradingpanel/comparison';
+<<<<<<< HEAD
 import Modal from 'core/modal_cancel';
+=======
+import * as Modal from 'core/modal_factory';
+import * as ModalEvents from 'core/modal_events';
+>>>>>>> upstream/MOODLE_38_STABLE
 import {subscribe} from 'core/pubsub';
 import DrawerEvents from 'core/drawer_events';
 

@@ -2385,7 +2385,11 @@ EOF;
     /**
      * Test deletion of user with long username
      */
+<<<<<<< HEAD
     public function test_delete_user_long_username(): void {
+=======
+    public function test_delete_user_long_username() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
@@ -2400,6 +2404,7 @@ EOF;
 
         // The username for the deleted user shouldn't exceed 100 characters.
         $usernamedeleted = $DB->get_field('user', 'username', ['id' => $user->id]);
+<<<<<<< HEAD
         $this->assertEquals(100, \core_text::strlen($usernamedeleted));
 
         $timestrlength = \core_text::strlen((string) time());
@@ -2407,12 +2412,25 @@ EOF;
         // It should start with the user name, and end with the current time.
         $this->assertStringStartsWith("{$user->username}.{$user->id}@", $usernamedeleted);
         $this->assertMatchesRegularExpression('/\.\d{' . $timestrlength . '}$/', $usernamedeleted);
+=======
+        $this->assertEquals(100, core_text::strlen($usernamedeleted));
+
+        $timestrlength = core_text::strlen((string) time());
+
+        // It should start with the user name, and end with the current time.
+        $this->assertStringStartsWith("{$user->username}.{$user->id}@", $usernamedeleted);
+        $this->assertRegExp('/\.\d{' . $timestrlength . '}$/', $usernamedeleted);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
      * Test deletion of user with long email address
      */
+<<<<<<< HEAD
     public function test_delete_user_long_email(): void {
+=======
+    public function test_delete_user_long_email() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
@@ -2426,6 +2444,7 @@ EOF;
 
         // The username for the deleted user shouldn't exceed 100 characters.
         $usernamedeleted = $DB->get_field('user', 'username', ['id' => $user->id]);
+<<<<<<< HEAD
         $this->assertEquals(100, \core_text::strlen($usernamedeleted));
 
         $timestrlength = \core_text::strlen((string) time());
@@ -2434,6 +2453,15 @@ EOF;
         $expectedemail = \core_text::substr($user->email, 0, 100 - ($timestrlength + 1));
         $this->assertMatchesRegularExpression('/^' . preg_quote($expectedemail) . '\.\d{' . $timestrlength . '}$/',
             $usernamedeleted);
+=======
+        $this->assertEquals(100, core_text::strlen($usernamedeleted));
+
+        $timestrlength = core_text::strlen((string) time());
+
+        // Max username length is 100 chars. Select up to limit - (length of current time + 1 [period character]) from users email.
+        $expectedemail = core_text::substr($user->email, 0, 100 - ($timestrlength + 1));
+        $this->assertRegExp('/^' . preg_quote($expectedemail) . '\.\d{' . $timestrlength . '}$/', $usernamedeleted);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -3489,7 +3517,11 @@ EOF;
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function email_to_user_attachment_provider(): array {
+=======
+    public function email_to_user_attachment_provider(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
 
         // Return all paths that can be used to send attachments from.
@@ -3499,9 +3531,12 @@ EOF;
             'dirroot' => [$CFG->dirroot],
             'localcachedir' => [$CFG->localcachedir],
             'tempdir' => [$CFG->tempdir],
+<<<<<<< HEAD
             // Paths within $CFG->localrequestdir.
             'localrequestdir_request_directory' => [make_request_directory()],
             'localrequestdir_request_storage_directory' => [get_request_storage_directory()],
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
             // Pass null to indicate we want to test a path relative to $CFG->dataroot.
             'relative' => [null]
         ];
@@ -3521,7 +3556,11 @@ EOF;
         $filepath = ($filedir ?: $CFG->dataroot) . '/hello.txt';
         file_put_contents($filepath, 'Hello');
 
+<<<<<<< HEAD
         $user = \core_user::get_support_user();
+=======
+        $user = core_user::get_support_user();
+>>>>>>> upstream/MOODLE_38_STABLE
         $message = 'Test attachment path';
 
         // Create sink to catch all sent e-mails.
@@ -3539,8 +3578,13 @@ EOF;
 
         // Verify attachment in message body (attachment is in MIME format, but we can detect some Content fields).
         $messagebody = reset($messages)->body;
+<<<<<<< HEAD
         $this->assertStringContainsString('Content-Type: text/plain; name=' . $filename, $messagebody);
         $this->assertStringContainsString('Content-Disposition: attachment; filename=' . $filename, $messagebody);
+=======
+        $this->assertContains('Content-Type: text/plain; name="' . $filename . '"', $messagebody);
+        $this->assertContains('Content-Disposition: attachment; filename=' . $filename, $messagebody);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Cleanup.
         unlink($filepath);
@@ -3550,7 +3594,11 @@ EOF;
      * Test sending an attachment that doesn't exist to email_to_user
      */
     public function test_email_to_user_attachment_missing(): void {
+<<<<<<< HEAD
         $user = \core_user::get_support_user();
+=======
+        $user = core_user::get_support_user();
+>>>>>>> upstream/MOODLE_38_STABLE
         $message = 'Test attachment path';
 
         // Create sink to catch all sent e-mails.
@@ -3567,8 +3615,13 @@ EOF;
 
         // Verify attachment not in message body (attachment is in MIME format, but we can detect some Content fields).
         $messagebody = reset($messages)->body;
+<<<<<<< HEAD
         $this->assertStringNotContainsString('Content-Type: text/plain; name="' . $filename . '"', $messagebody);
         $this->assertStringNotContainsString('Content-Disposition: attachment; filename=' . $filename, $messagebody);
+=======
+        $this->assertNotContains('Content-Type: text/plain; name="' . $filename . '"', $messagebody);
+        $this->assertNotContains('Content-Disposition: attachment; filename=' . $filename, $messagebody);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -3955,6 +4008,7 @@ EOT;
     /**
      * Tests the getremoteaddr() function.
      */
+<<<<<<< HEAD
     public function test_getremoteaddr(): void {
         global $CFG;
 
@@ -4002,6 +4056,12 @@ EOT;
         $noip = getremoteaddr('1.1.1.1');
         $this->assertEquals('1.1.1.1', $noip);
 
+=======
+    public function test_getremoteaddr() {
+        global $CFG;
+
+        $this->resetAfterTest();
+>>>>>>> upstream/MOODLE_38_STABLE
         $CFG->getremoteaddrconf = GETREMOTEADDR_SKIP_HTTP_CLIENT_IP;
         $xforwardedfor = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
 

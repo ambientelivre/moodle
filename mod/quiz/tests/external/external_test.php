@@ -538,6 +538,7 @@ final class external_test extends externallib_advanced_testcase {
      *
      * @todo Remove in Moodle 6.0 as part of MDL-80956 final deprecations.
      */
+<<<<<<< HEAD:mod/quiz/tests/external/external_test.php
     public function test_get_user_attempts_with_extra_grades(): void {
         global $DB;
 
@@ -966,6 +967,70 @@ final class external_test extends externallib_advanced_testcase {
 
         // Start the testing for quizapi1 that allow the student to view the grade.
 
+=======
+    public function test_get_user_best_grade() {
+        $quizgenerator = $this->getDataGenerator()->get_plugin_generator('mod_quiz');
+        $questiongenerator = $this->getDataGenerator()->get_plugin_generator('core_question');
+        $questioncat = $questiongenerator->create_question_category();
+
+        // Create a new quiz.
+        $quizapi1 = $quizgenerator->create_instance([
+                'name' => 'Test Quiz API 1',
+                'course' => $this->course->id,
+                'sumgrades' => 1
+        ]);
+        $quizapi2 = $quizgenerator->create_instance([
+                'name' => 'Test Quiz API 2',
+                'course' => $this->course->id,
+                'sumgrades' => 1,
+                'marksduring' => 0,
+                'marksimmediately' => 0,
+                'marksopen' => 0,
+                'marksclosed' => 0
+        ]);
+
+        // Create a question.
+        $question = $questiongenerator->create_question('numerical', null, ['category' => $questioncat->id]);
+
+        // Add question to the quizzes.
+        quiz_add_quiz_question($question->id, $quizapi1);
+        quiz_add_quiz_question($question->id, $quizapi2);
+
+        // Create quiz object.
+        $quizapiobj1 = quiz::create($quizapi1->id, $this->student->id);
+        $quizapiobj2 = quiz::create($quizapi2->id, $this->student->id);
+
+        // Set grade to pass.
+        $item = grade_item::fetch([
+                'courseid' => $this->course->id,
+                'itemtype' => 'mod',
+                'itemmodule' => 'quiz',
+                'iteminstance' => $quizapi1->id,
+                'outcomeid' => null
+        ]);
+        $item->gradepass = 80;
+        $item->update();
+
+        $item = grade_item::fetch([
+                'courseid' => $this->course->id,
+                'itemtype' => 'mod',
+                'itemmodule' => 'quiz',
+                'iteminstance' => $quizapi2->id,
+                'outcomeid' => null
+        ]);
+        $item->gradepass = 80;
+        $item->update();
+
+        // Start the passing attempt.
+        $quba1 = question_engine::make_questions_usage_by_activity('mod_quiz', $quizapiobj1->get_context());
+        $quba1->set_preferred_behaviour($quizapiobj1->get_quiz()->preferredbehaviour);
+
+        $quba2 = question_engine::make_questions_usage_by_activity('mod_quiz', $quizapiobj2->get_context());
+        $quba2->set_preferred_behaviour($quizapiobj2->get_quiz()->preferredbehaviour);
+
+        // Start the testing for quizapi1 that allow the student to view the grade.
+
+>>>>>>> upstream/MOODLE_38_STABLE:mod/quiz/tests/external_test.php
         $this->setUser($this->student);
         $result = mod_quiz_external::get_user_best_grade($quizapi1->id);
         $result = external_api::clean_returnvalue(mod_quiz_external::get_user_best_grade_returns(), $result);
@@ -985,8 +1050,12 @@ final class external_test extends externallib_advanced_testcase {
         $attemptobj->process_submitted_actions($timenow, false, [1 => ['answer' => '3.14']]);
 
         // Finish the attempt.
+<<<<<<< HEAD:mod/quiz/tests/external/external_test.php
         $attemptobj->process_submit($timenow, false);
         $attemptobj->process_grade_submission($timenow);
+=======
+        $attemptobj->process_finish($timenow, false);
+>>>>>>> upstream/MOODLE_38_STABLE:mod/quiz/tests/external_test.php
 
         $result = mod_quiz_external::get_user_best_grade($quizapi1->id);
         $result = external_api::clean_returnvalue(mod_quiz_external::get_user_best_grade_returns(), $result);
@@ -994,7 +1063,10 @@ final class external_test extends externallib_advanced_testcase {
         // Now I have grades.
         $this->assertTrue($result['hasgrade']);
         $this->assertEquals(100.0, $result['grade']);
+<<<<<<< HEAD:mod/quiz/tests/external/external_test.php
         $this->assertEquals(80, $result['gradetopass']);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE:mod/quiz/tests/external_test.php
 
         // We should not see other users grades.
         $anotherstudent = self::getDataGenerator()->create_user();
@@ -1015,7 +1087,10 @@ final class external_test extends externallib_advanced_testcase {
 
         $this->assertTrue($result['hasgrade']);
         $this->assertEquals(100.0, $result['grade']);
+<<<<<<< HEAD:mod/quiz/tests/external/external_test.php
         $this->assertEquals(80, $result['gradetopass']);
+=======
+>>>>>>> upstream/MOODLE_38_STABLE:mod/quiz/tests/external_test.php
 
         // Invalid user.
         try {
@@ -1048,8 +1123,12 @@ final class external_test extends externallib_advanced_testcase {
         $attemptobj->process_submitted_actions($timenow, false, [1 => ['answer' => '3.14']]);
 
         // Finish the attempt.
+<<<<<<< HEAD:mod/quiz/tests/external/external_test.php
         $attemptobj->process_submit($timenow, false);
         $attemptobj->process_grade_submission($timenow);
+=======
+        $attemptobj->process_finish($timenow, false);
+>>>>>>> upstream/MOODLE_38_STABLE:mod/quiz/tests/external_test.php
 
         $result = mod_quiz_external::get_user_best_grade($quizapi2->id);
         $result = external_api::clean_returnvalue(mod_quiz_external::get_user_best_grade_returns(), $result);

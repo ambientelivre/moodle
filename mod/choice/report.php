@@ -73,8 +73,12 @@
             'description' => ''
         ]);
         echo $OUTPUT->header();
+<<<<<<< HEAD
         echo $OUTPUT->heading($strresponses);
 
+=======
+        echo $OUTPUT->heading(format_string($choice->name), 2, null);
+>>>>>>> upstream/MOODLE_38_STABLE
         /// Check to see if groups are being used in this choice
         if ($groupmode) {
             groups_get_activity_group($cm, true);

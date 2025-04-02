@@ -30,4 +30,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['thisdirection'] = 'rtl';
+<<<<<<< HEAD
 $string['thislanguage'] = 'سنڌي';
+=======
+$string['thislanguage'] = 'سنڌي‎';
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -122,6 +122,7 @@ abstract class Formatter
     }
 
     /**
+<<<<<<< HEAD:lib/scssphp/src/Formatter.php
      * Return custom property assignment
      * differs in that you have to keep spaces in the value as is
      *
@@ -138,6 +139,8 @@ abstract class Formatter
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Formatter.php
      * Output lines inside a block
      *
      * @param \ScssPhp\ScssPhp\Formatter\OutputBlock $block
@@ -239,7 +242,11 @@ abstract class Formatter
      *
      * @param \ScssPhp\ScssPhp\Formatter\OutputBlock $block
      *
+<<<<<<< HEAD:lib/scssphp/src/Formatter.php
      * @return bool
+=======
+     * @return boolean
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Formatter.php
      */
     protected function testEmptyChildren($block)
     {
@@ -321,8 +328,12 @@ abstract class Formatter
          * Maybe Strip semi-colon appended by property(); it's a separator, not a terminator
          * will be striped for real before a closing, otherwise displayed unchanged starting the next write
          */
+<<<<<<< HEAD:lib/scssphp/src/Formatter.php
         if (
             ! $this->keepSemicolons &&
+=======
+        if (! $this->keepSemicolons &&
+>>>>>>> upstream/MOODLE_38_STABLE:lib/scssphp/Formatter.php
             $str &&
             (strpos($str, ';') !== false) &&
             (substr($str, -1) === ';')

@@ -164,7 +164,11 @@ final class string_manager_standard_test extends \advanced_testcase {
     /**
      * Test {@see core_string_manager_standard::get_list_of_countries()} under different conditions.
      */
+<<<<<<< HEAD
     public function test_get_list_of_countries(): void {
+=======
+    public function test_get_list_of_countries() {
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->resetAfterTest();
         $stringman = get_string_manager();

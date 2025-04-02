@@ -230,17 +230,26 @@ final class lib_test extends \advanced_testcase {
         $this->assertEquals($count, 1);
 
         // Test for ICS file with repeated events.
+<<<<<<< HEAD
         $subscription = new \stdClass();
+=======
+        $subscription = new stdClass();
+>>>>>>> upstream/MOODLE_38_STABLE
         $subscription->name = 'Repeated events';
         $subscription->importfrom = CALENDAR_IMPORT_FROM_FILE;
         $subscription->eventtype = 'site';
         $id = calendar_add_subscription($subscription);
         $calendar = file_get_contents($CFG->dirroot . '/lib/tests/fixtures/repeated_events.ics');
+<<<<<<< HEAD
         $ical = new \iCalendar();
+=======
+        $ical = new iCalendar();
+>>>>>>> upstream/MOODLE_38_STABLE
         $ical->unserialize($calendar);
         $this->assertEquals($ical->parser_errors, []);
 
         $sub = calendar_get_subscription($id);
+<<<<<<< HEAD
         $output = calendar_import_events_from_ical($ical, $sub->id);
         $this->assertArrayHasKey('eventsimported', $output);
         $this->assertArrayHasKey('eventsskipped', $output);
@@ -250,6 +259,13 @@ final class lib_test extends \advanced_testcase {
         $this->assertEquals(0, $output['eventsskipped']);
         $this->assertEquals(0, $output['eventsupdated']);
         $this->assertEquals(0, $output['eventsdeleted']);
+=======
+        $output = calendar_import_icalendar_events($ical, null, $sub->id);
+        $this->assertStringNotContainsString('Events deleted: 17', $output);
+        $this->assertStringContainsString('Events imported: 1', $output);
+        $this->assertStringContainsString('Events skipped: 0', $output);
+        $this->assertStringContainsString('Events updated: 0', $output);
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -675,7 +691,11 @@ final class lib_test extends \advanced_testcase {
         $this->assertTrue($types['group']);
     }
 
+<<<<<<< HEAD
     public function test_calendar_get_allowed_event_types_group_no_access_all_groups(): void {
+=======
+    public function test_calendar_get_allowed_event_types_group_no_access_all_groups() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $generator = $this->getDataGenerator();
         $user = $generator->create_user();
         $course = $generator->create_course();
@@ -708,11 +728,19 @@ final class lib_test extends \advanced_testcase {
         $this->assertTrue($types['group']);
     }
 
+<<<<<<< HEAD
     public function test_calendar_get_allowed_event_types_group_cap_no_groups(): void {
         $generator = $this->getDataGenerator();
         $user = $generator->create_user();
         $course = $generator->create_course();
         $context = \context_course::instance($course->id);
+=======
+    public function test_calendar_get_allowed_event_types_group_cap_no_groups() {
+        $generator = $this->getDataGenerator();
+        $user = $generator->create_user();
+        $course = $generator->create_course();
+        $context = context_course::instance($course->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $roleid = $generator->create_role();
         $group = $generator->create_group(['courseid' => $course->id]);
         $generator->enrol_user($user->id, $course->id, 'student');
@@ -730,11 +758,19 @@ final class lib_test extends \advanced_testcase {
         $this->assertFalse($types['group']);
     }
 
+<<<<<<< HEAD
     public function test_calendar_get_allowed_event_types_group_cap_has_group(): void {
         $generator = $this->getDataGenerator();
         $user = $generator->create_user();
         $course = $generator->create_course();
         $context = \context_course::instance($course->id);
+=======
+    public function test_calendar_get_allowed_event_types_group_cap_has_group() {
+        $generator = $this->getDataGenerator();
+        $user = $generator->create_user();
+        $course = $generator->create_course();
+        $context = context_course::instance($course->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $roleid = $generator->create_role();
         $group = $generator->create_group(['courseid' => $course->id]);
         $generator->enrol_user($user->id, $course->id, 'student');
@@ -753,11 +789,19 @@ final class lib_test extends \advanced_testcase {
         $this->assertTrue($types['group']);
     }
 
+<<<<<<< HEAD
     public function test_calendar_get_allowed_event_types_group_cap_access_all_groups(): void {
         $generator = $this->getDataGenerator();
         $user = $generator->create_user();
         $course = $generator->create_course();
         $context = \context_course::instance($course->id);
+=======
+    public function test_calendar_get_allowed_event_types_group_cap_access_all_groups() {
+        $generator = $this->getDataGenerator();
+        $user = $generator->create_user();
+        $course = $generator->create_course();
+        $context = context_course::instance($course->id);
+>>>>>>> upstream/MOODLE_38_STABLE
         $roleid = $generator->create_role();
         $group = $generator->create_group(['courseid' => $course->id]);
         $generator->enrol_user($user->id, $course->id, 'student');

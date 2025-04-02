@@ -364,6 +364,12 @@ class question_type {
      */
     public function save_question($question, $form) {
         global $USER, $DB;
+<<<<<<< HEAD
+=======
+
+        // The actual update/insert done with multiple DB access, so we do it in a transaction.
+        $transaction = $DB->start_delegated_transaction ();
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // The actual update/insert done with multiple DB access, so we do it in a transaction.
         $transaction = $DB->start_delegated_transaction ();
@@ -415,6 +421,7 @@ class question_type {
             $question->defaultmark = $form->defaultmark;
         }
 
+<<<<<<< HEAD
         // Only create a new bank entry if the question is not a new version (New question or duplicating a question).
         $questionbankentry = null;
         if (isset($question->id)) {
@@ -422,6 +429,24 @@ class question_type {
             if (!empty($question->id)) {
                 // Get the bank entry record where the question is referenced.
                 $questionbankentry = get_question_bank_entry($question->id);
+=======
+        if (isset($form->idnumber)) {
+            if ((string) $form->idnumber === '') {
+                $question->idnumber = null;
+            } else {
+                // While this check already exists in the form validation,
+                // this is a backstop preventing unnecessary errors.
+                // Only set the idnumber if it has changed and will not cause a unique index violation.
+                if (strpos($form->category, ',') !== false) {
+                    list($category, $categorycontextid) = explode(',', $form->category);
+                } else {
+                    $category = $form->category;
+                }
+                if (!$DB->record_exists('question',
+                        ['idnumber' => $form->idnumber, 'category' => $category])) {
+                    $question->idnumber = $form->idnumber;
+                }
+>>>>>>> upstream/MOODLE_38_STABLE
             }
         }
 
@@ -553,6 +578,18 @@ class question_type {
         // Log the creation of this question.
         $event = \core\event\question_created::create_from_question_instance($question, $context);
         $event->trigger();
+
+        $transaction->allow_commit();
+
+        if ($newquestion) {
+            // Log the creation of this question.
+            $event = \core\event\question_created::create_from_question_instance($question, $context);
+            $event->trigger();
+        } else {
+            // Log the update of this question.
+            $event = \core\event\question_updated::create_from_question_instance($question, $context);
+            $event->trigger();
+        }
 
         $transaction->allow_commit();
 

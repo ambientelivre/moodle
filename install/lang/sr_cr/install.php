@@ -69,6 +69,12 @@ $string['pathsunsecuredataroot'] = 'Локација директоријума 
 $string['pathswrongadmindir'] = 'Админ директоријум не постоји';
 $string['phpextension'] = '{$a} PHP екстензија';
 $string['phpversion'] = 'PHP верзија';
+<<<<<<< HEAD
+=======
+$string['phpversionhelp'] = '<p>Moodle захтева PHP верзију барем 5.6.5 или 7.1 (7.0.x има нека ограничења).</p>
+<p>Тренутно користите верзију {$a}</p>
+<p>Морате да надоградите PHP или да преместити Moodle на веб сервер са новијом верзијом PHP-a.</p>';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['welcomep10'] = '{$a->installername} ({$a->installerversion})';
 $string['welcomep20'] = 'Ову страницу видите зато што сте успешно инсталирали и покренули <strong>{$a->packname} {$a->packversion}</strong> пакет на свом серверу. Честитамо!';
 $string['welcomep30'] = 'Ово издање <strong>{$a->installername}</strong> укључује апликације за креирање окружења у којем ће <strong>Moodle</strong> успешно функционисати, конкретно:';

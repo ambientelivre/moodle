@@ -145,7 +145,11 @@ class behat_util extends testing_util {
     /**
      * Build theme CSS.
      */
+<<<<<<< HEAD
     public static function build_themes($mtraceprogress = false) {
+=======
+    public static function build_themes() {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $CFG;
         require_once("{$CFG->libdir}/outputlib.php");
 
@@ -157,7 +161,11 @@ class behat_util extends testing_util {
         }, $themenames);
 
         // Build the list of themes and cache them in local cache.
+<<<<<<< HEAD
         $themes = theme_build_css_for_themes($themeconfigs, ['ltr'], true, $mtraceprogress);
+=======
+        $themes = theme_build_css_for_themes($themeconfigs, ['ltr'], true);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $framework = self::get_framework();
         $storageroot = self::get_dataroot() . "/{$framework}/themedata";

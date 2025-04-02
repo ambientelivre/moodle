@@ -14,19 +14,40 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 namespace mod_lesson;
 
 use mod_lesson\local\numeric\helper;
 
 /**
  * This class contains the test cases for the numeric helper functions
+=======
+/**
+ * Unit tests for page types classes
+>>>>>>> upstream/MOODLE_38_STABLE
  *
  * @package   mod_lesson
  * @category  test
  * @copyright 2020 Peter Dias
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
+<<<<<<< HEAD
 final class numeric_helper_test extends \advanced_testcase {
+=======
+
+defined('MOODLE_INTERNAL') || die();
+
+global $CFG;
+use mod_lesson\local\numeric\helper;
+
+/**
+ * This class contains the test cases for the numeric helper functions
+ *
+ * @copyright 2020 Peter Dias
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ */
+class mod_lesson_numeric_type_helper_test extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
     /**
      * Test the lesson_unformat_numeric_value function.
      *
@@ -34,7 +55,11 @@ final class numeric_helper_test extends \advanced_testcase {
      * @param $decsep
      * @param $tests
      */
+<<<<<<< HEAD
     public function test_lesson_unformat_numeric_value($decsep, $tests): void {
+=======
+    public function test_lesson_unformat_numeric_value($decsep, $tests) {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->define_local_decimal_separator($decsep);
 
         foreach ($tests as $test) {
@@ -49,7 +74,11 @@ final class numeric_helper_test extends \advanced_testcase {
      * @param $decsep
      * @param $tests
      */
+<<<<<<< HEAD
     public function test_lesson_format_numeric_value($decsep, $tests): void {
+=======
+    public function test_lesson_format_numeric_value($decsep, $tests) {
+>>>>>>> upstream/MOODLE_38_STABLE
         $this->define_local_decimal_separator($decsep);
 
         foreach ($tests as $test) {
@@ -62,11 +91,19 @@ final class numeric_helper_test extends \advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function lesson_unformat_dataprovider(): array {
         return [
             "Using a decimal as a separator" => [
                 "decsep" => ".",
                 "tests" => [
+=======
+    public function lesson_unformat_dataprovider() {
+        return [
+            "Using a decimal as a separator" => [
+                "decsep" => ".",
+                "test" => [
+>>>>>>> upstream/MOODLE_38_STABLE
                     ["2.1", 2.1],
                     ["1:4.2", "1:4.2"],
                     ["2,1", 2],
@@ -76,7 +113,11 @@ final class numeric_helper_test extends \advanced_testcase {
             ],
             "Using a comma as a separator" => [
                 "decsep" => ",",
+<<<<<<< HEAD
                 "tests" => [
+=======
+                "test" => [
+>>>>>>> upstream/MOODLE_38_STABLE
                     ["2,1", 2.1],
                     ["1:4,2", "1:4.2"],
                     ["2.1", 2.1],
@@ -85,7 +126,11 @@ final class numeric_helper_test extends \advanced_testcase {
             ],
             "Using a X as a separator" => [
                 "decsep" => "X",
+<<<<<<< HEAD
                 "tests" => [
+=======
+                "test" => [
+>>>>>>> upstream/MOODLE_38_STABLE
                     ["2X1", 2.1],
                     ["1:4X2", "1:4.2"],
                     ["2.1", 2.1],
@@ -100,11 +145,19 @@ final class numeric_helper_test extends \advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function lesson_format_dataprovider(): array {
         return [
             "Using a decimal as a separator" => [
                 "decsep" => ".",
                 "tests" => [
+=======
+    public function lesson_format_dataprovider() {
+        return [
+            "Using a decimal as a separator" => [
+                "decsep" => ".",
+                "test" => [
+>>>>>>> upstream/MOODLE_38_STABLE
                     ["2.1", 2.1],
                     ["1:4.2", "1:4.2"],
                     ["2,1", "2,1"],
@@ -113,7 +166,11 @@ final class numeric_helper_test extends \advanced_testcase {
             ],
             "Using a comma as a separator" => [
                 "decsep" => ",",
+<<<<<<< HEAD
                 "tests" => [
+=======
+                "test" => [
+>>>>>>> upstream/MOODLE_38_STABLE
                     ["2,1", "2,1"],
                     ["1:4,2", "1:4,2"],
                     ["2.1", "2,1"],
@@ -123,7 +180,11 @@ final class numeric_helper_test extends \advanced_testcase {
             ],
             "Using a X as a separator" => [
                 "decsep" => "X",
+<<<<<<< HEAD
                 "tests" => [
+=======
+                "test" => [
+>>>>>>> upstream/MOODLE_38_STABLE
                     ["2X1", "2X1"],
                     ["1:4X2", "1:4X2"],
                     ["2.1", "2X1"],
@@ -140,7 +201,13 @@ final class numeric_helper_test extends \advanced_testcase {
      * It is not possible to directly change the result of get_string in
      * a unit test. Instead, we create a language pack for language 'xx' in
      * dataroot and make langconfig.php with the string we need to change.
+<<<<<<< HEAD
      * The default example separator used here is 'X'.
+=======
+     * The default example separator used here is 'X'; on PHP 5.3 and before this
+     * must be a single byte character due to PHP bug/limitation in
+     * number_format, so you can't use UTF-8 characters.
+>>>>>>> upstream/MOODLE_38_STABLE
      *
      * @param string $decsep Separator character. Defaults to `'X'`.
      */

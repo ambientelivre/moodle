@@ -55,7 +55,11 @@ class TCPDF_STATIC {
 	 * Current TCPDF version.
 	 * @private static
 	 */
+<<<<<<< HEAD
 	private static $tcpdf_version = '6.8.2';
+=======
+	private static $tcpdf_version = '6.3.2';
+>>>>>>> upstream/MOODLE_38_STABLE
 
 	/**
 	 * String alias for total number of pages.

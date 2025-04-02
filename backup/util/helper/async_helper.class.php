@@ -322,15 +322,24 @@ class async_helper  {
 
         $backups = [];
 
+<<<<<<< HEAD
         $table = 'backup_controllers';
         $select = 'execution = :execution AND status < :status1 AND status > :status2 ' .
             'AND operation = :operation';
         $params = [
+=======
+        // Get relevant backup ids based on context instance id.
+        $select = 'itemid = :itemid AND execution = :execution AND status < :status1 AND status > :status2 ' .
+            'AND operation = :operation';
+        $params = [
+            'itemid' => $instanceid,
+>>>>>>> upstream/MOODLE_38_STABLE
             'execution' => backup::EXECUTION_DELAYED,
             'status1' => backup::STATUS_FINISHED_ERR,
             'status2' => backup::STATUS_NEED_PRECHECK,
             'operation' => 'backup',
         ];
+<<<<<<< HEAD
         $sort = 'timecreated DESC';
         $fields = 'id, backupid, status, timecreated';
 
@@ -341,6 +350,16 @@ class async_helper  {
             $records = $DB->get_records_select($table, $select, $params, $sort, $fields);
             foreach ($records as $record) {
                 $bc = \backup_controller::load_controller($record->backupid);
+=======
+
+        $backups = $DB->get_records_select('backup_controllers', $select, $params, 'timecreated DESC', 'id, backupid, timecreated');
+        foreach ($backups as $backup) {
+            $bc = \backup_controller::load_controller($backup->backupid);  // Get the backup controller.
+            $filename = $bc->get_plan()->get_setting('filename')->get_value();
+            $timecreated = $backup->timecreated;
+            $status = $renderer->get_status_display($bc->get_status(), $bc->get_backupid());
+            $bc->destroy();
+>>>>>>> upstream/MOODLE_38_STABLE
 
                 // Get useful info to render async status in correct area.
                 list($hasusers, $isannon) = self::get_userdata_backup_settings($bc);

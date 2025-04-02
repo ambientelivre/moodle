@@ -968,7 +968,11 @@ final class moodle_content_writer_test extends advanced_testcase {
      *
      * @covers ::export_related_data
      */
+<<<<<<< HEAD
     public function test_export_related_data_clean_name(): void {
+=======
+    public function test_export_related_data_clean_name() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $context = \context_system::instance();
         $subcontext = [];
         $data = (object) ['foo' => 'bar'];
@@ -1035,7 +1039,11 @@ final class moodle_content_writer_test extends advanced_testcase {
      *
      * @covers ::export_data
      */
+<<<<<<< HEAD
     public function test_export_data_clean_subcontext(): void {
+=======
+    public function test_export_data_clean_subcontext() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $context = \context_system::instance();
         $subcontext = ['Something/weird', 'More/bad:>', 'Bad&chars:>'];
         $data = (object) ['foo' => 'bar'];

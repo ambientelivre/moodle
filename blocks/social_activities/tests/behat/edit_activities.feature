@@ -26,8 +26,16 @@ Feature: Edit activities in social activities block
       | forum    | C1     | My forum name |
     And I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
+<<<<<<< HEAD
     When I set the field "Edit title" in the "My forum name" "activity" to "New forum name"
     Then I should not see "My forum name"
+=======
+    And I set the field "Add an activity to section 'section 0'" to "Forum"
+    And I set the field "Forum name" to "My forum name"
+    And I press "Save and return to course"
+    When I set the field "Edit title" in the "My forum name" "block_social_activities > Activity" to "New forum name"
+    Then I should not see "My forum name" in the "Social activities" "block"
+>>>>>>> upstream/MOODLE_38_STABLE
     And I should see "New forum name"
     And I follow "New forum name"
     And I should not see "My forum name"
@@ -67,6 +75,7 @@ Feature: Edit activities in social activities block
     Then I should not see "My forum name" in the "Social activities" "block"
     And I click on "My forum name" "link" in the "Recent activity" "block"
     And I should see "My forum name" in the ".breadcrumb" "css_element"
+<<<<<<< HEAD
 
   @javascript
   Scenario: The move activity modal allow to move activities in the social activities block
@@ -139,3 +148,5 @@ Feature: Edit activities in social activities block
     And I open "Social forum" actions menu
     And "Move right" "link" should be visible
     And "Move left" "link" should not be visible
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

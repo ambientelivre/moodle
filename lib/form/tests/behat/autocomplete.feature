@@ -62,6 +62,7 @@ Feature: Autocomplete functionality in forms
     And I click on "Course 1" "autocomplete_selection"
     And the "Single select will be enabled if the control is blank" "field" should be enabled
     And the "Single select will be disabled if the control is blank" "field" should be disabled
+<<<<<<< HEAD
 
   @javascript
   Scenario: Single-select autocomplete can be cleared after being set and suggestion list reloaded
@@ -83,3 +84,5 @@ Feature: Autocomplete functionality in forms
     And I click on "Jane Jones" "autocomplete_selection"
     And "Jane Jones" "autocomplete_selection" should not exist
     And I should see "No selection" in the ".form-autocomplete-selection" "css_element"
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -42,8 +42,12 @@ Feature: Book activity chapter visibility management
     And I click on "Test book" "link" in the "region-main" "region"
     Then the "class" attribute of "a[title='Second chapter']" "css_element" should contain "dimmed_text"
     And the "class" attribute of "a[title='Third chapter']" "css_element" should contain "dimmed_text"
+<<<<<<< HEAD
     And I am on "Course 1" course homepage with editing mode on
     And I click on "Test book" "link" in the "region-main" "region"
+=======
+    And I turn editing mode on
+>>>>>>> upstream/MOODLE_38_STABLE
     And I follow "Next"
     And I should see "Second chapter" in the ".book_content" "css_element"
     And I follow "Next"
@@ -57,3 +61,9 @@ Feature: Book activity chapter visibility management
     And I should not see "Third chapter" in the "Table of contents" "block"
     And I follow "Next"
     And I should see "Fourth chapter" in the ".book_content" "css_element"
+<<<<<<< HEAD
+=======
+    And I follow "Exit book"
+    And I follow "Test book"
+    And I should see "First chapter" in the ".book_content" "css_element"
+>>>>>>> upstream/MOODLE_38_STABLE

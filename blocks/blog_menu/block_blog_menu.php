@@ -98,6 +98,7 @@ class block_blog_menu extends block_base {
 
         // Prepare the footer for this block
         if (has_capability('moodle/blog:search', context_system::instance())) {
+<<<<<<< HEAD
 
             $data = [
                 'action' => new moodle_url('/blog/index.php'),
@@ -106,6 +107,17 @@ class block_blog_menu extends block_base {
                 'extraclasses' => 'mt-3'
             ];
             $this->content->footer = $OUTPUT->render_from_template('core/search_input', $data);
+=======
+            // Full-text search field
+            $form  = html_writer::tag('label', get_string('search', 'admin'), array('for' => 'blogsearchquery',
+                'class' => 'accesshide'));
+            $form .= html_writer::empty_tag('input', array('id' => 'blogsearchquery', 'class' => 'form-control mr-1',
+                'type' => 'text', 'name' => 'search'));
+            $form .= html_writer::empty_tag('input', array('type' => 'submit', 'class' => 'btn btn-secondary',
+                'value' => get_string('search')));
+            $this->content->footer = html_writer::tag('form', html_writer::tag('div', $form), array(
+                'class' => 'blogsearchform form-inline', 'method' => 'get', 'action' => new moodle_url('/blog/index.php')));
+>>>>>>> upstream/MOODLE_38_STABLE
         } else {
             // No footer to display
             $this->content->footer = '';

@@ -734,6 +734,7 @@ class auth_plugin_ldap extends auth_plugin_base {
 
             do {
                 if ($ldappagedresults) {
+<<<<<<< HEAD
                     $servercontrols = array(array(
                         'oid' => LDAP_CONTROL_PAGEDRESULTS, 'value' => array(
                             'size' => $this->config->pagesize, 'cookie' => $ldapcookie)));
@@ -746,6 +747,37 @@ class auth_plugin_ldap extends auth_plugin_base {
                     // Search only in this context.
                     $ldapresult = ldap_list($ldapconnection, $context, $filter, array($this->config->user_attribute),
                         0, -1, -1, LDAP_DEREF_NEVER, $servercontrols);
+=======
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        // Before 7.3, use this function that was deprecated in PHP 7.4.
+                        ldap_control_paged_result($ldapconnection, $this->config->pagesize, true, $ldapcookie);
+                    } else {
+                        // PHP 7.3 and up, use server controls.
+                        $servercontrols = array(array(
+                            'oid' => LDAP_CONTROL_PAGEDRESULTS, 'value' => array(
+                                'size' => $this->config->pagesize, 'cookie' => $ldapcookie)));
+                    }
+                }
+                if ($this->config->search_sub) {
+                    // Use ldap_search to find first user from subtree.
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        $ldapresult = ldap_search($ldapconnection, $context, $filter, array($this->config->user_attribute));
+                    } else {
+                        $ldapresult = ldap_search($ldapconnection, $context, $filter, array($this->config->user_attribute),
+                            0, -1, -1, LDAP_DEREF_NEVER, $servercontrols);
+                    }
+                } else {
+                    // Search only in this context.
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        $ldapresult = ldap_list($ldapconnection, $context, $filter, array($this->config->user_attribute));
+                    } else {
+                        $ldapresult = ldap_list($ldapconnection, $context, $filter, array($this->config->user_attribute),
+                            0, -1, -1, LDAP_DEREF_NEVER, $servercontrols);
+                    }
+>>>>>>> upstream/MOODLE_38_STABLE
                 }
                 if (!$ldapresult) {
                     continue;
@@ -753,11 +785,30 @@ class auth_plugin_ldap extends auth_plugin_base {
                 if ($ldappagedresults) {
                     // Get next server cookie to know if we'll need to continue searching.
                     $ldapcookie = '';
+<<<<<<< HEAD
                     // Get next cookie from controls.
                     ldap_parse_result($ldapconnection, $ldapresult, $errcode, $matcheddn,
                         $errmsg, $referrals, $controls);
                     if (isset($controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'])) {
                         $ldapcookie = $controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'];
+=======
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        // Before 7.3, use this function that was deprecated in PHP 7.4.
+                        $pagedresp = ldap_control_paged_result_response($ldapconnection, $ldapresult, $ldapcookie);
+                        // Function ldap_control_paged_result_response() does not overwrite $ldapcookie if it fails, by
+                        // setting this to null we avoid an infinite loop.
+                        if ($pagedresp === false) {
+                            $ldapcookie = null;
+                        }
+                    } else {
+                        // Get next cookie from controls.
+                        ldap_parse_result($ldapconnection, $ldapresult, $errcode, $matcheddn,
+                            $errmsg, $referrals, $controls);
+                        if (isset($controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'])) {
+                            $ldapcookie = $controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'];
+                        }
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
                 }
                 if ($entry = @ldap_first_entry($ldapconnection, $ldapresult)) {
@@ -1574,6 +1625,7 @@ class auth_plugin_ldap extends auth_plugin_base {
 
             do {
                 if ($ldap_pagedresults) {
+<<<<<<< HEAD
                     $servercontrols = array(array(
                         'oid' => LDAP_CONTROL_PAGEDRESULTS, 'value' => array(
                             'size' => $this->config->pagesize, 'cookie' => $ldap_cookie)));
@@ -1586,6 +1638,37 @@ class auth_plugin_ldap extends auth_plugin_base {
                     // Search only in this context.
                     $ldap_result = ldap_list($ldapconnection, $context, $filter, array($this->config->user_attribute),
                         0, -1, -1, LDAP_DEREF_NEVER, $servercontrols);
+=======
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        // Before 7.3, use this function that was deprecated in PHP 7.4.
+                        ldap_control_paged_result($ldapconnection, $this->config->pagesize, true, $ldap_cookie);
+                    } else {
+                        // PHP 7.3 and up, use server controls.
+                        $servercontrols = array(array(
+                            'oid' => LDAP_CONTROL_PAGEDRESULTS, 'value' => array(
+                                'size' => $this->config->pagesize, 'cookie' => $ldap_cookie)));
+                    }
+                }
+                if ($this->config->search_sub) {
+                    // Use ldap_search to find first user from subtree.
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        $ldap_result = ldap_search($ldapconnection, $context, $filter, array($this->config->user_attribute));
+                    } else {
+                        $ldap_result = ldap_search($ldapconnection, $context, $filter, array($this->config->user_attribute),
+                            0, -1, -1, LDAP_DEREF_NEVER, $servercontrols);
+                    }
+                } else {
+                    // Search only in this context.
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        $ldap_result = ldap_list($ldapconnection, $context, $filter, array($this->config->user_attribute));
+                    } else {
+                        $ldap_result = ldap_list($ldapconnection, $context, $filter, array($this->config->user_attribute),
+                            0, -1, -1, LDAP_DEREF_NEVER, $servercontrols);
+                    }
+>>>>>>> upstream/MOODLE_38_STABLE
                 }
                 if(!$ldap_result) {
                     continue;
@@ -1593,11 +1676,25 @@ class auth_plugin_ldap extends auth_plugin_base {
                 if ($ldap_pagedresults) {
                     // Get next server cookie to know if we'll need to continue searching.
                     $ldap_cookie = '';
+<<<<<<< HEAD
                     // Get next cookie from controls.
                     ldap_parse_result($ldapconnection, $ldap_result, $errcode, $matcheddn,
                         $errmsg, $referrals, $controls);
                     if (isset($controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'])) {
                         $ldap_cookie = $controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'];
+=======
+                    // TODO: Remove the old branch of code once PHP 7.3.0 becomes required (Moodle 4.1).
+                    if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+                        // Before 7.3, use this function that was deprecated in PHP 7.4.
+                        ldap_control_paged_result_response($ldapconnection, $ldap_result, $ldap_cookie);
+                    } else {
+                        // Get next cookie from controls.
+                        ldap_parse_result($ldapconnection, $ldap_result, $errcode, $matcheddn,
+                            $errmsg, $referrals, $controls);
+                        if (isset($controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'])) {
+                            $ldap_cookie = $controls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'];
+                        }
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
                 }
                 $users = ldap_get_entries_moodle($ldapconnection, $ldap_result);

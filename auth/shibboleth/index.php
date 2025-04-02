@@ -34,7 +34,11 @@
     // Check whether Shibboleth is configured properly
     $readmeurl = (new moodle_url('/auth/shibboleth/README.txt'))->out();
     if (empty($pluginconfig->user_attribute)) {
+<<<<<<< HEAD
         throw new \moodle_exception('shib_not_set_up_error', 'auth_shibboleth', '', $readmeurl);
+=======
+        print_error('shib_not_set_up_error', 'auth_shibboleth', '', $readmeurl);
+>>>>>>> upstream/MOODLE_38_STABLE
      }
 
 /// If we can find the Shibboleth attribute, save it in session and return to main login page
@@ -99,5 +103,9 @@
             '\''.$pluginconfig->user_attribute.'\', \''.$pluginconfig->field_map_firstname.'\', \''.
             $pluginconfig->field_map_lastname.'\' and \''.$pluginconfig->field_map_email.'\'');
     } else {
+<<<<<<< HEAD
         throw new \moodle_exception('shib_not_set_up_error', 'auth_shibboleth', '', $readmeurl);
+=======
+        print_error('shib_not_set_up_error', 'auth_shibboleth', '', $readmeurl);
+>>>>>>> upstream/MOODLE_38_STABLE
     }

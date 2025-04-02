@@ -320,11 +320,26 @@ abstract class restore_activity_task extends restore_task {
         // - activities root setting.
         // - sectionincluded setting (if exists).
         $settingname = $settingprefix . 'included';
+<<<<<<< HEAD
 
         if ($this->is_in_subsection()) {
             $activityincluded = new restore_subactivity_generic_setting($settingname, base_setting::IS_BOOLEAN, true);
         } else {
             $activityincluded = new restore_activity_generic_setting($settingname, base_setting::IS_BOOLEAN, true);
+=======
+        $activity_included = new restore_activity_generic_setting($settingname, base_setting::IS_BOOLEAN, true);
+        $activity_included->get_ui()->set_icon(new image_icon('icon', get_string('pluginname', $this->modulename),
+            $this->modulename, array('class' => 'iconlarge icon-post ml-1')));
+        $this->add_setting($activity_included);
+        // Look for "activities" root setting
+        $activities = $this->plan->get_setting('activities');
+        $activities->add_dependency($activity_included);
+        // Look for "section_included" section setting (if exists)
+        $settingname = 'section_' . $this->info->sectionid . '_included';
+        if ($this->plan->setting_exists($settingname)) {
+            $section_included = $this->plan->get_setting($settingname);
+            $section_included->add_dependency($activity_included);
+>>>>>>> upstream/MOODLE_38_STABLE
         }
 
         $activityincluded->get_ui()->set_icon(new image_icon('monologo', get_string('pluginname', $this->modulename),

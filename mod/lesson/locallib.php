@@ -1442,7 +1442,11 @@ abstract class lesson_add_page_form_base extends moodleform {
      *                      component as it's elements
      * @return void
      */
+<<<<<<< HEAD
     final protected function add_answer($count, $label = null, $required = false, $format= '', array $help = []) {
+=======
+    protected final function add_answer($count, $label = null, $required = false, $format= '', array $help = []) {
+>>>>>>> upstream/MOODLE_38_STABLE
         if ($label === null) {
             $label = get_string('answer', 'lesson');
         }

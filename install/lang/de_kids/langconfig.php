@@ -31,4 +31,8 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['parentlanguage'] = 'de_du';
 $string['thisdirection'] = 'ltr';
+<<<<<<< HEAD
 $string['thislanguage'] = 'Deutsch';
+=======
+$string['thislanguage'] = 'Deutsch (kids)';
+>>>>>>> upstream/MOODLE_38_STABLE

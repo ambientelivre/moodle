@@ -6,7 +6,11 @@ This file has been replaced by UPGRADING.md. See MDL-81125 for further informati
 This files describes API changes in /auth/shibboleth/*,
 information provided here is intended especially for developers.
 
+<<<<<<< HEAD
 === 3.11 ===
+=======
+=== 3.8.7 ===
+>>>>>>> upstream/MOODLE_38_STABLE
 
 * The 'Data modification API' (convert_data) setting can no longer be configured to use files located within the
   current site data directory ($CFG->dataroot), as it exposes the site to security risks.

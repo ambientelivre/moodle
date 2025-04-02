@@ -30,4 +30,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['parentlanguage'] = 'fr';
+<<<<<<< HEAD
 $string['thislanguage'] = 'Français (écriture inclusive)';
+=======
+$string['thislanguage'] = 'Français inclusive';
+>>>>>>> upstream/MOODLE_38_STABLE

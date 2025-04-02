@@ -35,12 +35,23 @@
 .filepicker .moodle-dialogue-bd {
     min-height: 520px;
 }
+<<<<<<< HEAD
 
 .fp-navbar {
     border-color: $input-border-color;
     border-bottom: 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+=======
+.file-picker .fp-navbar {
+    min-height: 40px;
+    padding: 4px;
+>>>>>>> upstream/MOODLE_38_STABLE
+}
+
+.fp-navbar {
+    border-color: $input-border-color;
+    border-bottom: 0;
 }
 
 .file-picker .fp-content {
@@ -605,7 +616,10 @@ a.ygtvspacer:hover {
 .filemanager-container {
     min-height: 140px;
     border: 1px solid $input-border-color;
+<<<<<<< HEAD
     @include border-radius();
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 .filemanager .fp-content {

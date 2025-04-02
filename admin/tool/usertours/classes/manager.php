@@ -148,9 +148,13 @@ class manager {
      * @param   string  $action     The action to perform.
      */
     public function execute($action) {
+<<<<<<< HEAD
         global $PAGE;
         $this->setup_admin_externalpage($action);
         $PAGE->set_primary_active_tab('siteadminnode');
+=======
+        $this->setup_admin_externalpage($action);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Add the main content.
         switch ($action) {
@@ -777,10 +781,16 @@ class manager {
      */
     protected static function _move_tour(tour $tour, $direction) {
         // We can't move the first tour higher, nor the last tour any lower.
+<<<<<<< HEAD
         if (
             ($tour->is_first_tour() && $direction == helper::MOVE_UP) ||
                 ($tour->is_last_tour() && $direction == helper::MOVE_DOWN)
         ) {
+=======
+        if (($tour->is_first_tour() && $direction == helper::MOVE_UP) ||
+                ($tour->is_last_tour() && $direction == helper::MOVE_DOWN)) {
+
+>>>>>>> upstream/MOODLE_38_STABLE
             return;
         }
 

@@ -167,7 +167,11 @@ final class plugin_test extends \advanced_testcase {
         $handler->instance_form_save($form->get_data());
 
         $this->assertEquals($submitdata['customfield_myfield1_editor']['text'],
+<<<<<<< HEAD
             \core_customfield\data_controller::create($this->cfdata[1]->get('id'))->export_value());
+=======
+            core_customfield\data_controller::create($this->cfdata[1]->get('id'))->export_value());
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Now empty our non-required field.
         $submitdata['customfield_myfield1_editor']['text'] = '';
@@ -176,7 +180,11 @@ final class plugin_test extends \advanced_testcase {
         $form = new core_customfield_test_instance_form('post', ['handler' => $handler, 'instance' => $this->courses[1]]);
         $handler->instance_form_save($form->get_data());
 
+<<<<<<< HEAD
         $this->assertNull(\core_customfield\data_controller::create($this->cfdata[1]->get('id'))->export_value());
+=======
+        $this->assertEmpty(core_customfield\data_controller::create($this->cfdata[1]->get('id'))->export_value());
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**

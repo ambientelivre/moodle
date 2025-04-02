@@ -1196,6 +1196,19 @@ if (false) {
 initialise_local_config_cache();
 
 // Allow plugins to callback as soon possible after setup.php is loaded.
+<<<<<<< HEAD
 $afterconfighook = new \core\hook\after_config();
 $afterconfighook->process_legacy_callbacks();
 \core\di::get(\core\hook\manager::class)->dispatch($afterconfighook);
+=======
+$pluginswithfunction = get_plugins_with_function('after_config', 'lib.php');
+foreach ($pluginswithfunction as $plugins) {
+    foreach ($plugins as $function) {
+        try {
+            $function();
+        } catch (Throwable $e) {
+            debugging("Exception calling '$function'", DEBUG_DEVELOPER, $e->getTrace());
+        }
+    }
+}
+>>>>>>> upstream/MOODLE_38_STABLE

@@ -14,10 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 use core_external\external_api;
 use core_external\external_function_parameters;
 use core_external\external_single_structure;
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 /**
  * An external function that throws an exception, for tests.
  *
@@ -26,6 +29,20 @@ use core_external\external_single_structure;
  * @copyright  2020 Dani Palou
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
+=======
+
+defined('MOODLE_INTERNAL') || die();
+
+require_once("$CFG->libdir/externallib.php");
+
+/**
+ * Create an external function that throws an exception, for tests.
+ *
+ * @copyright  2020 Dani Palou
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+>>>>>>> upstream/MOODLE_38_STABLE
 class test_external_function_throwable extends external_api {
 
     /**
@@ -51,7 +68,11 @@ class test_external_function_throwable extends external_api {
     /**
      * Returns description of throw_exception() result value.
      *
+<<<<<<< HEAD
      * @return \core_external\external_description
+=======
+     * @return external_description
+>>>>>>> upstream/MOODLE_38_STABLE
      */
     public static function throw_exception_returns() {
         return new external_single_structure(array());

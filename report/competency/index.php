@@ -96,6 +96,10 @@ if ($currentuser > 0) {
     $top .= $output->context_header($userheading, 3);
 }
 echo $output->container($top, 'clearfix');
+<<<<<<< HEAD
+=======
+echo $output->heading($title, 3);
+>>>>>>> upstream/MOODLE_38_STABLE
 
 if ($currentuser > 0) {
     $page = new \report_competency\output\report($course->id, $currentuser, $currentmodule);

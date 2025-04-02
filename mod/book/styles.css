@@ -17,6 +17,38 @@
 }
 
 .path-mod-book .book_toc_indented li {
+<<<<<<< HEAD
+=======
+    list-style: none;
+}
+
+/* toc style BULLETED*/
+.path-mod-book .book_toc_bullets > ul {
+    margin-left: 0;
+    padding-left: 1.3rem;
+}
+.path-mod-book .book_toc_bullets li {
+    list-style: disc;
+}
+
+/* toc style NUMBERED*/
+.path-mod-book .book_toc_numbered > ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.path-mod-book .book_toc_numbered li {
+    list-style: none;
+}
+
+/* toc style NONE*/
+.path-mod-book .book_toc_none ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.path-mod-book .book_toc_none li {
+>>>>>>> upstream/MOODLE_38_STABLE
     list-style: none;
 }
 

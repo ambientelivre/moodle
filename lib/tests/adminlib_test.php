@@ -14,7 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 namespace core;
+=======
+/**
+ * Unit tests for parts of adminlib.php.
+ *
+ * @package    core
+ * @subpackage admin
+ * @copyright  2020 Brendan Heywood <brendan@catalyst-au.net>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+>>>>>>> upstream/MOODLE_38_STABLE
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -24,18 +35,29 @@ require_once($CFG->libdir.'/adminlib.php');
 /**
  * Unit tests for parts of adminlib.php.
  *
+<<<<<<< HEAD
  * @package    core
  * @copyright  2020 Brendan Heywood <brendan@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class adminlib_test extends \advanced_testcase {
+=======
+ * @copyright  2020 Brendan Heywood <brendan@catalyst-au.net>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class core_adminlib_testcase extends advanced_testcase {
+>>>>>>> upstream/MOODLE_38_STABLE
 
     /**
      * Data provider of serialized string.
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function db_should_replace_dataprovider(): array {
+=======
+    public function db_should_replace_dataprovider() {
+>>>>>>> upstream/MOODLE_38_STABLE
         return [
             // Skipped tables.
             ['block_instances', '', false],
@@ -70,16 +92,24 @@ final class adminlib_test extends \advanced_testcase {
      * Test which tables and column should be replaced.
      *
      * @dataProvider db_should_replace_dataprovider
+<<<<<<< HEAD
      * @covers ::db_should_replace
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * @param string $table name
      * @param string $column name
      * @param bool $expected whether it should be replaced
      */
+<<<<<<< HEAD
     public function test_db_should_replace(string $table, string $column, bool $expected): void {
+=======
+    public function test_db_should_replace(string $table, string $column, bool $expected) {
+>>>>>>> upstream/MOODLE_38_STABLE
         $actual = db_should_replace($table, $column);
         $this->assertSame($actual, $expected);
     }
 
+<<<<<<< HEAD
     /**
      * Data provider for additional skip tables.
      *
@@ -207,3 +237,7 @@ final class adminlib_test extends \advanced_testcase {
         $this->assertSame([], $saved);
     }
 }
+=======
+}
+
+>>>>>>> upstream/MOODLE_38_STABLE

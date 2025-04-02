@@ -446,7 +446,11 @@ class factory {
                         $instance->update_definitions();
                         $definition = $instance->get_definition_by_id($id);
                         if (!$definition) {
+<<<<<<< HEAD
                             throw new coding_exception('The requested cache definition does not exist.' . $id, $id);
+=======
+                            throw new coding_exception('The requested cache definition does not exist.'. $id, $id);
+>>>>>>> upstream/MOODLE_38_STABLE
                         }
                         if (!$this->is_disabled()) {
                             debugging('Cache definitions reparsed causing cache reset in order to locate definition.

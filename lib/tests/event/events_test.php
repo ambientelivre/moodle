@@ -348,7 +348,11 @@ final class events_test extends \advanced_testcase {
     /**
      * Test the database text field content replaced event.
      */
+<<<<<<< HEAD:lib/tests/event/events_test.php
     public function test_database_text_field_content_replaced(): void {
+=======
+    public function test_database_text_field_content_replaced() {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/events_test.php
         global $CFG;
 
         require_once($CFG->dirroot . '/lib/adminlib.php');
@@ -363,7 +367,11 @@ final class events_test extends \advanced_testcase {
 
         // Check that the event data is valid.
         $this->assertInstanceOf('\core\event\database_text_field_content_replaced', $event);
+<<<<<<< HEAD:lib/tests/event/events_test.php
         $this->assertEquals(\context_system::instance(), $event->get_context());
+=======
+        $this->assertEquals(context_system::instance(), $event->get_context());
+>>>>>>> upstream/MOODLE_38_STABLE:lib/tests/events_test.php
         $this->assertEquals('searchstring', $event->other['search']);
         $this->assertEquals('replacestring', $event->other['replace']);
     }

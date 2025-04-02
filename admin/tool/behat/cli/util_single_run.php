@@ -209,6 +209,10 @@ if ($options['install']) {
     behat_util::build_themes(true);
     mtrace("Testing environment themes built");
 
+    // Themes are only built in the 'enable' command.
+    behat_util::build_themes();
+    mtrace("Testing environment themes built");
+
     // This is only displayed once for parallel install.
     if (empty($run)) {
         // Notify user that 2.5 profile has been converted to 3.5.

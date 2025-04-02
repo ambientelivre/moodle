@@ -289,7 +289,11 @@ function book_get_toc($chapters, $chapter, $book, $cm, $edit) {
                     array('title' => $titleunescaped, 'class' => 'text-truncate'));
             }
 
+<<<<<<< HEAD
             $toc .= html_writer::start_tag('div', array('class' => 'action-list d-flex ms-auto'));
+=======
+            $toc .= html_writer::start_tag('div', array('class' => 'action-list d-flex ml-auto'));
+>>>>>>> upstream/MOODLE_38_STABLE
             if ($i != 1) {
                 $toc .= html_writer::link(new moodle_url('move.php', array('id' => $cm->id, 'chapterid' => $ch->id, 'up' => '1', 'sesskey' => $USER->sesskey)),
                         $OUTPUT->pix_icon('t/up', get_string('movechapterup', 'mod_book', $title)),

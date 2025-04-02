@@ -13,7 +13,11 @@ Feature: Forms with a large number of fields
       | activity   | name | intro                                                                   | course | idnumber |
       | label      | L1   | <a href="../lib/tests/fixtures/max_input_vars.php">FixtureLink</a> | C1     | label1   |
     When I am on the "C1" "Course" page logged in as "admin"
+<<<<<<< HEAD
     And I click on "FixtureLink" "link" in the "region-main" "region"
+=======
+    And I follow "FixtureLink"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   # Note: These tests do not actually use JavaScript but they don't work with
   # the headless 'browser'.

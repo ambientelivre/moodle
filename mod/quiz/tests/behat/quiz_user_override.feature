@@ -95,6 +95,7 @@ Feature: Quiz user override
       | Attempts allowed | 1                                  |
     And I press "Save"
     Then I should see "This override is inactive"
+<<<<<<< HEAD
     And I should see "Action"
     And "Edit" "icon" should exist in the "Student One" "table_row"
     And "copy" "icon" should exist in the "Student One" "table_row"
@@ -119,6 +120,8 @@ Feature: Quiz user override
     And I press "Save"
     And I should see "Action"
     And I should not see "student1@example.com"
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     And "Edit" "icon" should exist in the "Student One" "table_row"
     And "copy" "icon" should exist in the "Student One" "table_row"
     And "Delete" "icon" should exist in the "Student One" "table_row"

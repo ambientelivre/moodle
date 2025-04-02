@@ -50,6 +50,20 @@ Installationsprogrammet udfører et tjek før hver installation og opgradering. 
 $string['errorsinenvironment'] = 'Systemtjekket mislykkedes!';
 $string['installation'] = 'Installation';
 $string['langdownloaderror'] = 'Sproget "{$a}" blev desværre ikke downloadet. Installationen vil fortsætte på engelsk.';
+<<<<<<< HEAD
+=======
+$string['memorylimithelp'] = '<p>Den mængde hukommelse PHP kan bruge, er sat til {$a}.</p>
+
+<p>Det kan forårsage at der opstår problemer senere, især hvis du har mange moduler aktiveret eller mange brugere.</p>
+
+<p>Vi anbefaler at du konfigurerer PHP med mere hukommelse, f.eks. 40M. Der er flere måder hvorpå du kan ændre det.</p>
+<ol>
+<li>Hvis du har mulighed for det, kan du rekompilere PHP med <i>--enable-memory-limit</i>. Det vil tillade at Moodle selv kan definere hvor meget hukommelse der er brug for.</li>
+<li>Hvis du har adgang til php.ini filen kan du ændre <b>memory_limit</b>-indstillingen til noget i retning af 40M. Hvis du ikke har direkte adgang til den kan du bede systemadministratoren om at gøre det for dig.</li>
+<li>På nogle servere kan du oprette en \'.htaccess\'-fil og gemme den i moodle-mappen med linjen: <blockquote><div>php_value memory_limit 40M</div></blockquote>
+
+<p>Det kan dog på nogle servere forhindre <b>alle</b> PHP-siderne i at virke (du vil se fejl når du ser på siderne). I så fald kan du blive nødt til at fjerne \'.htaccess\'filen igen.</p></li> </ol>';
+>>>>>>> upstream/MOODLE_38_STABLE
 $string['paths'] = 'Stier';
 $string['pathserrcreatedataroot'] = 'Datamappen ({$a->dataroot}) kan ikke oprettes af installationsprogrammet.';
 $string['pathshead'] = 'Bekræft stier';

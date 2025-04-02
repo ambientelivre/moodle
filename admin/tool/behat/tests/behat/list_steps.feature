@@ -38,6 +38,7 @@ Feature: List the system steps definitions
     Then I should not see "There aren't steps definitions matching this filter"
     And I should see "Checks the provided element and selector type exists in the current page."
     And I should see "Checks that an element and selector type exists in another element and selector type on the current page."
+<<<<<<< HEAD
 
   @javascript
   Scenario: Get required fields
@@ -46,3 +47,5 @@ Feature: List the system steps definitions
     When I set the field "entities1" to "mod_quiz > user overrides"
     Then I should not see "| username |"
     And I should see "| quiz | user |"
+=======
+>>>>>>> upstream/MOODLE_38_STABLE

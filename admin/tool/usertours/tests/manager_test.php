@@ -123,7 +123,11 @@ final class manager_test extends \advanced_testcase {
      *
      * @return array
      */
+<<<<<<< HEAD
     public static function move_tour_provider(): array {
+=======
+    public function move_tour_provider() {
+>>>>>>> upstream/MOODLE_38_STABLE
         $alltours = [
             ['name' => 'Tour 1'],
             ['name' => 'Tour 2'],
@@ -169,7 +173,11 @@ final class manager_test extends \advanced_testcase {
      * @param int $expectedsortorder
      * @return void
      */
+<<<<<<< HEAD
     public function test_move_tour($alltours, $movetourname, $direction, $expectedsortorder): void {
+=======
+    public function test_move_tour($alltours, $movetourname, $direction, $expectedsortorder) {
+>>>>>>> upstream/MOODLE_38_STABLE
         global $DB;
 
         $this->resetAfterTest();
@@ -186,8 +194,14 @@ final class manager_test extends \advanced_testcase {
         $tour = \tool_usertours\tour::load_from_record($record);
 
         // Call protected method via reflection.
+<<<<<<< HEAD
         $class = new \ReflectionClass(\tool_usertours\manager::class);
         $method = $class->getMethod('_move_tour');
+=======
+        $class = new ReflectionClass(\tool_usertours\manager::class);
+        $method = $class->getMethod('_move_tour');
+        $method->setAccessible(true);
+>>>>>>> upstream/MOODLE_38_STABLE
         $method->invokeArgs(null, [$tour, $direction]);
 
         // Assert expected sortorder.

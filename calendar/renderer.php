@@ -155,6 +155,7 @@ class core_calendar_renderer extends plugin_renderer_base {
         $labelattributes = [];
         if (empty($label)) {
             $label = get_string('listofcourses');
+<<<<<<< HEAD
             $labelattributes['class'] = 'visually-hidden';
         }
 
@@ -165,6 +166,14 @@ class core_calendar_renderer extends plugin_renderer_base {
         $select = html_writer::label($label, $filterid, false, $labelattributes);
         $select .= html_writer::select($courseoptions, 'course', $selected, false,
                 ['class' => 'cal_courses_flt ms-1 me-auto me-2 mb-2', 'id' => $filterid]);
+=======
+            $labelattributes['class'] = 'sr-only';
+        }
+
+        $select = html_writer::label($label, 'course', false, $labelattributes);
+        $select .= html_writer::select($courseoptions, 'course', $selected, false,
+                ['class' => 'cal_courses_flt ml-1 mr-auto', 'id' => 'course']);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         return $select;
     }

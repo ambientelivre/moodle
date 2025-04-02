@@ -20,6 +20,7 @@
  * @copyright  2016 Damyon Wiese <damyon@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+<<<<<<< HEAD
 import * as DynamicTable from 'core_table/dynamic';
 import * as Str from 'core/str';
 import * as Toast from 'core/toast';
@@ -31,6 +32,19 @@ import jQuery from 'jquery';
 import Pending from 'core/pending';
 import Prefetch from 'core/prefetch';
 import ModalSaveCancel from 'core/modal_save_cancel';
+=======
+define(['core/templates',
+         'jquery',
+         'core/str',
+         'core/config',
+         'core/notification',
+         'core/modal_factory',
+         'core/modal_events',
+         'core/fragment',
+         'core/pending',
+       ],
+       function(Template, $, Str, Config, Notification, ModalFactory, ModalEvents, Fragment, Pending) {
+>>>>>>> upstream/MOODLE_38_STABLE
 
 const Selectors = {
     cohortSelector: "#id_cohortlist",
@@ -71,7 +85,57 @@ const registerEventListeners = contextId => {
         if (e.target.closest(Selectors.triggerButtons)) {
             e.preventDefault();
 
+<<<<<<< HEAD
             showModal(getDynamicTableForElement(e.target), contextId);
+=======
+    /**
+     * Private method
+     *
+     * @method initModal
+     * @private
+     */
+    QuickEnrolment.prototype.initModal = function() {
+        var triggerButtons = $(SELECTORS.TRIGGERBUTTONS);
+
+        $.when(
+            Str.get_strings([
+                {key: 'enroluserscohorts', component: 'enrol_manual'},
+                {key: 'enrolusers', component: 'enrol_manual'},
+            ]),
+            ModalFactory.create({
+                type: ModalFactory.types.SAVE_CANCEL,
+                large: true,
+            }, triggerButtons)
+        )
+        .then(function(strings, modal) {
+            this.modal = modal;
+
+            modal.setTitle(strings[1]);
+            modal.setSaveButtonText(strings[1]);
+
+            modal.getRoot().on(ModalEvents.save, this.submitForm.bind(this));
+            modal.getRoot().on('submit', 'form', this.submitFormAjax.bind(this));
+
+            // We want the reset the form every time it is opened.
+            modal.getRoot().on(ModalEvents.hidden, function() {
+                modal.setBody('');
+            });
+
+            modal.getRoot().on(ModalEvents.shown, function() {
+                var pendingPromise = new Pending('enrol_manual/quickenrolment:initModal:shown');
+                var bodyPromise = this.getBody();
+                bodyPromise.then(function(html) {
+                    var stringIndex = $(html).find(SELECTORS.COHORTSELECT).length ? 0 : 1;
+                    modal.setSaveButtonText(strings[stringIndex]);
+
+                    return;
+                })
+                .then(pendingPromise.resolve)
+                .catch(Notification.exception);
+
+                modal.setBody(bodyPromise);
+            }.bind(this));
+>>>>>>> upstream/MOODLE_38_STABLE
 
             return;
         }

@@ -41,6 +41,7 @@ class h5p_get_content_types_task extends scheduled_task {
      * Get an \core_h5p\core instance.
      *
      * @return \core_h5p\core
+<<<<<<< HEAD
      */
     public function get_core() {
         $factory = new factory();
@@ -53,6 +54,18 @@ class h5p_get_content_types_task extends scheduled_task {
      *
      * @throws invalid_response_exception If request to get the latest content types fails (usually due to a transient error)
      */
+=======
+     */
+    public function get_core() {
+        $factory = new factory();
+        $core = $factory->get_core();
+        return $core;
+    }
+
+    /**
+     * Execute the task.
+     */
+>>>>>>> upstream/MOODLE_38_STABLE
     public function execute() {
         // MDL-68579, avoid execute the task through behat tests.
         if (defined('BEHAT_SITE_RUNNING')) {

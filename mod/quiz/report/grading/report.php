@@ -721,6 +721,10 @@ class quiz_grading_report extends report_base {
         $a = new stdClass();
         $a->attempt = $attempt->attempt;
         $a->fullname = fullname($attempt);
+<<<<<<< HEAD
+=======
+        $a->idnumber = s($attempt->idnumber);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $customfields = [];
         foreach ($this->extrauserfields as $field) {

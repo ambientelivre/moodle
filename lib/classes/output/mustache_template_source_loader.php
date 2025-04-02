@@ -314,7 +314,11 @@ class mustache_template_source_loader {
                         break;
                     case Mustache_Tokenizer::T_SECTION:
                         if ($name == 'str') {
+<<<<<<< HEAD
                             [$id, $component] = $this->get_string_identifiers($tokens, $index);
+=======
+                            list($id, $component) = $this->get_string_identifiers($tokens, $index);
+>>>>>>> upstream/MOODLE_38_STABLE
 
                             if ($id) {
                                 $strings = $addtodependencies($strings, $component, $id);

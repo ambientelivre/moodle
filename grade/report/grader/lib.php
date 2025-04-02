@@ -749,16 +749,26 @@ class grade_report_grader extends grade_report {
             $usercell->scope = 'row';
 
             if ($showuserimage) {
+<<<<<<< HEAD
                 $usercell->text = $OUTPUT->render(\core_user::get_profile_picture($user, $coursecontext, [
                     'link' => false, 'visibletoscreenreaders' => false
                 ]));
+=======
+                $usercell->text = $OUTPUT->user_picture($user, ['link' => false, 'visibletoscreenreaders' => false]);
+>>>>>>> upstream/MOODLE_38_STABLE
             }
 
             $fullname = fullname($user, $viewfullnames);
             $usercell->text = html_writer::link(
+<<<<<<< HEAD
                 \core_user::get_profile_url($user, $coursecontext),
                 $usercell->text . $fullname,
                 ['class' => 'username']
+=======
+                    new moodle_url('/user/view.php', ['id' => $user->id, 'course' => $this->course->id]),
+                    $usercell->text . $fullname,
+                    ['class' => 'username']
+>>>>>>> upstream/MOODLE_38_STABLE
             );
 
             if (!empty($user->suspendedenrolment)) {
@@ -779,6 +789,35 @@ class grade_report_grader extends grade_report {
 
             $userrow->cells[] = $usercell;
 
+<<<<<<< HEAD
+=======
+            $userreportcell = new html_table_cell();
+            $userreportcell->attributes['class'] = 'userreport';
+            $userreportcell->header = false;
+            if ($canseeuserreport) {
+                $a = new stdClass();
+                $a->user = $fullname;
+                $strgradesforuser = get_string('gradesforuser', 'grades', $a);
+                $url = new moodle_url('/grade/report/'.$CFG->grade_profilereport.'/index.php',
+                        ['userid' => $user->id, 'id' => $this->course->id]);
+                $userreportcell->text .= $OUTPUT->action_icon($url, new pix_icon('t/grades', ''), null,
+                        ['title' => $strgradesforuser, 'aria-label' => $strgradesforuser]);
+            }
+
+            if ($canseesingleview) {
+                $strsingleview = get_string('singleview', 'grades', $fullname);
+                $url = new moodle_url('/grade/report/singleview/index.php',
+                        ['id' => $this->course->id, 'itemid' => $user->id, 'item' => 'user']);
+                $singleview = $OUTPUT->action_icon($url, new pix_icon('t/editstring', ''), null,
+                        ['title' => $strsingleview, 'aria-label' => $strsingleview]);
+                $userreportcell->text .= $singleview;
+            }
+
+            if ($userreportcell->text) {
+                $userrow->cells[] = $userreportcell;
+            }
+
+>>>>>>> upstream/MOODLE_38_STABLE
             foreach ($extrafields as $field) {
                 $fieldcellcontent = s($user->$field);
                 if ($field === 'country') {
@@ -943,7 +982,30 @@ class grade_report_grader extends grade_report {
                         $itemcell->attributes['class'] .= ' statusicons';
                     }
 
+<<<<<<< HEAD
                     $itemcell->attributes['class'] .= $this->get_cell_display_class($element['object']);
+=======
+                    $singleview = '';
+
+                    // FIXME: MDL-52678 This is extremely hacky we should have an API for inserting grade column links.
+                    if (get_capability_info('gradereport/singleview:view')) {
+                        if (has_all_capabilities(array('gradereport/singleview:view', 'moodle/grade:viewall',
+                            'moodle/grade:edit'), $this->context)) {
+
+                            $strsingleview = get_string('singleview', 'grades', $element['object']->get_name());
+                            $url = new moodle_url('/grade/report/singleview/index.php', array(
+                                'id' => $this->course->id,
+                                'item' => 'grade',
+                                'itemid' => $element['object']->id));
+                            $singleview = $OUTPUT->action_icon(
+                                    $url,
+                                    new pix_icon('t/editstring', ''),
+                                    null,
+                                    ['title' => $strsingleview, 'aria-label' => $strsingleview]
+                            );
+                        }
+                    }
+>>>>>>> upstream/MOODLE_38_STABLE
 
                     $itemcell->colspan = $colspan;
                     $itemcell->header = true;
@@ -1337,8 +1399,11 @@ class grade_report_grader extends grade_report {
         $fulltable->id = 'user-grades';
         $fulltable->caption = get_string('summarygrader', 'gradereport_grader');
         $fulltable->captionhide = true;
+<<<<<<< HEAD
         // We don't want the table to be enclosed within in a .table-responsive div as it is heavily customised.
         $fulltable->responsive = false;
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Extract rows from each side (left and right) and collate them into one row each
         foreach ($leftrows as $key => $row) {
@@ -1528,9 +1593,175 @@ class grade_report_grader extends grade_report {
     /**
      * @deprecated since Moodle 4.4 - Call calculate_average instead.
      */
+<<<<<<< HEAD
     #[\core\attribute\deprecated('grade_report::calculate_average()', since: '4.4', final: true)]
     public function get_right_avg_row() {
         \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
+=======
+    public function get_right_avg_row($rows=array(), $grouponly=false) {
+        global $USER, $DB, $OUTPUT, $CFG;
+
+        if (!$this->canviewhidden) {
+            // Totals might be affected by hiding, if user can not see hidden grades the aggregations might be altered
+            // better not show them at all if user can not see all hidden grades.
+            return $rows;
+        }
+
+        $averagesdisplaytype   = $this->get_pref('averagesdisplaytype');
+        $averagesdecimalpoints = $this->get_pref('averagesdecimalpoints');
+        $meanselection         = $this->get_pref('meanselection');
+        $shownumberofgrades    = $this->get_pref('shownumberofgrades');
+
+        if ($grouponly) {
+            $showaverages = $this->currentgroup && $this->get_pref('showaverages');
+            $groupsql = $this->groupsql;
+            $groupwheresql = $this->groupwheresql;
+            $groupwheresqlparams = $this->groupwheresql_params;
+        } else {
+            $showaverages = $this->get_pref('showaverages');
+            $groupsql = "";
+            $groupwheresql = "";
+            $groupwheresqlparams = array();
+        }
+
+        if ($showaverages) {
+            $totalcount = $this->get_numusers($grouponly);
+
+            // Limit to users with a gradeable role.
+            list($gradebookrolessql, $gradebookrolesparams) = $DB->get_in_or_equal(explode(',', $this->gradebookroles), SQL_PARAMS_NAMED, 'grbr0');
+
+            // Limit to users with an active enrollment.
+            $coursecontext = $this->context->get_course_context(true);
+            $defaultgradeshowactiveenrol = !empty($CFG->grade_report_showonlyactiveenrol);
+            $showonlyactiveenrol = get_user_preferences('grade_report_showonlyactiveenrol', $defaultgradeshowactiveenrol);
+            $showonlyactiveenrol = $showonlyactiveenrol || !has_capability('moodle/course:viewsuspendedusers', $coursecontext);
+            list($enrolledsql, $enrolledparams) = get_enrolled_sql($this->context, '', 0, $showonlyactiveenrol);
+
+            // We want to query both the current context and parent contexts.
+            list($relatedctxsql, $relatedctxparams) = $DB->get_in_or_equal($this->context->get_parent_context_ids(true), SQL_PARAMS_NAMED, 'relatedctx');
+
+            $params = array_merge(array('courseid' => $this->courseid), $gradebookrolesparams, $enrolledparams, $groupwheresqlparams, $relatedctxparams);
+
+            // Find sums of all grade items in course.
+            $sql = "SELECT g.itemid, SUM(g.finalgrade) AS sum
+                      FROM {grade_items} gi
+                      JOIN {grade_grades} g ON g.itemid = gi.id
+                      JOIN {user} u ON u.id = g.userid
+                      JOIN ($enrolledsql) je ON je.id = u.id
+                      JOIN (
+                               SELECT DISTINCT ra.userid
+                                 FROM {role_assignments} ra
+                                WHERE ra.roleid $gradebookrolessql
+                                  AND ra.contextid $relatedctxsql
+                           ) rainner ON rainner.userid = u.id
+                      $groupsql
+                     WHERE gi.courseid = :courseid
+                       AND u.deleted = 0
+                       AND g.finalgrade IS NOT NULL
+                       $groupwheresql
+                     GROUP BY g.itemid";
+            $sumarray = array();
+            if ($sums = $DB->get_records_sql($sql, $params)) {
+                foreach ($sums as $itemid => $csum) {
+                    $sumarray[$itemid] = $csum->sum;
+                }
+            }
+
+            // MDL-10875 Empty grades must be evaluated as grademin, NOT always 0
+            // This query returns a count of ungraded grades (NULL finalgrade OR no matching record in grade_grades table)
+            $sql = "SELECT gi.id, COUNT(DISTINCT u.id) AS count
+                      FROM {grade_items} gi
+                      CROSS JOIN ($enrolledsql) u
+                      JOIN {role_assignments} ra
+                           ON ra.userid = u.id
+                      LEFT OUTER JOIN {grade_grades} g
+                           ON (g.itemid = gi.id AND g.userid = u.id AND g.finalgrade IS NOT NULL)
+                      $groupsql
+                     WHERE gi.courseid = :courseid
+                           AND ra.roleid $gradebookrolessql
+                           AND ra.contextid $relatedctxsql
+                           AND g.id IS NULL
+                           $groupwheresql
+                  GROUP BY gi.id";
+
+            $ungradedcounts = $DB->get_records_sql($sql, $params);
+
+            $avgrow = new html_table_row();
+            $avgrow->attributes['class'] = 'avg';
+
+            foreach ($this->gtree->items as $itemid => $unused) {
+                $item =& $this->gtree->items[$itemid];
+
+                if ($item->needsupdate) {
+                    $avgcell = new html_table_cell();
+                    $avgcell->attributes['class'] = 'i'. $itemid;
+                    $avgcell->text = $OUTPUT->container(get_string('error'), 'gradingerror');
+                    $avgrow->cells[] = $avgcell;
+                    continue;
+                }
+
+                if (!isset($sumarray[$item->id])) {
+                    $sumarray[$item->id] = 0;
+                }
+
+                if (empty($ungradedcounts[$itemid])) {
+                    $ungradedcount = 0;
+                } else {
+                    $ungradedcount = $ungradedcounts[$itemid]->count;
+                }
+
+                if ($meanselection == GRADE_REPORT_MEAN_GRADED) {
+                    $meancount = $totalcount - $ungradedcount;
+                } else { // Bump up the sum by the number of ungraded items * grademin
+                    $sumarray[$item->id] += $ungradedcount * $item->grademin;
+                    $meancount = $totalcount;
+                }
+
+                // Determine which display type to use for this average
+                if ($USER->gradeediting[$this->courseid]) {
+                    $displaytype = GRADE_DISPLAY_TYPE_REAL;
+
+                } else if ($averagesdisplaytype == GRADE_REPORT_PREFERENCE_INHERIT) { // no ==0 here, please resave the report and user preferences
+                    $displaytype = $item->get_displaytype();
+
+                } else {
+                    $displaytype = $averagesdisplaytype;
+                }
+
+                // Override grade_item setting if a display preference (not inherit) was set for the averages
+                if ($averagesdecimalpoints == GRADE_REPORT_PREFERENCE_INHERIT) {
+                    $decimalpoints = $item->get_decimals();
+
+                } else {
+                    $decimalpoints = $averagesdecimalpoints;
+                }
+
+                if (!isset($sumarray[$item->id]) || $meancount == 0) {
+                    $avgcell = new html_table_cell();
+                    $avgcell->attributes['class'] = 'i'. $itemid;
+                    $avgcell->text = '-';
+                    $avgrow->cells[] = $avgcell;
+
+                } else {
+                    $sum = $sumarray[$item->id];
+                    $avgradeval = $sum/$meancount;
+                    $gradehtml = grade_format_gradevalue($avgradeval, $item, true, $displaytype, $decimalpoints);
+
+                    $numberofgrades = '';
+                    if ($shownumberofgrades) {
+                        $numberofgrades = " ($meancount)";
+                    }
+
+                    $avgcell = new html_table_cell();
+                    $avgcell->attributes['class'] = 'i'. $itemid;
+                    $avgcell->text = $gradehtml.$numberofgrades;
+                    $avgrow->cells[] = $avgcell;
+                }
+            }
+            $rows[] = $avgrow;
+        }
+        return $rows;
+>>>>>>> upstream/MOODLE_38_STABLE
     }
 
     /**
@@ -1541,6 +1772,7 @@ class grade_report_grader extends grade_report {
      * @return string HTML
      */
     protected function get_course_header($element) {
+<<<<<<< HEAD
         if (in_array($element['object']->id, $this->collapsed['aggregatesonly'])) {
             $showing = get_string('showingaggregatesonly', 'grades');
         } else if (in_array($element['object']->id, $this->collapsed['gradesonly'])) {
@@ -1560,6 +1792,49 @@ class grade_report_grader extends grade_report {
         $courseheader .= html_writer::div($showing, 'visually-hidden', [
             'id' => $describedbyid
         ]);
+=======
+        global $OUTPUT;
+
+        $icon = '';
+        // If object is a category, display expand/contract icon.
+        if ($element['type'] == 'category') {
+            // Load language strings.
+            $strswitchminus = $this->get_lang_string('aggregatesonly', 'grades');
+            $strswitchplus  = $this->get_lang_string('gradesonly', 'grades');
+            $strswitchwhole = $this->get_lang_string('fullmode', 'grades');
+
+            $url = new moodle_url($this->gpr->get_return_url(null, array('target' => $element['eid'], 'sesskey' => sesskey())));
+
+            if (in_array($element['object']->id, $this->collapsed['aggregatesonly'])) {
+                $url->param('action', 'switch_plus');
+                $icon = $OUTPUT->action_icon($url, new pix_icon('t/switch_plus', ''), null,
+                        ['title' => $strswitchplus, 'aria-label' => $strswitchplus]);
+                $showing = get_string('showingaggregatesonly', 'grades');
+            } else if (in_array($element['object']->id, $this->collapsed['gradesonly'])) {
+                $url->param('action', 'switch_whole');
+                $icon = $OUTPUT->action_icon($url, new pix_icon('t/switch_whole', ''), null,
+                        ['title' => $strswitchwhole, 'aria-label' => $strswitchwhole]);
+                $showing = get_string('showinggradesonly', 'grades');
+            } else {
+                $url->param('action', 'switch_minus');
+                $icon = $OUTPUT->action_icon($url, new pix_icon('t/switch_minus', ''), null,
+                        ['title' => $strswitchminus, 'aria-label' => $strswitchminus]);
+                $showing = get_string('showingfullmode', 'grades');
+            }
+        }
+
+        $name = $element['object']->get_name();
+        $describedbyid = uniqid();
+        $courseheader = html_writer::tag('span', $name, [
+            'title' => $name,
+            'class' => 'gradeitemheader',
+            'aria-describedby' => $describedbyid
+        ]);
+        $courseheader .= html_writer::div($showing, 'sr-only', [
+            'id' => $describedbyid
+        ]);
+        $courseheader .= $icon;
+>>>>>>> upstream/MOODLE_38_STABLE
 
         return $courseheader;
     }

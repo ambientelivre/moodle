@@ -48,6 +48,7 @@ class behat_form_editor extends behat_form_textarea {
         $editorid = $this->field->getAttribute('id');
         if ($this->running_javascript()) {
             $value = addslashes($value);
+<<<<<<< HEAD
             // This will be transported in JSON, which doesn't allow newlines in strings, so we must escape them.
             $value = str_replace("\n", "\\n", $value);
             behat_base::execute_in_matching_contexts('editor', 'set_editor_value', [
@@ -55,6 +56,19 @@ class behat_form_editor extends behat_form_textarea {
                 $value,
             ]);
 
+=======
+            $js = '
+(function() {
+    var editor = Y.one(document.getElementById("'.$editorid.'editable"));
+    if (editor) {
+        editor.setHTML("' . $value . '");
+    }
+    editor = Y.one(document.getElementById("'.$editorid.'"));
+    editor.set("value", "' . $value . '");
+})();
+';
+            behat_base::execute_script_in_session($this->session, $js);
+>>>>>>> upstream/MOODLE_38_STABLE
         } else {
             parent::set_value($value);
         }

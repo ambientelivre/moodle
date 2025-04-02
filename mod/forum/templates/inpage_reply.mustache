@@ -51,12 +51,20 @@
                 <input type="hidden" name="reply" value="{{postid}}"/>
                 <input type="hidden" name="sesskey" value="{{sesskey}}"/>
             </div>
+<<<<<<< HEAD
             <div class="d-flex flex-wrap align-items-center gap-1">
+=======
+            <div class="row">
+>>>>>>> upstream/MOODLE_38_STABLE
                 <button class="btn btn-primary" data-action="forum-inpage-submit">
                     <span data-region="submit-text">{{#str}} posttoforum, mod_forum {{/str}}</span>
                     <span data-region="loading-icon-container" class="hidden">{{> core/loading }}</span>
                 </button>
+<<<<<<< HEAD
                 <button class="btn btn-secondary" data-action="collapsible-link" name="cancelbtn">
+=======
+                <button class="btn btn-secondary" data-action="collapsible-link">
+>>>>>>> upstream/MOODLE_38_STABLE
                     {{#str}} cancel, core {{/str}}
                 </button>
                 {{#canreplyprivately}}
@@ -65,7 +73,11 @@
                     <label class="form-check-label" for="private-reply-checkbox-{{uniqid}}">{{#str}} privatereply, forum {{/str}}</label>
                 </div>
                 {{/canreplyprivately}}
+<<<<<<< HEAD
                 <button data-action="forum-advanced-reply" class="btn btn-link ms-auto" type="submit">
+=======
+                <button data-action="forum-advanced-reply" class="btn btn-link float-right" type="submit">
+>>>>>>> upstream/MOODLE_38_STABLE
                     {{#str}} advanced, core {{/str}}
                 </button>
             </div>

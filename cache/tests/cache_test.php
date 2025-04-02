@@ -1428,11 +1428,19 @@ final class cache_test extends \advanced_testcase {
 
         // Check we get the expected disabled caches.
         $cache = cache::make('core', 'string');
+<<<<<<< HEAD
         $this->assertInstanceOf(disabled_cache::class, $cache);
 
         // Test an application cache.
         $cache = cache::make_from_params(store::MODE_APPLICATION, 'phpunit', 'disable');
         $this->assertInstanceOf(disabled_cache::class, $cache);
+=======
+        $this->assertInstanceOf('cache_disabled', $cache);
+
+        // Test an application cache.
+        $cache = cache::make_from_params(cache_store::MODE_APPLICATION, 'phpunit', 'disable');
+        $this->assertInstanceOf('cache_disabled', $cache);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->assertFalse($cache->get('test'));
         $this->assertFalse($cache->get_versioned('v', 1));
@@ -1451,8 +1459,13 @@ final class cache_test extends \advanced_testcase {
         $this->assertTrue($cache->check_lock_state('test'));
 
         // Test a session cache.
+<<<<<<< HEAD
         $cache = cache::make_from_params(store::MODE_SESSION, 'phpunit', 'disable');
         $this->assertInstanceOf(disabled_cache::class, $cache);
+=======
+        $cache = cache::make_from_params(cache_store::MODE_SESSION, 'phpunit', 'disable');
+        $this->assertInstanceOf('cache_disabled', $cache);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->assertFalse($cache->get('test'));
         $this->assertFalse($cache->get_versioned('v', 1));
@@ -1462,8 +1475,13 @@ final class cache_test extends \advanced_testcase {
         $this->assertTrue($cache->purge());
 
         // Finally test a request cache.
+<<<<<<< HEAD
         $cache = cache::make_from_params(store::MODE_REQUEST, 'phpunit', 'disable');
         $this->assertInstanceOf(disabled_cache::class, $cache);
+=======
+        $cache = cache::make_from_params(cache_store::MODE_REQUEST, 'phpunit', 'disable');
+        $this->assertInstanceOf('cache_disabled', $cache);
+>>>>>>> upstream/MOODLE_38_STABLE
 
         $this->assertFalse($cache->get('test'));
         $this->assertFalse($cache->get_versioned('v', 1));

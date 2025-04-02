@@ -1024,11 +1024,18 @@ define(
                 }
 
                 // Add a handler for "Add sections" link to ask for a number of sections to add.
+<<<<<<< HEAD
                 const trigger = $(SELECTOR.ADDSECTIONS);
                 const modalTitle = trigger.attr('data-add-sections');
                 const newSections = trigger.attr('data-new-sections');
                 str.get_string('numberweeks')
                 .then(function(strNumberSections) {
+=======
+                str.get_string('numberweeks').done(function(strNumberSections) {
+                    var trigger = $(SELECTOR.ADDSECTIONS),
+                        modalTitle = trigger.attr('data-add-sections'),
+                        newSections = trigger.attr('data-new-sections');
+>>>>>>> upstream/MOODLE_38_STABLE
                     var modalBody = $('<div><label for="add_section_numsections"></label> ' +
                         '<input id="add_section_numsections" type="number" min="1" max="' + newSections + '" value="1"></div>');
                     modalBody.find('label').html(strNumberSections);

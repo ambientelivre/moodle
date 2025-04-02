@@ -19,6 +19,7 @@ Feature: Adding random questions to a quiz based on category and tags
       | quiz       | Quiz 1  | Quiz 1 for testing the Add random question form | C1     | quiz1    |
       | qbank      | Qbank 1 | Question bank 1 for testing the Add menu        | C1     | qbank1   |
     And the following "question categories" exist:
+<<<<<<< HEAD
       | contextlevel    | reference    | name                 |
       | Activity module | quiz1        | Questions Category 1 |
       | Activity module | quiz1        | Questions Category 2 |
@@ -42,6 +43,19 @@ Feature: Adding random questions to a quiz based on category and tags
       | question 4 name     | bar      |
       | "listen" & "answer" | foo      |
       | Qbank question 1    | qbanktag |
+=======
+      | contextlevel | reference | name                 |
+      | Course       | C1        | Questions Category 1 |
+      | Course       | C1        | Questions Category 2 |
+    And the following "questions" exist:
+      | questioncategory     | qtype | name            | user     | questiontext    |
+      | Questions Category 1 | essay | question 1 name | admin    | Question 1 text |
+      | Questions Category 1 | essay | question 2 name | teacher1 | Question 2 text |
+    And the following "core_question > Tags" exist:
+      | question        | tag |
+      | question 1 name | foo |
+      | question 2 name | bar |
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: Available tags are shown in the autocomplete tag field
     Given I am on the "Quiz 1" "mod_quiz > Edit" page logged in as "teacher1"
@@ -53,6 +67,7 @@ Feature: Adding random questions to a quiz based on category and tags
     Then "foo" "autocomplete_suggestions" should exist
     And "bar" "autocomplete_suggestions" should exist
 
+<<<<<<< HEAD
   Scenario: Questions can be filtered by tags
     Given I am on the "Quiz 1" "mod_quiz > Edit" page logged in as "teacher1"
     When I open the "last" add to quiz menu
@@ -189,6 +204,15 @@ Feature: Adding random questions to a quiz based on category and tags
     And I should see "Qbank questions"
     And I should see "qbanktag"
     And I should see "Qbank question 1"
+=======
+  Scenario: A random question can be added to the quiz
+    Given I am on the "Quiz 1" "mod_quiz > Edit" page logged in as "teacher1"
+    When I open the "last" add to quiz menu
+    And I follow "a random question"
+    And I set the field "Tags" to "foo"
+    And I press "Add random question"
+    Then I should see "Random (Questions Category 1, tags: foo)" on quiz page "1"
+>>>>>>> upstream/MOODLE_38_STABLE
 
   Scenario: Teacher without moodle/question:useall should not see the add a random question menu item
     Given the following "permission overrides" exist:

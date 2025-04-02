@@ -41,6 +41,7 @@ $drawer-bg: darken($body-bg, 5%) !default;
     -webkit-overflow-scrolling: touch;
     z-index: $zindex-dropdown - 1;
     background-color: $drawer-bg;
+<<<<<<< HEAD
     @include transition(right 0.5s ease, left 0.5s ease);
 }
 
@@ -53,6 +54,11 @@ $drawer-bg: darken($body-bg, 5%) !default;
     .jsenabled .btn-footer-communication {
         @include transition(0.2s);
     }
+=======
+    -webkit-transition: right 0.5s ease, left 0.5s ease;
+    -moz-transition: right 0.5s ease, left 0.5s ease;
+    transition: right 0.5s ease, left 0.5s ease;
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 #nav-drawer {
     right: auto;

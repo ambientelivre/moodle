@@ -39,9 +39,16 @@ if (empty($CFG->enablecalendarexport)) {
     die('no export');
 }
 
+<<<<<<< HEAD
 $checkuserid = !empty($userid) && $user = \core_user::get_user($userid);
 // Allowing for fallback check of old url - MDL-27542.
 $checkusername = !empty($username) && $user = \core_user::get_user_by_username($username);
+=======
+//Fetch user information
+$checkuserid = !empty($userid) && $user = $DB->get_record('user', array('id' => $userid), 'id,password');
+//allowing for fallback check of old url - MDL-27542
+$checkusername = !empty($username) && $user = $DB->get_record('user', array('username' => $username), 'id,password');
+>>>>>>> upstream/MOODLE_38_STABLE
 if ((!$checkuserid && !$checkusername) || !$user) {
     //No such user
     die('Invalid authentication');

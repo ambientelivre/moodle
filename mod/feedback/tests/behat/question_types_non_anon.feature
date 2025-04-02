@@ -32,7 +32,11 @@ Feature: Test creating different types of feedback questions for non-anonymous f
       | Question         | this is a response time question |
       | Label            | curtime                          |
       | Information type | Responses time                   |
+<<<<<<< HEAD
     And I add a "Text and media area" question to the feedback with:
+=======
+    And I add a "Label" question to the feedback with:
+>>>>>>> upstream/MOODLE_38_STABLE
       | Contents | label text |
     And I add a "Longer text answer" question to the feedback with:
       | Question         | this is a longer text answer |

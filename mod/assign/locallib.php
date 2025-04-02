@@ -204,6 +204,7 @@ class assign {
     /** @var array Array of error messages encountered during the execution of assignment related operations. */
     private $errors = array();
 
+<<<<<<< HEAD
     /** @var mixed This var can vary between false for no overrides to a stdClass of the overrides for a group */
     private $overridedata;
 
@@ -213,6 +214,8 @@ class assign {
     /** @var array $usersearch The content that the current user is looking for. */
     protected array $usersearch = [];
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     /**
      * Constructor for the base assign class.
      *
@@ -343,6 +346,7 @@ class assign {
     }
 
     /**
+<<<<<<< HEAD
      * Set usersearch to limit results when getting list of participants.
      *
      * @param int|null $userid User id to search for.
@@ -358,6 +362,8 @@ class assign {
     }
 
     /**
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
      * Set error message.
      *
      * @param string $message The error message
@@ -371,7 +377,11 @@ class assign {
      *
      * @return array The array of error messages
      */
+<<<<<<< HEAD
     public function get_error_messages(): array {
+=======
+    protected function get_error_messages(): array {
+>>>>>>> upstream/MOODLE_38_STABLE
         return $this->errors;
     }
 
@@ -2781,8 +2791,12 @@ class assign {
         // Only ever send a max of one days worth of updates.
         $yesterday = time() - (24 * 3600);
         $timenow   = time();
+<<<<<<< HEAD
         $task = \core\task\manager::get_scheduled_task(mod_assign\task\cron_task::class);
         $lastruntime = $task->get_last_run_time();
+=======
+        $lastruntime = $DB->get_field('task_scheduled', 'lastruntime', array('component' => 'mod_assign'));
+>>>>>>> upstream/MOODLE_38_STABLE
 
         // Collect all submissions that require mailing.
         // Submissions are included if all are true:
@@ -5427,6 +5441,7 @@ class assign {
                 }
                 $gradeddate = $gradebookgrade->dategraded;
 
+<<<<<<< HEAD
                 // Show the grader's identity if 'Hide Grader' is disabled or has the 'Show Hidden Grader' capability.
                 if (has_capability('mod/assign:showhiddengrader', $this->context) || !$this->is_hidden_grader()) {
                     // Only display the grader if it is in the right state.
@@ -5442,6 +5457,20 @@ class assign {
                             // Case 2: When an assignment's grade is overrided via the gradebook, usermodified is a grader.
                             $grader = $DB->get_record('user', array('id' => $gradebookgrade->usermodified));
                         }
+=======
+                // Only display the grader if it is in the right state.
+                if (in_array($gradingstatus, [ASSIGN_GRADING_STATUS_GRADED, ASSIGN_MARKING_WORKFLOW_STATE_RELEASED])){
+                    if (isset($grade->grader) && $grade->grader > 0) {
+                        $grader = $DB->get_record('user', array('id' => $grade->grader));
+                    } else if (isset($gradebookgrade->usermodified)
+                        && $gradebookgrade->usermodified > 0
+                        && has_capability('mod/assign:grade', $this->get_context(), $gradebookgrade->usermodified)) {
+                        // Grader not provided. Check that usermodified is a user who can grade.
+                        // Case 1: When an assignment is reopened an empty assign_grade is created so the feedback
+                        // plugin can know which attempt it's referring to. In this case, usermodifed is a student.
+                        // Case 2: When an assignment's grade is overrided via the gradebook, usermodified is a grader
+                        $grader = $DB->get_record('user', array('id' => $gradebookgrade->usermodified));
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
                 }
             }

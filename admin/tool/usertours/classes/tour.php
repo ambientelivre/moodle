@@ -596,7 +596,11 @@ class tour {
         }
 
         // Remove the configuration for the tour.
+<<<<<<< HEAD
         $DB->delete_records('tool_usertours_tours', ['id' => $this->id]);
+=======
+        $DB->delete_records('tool_usertours_tours', array('id' => $this->id));
+>>>>>>> upstream/MOODLE_38_STABLE
         helper::reset_tour_sortorder();
 
         $this->remove_user_preferences();

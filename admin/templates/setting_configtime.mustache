@@ -45,15 +45,26 @@
     Setting configtime.
 }}
 <div class="form-time defaultsnext">
+<<<<<<< HEAD
     <div class="d-flex flex-wrap align-items-center text-ltr">
         <label class="visually-hidden" for="{{id}}h">{{#str}}hours{{/str}}</label>
         <select id="{{id}}h" name="{{name}}[h]" class="form-select" {{#readonly}}disabled{{/readonly}}>
+=======
+    <div class="form-inline text-ltr">
+        <label class="sr-only" for="{{id}}h">{{#str}}hours{{/str}}</label>
+        <select id="{{id}}h" name="{{name}}[h]" class="custom-select" {{#readonly}}disabled{{/readonly}}>
+>>>>>>> upstream/MOODLE_38_STABLE
             {{#hours}}
                 <option value="{{value}}" {{#selected}}selected{{/selected}}>{{name}}</option>
             {{/hours}}
         </select>:
+<<<<<<< HEAD
         <label class="visually-hidden" for="{{id}}m">{{#str}}minutes{{/str}}</label>
         <select id="{{id}}m" name="{{name}}[m]" class="form-select" {{#readonly}}disabled{{/readonly}}>
+=======
+        <label class="sr-only" for="{{id}}m">{{#str}}minutes{{/str}}</label>
+        <select id="{{id}}m" name="{{name}}[m]" class="custom-select" {{#readonly}}disabled{{/readonly}}>
+>>>>>>> upstream/MOODLE_38_STABLE
             {{#minutes}}
                 <option value="{{value}}" {{#selected}}selected{{/selected}}>{{name}}</option>
             {{/minutes}}

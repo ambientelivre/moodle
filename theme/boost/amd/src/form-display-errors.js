@@ -38,6 +38,14 @@ define(['jquery', 'core_form/events'], function($, FormEvent) {
                 // Hence there is no validation. So, no setup required here.
                 return;
             }
+<<<<<<< HEAD
+=======
+
+            $(element).on(Event.Events.FORM_FIELD_VALIDATION, function(event, msg) {
+                event.preventDefault();
+                var parent = $(element).closest('.form-group');
+                var feedback = parent.find('.form-control-feedback');
+>>>>>>> upstream/MOODLE_38_STABLE
 
             element.addEventListener(FormEvent.eventTypes.formFieldValidationFailed, e => {
                 const msg = e.detail.message;
@@ -85,6 +93,7 @@ define(['jquery', 'core_form/events'], function($, FormEvent) {
                     feedback.html(msg);
                     feedback.show();
 
+<<<<<<< HEAD
                     // If we haven't focused anything yet, focus this one.
                     if (!focusedAlready) {
                         element.scrollIntoView({behavior: "smooth", block: "center"});
@@ -96,6 +105,13 @@ define(['jquery', 'core_form/events'], function($, FormEvent) {
                             // Let it focus again next time they submit the form.
                             focusedAlready = false;
                         }, 0);
+=======
+                    // Only display and focus when the error was not already visible.
+                    // This is so that, when tabbing around the form, you don't get stuck.
+                    if (!feedback.is(':visible')) {
+                        feedback.show();
+                        feedback.focus();
+>>>>>>> upstream/MOODLE_38_STABLE
                     }
 
                 } else {

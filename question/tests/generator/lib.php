@@ -145,7 +145,11 @@ class core_question_generator extends component_generator_base {
      * @param string $which as for the corresponding argument of
      *      {@link question_test_helper::get_question_form_data}. null for the default one.
      * @param array|stdClass $overrides any fields that should be different from the base example.
+<<<<<<< HEAD
      * @return stdClass the question data, including version info and questionbankentryid
+=======
+     * @return stdClass the question data.
+>>>>>>> upstream/MOODLE_38_STABLE
      */
     public function update_question($question, $which = null, $overrides = null) {
         global $CFG, $DB;
@@ -161,6 +165,7 @@ class core_question_generator extends component_generator_base {
 
         $question = question_bank::get_qtype($qtype)->save_question($question, $fromform);
 
+<<<<<<< HEAD
         $validoverrides = ['createdby', 'modifiedby', 'timemodified'];
         if ($overrides && !empty(array_intersect($validoverrides, array_keys($overrides)))) {
             // Manually update the createdby, modifiedby and timemodified because questiontypebase forces
@@ -169,6 +174,16 @@ class core_question_generator extends component_generator_base {
                 if (array_key_exists($validoverride, $overrides)) {
                     $question->{$validoverride} = $overrides[$validoverride];
                 }
+=======
+        if ($overrides && (array_key_exists('createdby', $overrides) || array_key_exists('modifiedby', $overrides))) {
+            // Manually update the createdby and modifiedby because questiontypebase forces
+            // current user and some tests require a specific user.
+            if (array_key_exists('createdby', $overrides)) {
+                $question->createdby = $overrides['createdby'];
+            }
+            if (array_key_exists('modifiedby', $overrides)) {
+                $question->modifiedby = $overrides['modifiedby'];
+>>>>>>> upstream/MOODLE_38_STABLE
             }
             $DB->update_record('question', $question);
         }

@@ -53,7 +53,11 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
      * @param string $val Value of the preference filemanager_recentviewmode
      * @param string $desc Text describing the preference
      */
+<<<<<<< HEAD:lib/form/tests/privacy/provider_test.php
     public function test_filemanager_recentviewmode(string $val, string $desc): void {
+=======
+    public function test_filemanager_recentviewmode(string $val, string $desc) {
+>>>>>>> upstream/MOODLE_38_STABLE:lib/form/tests/privacy_provider_test.php
         $this->resetAfterTest();
 
         // Create test user, add some preferences.

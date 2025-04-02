@@ -146,6 +146,7 @@ class behat_partial_named_selector extends \Behat\Mink\Selector\PartialNamedSele
     protected static $moodleselectors = array(
         'activity' => <<<XPATH
 .//li[contains(concat(' ', normalize-space(@class), ' '), ' activity ')][descendant::*[contains(normalize-space(.), %locator%)]]
+<<<<<<< HEAD
 XPATH
         , 'actionmenu' => <<<XPATH
 .//*[
@@ -160,6 +161,8 @@ XPATH
 XPATH
         , 'badge' => <<<XPATH
 .//*[self::span or self::button][(contains(@class, 'badge')) and text()[contains(., %locator%)]]
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
 XPATH
         , 'block' => <<<XPATH
 .//*[@data-block][contains(concat(' ', normalize-space(@class), ' '), concat(' ', %locator%, ' ')) or
@@ -327,6 +330,7 @@ XPATH
 .//descendant::span[@data-inplaceeditable][descendant::a[%titleMatch%]]
 XPATH
         ,
+<<<<<<< HEAD
             'date_time' => <<<XPATH
 .//*[
     (%idMatch% or ./legend[%exactTagTextMatch%]
@@ -341,6 +345,8 @@ XPATH
 //*[@role='combobox'][@aria-labelledby = //label[contains(normalize-space(string(.)), %locator%)]/@id]
 XPATH
         ,
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
         ],
     ];
 

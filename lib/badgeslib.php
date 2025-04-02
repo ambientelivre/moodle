@@ -720,7 +720,11 @@ function badges_bake($hash, $badgeid, $userid = 0, $pathhash = false) {
         if ($file = $fs->get_file($badge_context->id, 'badges', 'badgeimage', $badge->id, '/', 'f3.png')) {
             $contents = $file->get_content();
 
+<<<<<<< HEAD
             $filehandler = new png_metadata_handler($contents);
+=======
+            $filehandler = new PNG_MetaDataHandler($contents);
+>>>>>>> upstream/MOODLE_38_STABLE
             // For now, the site backpack OB version will be used as default.
             $obversion = badges_open_badges_backpack_api();
             $assertion = new core_badges_assertion($hash, $obversion);
@@ -1522,8 +1526,14 @@ function badge_assemble_notification(stdClass $badge) {
  * @return string
  */
 function badges_verify_site_backpack() {
+<<<<<<< HEAD
     $defaultbackpack = badges_get_site_primary_backpack();
     return badges_verify_backpack($defaultbackpack->id);
+=======
+    global $CFG;
+
+    return badges_verify_backpack($CFG->badges_site_backpack);
+>>>>>>> upstream/MOODLE_38_STABLE
 }
 
 /**

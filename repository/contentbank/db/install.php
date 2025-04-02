@@ -31,6 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  */
 function xmldb_repository_contentbank_install() {
     global $CFG;
+<<<<<<< HEAD:repository/contentbank/db/install.php
     $result = true;
     require_once($CFG->dirroot.'/repository/lib.php');
     $userplugin = new repository_type('contentbank', [], true);
@@ -38,4 +39,26 @@ function xmldb_repository_contentbank_install() {
         $result = false;
     }
     return $result;
+=======
+
+    // Automatically generated Moodle v3.3.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.4.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.5.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.6.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.7.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    // Automatically generated Moodle v3.8.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    return true;
+>>>>>>> upstream/MOODLE_38_STABLE:lib/editor/tinymce/plugins/spellchecker/db/upgrade.php
 }

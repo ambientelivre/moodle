@@ -244,10 +244,13 @@ function url_get_coursemodule_info($coursemodule) {
         $info->content = format_module_intro('url', $url, $coursemodule->id, false);
     }
 
+<<<<<<< HEAD
     $info->customdata['display'] = $display;
     // The icon will be filtered from now on because the custom icons have been updated.
     $info->customdata['filtericon'] = true;
 
+=======
+>>>>>>> upstream/MOODLE_38_STABLE
     return $info;
 }
 
